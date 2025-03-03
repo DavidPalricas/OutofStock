@@ -40,7 +40,7 @@ A group of Master’s students specializing in Digital Game Development at the U
 | Name       | Role               | GitHub                          | LinkedIn                        | Portfolio                   |  
 |------------|--------------------|---------------------------------|---------------------------------|-----------------------------|  
 | **David Palricas**    | Lead Programmer    | [GitHub](https://github.com/DavidPalricas) | [LinkedIn](https://www.linkedin.com/in/david-palricas/)| [Portofolio](https://davidpalricas.github.io/)                         |  
-| **Hugo Tavares**   | Project Manger and programmer   | [GitHub]() | [LinkedIn]()| [Portofolio]()                        |  
+| **Hugo Tavares**   | Project Manager and programmer   | [GitHub]() | [LinkedIn]()| [Portofolio]()                        |  
 | **Mariana Cabral**   | Story Teller and 3D Artist   | [GitHub](https://github.com) | [LinkedIn](https://linkedin.com)| [Portfolio]() |  
 | **Pedro Soares**    | Lead 3D Artist    | [GitHub](https://github.com) | [LinkedIn](https://linkedin.com)| [Portofolio]()                           |  
 | **Salvador Luís**   | Sound Designer and 3D Artist     | [GitHub](https://github.com/) | [LinkedIn](https://linkedin.com)| [Portfolio]() |  
