@@ -43,7 +43,7 @@ A group of Master’s students specializing in Digital Game Development at the U
 | **Hugo Tavares**   | Project Manager and programmer   | [GitHub](https://github.com/simoH3945) | [LinkedIn](https://www.linkedin.com/in/hugo-tavares-b56471302/)| [Portfolio](https://simoh3945.github.io/portfolio/)                       |  
 | **Mariana Cabral**   | Story Teller and 3D Artist   | [GitHub](https://github.com/ma-cabral) | [LinkedIn](https://www.linkedin.com/in/macabral203/)| [Portfolio]() |  
 | **Pedro Soares**    | Lead 3D Artist    | [GitHub](https://github.com/pmcsoares) | [LinkedIn](https://www.linkedin.com/in/pedrosoaress/)| [Portfolio]()                           |  
-| **Salvador Luís**   | Sound Designer and 3D Artist     | [GitHub](https://github.com/) | [LinkedIn](https://linkedin.com)| [Portfolio]() |  
+| **Salvador Luís**   | Sound Designer and 3D Artist     | [GitHub](https://github.com/kavluxx2) | [LinkedIn](https://www.linkedin.com/in/salvador-lu%C3%ADs-a0a6331b1/)| [Portfolio](https://www.figma.com/proto/tXuIpBWNtXChceaPoJdJvE/Portfolio-%7C-Salvador-Lu%C3%ADs?node-id=9-5&p=f&t=Ejm4MOCnS3uS1LGN-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1) |  
 
 
 ## Relevant Links
