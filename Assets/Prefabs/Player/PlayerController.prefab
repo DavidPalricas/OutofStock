@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 931699441282514554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0, z: 2.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,9 +148,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3025801297146743875}
   - {fileID: 6850312606828791236}
   - {fileID: 5763519024140025336}
-  - {fileID: 3025801297146743875}
   m_Father: {fileID: 3595617856839897970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3060188495569654751
@@ -228,7 +228,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 3734446239751768752}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -270,6 +271,7 @@ GameObject:
   - component: {fileID: 3970176968006538019}
   - component: {fileID: 6247758564204338669}
   - component: {fileID: 1518372816978788098}
+  - component: {fileID: 4330717708257930824}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -452,6 +454,21 @@ MonoBehaviour:
   joint: {fileID: 3595617856839897970}
   bobSpeed: 10
   bobAmount: {x: 0, y: 0.05, z: 0}
+--- !u!114 &4330717708257930824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450988668983306783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501857032f27065419d4eb0d8adcb912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2450988668983306783}
+  itemGrabbedPos: {fileID: 5763519024140025336}
+  grabOrThrowAction: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &3233964553465330783
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +479,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3025801297146743875}
   - component: {fileID: 3734446239751768752}
-  - component: {fileID: 8572925832897435415}
   - component: {fileID: 269207270867208027}
   m_Layer: 0
   m_Name: pickUpCamera
@@ -480,7 +496,7 @@ Transform:
   m_GameObject: {fileID: 3233964553465330783}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -537,14 +553,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8572925832897435415
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3233964553465330783}
-  m_Enabled: 1
 --- !u!114 &269207270867208027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,7 +568,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
