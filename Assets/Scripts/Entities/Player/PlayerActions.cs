@@ -79,17 +79,26 @@ public class PlayerActions : MonoBehaviour
         const float RAYCASTDISTANCE = 5f;
 
         if (Physics.Raycast(player.transform.position, player.transform.forward, out RaycastHit playerRaycast, RAYCASTDISTANCE) )
-        {
+        {   
             if (playerRaycast.collider.CompareTag("PickUpItem"))
             {   
-                if (!playerRaycast.collider.GetComponent<Rigidbody>().isKinematic)
+                playerRaycast.collider.isTrigger = true;
+
+                GameObject item = playerRaycast.collider.gameObject;
+
+                Rigidbody itemRb = item.GetComponent<Rigidbody>();
+
+                if (!itemRb.isKinematic)
                 {
-                    playerRaycast.collider.GetComponent<Rigidbody>().isKinematic = true;
+                    itemRb.isKinematic = true;
                 }
 
-                playerRaycast.collider.transform.SetPositionAndRotation(itemGrabbedPos.position, itemGrabbedPos.rotation);
-                playerRaycast.collider.transform.SetParent(itemGrabbedPos);
-                playerRaycast.collider.gameObject.layer = LayerMask.NameToLayer("GrabbedItem");
+                Transform itemTransform = item.transform;
+
+                itemTransform.SetPositionAndRotation(itemGrabbedPos.position, itemGrabbedPos.rotation);
+
+                itemTransform.SetParent(itemGrabbedPos);
+                item.layer = LayerMask.NameToLayer("GrabbedItem");
                 itemGrabbed = true;
             }
         }
@@ -113,7 +122,9 @@ public class PlayerActions : MonoBehaviour
     private void ThrowItem()
     {
         GameObject itemToThrow = itemGrabbedPos.GetChild(0).gameObject;
-        
+
+        itemToThrow.GetComponent<Collider>().isTrigger = false;
+
         StopClipping(itemToThrow);
 
         itemToThrow.transform.SetParent(null);
