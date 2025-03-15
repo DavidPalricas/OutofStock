@@ -76,3 +76,5 @@ crashlytics-build.properties
 # To ignore the test scenes
 Assets/Scenes/TestScenes/
 Assets/Scenes/TestScenes.meta
+
+.vscode/
