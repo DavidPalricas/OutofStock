@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
 ///  The PickUpItemCollisions class is responsible for handling the collisions of the pick up itens.
@@ -59,25 +58,23 @@ public class PickUpItemCollisions : MonoBehaviour
         const float POSYOFFSET = 0.1f;
         customer.transform.position = new Vector3(customerPos.x, customerPos.y - POSYOFFSET, customerPos.z);
 
-        StartCoroutine(StandUp(customerRb, customer, POSYOFFSET));
+
+        const float KNOCKDOWNTIME = 5f;
+
+       StartCoroutine(Utils.WaitAndExecute(KNOCKDOWNTIME, () => StandUp(customerRb, customer, POSYOFFSET)));
     }
-    
+
     /// <summary>
-    /// The StandUp Coroutine is responsible for making the customer stand up again after 5 seconds.
+    /// The StandUp method is responsible for making the customer stand up again.
     /// </summary>
     /// <remarks>
-    /// To simulate the customer standing up, the customer rigidbody is set to non kinematic (enbabling physics), its position and rotation are changed to their original values and its navmesh agent is enabled again.
-    /// </remarks> 
-    /// <param name="custumerRb">The customer Rigidbody</param>
-    /// <param name="customer">The customer hitted by the object</param>
-    /// <param name="POSYOFFSET">The y coordinate offset of the customer </param>
-    /// <returns></returns>
-    private IEnumerator StandUp(Rigidbody custumerRb, GameObject customer, float POSYOFFSET)
+    /// In this method, the customer rigidbody is set to non kinematic, its position and rotation are changed to simulate the customer is standing up and its navmesh agent is enabled.
+    /// </remarks>
+    /// <param name="custumerRb">The custumer rigid body.</param>
+    /// <param name="customer">The customer.</param>
+    /// <param name="POSYOFFSET">The offset for the y position of the customer.</param>
+    private void StandUp(Rigidbody custumerRb, GameObject customer, float POSYOFFSET)
     {   
-        const float KONCKDOWNTIME = 5f;
-
-        yield return new WaitForSeconds(KONCKDOWNTIME);
-
         custumerRb.isKinematic = false;
 
         customer.transform.rotation = Quaternion.identity;
