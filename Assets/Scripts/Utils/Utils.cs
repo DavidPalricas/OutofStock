@@ -1,0 +1,93 @@
+using UnityEngine;
+using System;
+using System.Collections;
+
+/// <summary>
+/// The Utils class is responsible for storing some methods 
+/// that can be used in different parts of this game.
+/// </summary>
+public static class Utils
+{
+    /// <summary>
+    /// The GetRandomSeed method is responsible for generating a random seed to be set in a random generator.
+    /// The seed is generated based on the current OS time in milliseconds.
+    /// </summary>
+    /// <returns>The current OS time in milliseconds as an integer</returns>
+    private static int GetRandomSeed()
+    {
+        return Environment.TickCount;
+    }
+
+    /// <summary>
+    /// The GetChildren method is responsible for retrieving the children of a game object.
+    /// </summary>
+    /// <param name="parent">The transform component of the game object whose children are to be retrieved.</param>
+    /// <returns>The children of the specified game object.</returns>
+    public static GameObject[] GetChildren(Transform parent)
+    {   
+        GameObject[] children = new GameObject[parent.childCount];
+
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            children[i] = parent.GetChild(i).gameObject;
+        }
+
+        return children;
+    }
+
+    /// <summary>
+    /// The RandomInt method is responsible for generating a random integer between a specified range.
+    /// </summary>
+    /// <remarks>
+    /// This method is used instead of UnityEngine.Random.Range or System.Random.Next 
+    /// to avoid some patterns in producing random numbers.
+    /// Because computes cannot generate truly random numbers, they generate pseudo-random numbers using a seed.
+    /// So, in this method, we are setting the seed to the current OS time in milliseconds 
+    /// to avoid patterns in producing random numbers.
+    /// </remarks>
+    /// <param name="min">The minimum intger value of the ranged specified.</param>
+    /// <param name="max">The maximum integer value of the range specified .</param>
+    /// <returns>A random integer between the specified range</returns>
+    public static int RandomInt(int min, int max)
+    {   
+        int seed = GetRandomSeed();
+
+        UnityEngine.Random.InitState(seed);
+
+        return UnityEngine.Random.Range(min, max);
+    }
+
+    /// <summary>
+    /// The RandomFloat method is responsible for generating a random float between a specified range.
+    /// </summary>
+    /// <remarks>
+    /// This method is used instead of UnityEngine.Random.Range or System.Random.Next 
+    /// to avoid some patterns in producing random numbers.
+    /// Because computes cannot generate truly random numbers, they generate pseudo-random numbers using a seed.
+    /// So, in this method, we are setting the seed to the current OS time in milliseconds 
+    /// to avoid patterns in producing random numbers.
+    /// </remarks>
+    /// <param name="min">The minimum float value of the ranged specified.</param>
+    /// <param name="max">The maximum float value of the range specified .</param>
+    /// <returns>A random float between the specified range</returns>
+    public static float RandomFloat(float min, float max)
+    {
+        int seed = GetRandomSeed();
+
+        UnityEngine.Random.InitState(seed);
+
+        return UnityEngine.Random.Range(min, max);
+    }
+
+    /// <summary>
+    /// The WaitAndExecute method is responsible for waiting for a specified time and then executing a method.
+    /// </summary>
+    /// <param name="waitTime">The time to wait before executing the method.</param>
+    /// <param name="methodToExecute">The method to execute.</param>
+    /// <returns>An IEnumerator that can be used in a coroutine to wait and execute the specified method.</returns>
+    public static IEnumerator WaitAndExecute(float waitTime, Action methodToExecute)
+    {
+        yield return new WaitForSeconds(waitTime);
+        methodToExecute();
+    }
+}

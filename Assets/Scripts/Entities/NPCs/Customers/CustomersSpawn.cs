@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -33,7 +33,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// <summary>
     /// The targetItemsList attribute represents the list of  the customers target items in the market.
     /// </summary>
-    private readonly List<GameObject> targetItemsList = new ();
+    private List<GameObject> targetItemsList = new ();
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
@@ -41,7 +41,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </summary>
     private void Awake()
     { 
-        AddItems();
+        targetItemsList = Utils.GetChildren(targetItems).ToList();
     }
 
     /// <summary>
@@ -60,17 +60,6 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     }
 
     /// <summary>
-    /// The AddItems method is responsible for adding the items to the targetItemsList.
-    /// </summary>
-    private void AddItems()
-    {   
-        foreach (Transform item in targetItems)
-        {   
-            targetItemsList.Add(item.gameObject);
-        }
-    }
-
-    /// <summary>
     ///The SpawnCustomer method is responsible for spawning the customers in the market.
     /// </summary>
     /// <remarks>
@@ -84,7 +73,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
-        GameObject targetItem = targetItemsList[new System.Random().Next(targetItemsList.Count)];
+        GameObject targetItem = targetItemsList[Utils.RandomInt(0, targetItemsList.Count)];
 
         targetItemsList.Remove(targetItem);
 
@@ -113,8 +102,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         float minZ = planePos.z - planeSize.z / 2;
         float maxZ = planePos.z + planeSize.z / 2;
 
-        float randomX = Random.Range(minX, maxX);
-        float randomZ = Random.Range(minZ, maxZ);
+        float randomX = Utils.RandomFloat(minX, maxX);
+        float randomZ = Utils.RandomFloat(minZ, maxZ);
 
         const float CUSTOMERPOSY = 3f;
 
@@ -122,20 +111,20 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     }
 
     /// <summary>
-    /// The SpawnCustomerAfterDelay method is responsible for spawning the customers after a random delay.
+    /// The CustomerExitMarket method is responsible for removing a customer from the market.
+    /// By decrementing the customersSpawned attribute, it triggers in the Update method to spawn a new customer.
     /// </summary>
-    /// <returns>IEnumerator to handle the delay before spawning the next customer.</returns>
-    private IEnumerator SpawnCustomerAfterDelay()
+    private void CustomerExitMarket()
     {
-        yield return new WaitForSeconds(Random.Range(1f, 5f));
         customersSpawned--;
     }
 
     /// <summary>
     /// The UpdateObserver method is responsible for updating the observer (IObserver interface method).
+    /// In this case, it calls the CustomerExitMarket method after a random time between 1 and 5 seconds to simulate the customer leaving the market.
     /// </summary>
     public void UpdateObserver()
-    {   StartCoroutine(SpawnCustomerAfterDelay());
+    {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket()));
         
     }
 }
