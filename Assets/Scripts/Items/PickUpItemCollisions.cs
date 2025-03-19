@@ -4,12 +4,15 @@ using UnityEngine;
 ///  The PickUpItemCollisions class is responsible for handling the collisions of the pick up itens.
 /// </summary>
 public class PickUpItemCollisions : MonoBehaviour
-{   
+{
     /// <summary>
     /// The itemRb is the Rigidbody component of the item.
     /// </summary>
     [SerializeField]
     private Rigidbody itemRb;
+
+
+    private EventDispatcher eventDispatcher = EventDispatcher.GetInstance();
 
     /// <summary>
     /// The OnCollisionEnter Method is called when this collider/rigidbody has begun touching another rigidbody/collider (Unity Callback).
@@ -25,11 +28,12 @@ public class PickUpItemCollisions : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Default");
 
         if (collision.gameObject.CompareTag("Customer") && !itemRb.isKinematic)
-        {
+        {   
+            eventDispatcher.DispatchEvent("CustomerAttacked", collision.gameObject);
             KnockCustumer(collision.gameObject);
         }
     }
-    
+
     /// <summary>
     /// The KnockCustumer method is responsible for knocking down a customer.
     /// </summary>
@@ -50,9 +54,9 @@ public class PickUpItemCollisions : MonoBehaviour
         Rigidbody customerRb = customer.GetComponent<Rigidbody>();
 
         customerRb.isKinematic = true;
-        
+
         customer.transform.rotation = Quaternion.Euler(90f, 0, 0);
-        
+
         Vector3 customerPos = customer.transform.position;
 
         const float POSYOFFSET = 0.1f;
@@ -61,7 +65,7 @@ public class PickUpItemCollisions : MonoBehaviour
 
         const float KNOCKDOWNTIME = 5f;
 
-       StartCoroutine(Utils.WaitAndExecute(KNOCKDOWNTIME, () => StandUp(customerRb, customer, POSYOFFSET)));
+        StartCoroutine(Utils.WaitAndExecute(KNOCKDOWNTIME, () => StandUp(customerRb, customer, POSYOFFSET)));
     }
 
     /// <summary>
@@ -74,7 +78,7 @@ public class PickUpItemCollisions : MonoBehaviour
     /// <param name="customer">The customer.</param>
     /// <param name="POSYOFFSET">The offset for the y position of the customer.</param>
     private void StandUp(Rigidbody custumerRb, GameObject customer, float POSYOFFSET)
-    {   
+    {
         custumerRb.isKinematic = false;
 
         customer.transform.rotation = Quaternion.identity;

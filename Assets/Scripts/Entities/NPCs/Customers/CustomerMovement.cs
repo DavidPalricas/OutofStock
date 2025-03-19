@@ -132,7 +132,8 @@ public class CustomerMovement : NPCMovement, ISubject
     /// <summary>
     /// The NotifyObservers method is responsible for notifying the customer observers (ISubject interface method).
     /// </summary>
-    public void NotifyObservers()
+    /// <param name="data">Any argument to be sent to the observer.</param>
+    public void NotifyObservers(object data = null)
     {
         foreach (IObserver observer in observers)
         {
@@ -143,7 +144,7 @@ public class CustomerMovement : NPCMovement, ISubject
     /// <summary>
     /// The AddObserver method is responsible for adding observers to the customer (ISubject interface method).
     /// </summary>
-    /// <param name="observers">The observers of the customer.</param>
+    /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>s
     public void AddObservers(IObserver[] observers)
     {   
         this.observers = observers;

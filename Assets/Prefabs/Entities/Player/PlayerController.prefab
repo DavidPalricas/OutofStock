@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5763519024140025336}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemGrabbedPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 6850312606828791236}
   - component: {fileID: 5353951479805674220}
   - component: {fileID: 8404021182819760328}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CrosshairAndStamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3060188495569654751}
   - component: {fileID: 4640132893034691290}
   - component: {fileID: 746390465478879443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 6247758564204338669}
   - component: {fileID: 1518372816978788098}
   - component: {fileID: 4330717708257930824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 3025801297146743875}
   - component: {fileID: 3734446239751768752}
   - component: {fileID: 269207270867208027}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pickUpCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3595617856839897970}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 5384141068278765927}
   - component: {fileID: 7399695107255101723}
   - component: {fileID: 2516463146370458365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StaminaBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 5622785972786631996}
   - component: {fileID: 3842208409366997569}
   - component: {fileID: 1072380252214554173}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 377000234269509607}
   - component: {fileID: 3897942637460462980}
   - component: {fileID: 7761736534257596527}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -864,7 +864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5656792357835340998}
   - component: {fileID: 5545253911791083489}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SprintBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
