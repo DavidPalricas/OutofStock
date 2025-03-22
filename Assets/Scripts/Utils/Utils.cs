@@ -90,4 +90,17 @@ public static class Utils
         yield return new WaitForSeconds(waitTime);
         methodToExecute();
     }
+
+    /// <summary>
+    /// The  GetUnitaryVector method is responsible for getting a unitary vector from a direction vector.
+    /// </summary>
+    /// <returns>A unitary 3D vector </returns>
+    public static Vector3 GetUnitaryVector(Vector3 directionVector)
+    {
+        float xDirection = Mathf.Round(directionVector.x);
+        float yDirection = Mathf.Round(directionVector.y);
+        float zDirection = Mathf.Round(directionVector.z);
+
+        return new Vector3(xDirection, yDirection, zDirection);
+    }
 }

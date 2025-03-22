@@ -1,15 +1,4 @@
 /// <summary>
-/// The IObserver interface is responsible for implementing an interface for implementing observers of the Observer pattern (gaming programing  pattern).
-/// </summary>
-public interface IObserver
-{
-    /// <summary>
-    /// The UpdateObserver method is responsible for updating the observer.
-    /// </summary>
-    void UpdateObserver();
-}
-
-/// <summary>
 /// The ISubject interface is responsible for implementing an interface for implementing subjects of the Observer pattern (gaming programing pattern).
 /// </summary>
 public interface ISubject
@@ -22,11 +11,13 @@ public interface ISubject
 
     /// <summary>
     /// The RemoveObservers method is responsible for removing the observers from the subject.
+    /// This method has an empty body because not all subjects need to remove observers.
     /// </summary>
-    void RemoveObservers();
+    void RemoveObservers() { }
 
     /// <summary>
     /// The NotifyObservers method is responsible for notifying the observers.
     /// </summary>
-    void NotifyObservers();
+    /// <param name="data">Any argument to be sent to the observer.</param>
+    void NotifyObservers(object data = null);
 }
