@@ -42,7 +42,6 @@ public class CustomerMovement : NPCMovement, ISubject
     /// </value>
     public Vector3 MarketExitPos { get; set; }
 
-
     /// <summary>
     /// The PickItem method is responsible for handling the logic when the customer picks the item.
     /// The item is destroyed, the customer state is changed, and the agent destination is updated.

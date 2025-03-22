@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 77581200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.91, y: 7.08, z: 1.72}
+  m_LocalPosition: {x: 19.35, y: 7.08, z: 1.72}
   m_LocalScale: {x: 1, y: 13.16184, z: 46.512882}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -373,6 +377,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -544,25 +552,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2361278208568687622, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 75eb2ed8faede8547ae2ac2e35bca517, type: 2}
     - target: {fileID: 2450988668983306783, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
-    - target: {fileID: 3060188495569654751, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 247
+    - target: {fileID: 4582971325032511147, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.472
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.27059755
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.27059755
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6532817
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6532817
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367409668536436939, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 945
       objectReference: {fileID: 0}
     - target: {fileID: 5753820143375783207, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5753820143375783207, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.78
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5753820143375783207, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5753820143375783207, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -648,6 +692,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -842,6 +890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1025,6 +1077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1063,7 +1119,7 @@ Transform:
   m_GameObject: {fileID: 464727901}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.4, y: 7.08, z: 23.22}
+  m_LocalPosition: {x: -4.4, y: 7.08, z: 22.04}
   m_LocalScale: {x: 1, y: 13.16184, z: 53.927036}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1195,6 +1251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1223,7 +1283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &551432935
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1286,8 +1346,8 @@ Transform:
   m_GameObject: {fileID: 551432933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.04, y: 2.32, z: 3.18}
-  m_LocalScale: {x: 0.54585576, y: 0.21995471, z: 1.3017}
+  m_LocalPosition: {x: 13.85, y: 2.32, z: 0.54}
+  m_LocalScale: {x: 0.54585576, y: 0.21995471, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1358,6 +1418,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1578,6 +1642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1639,6 +1707,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1784,6 +1856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1846,6 +1922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1884,7 +1964,7 @@ Transform:
   m_GameObject: {fileID: 943221032}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.4, y: 7.08, z: -21.17}
+  m_LocalPosition: {x: -4.4, y: 8.73, z: -19.98}
   m_LocalScale: {x: 1, y: 13.16184, z: 53.927036}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2016,6 +2096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2078,6 +2162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2098,7 +2186,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 320261405349045300, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 320261405349045300, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: waypointsGroup
@@ -2134,7 +2222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4261712987010149697, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4740655580268071923, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2146,7 +2234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4740655580268071923, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.14
+      value: 23.82
       objectReference: {fileID: 0}
     - target: {fileID: 4740655580268071923, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2222,6 +2310,10 @@ PrefabInstance:
     - target: {fileID: 5076783513467361300, guid: 2917be139db389a41b02c8d1318fd59b, type: 3}
       propertyPath: m_Name
       value: PickUpItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076783513467361300, guid: 2917be139db389a41b02c8d1318fd59b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5076783513467361300, guid: 2917be139db389a41b02c8d1318fd59b, type: 3}
       propertyPath: m_TagString
@@ -2348,6 +2440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2409,6 +2505,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2472,6 +2572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2533,6 +2637,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2596,6 +2704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2657,6 +2769,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2755,6 +2871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2816,6 +2936,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3002,6 +3126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3040,7 +3168,7 @@ Transform:
   m_GameObject: {fileID: 1722317635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.39, y: 3, z: 1.11}
+  m_LocalPosition: {x: -4.39, y: 3.633, z: 1.11}
   m_LocalScale: {x: 0.2, y: 2.8632, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3386,7 +3514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1806540979
 Transform:
   m_ObjectHideFlags: 0
@@ -3457,6 +3585,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3495,7 +3627,7 @@ Transform:
   m_GameObject: {fileID: 1837418955}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.12, y: 8.49, z: -0.37}
+  m_LocalPosition: {x: -29.04, y: 8.49, z: -0.37}
   m_LocalScale: {x: 1, y: 13.16184, z: 46.512882}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3520,7 +3652,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1837418958
 MeshRenderer:
@@ -3627,6 +3759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3693,6 +3829,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3826,7 +3966,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -3941,6 +4081,10 @@ PrefabInstance:
     - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
       propertyPath: m_Name
       value: Banana
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426629036119996388, guid: b92c1c204ea7fcc49ab210b0461c8627, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -11,15 +11,17 @@ public class PickUpItemCollisions : MonoBehaviour
     [SerializeField]
     private Rigidbody itemRb;
 
-
-    private EventDispatcher eventDispatcher = EventDispatcher.GetInstance();
+    /// <summary>
+    /// The eventDispatcher attribute is used to store the singleton instance of the EventDispatcher class to dispatch events.
+    /// </summary>
+    private readonly EventDispatcher eventDispatcher = EventDispatcher.GetInstance();
 
     /// <summary>
     /// The OnCollisionEnter Method is called when this collider/rigidbody has begun touching another rigidbody/collider (Unity Callback).
-    /// In this method, after the item collided its layer is changed to Default, to be rendered by th main camera instead of the camera that renders the item grabbed by the player.
     /// </summary>
     /// <remarks>
-    /// If the item collided with a customer, the KnockCustumer method is called to knock down the customer hitted.
+    /// In this method, after the item collided its layer is changed to Default, to be rendered by th main camera instead of the camera that renders the item grabbed by the player.
+    /// If the item collided with a customer, the KnockCustumer method is called to knock down the customer hitted, and the "CustomerAttacked" event is dispatched.
     /// </remarks>
     /// <param name="collision">The collision.</param>
     /// 
@@ -61,7 +63,6 @@ public class PickUpItemCollisions : MonoBehaviour
 
         const float POSYOFFSET = 0.1f;
         customer.transform.position = new Vector3(customerPos.x, customerPos.y - POSYOFFSET, customerPos.z);
-
 
         const float KNOCKDOWNTIME = 5f;
 
