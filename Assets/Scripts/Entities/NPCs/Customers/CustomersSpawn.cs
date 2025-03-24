@@ -33,7 +33,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// <summary>
     /// The targetItemsList attribute represents the list of  the customers target items in the market.
     /// </summary>
-    private List<GameObject> targetItemsList = new ();
+    private  List<GameObject> targetItemsList = new ();
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
@@ -41,7 +41,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </summary>
     private void Awake()
     { 
-        targetItemsList = Utils.GetChildren(targetItems).ToList();
+        GetMarketItems();
     }
 
     /// <summary>
@@ -127,6 +127,19 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     public void UpdateObserver(object data = null)
     {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket()));
         
+    }
+
+    /// <summary>
+    /// The GetMarketItems method is responsible for getting the items in the market and adding them to the targetItemsList.
+    /// It iterates over the itens categories (targetItems children) and adds them to the targetItemsList.
+    /// </summary>
+    private void GetMarketItems()
+    {
+        targetItemsList = new List<GameObject>(
+            from Transform itemCategory in targetItems
+            from Transform item in itemCategory
+            select item.gameObject
+        );
     }
 }
 

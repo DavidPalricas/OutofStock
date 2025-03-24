@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 1266646395518029016}
   - component: {fileID: 2361278208568687622}
   - component: {fileID: 1513171997263660257}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,13 +656,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4582971325032511147}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.27059755, y: -0.6532817, z: 0.6532817, w: -0.27059755}
+  m_LocalPosition: {x: 0.472, y: -0.056, z: 0.164}
   m_LocalScale: {x: 0.2654392, y: 0.45692196, z: 0.18538874}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1788698712161990732}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 945}
 --- !u!33 &1266646395518029016
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -694,7 +694,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 75eb2ed8faede8547ae2ac2e35bca517, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
