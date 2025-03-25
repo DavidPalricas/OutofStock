@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 
@@ -102,5 +103,45 @@ public static class Utils
         float zDirection = Mathf.Round(directionVector.z);
 
         return new Vector3(xDirection, yDirection, zDirection);
+    }
+
+    /// <summary>
+    /// The FadeIn method is responsible for fading in the screen for a specified duration.
+    /// </summary>
+    /// <param name="fadeImage">The UI image that is used to fading in the screen.</param>
+    /// <param name="fadeDuration">Duration of the fade.</param>
+    /// <returns>An IEnumerator that can be used in a coroutine to wait and execute the specified method.</returns>
+    public static IEnumerator FadeIn(Image fadeImage, float fadeDuration)
+    {
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            fadeImage.color = Color.Lerp(Color.clear, Color.black, timer / fadeDuration);
+            yield return null;
+        }
+
+        fadeImage.color = Color.black;
+    }
+
+    /// <summary>
+    /// The FadeOut method is responsible for fading out the screen for a specified duration.
+    /// </summary>
+    /// <param name="fadeImage">The UI image that is used to fading out the screen.</param>
+    /// <param name="fadeDuration">The duration of the fade.</param>
+    /// <returns>An IEnumerator that can be used in a coroutine to wait and execute the specified method.</returns>
+    public static IEnumerator FadeOut(Image fadeImage, float fadeDuration)
+    {
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            fadeImage.color = Color.Lerp(Color.black, Color.clear, timer / fadeDuration);
+            yield return null;
+        }
+
+        fadeImage.color = Color.clear;
     }
 }
