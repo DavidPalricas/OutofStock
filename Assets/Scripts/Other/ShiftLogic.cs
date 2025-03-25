@@ -90,6 +90,18 @@ public class ShiftLogic : MonoBehaviour
         {23, "11 PM"}
     };
 
+    /// <summary>
+    /// The weekDays attribute is a dictionary that stores the week days with the corresponding number.
+    /// </summary>
+    private readonly Dictionary<int, string> weekDays = new()
+    {
+        {1, "Mon"},
+        {2, "Tue"},
+        {3, "Wed"},
+        {4, "Thu"},
+        {5, "Fri"},
+    };
+
     private void OnEnable()
     {
         PlayerPrefs.SetInt("CurrentDay", 1);
@@ -110,7 +122,7 @@ public class ShiftLogic : MonoBehaviour
             PlayerPrefs.DeleteKey("CurrentDay");
             PlayerPrefs.DeleteKey("GameStarted");
 
-            PlayerPrefs.SetInt("GameStarted", 1);  
+            PlayerPrefs.SetInt("GameStarted", 1);
         }
 
 
@@ -132,9 +144,9 @@ public class ShiftLogic : MonoBehaviour
         // Check if a game minute has passed
         if ((Time.time - timer) >= gameMinuteInSecondsIRL)
         {
-            currentGameMinutes++;        
-            timer += gameMinuteInSecondsIRL; 
-            UpdateTimeUI();              
+            currentGameMinutes++;
+            timer += gameMinuteInSecondsIRL;
+            UpdateTimeUI();
         }
     }
 
@@ -154,7 +166,7 @@ public class ShiftLogic : MonoBehaviour
 
         gameHourInSecondsIRL = gameMinuteDuration * 3600;
 
-        dayText.text = $"Day {day}";
+        dayText.text = $"{weekDays[day]}";
 
         string[] time = daytime[startHour].Split(' ');
 
@@ -231,12 +243,12 @@ public class ShiftLogic : MonoBehaviour
         StartCoroutine(Utils.FadeIn(fadeImage, fadeDuration));
 
         yield return new WaitForSeconds(lunchDuration);
-        
+
         StartCoroutine(Utils.FadeOut(fadeImage, fadeDuration));
 
         fadeImage.gameObject.SetActive(false);
 
-        isOnBreak = false; 
+        isOnBreak = false;
     }
 
     /// <summary>
@@ -244,8 +256,15 @@ public class ShiftLogic : MonoBehaviour
     /// For now, it just reloads the current scene to test the day increment.
     /// </summary>
     private void NextDay()
-    {   
+    {
         day++;
+
+        if (day == 6)
+        {
+            Utils.ExitGame();
+
+            return;
+        }
 
         PlayerPrefs.SetInt("CurrentDay", day);
         PlayerPrefs.Save();

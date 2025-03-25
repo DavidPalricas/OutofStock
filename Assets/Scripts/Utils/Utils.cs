@@ -144,4 +144,17 @@ public static class Utils
 
         fadeImage.color = Color.clear;
     }
+
+    /// <summary>
+    /// The ExitGame method is responsible for exiting the game.
+    /// It works both in the Unity Editor and in the built game.
+    /// </summary>
+    public static void ExitGame()
+    {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                    Application.Quit();
+        #endif
+    }
 }

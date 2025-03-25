@@ -82,6 +82,8 @@ public class PlayerActions : MonoBehaviour
         {   
             if (playerRaycast.collider.CompareTag("PickUpItem"))
             {   
+
+                Debug.Log("Item Grabbed");
                 playerRaycast.collider.isTrigger = true;
 
                 GameObject item = playerRaycast.collider.gameObject;
