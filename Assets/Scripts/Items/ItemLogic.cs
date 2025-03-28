@@ -94,7 +94,7 @@ public class ItemLogic : MonoBehaviour,ISubject
 
         Vector3 customerPos = customer.transform.position;
 
-        customer.transform.position = new Vector3(customerPos.x, 0, customerPos.z);
+        customer.transform.position = new Vector3(customerPos.x, 0.5f, customerPos.z);
 
         const float KNOCKDOWNTIME = 5f;
 

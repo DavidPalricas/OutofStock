@@ -35188,7 +35188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51b6fffec5d044a8653b2d46706512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickItemArea: {fileID: 0}
+  pickItemArea: {fileID: 1153452089}
 --- !u!65 &3484623471324414697
 BoxCollider:
   m_ObjectHideFlags: 0
