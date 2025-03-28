@@ -2,15 +2,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// The PlayerActions class is responsible for handling the player's actions.
+/// The GrabAndThrowItems class is responsible for grabbing and throwing items.
 /// </summary>
-public class PlayerActions : MonoBehaviour
+public class GrabAndThrowItems : MonoBehaviour
 {
     /// <summary>
     /// The player attribute is the player GameObject.
     /// </summary>
     [SerializeField]
     private GameObject player;
+
+    /// <summary>
+    /// The crosshair attribute is the crosshair RectTransform.
+    /// </summary>
+    [SerializeField]
+    private RectTransform crosshair;
+
+    /// <summary>
+    /// The mainCamera attribute is the main camera of the scene.
+    /// </summary>
+    [SerializeField]
+    private Camera mainCamera;
 
     /// <summary>
     /// The itemGrabbedPos attribute is the position where the item grabbed will be placed.
@@ -63,44 +75,45 @@ public class PlayerActions : MonoBehaviour
     /// </summary>
     /// <remarks>
     /// This method works by:
-    /// 1. Casting a ray from the player's position in their forward direction to detect interactive items
-    /// 2. If a "PickUpItem" is hit, the following occurs:
-    ///    - The item's Rigidbody is set to kinematic to disable physics
+    /// 1. Casting a ray from the player's crosshair position to detect interactive items
+    /// 2. If a "Item" is hit, the following occurs:
+    ///    - The item's grab logic is triggered by calling the WasGrabbed method
     ///    - The item is positioned at the itemGrabbedPos and becomes its child
-    ///    - The item's layer is changed to "GrabbedItem"
+    ///    - The item's rotation is adjusted to face the player
     ///    - The itemGrabbed flag is set to true
-    /// 
-    /// The layer change is significant: it prevents the item from being rendered by the main camera
-    /// and instead renders it through a dedicated camera. This ensures the item appears in front of
-    /// any objects between the player and the item, solving rendering issues like z-fighting or clipping.
     /// </remarks>
     private void GrabItem()
     {
         const float RAYCASTDISTANCE = 5f;
 
-        if (Physics.Raycast(player.transform.position, player.transform.forward, out RaycastHit playerRaycast, RAYCASTDISTANCE) )
+        LayerMask itemLayer = LayerMask.GetMask("Item");
+
+        Vector2 crosshairScreenPos = RectTransformUtility.WorldToScreenPoint(
+           null, 
+           crosshair.position
+       );
+
+        // Cria o Ray a partir da posição do crosshair
+        Ray ray = mainCamera.ScreenPointToRay(crosshairScreenPos);
+
+        if (Physics.Raycast(ray, out RaycastHit playerRaycast, RAYCASTDISTANCE, itemLayer) )
         {   
-            if (playerRaycast.collider.CompareTag("PickUpItem"))
-            {   
-
-                Debug.Log("Item Grabbed");
-                playerRaycast.collider.isTrigger = true;
-
+            if (playerRaycast.collider.CompareTag("Item"))
+            {
                 GameObject item = playerRaycast.collider.gameObject;
 
-                Rigidbody itemRb = item.GetComponent<Rigidbody>();
+                ItemLogic itemLogic = playerRaycast.collider.GetComponent<ItemLogic>();
 
-                if (!itemRb.isKinematic)
-                {
-                    itemRb.isKinematic = true;
-                }
+                itemLogic.WasGrabbed();
 
                 Transform itemTransform = item.transform;
 
-                itemTransform.SetPositionAndRotation(itemGrabbedPos.position, itemGrabbedPos.rotation);
+                Quaternion newRotation = Quaternion.Euler(-90, 0, 0);
+
+                itemTransform.SetPositionAndRotation(itemGrabbedPos.position, newRotation);
 
                 itemTransform.SetParent(itemGrabbedPos);
-                item.layer = LayerMask.NameToLayer("GrabbedItem");
+          
                 itemGrabbed = true;
             }
         }
@@ -114,9 +127,8 @@ public class PlayerActions : MonoBehaviour
     /// 1. Retrieving the held item (child of itemGrabbedPos)
     /// 2. Preventing clipping by calling the StopClipping method
     /// 3. Detaching the item from the player by setting its parent to null
-    /// 4. Enabling physics by setting isKinematic to false
-    /// 5. Applying an impulse force in the player's forward direction
-    /// 6. Resetting the itemGrabbed flag
+    /// 4. The item's throw logic is triggered by calling the WasThrown method
+    /// 5. Resetting the itemGrabbed flag
     /// 
     /// The throw force is set to a constant value of 20f and uses ForceMode.Impulse for
     /// immediate application of the force.
@@ -125,19 +137,13 @@ public class PlayerActions : MonoBehaviour
     {
         GameObject itemToThrow = itemGrabbedPos.GetChild(0).gameObject;
 
-        itemToThrow.GetComponent<Collider>().isTrigger = false;
-
         StopClipping(itemToThrow);
 
         itemToThrow.transform.SetParent(null);
 
-        Rigidbody itemRigidbody = itemToThrow.GetComponent<Rigidbody>();
+        ItemLogic itemLogic = itemToThrow.GetComponent<ItemLogic>();
 
-        itemRigidbody.isKinematic = false;
-
-        const float THROWFORCE = 20f;
-
-        itemRigidbody.AddForce(player.transform.forward * THROWFORCE, ForceMode.Impulse);
+        itemLogic.WasThrown(player.transform.forward);
 
         itemGrabbed = false;
     }
@@ -195,7 +201,6 @@ public class PlayerActions : MonoBehaviour
             }
             else
             {
-
                 itemToThrow.transform.position = transform.position + transform.TransformDirection(Vector3.up) * 1.5f;
             }
         }

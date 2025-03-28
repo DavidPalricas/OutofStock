@@ -64,20 +64,25 @@ public class ManagerMovement : NPCMovement
             int randomWayPoint = Utils.RandomInt(0, wayPoints.Length);
 
             agent.SetDestination(wayPoints[randomWayPoint].transform.position);
-
-            return;
+        }
+        else
+        {
+            agent.SetDestination(managerPost);
         }
 
-        agent.SetDestination(managerPost);
+        agent.isStopped = false;
     }
 
     /// <summary>
     /// The DestinationReached method is responsible for handling the destination reached event.
-    /// In this method, the manager state is changed and the agent destination is updated after an random interval between 3 and 5 seconds.
+    /// This method uses its base implementation (stop the manager) and his state 
+    /// is changed and the agent destination is updated after an random interval between 3 and 5 seconds.
     /// This method overrides the <see cref="NPCMovement.DestinationReached"/> method from the <see cref="NPCMovement"/> class.
     /// </summary>
     protected override void DestinationReached()
-    {
+    {   
+        base.DestinationReached();
+
         ChangeState();
         StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(3f, 5f), () => SetAgentDestination()));
     }

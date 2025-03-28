@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// The CustomersSpawn class is responsible for spawning the customers in the market, simulating the customers entering the market.
+/// It implements the IObserver interface to be notified when a customer (subject) leaves the market
 /// </summary>
 public class CustomersSpawn : MonoBehaviour, IObserver
 {
@@ -14,16 +15,16 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     private GameObject customerPrefab;
 
     /// <summary>
-    /// The targetItems attribute represents the target items in the market.
-    /// </summary>
-    [SerializeField]
-    private Transform targetItems;
-
-    /// <summary>
     /// The maximumCustomersInMarket attribute represents the maximum number of customers in the market.
     /// </summary>
     [SerializeField]
     private int maxCustomersInMarket;
+
+    /// <summary>
+    /// The paymentAreasTransform attribute represents the payment areas transform.
+    /// </summary>
+    [SerializeField]
+    private Transform paymentAreasTransform;
 
     /// <summary>
     /// The customersSpawned attribute represents the number of customers spawned.
@@ -36,12 +37,18 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     private  List<GameObject> targetItemsList = new ();
 
     /// <summary>
+    /// The paymentAreas attribute represents the payment areas in the market.
+    /// </summary>
+    private GameObject[] paymentAreas;
+
+    /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the items are added to the targetItemsList by calling the AddItems method.
     /// </summary>
     private void Awake()
     { 
-        GetMarketItems();
+        targetItemsList = GameObject.FindGameObjectsWithTag("Item").ToList();
+        paymentAreas = Utils.GetChildren(paymentAreasTransform);
     }
 
     /// <summary>
@@ -63,9 +70,13 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     ///The SpawnCustomer method is responsible for spawning the customers in the market.
     /// </summary>
     /// <remarks>
-    /// The SpawnCustomer method instantiates the customer prefab in a random position of the spawb area (GetCustomerPos method).
+    /// The SpawnCustomer method instantiates the customer prefab in a random position of the spawn area (GetCustomerPos method).
     /// After that, it sets the customer target item randomly from the targetItemsList (items in the market), 
-    /// adds the location of the exit, adds this class as an obersever of the customer and enables its movement script.
+    /// this item area position is passed to the customer movement script (AreasPos dictionary) and this script is added
+    /// as an observer of the item (ItemLogic class).
+    /// The payment area is also set randomly from the paymentAreas array (payment areas in the market), and 
+    /// the customer movement script is enable also added as an observer of the customers spawn (this class) 
+    // to notify when the customer exits the market.
     /// </remarks>
     private void SpawnCustomer()
     {    
@@ -78,7 +89,15 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         targetItemsList.Remove(targetItem);
 
         customerMovement.TargetItem = targetItem;
-        customerMovement.MarketExitPos = transform.position;
+
+        targetItem.GetComponent<ItemLogic>().AddObservers(new IObserver[] { customerMovement });
+
+        Transform pickItemArea = targetItem.GetComponent<ItemLogic>().pickItemArea;
+
+        customerMovement.AreasPos["PickItem"] = pickItemArea == null ? Vector3.zero : pickItemArea.position;
+        customerMovement.AreasPos["MarketExit"] = transform.position;
+        customerMovement.AreasPos["Payment"] = paymentAreas[Utils.RandomInt(0, paymentAreas.Length)].transform.position;
+
         customerMovement.AddObservers(new IObserver[] { this });
 
         customerMovement.enabled = true;
@@ -127,19 +146,6 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     public void UpdateObserver(object data = null)
     {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket()));
         
-    }
-
-    /// <summary>
-    /// The GetMarketItems method is responsible for getting the items in the market and adding them to the targetItemsList.
-    /// It iterates over the itens categories (targetItems children) and adds them to the targetItemsList.
-    /// </summary>
-    private void GetMarketItems()
-    {
-        targetItemsList = new List<GameObject>(
-            from Transform itemCategory in targetItems
-            from Transform item in itemCategory
-            select item.gameObject
-        );
     }
 }
 

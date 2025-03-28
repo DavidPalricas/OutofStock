@@ -16,7 +16,12 @@ public class NPCMovement : MonoBehaviour
     /// <summary>
     /// The destinationoffset attribute represents a offset from the NPC destination 
     /// </summary>
-    protected const float DESTINATIONOFFSET = 1f;
+    protected const float DESTINATION_OFFSET = 1.5f;
+
+    /// <summary>
+    /// The currentTargetPos attribute represents the current target position of the NPC
+    /// </summary>
+    protected Vector3 currentTargetPos;
 
     /// <summary>
     /// The OnEnable method is called when the object becomes enabled and active (Unity Callback).
@@ -36,7 +41,7 @@ public class NPCMovement : MonoBehaviour
     /// </summary>
     protected void Update()
     {
-        if (IsAgentEnabled() && agent.remainingDistance <= DESTINATIONOFFSET)
+        if (IsAgentEnabled() && !agent.isStopped && agent.remainingDistance <= DESTINATION_OFFSET)
         {
             DestinationReached();
         }
@@ -46,13 +51,16 @@ public class NPCMovement : MonoBehaviour
     /// The SetAgentDestination method is responsible for setting the agent destination.
     /// Its implementation is defined in the child classes.
     /// </summary>
-    protected virtual void SetAgentDestination() {}
+    protected virtual void SetAgentDestination() { }
 
     /// <summary>
     /// The DestinationReached method is responsible for handling the destination reached event.
-    /// Its implementation is defined in the child classes.
+    /// It stops the agent from moving and can be overridden in the child classes.
     /// </summary>
-    protected virtual void DestinationReached() {}
+    protected virtual void DestinationReached()
+    {   
+        agent.isStopped = true;
+    }
 
     /// <summary>
     /// The ChangeState method is responsible for changing the NPC state.
