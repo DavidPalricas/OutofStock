@@ -94,12 +94,11 @@ public class ItemLogic : MonoBehaviour,ISubject
 
         Vector3 customerPos = customer.transform.position;
 
-        const float POSYOFFSET = 0.1f;
-        customer.transform.position = new Vector3(customerPos.x, customerPos.y - POSYOFFSET, customerPos.z);
+        customer.transform.position = new Vector3(customerPos.x, 0, customerPos.z);
 
         const float KNOCKDOWNTIME = 5f;
 
-        StartCoroutine(Utils.WaitAndExecute(KNOCKDOWNTIME, () => StandUp(customerRb, customer, POSYOFFSET)));
+        StartCoroutine(Utils.WaitAndExecute(KNOCKDOWNTIME, () => StandUp(customerRb, customer, customerPos.y)));
     }
 
     /// <summary>
@@ -110,15 +109,15 @@ public class ItemLogic : MonoBehaviour,ISubject
     /// </remarks>
     /// <param name="custumerRb">The custumer rigid body.</param>
     /// <param name="customer">The customer.</param>
-    /// <param name="POSYOFFSET">The offset for the y position of the customer.</param>
-    private void StandUp(Rigidbody custumerRb, GameObject customer, float POSYOFFSET)
+    /// <param name="originalCustomerPosY">The original position in the y axis</param>
+    private void StandUp(Rigidbody custumerRb, GameObject customer, float originalCustomerPosY)
     {
         custumerRb.isKinematic = false;
 
         customer.transform.rotation = Quaternion.identity;
 
         Vector3 customerPos = customer.transform.position;
-        customer.transform.position = new Vector3(customerPos.x, customerPos.y + POSYOFFSET, customerPos.z);
+        customer.transform.position = new Vector3(customerPos.x, originalCustomerPosY, customerPos.z);
 
         customer.GetComponent<CustomerMovement>().EnableOrDisanableAgent(true);
     }
