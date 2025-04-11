@@ -145,6 +145,20 @@ public static class Utils
         fadeImage.color = Color.clear;
     }
 
+
+    public static Ray CastRayFromUI(RectTransform crosshair)
+    {
+        Vector2 crosshairScreenPos = RectTransformUtility.WorldToScreenPoint(
+          null,
+          crosshair.position
+        );
+
+        Camera mainCamera = Camera.main;
+
+        return  mainCamera.ScreenPointToRay(crosshairScreenPos);
+
+    }
+
     /// <summary>
     /// The ExitGame method is responsible for exiting the game.
     /// It works both in the Unity Editor and in the built game.

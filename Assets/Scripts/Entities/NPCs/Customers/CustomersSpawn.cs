@@ -90,9 +90,9 @@ public class CustomersSpawn : MonoBehaviour, IObserver
 
         customerMovement.TargetItem = targetItem;
 
-        targetItem.GetComponent<ItemLogic>().AddObservers(new IObserver[] { customerMovement });
+        targetItem.GetComponent<MarketProduct>().AddObservers(new IObserver[] { customerMovement });
 
-        Transform pickItemArea = targetItem.GetComponent<ItemLogic>().pickItemArea;
+        Transform pickItemArea = targetItem.GetComponent<MarketProduct>().pickProductArea;
 
         customerMovement.AreasPos["PickItem"] = pickItemArea == null ? Vector3.zero : pickItemArea.position;
         customerMovement.AreasPos["MarketExit"] = transform.position;

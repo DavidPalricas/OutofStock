@@ -19,12 +19,6 @@ public class GrabAndThrowItems : MonoBehaviour
     private RectTransform crosshair;
 
     /// <summary>
-    /// The mainCamera attribute is the main camera of the scene.
-    /// </summary>
-    [SerializeField]
-    private Camera mainCamera;
-
-    /// <summary>
     /// The itemGrabbedPos attribute is the position where the item grabbed will be placed.
     /// </summary>
     [SerializeField]
@@ -84,17 +78,10 @@ public class GrabAndThrowItems : MonoBehaviour
     /// </remarks>
     private void GrabItem()
     {
-        const float RAYCASTDISTANCE = 5f;
+        Ray ray = Utils.CastRayFromUI(crosshair);
 
+        const float RAYCASTDISTANCE = 3f;
         LayerMask itemLayer = LayerMask.GetMask("Item");
-
-        Vector2 crosshairScreenPos = RectTransformUtility.WorldToScreenPoint(
-           null, 
-           crosshair.position
-       );
-
-        // Cria o Ray a partir da posição do crosshair
-        Ray ray = mainCamera.ScreenPointToRay(crosshairScreenPos);
 
         if (Physics.Raycast(ray, out RaycastHit playerRaycast, RAYCASTDISTANCE, itemLayer) )
         {   
@@ -102,7 +89,7 @@ public class GrabAndThrowItems : MonoBehaviour
             {
                 GameObject item = playerRaycast.collider.gameObject;
 
-                ItemLogic itemLogic = playerRaycast.collider.GetComponent<ItemLogic>();
+                Item itemLogic = playerRaycast.collider.GetComponent<Item>();
 
                 itemLogic.WasGrabbed();
 
@@ -141,9 +128,9 @@ public class GrabAndThrowItems : MonoBehaviour
 
         itemToThrow.transform.SetParent(null);
 
-        ItemLogic itemLogic = itemToThrow.GetComponent<ItemLogic>();
+        Item item = itemToThrow.GetComponent<Item>();
 
-        itemLogic.WasThrown(player.transform.forward);
+        item.WasThrown(player.transform.forward);
 
         itemGrabbed = false;
     }
