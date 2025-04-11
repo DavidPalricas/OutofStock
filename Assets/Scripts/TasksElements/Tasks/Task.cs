@@ -8,12 +8,12 @@ public class Task : MonoBehaviour, ISubject, IObserver
 
     protected GameObject[] subTasks;
 
-
     public int Number { get; set; }
 
     protected void TaskCompleted()
     {
         NotifyObservers();
+        completedSubTasks = 0;
         enabled = false;
     }
 

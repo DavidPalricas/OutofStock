@@ -58,7 +58,7 @@ public class TaskManager : MonoBehaviour, IObserver
 
     private void GenerateTask()
     {
-       var availableTasks = new List<int>();
+        var availableTasks = new List<int>();
 
         foreach (int taskId in tasksTypes.Keys)
         {
@@ -75,6 +75,8 @@ public class TaskManager : MonoBehaviour, IObserver
         }
 
         int taskNumber = availableTasks[Utils.RandomInt(0 , availableTasks.Count)];
+
+        availableTasks.Remove(taskNumber);
 
         Toggle newToggle = Instantiate(taskTogglePrefab, taskContainer);
 
@@ -131,13 +133,12 @@ public class TaskManager : MonoBehaviour, IObserver
     {
         if (activeTaskToggles.TryGetValue(taskNumber, out Toggle toggle))
         {
-            // Marcar o toggle (isso mostra visualmente o check)
             toggle.isOn = true;
 
-            // Esperar um momento para que o usuário veja o check
             yield return new WaitForSeconds(3f);
 
             activeTaskToggles.Remove(taskNumber);
+            allTypeOfTasksActivated = false;
             toggle.isOn = false;
             Destroy(toggle.gameObject);
         }
