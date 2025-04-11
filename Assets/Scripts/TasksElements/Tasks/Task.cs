@@ -17,8 +17,6 @@ public class Task : MonoBehaviour, ISubject, IObserver
         enabled = false;
     }
 
-  
-
     public void UpdateObserver(object data = null)
     {
         completedSubTasks++;

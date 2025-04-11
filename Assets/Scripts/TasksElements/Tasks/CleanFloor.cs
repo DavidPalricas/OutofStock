@@ -6,9 +6,13 @@ public class CleanFloor : Task
     [SerializeField]
     private GameObject grabBroomSubTask;
 
+
     [SerializeField]
     private Transform cleanSitesTransform;
 
+
+
+    private bool broomSubTaskDone= false;
 
     private void OnEnable()
     {
@@ -23,7 +27,7 @@ public class CleanFloor : Task
     }
 
     private void AddSubTasks()
-    {    
+    {
         GameObject[] cleanSites = Utils.GetChildren(cleanSitesTransform);
 
         subTasks = new GameObject[cleanSites.Length + 1];
@@ -35,19 +39,23 @@ public class CleanFloor : Task
             subTasks[i + 1] = cleanSites[i];
         }
     }
-
+    
 
     private void Update()
     {
         // The player Grabbed the broom
-        if (completedSubTasks == 1)
+        if (!broomSubTaskDone && completedSubTasks == 1)
         {
             ActivateCleanSitesSubTasks();
+            broomSubTaskDone = true;
         }
-        else if (completedSubTasks == subTasks.Length)
+
+
+        if (completedSubTasks == subTasks.Length)
         {
             TaskCompleted();
             enabled = false;
+            broomSubTaskDone = false;
         }
     }
 
