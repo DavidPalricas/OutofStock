@@ -145,18 +145,20 @@ public static class Utils
         fadeImage.color = Color.clear;
     }
 
-
-    public static Ray CastRayFromUI(RectTransform crosshair)
+    /// <summary>
+    /// The CastRayFromUI method is responsible for casting a ray from the UI to the game world.
+    /// This method is almost used to cast a ray from the player's crosshair to the game world.
+    /// </summary>
+    /// <param name="uiElement">The uiElement where the ray will be casted.</param>
+    /// <returns></returns>
+    public static Ray CastRayFromUI(RectTransform uiElement)
     {
-        Vector2 crosshairScreenPos = RectTransformUtility.WorldToScreenPoint(
+        Vector2 uiElementScreenPos = RectTransformUtility.WorldToScreenPoint(
           null,
-          crosshair.position
+          uiElement.position
         );
 
-        Camera mainCamera = Camera.main;
-
-        return  mainCamera.ScreenPointToRay(crosshairScreenPos);
-
+        return Camera.main.ScreenPointToRay(uiElementScreenPos);
     }
 
     /// <summary>

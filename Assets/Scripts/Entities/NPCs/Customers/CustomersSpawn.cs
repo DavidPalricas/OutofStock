@@ -139,11 +139,11 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     }
 
     /// <summary>
-    /// The UpdateObserver method is responsible for updating the observer (IObserver interface method).
+    /// The OnNotify (IObserver method) method is responsible for updating the observer (this game object), when a subject notifies it.
     /// In this case, it calls the CustomerExitMarket method after a random time between 1 and 5 seconds to simulate the customer leaving the market.
     /// </summary>
     /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
-    public void UpdateObserver(object data = null)
+    public void OnNotify(object data = null)
     {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket()));
         
     }

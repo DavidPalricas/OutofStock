@@ -241,8 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e1ccbe3ac37254fb0a6c391010fcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subTaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
-  subTaskInput: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
+  subtaskInput: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crosshair: {fileID: 195682536}
 --- !u!1 &9240106
 GameObject:
@@ -6712,8 +6712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e1ccbe3ac37254fb0a6c391010fcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subTaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
-  subTaskInput: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
+  subtaskInput: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crosshair: {fileID: 195682536}
 --- !u!1 &1451397423
 GameObject:
@@ -8208,7 +8208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d35f53ce359c3141aaf731922a1bf96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subTaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
+  subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
   item: {fileID: 1764478964}
 --- !u!1 &1768227407
 GameObject:
@@ -8452,8 +8452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e1ccbe3ac37254fb0a6c391010fcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subTaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
-  subTaskInput: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
+  subtaskInput: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crosshair: {fileID: 195682536}
 --- !u!1 &1819481523
 GameObject:
@@ -9211,6 +9211,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &2056500213 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3163684293249272144, guid: d720ff24e2b7670408c792dc885b98a6, type: 3}
+  m_PrefabInstance: {fileID: 7345036591281763842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2067630420
 GameObject:
   m_ObjectHideFlags: 0
@@ -34061,6 +34066,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7529759799300871166, guid: 950c275a6d30dc74f9145008232c3d53, type: 3}
+      propertyPath: subtaskInput
+      value: 
+      objectReference: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 7529759799300871166, guid: 950c275a6d30dc74f9145008232c3d53, type: 3}
+      propertyPath: subtaskIconPrefab
+      value: 
+      objectReference: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -82204,6 +82217,10 @@ PrefabInstance:
       propertyPath: fixFuseBox
       value: 
       objectReference: {fileID: 1245166939}
+    - target: {fileID: 1536277192303905031, guid: d720ff24e2b7670408c792dc885b98a6, type: 3}
+      propertyPath: taskContainerTransform
+      value: 
+      objectReference: {fileID: 2056500213}
     - target: {fileID: 8713618152548739510, guid: d720ff24e2b7670408c792dc885b98a6, type: 3}
       propertyPath: m_Name
       value: TaskManager

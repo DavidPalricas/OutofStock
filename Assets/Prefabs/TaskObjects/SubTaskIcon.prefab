@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3694568976575536543}
   - component: {fileID: 4829617958158423015}
   m_Layer: 0
-  m_Name: TaskIcon
+  m_Name: SubTaskIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,4 +123,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d1785eabe6b5042ac246d4161c8f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showIcon: {fileID: 6975712356115143802}

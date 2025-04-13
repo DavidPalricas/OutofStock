@@ -2,8 +2,10 @@ using UnityEngine;
 
 /// <summary>
 ///  The MarketProduct class is responsible for handling the logic of the products in the market.
+///  It implements the ISubject interface to notify its observers (customer tha want this product) when the product is
+///  grabbed by the player.
 /// </summary>
-public class MarketProduct :Item,ISubject
+public class MarketProduct :Item, ISubject
 {
     /// <summary>
     /// The eventDispatcher attribute is used to store the singleton instance of the EventDispatcher class to dispatch events.
@@ -23,7 +25,7 @@ public class MarketProduct :Item,ISubject
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
-    /// In this method, some attributes are initialized.
+    /// In this method, its base class is called and the eventDispatcher property is initialized.
     /// </summary>
     protected override void Awake()
     {
@@ -32,13 +34,29 @@ public class MarketProduct :Item,ISubject
         eventDispatcher = EventDispatcher.GetInstance();
     }
 
+
+    /// <summary>
+    /// The Update method is called every frame (Unity Callback).
+    /// In this method, its checked if the product was grabbed and there are observers
+    /// if these conditions are met, the observers are notified and removed.
+    /// </summary>
+    private void Update()
+    {
+        if (observers != null && Grabbed)
+        {
+            NotifyObservers();
+            RemoveObservers();
+        }
+    }
+
     /// <summary>
     /// The OnCollisionEnter Method is called when this collider/rigidbody has begun touching another rigidbody/collider (Unity Callback).
     /// </summary>
     /// <remarks>
-    /// In this method, after the product was thrown its layer is reset to Default, to be rendered by the main camera instead of the camera that renders the item grabbed by the player.
-    /// and if the product collided with a customer, the KnockCustumer method is called to knock down the customer hitted, and the "CustomerAttacked" event is dispatched.
-    /// After that, the wasThrown flag is set to false.
+    /// This method checks if the procut is thrown and collided with a customer, 
+    /// If these conditions are met the KnockCustumer method is called to knock down the customer hitted, 
+    /// and the "CustomerAttacked" event is dispatched.
+    /// After that, the base class behavior of this method is called.
     /// </remarks>
     /// <param name="collision">The collision.</param>
     protected override void OnCollisionEnter(Collision collision)
@@ -123,7 +141,7 @@ public class MarketProduct :Item,ISubject
     {
         foreach (IObserver observer in observers)
         {
-            observer.UpdateObserver();
+            observer.OnNotify();
         }
 
         RemoveObservers();

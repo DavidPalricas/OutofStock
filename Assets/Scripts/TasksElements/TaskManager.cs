@@ -3,39 +3,84 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The TaskManager class is responsible for generating tasks, show their names and status in the UI.
+/// It implements the IObserver interface to be notified when a task is completed.
+/// </summary>
 public class TaskManager : MonoBehaviour, IObserver
 {
+    /// <summary>
+    /// The MAX_GAME_TIME constant property is responsible for storing the maximum game time in seconds.
+    /// This property will be probably removed in the future when a configuration file is implemented.
+    /// </summary>
     private const int MAX_GAME_TIME = 10;
 
+    /// <summary>
+    /// The addTaskTime property represents the time in seconds to add a new task.
+    /// </summary>
     [Range(1, MAX_GAME_TIME)]
     [SerializeField]
     private float addTaskTime;
 
+    /// <summary>
+    /// The taskTogglePrefab property stores a reference to the prefab of the task toggle.
+    /// </summary>
     [SerializeField]
-    private Toggle taskTogglePrefab; 
+    private Toggle taskTogglePrefab;
 
+    /// <summary>
+    /// The taskContainerTransform property stores a reference to the transform of the task container.
+    /// This container will show the active tasks in the UI.
+    /// </summary>
     [SerializeField]
-    private Transform taskContainer;
+    private Transform taskContainerTransform;
 
+    /// <summary>
+    /// The fixFuseBox and cleanFloor properties are responsible for storing references 
+    /// to the game objects that represent the tasks in the game.
+    /// </summary>
     [SerializeField]
     private GameObject fixFuseBox, cleanFloor;
 
+    /// <summary>
+    /// The timer property is responsible for representing a timer which will be used to add new tasks,
+    /// after a certain time.
+    /// </summary>
     private float timer;
 
+    /// <summary>
+    /// The activeTaskToggles property is responsible for storing the active tasks toggles in the game.
+    /// </summary>
     private readonly Dictionary<int, Toggle> activeTaskToggles = new ();
 
+    /// <summary>
+    /// The tasksTypes property is responsible for storing the types of tasks in the game.
+    /// </summary>
     private readonly Dictionary<int, string> tasksTypes = new()
     {   { 0, "Fix Fuse Box" },
         { 1, "Clean Floor" }
     };
 
+    /// <summary>
+    /// The allTypeOfTasksActivated property is a flag which indicates if all types of tasks are activated.
+    /// </summary>
     private bool allTypeOfTasksActivated = false;
 
+    /// <summary>
+    /// The Awake method is called when the script instance is being loaded (Unity Callback).
+    /// In this method, the timer is initialized to the current time plus the addTaskTime.
+    /// </summary>
     private void Awake()
     {
         timer = Time.time + addTaskTime;
     }
 
+    /// <summary>
+    /// The Update method is called every frame (Unity Callback).
+    /// In this method, we are checking if a task can be generated.
+    /// To do that, we are checking if all types of tasks are activated and if the current time
+    /// is greater or equal to the time to add a new task.
+    /// </summary>
     private void Update()
     {
         if (!allTypeOfTasksActivated && Time.time >= timer)
@@ -45,6 +90,11 @@ public class TaskManager : MonoBehaviour, IObserver
         }
     }
 
+    /// <summary>
+    /// The TryGenerateTask method is responsible for trying to generate a new task, to do that
+    /// a random number is generated if it satisfies tha probabilty to add a new task, a new
+    /// task is generated.
+    /// </summary>
     private void TryGenerateTask()
     {
         float randomValue = Random.value;
@@ -56,6 +106,18 @@ public class TaskManager : MonoBehaviour, IObserver
         }
     }
 
+    /// <summary>
+    /// The GenerateTask method is responsible for generating a new task.
+    /// </summary>
+    /// <remarks>
+    ///  This method performs the following steps:
+    ///     1. It creates a list of available tasks by checking if the activeTaskToggles does not contain a task number.
+    ///     2. If this list is empty, the allTypeOfTasksActivated is set to true and the method stops right there otherwise it continues.
+    ///     3. It selects a random task number from the available tasks list and creates a new toggle 
+    ///     4. This new toggle will have the as its text the name of the task which is obtained with its number from the tasksTypes dictionary.
+    ///     5. After that the ActivateTask method is called to activate the task and adds the new toggle to the game.
+    ///     6. Finally, it checks if all types of tasks are activated and sets the allTypeOfTasksActivated flag accordingly. 
+    /// </remarks>
     private void GenerateTask()
     {
         var availableTasks = new List<int>();
@@ -78,15 +140,12 @@ public class TaskManager : MonoBehaviour, IObserver
 
         availableTasks.Remove(taskNumber);
 
-        Toggle newToggle = Instantiate(taskTogglePrefab, taskContainer);
+        Toggle newToggle = Instantiate(taskTogglePrefab, taskContainerTransform);
 
         Text toggleText = newToggle.GetComponentInChildren<Text>();
 
-        if (toggleText != null)
-        {
-            toggleText.text = tasksTypes[taskNumber];
-        }
-
+        toggleText.text = tasksTypes[taskNumber];
+        
         ActivateTask(taskNumber);
     
         activeTaskToggles.Add(taskNumber, newToggle);
@@ -94,6 +153,16 @@ public class TaskManager : MonoBehaviour, IObserver
         allTypeOfTasksActivated = activeTaskToggles.Count == tasksTypes.Count;
     }
 
+    /// <summary>
+    /// The ActivateTask method is responsible for activating a task base on its number.
+    /// </summary>
+    /// <remarks>
+    ///  For now the active task can be 2 types base on the task number:
+    ///     0 - Fix Fuse Box
+    ///     1 - Clean Floor
+    ///  After activating the task, its properties are initialized.
+    /// </remarks>
+    /// <param name="taskNumber">The task number.</param>
     private void ActivateTask(int taskNumber)
     {   
         Transform taskObjectTransform;
@@ -120,15 +189,26 @@ public class TaskManager : MonoBehaviour, IObserver
         task.Number = taskNumber;
     }
 
-    public void UpdateObserver(object data)
+    /// <summary>
+    /// The OnNotify (IObserver method) method is responsible for updating the observer (this game object), when a subject notifies it.
+    /// In this method, a start coroutine is called to handle the task completion (TaskDone method).
+    /// </summary>
+    /// <param name="data">The number of the task completed</param>
+    public void OnNotify(object data)
     {
         StartCoroutine(TaskDone((int) data));
-
-        allTypeOfTasksActivated = false;
-        timer = Time.time + addTaskTime;
     }
 
-
+    /// <summary>
+    /// The TaskDone method is responsible for handling the task completion.
+    /// </summary>
+    /// <remarks>
+    /// This method turns the toggle on for 3 seconds, then turns it off and destroys it.
+    /// After destroying the allTypeOfTasksActivated flag and the timer
+    /// are reseted.
+    /// </remarks>
+    /// <param name="taskNumber">The task number.</param>
+    /// <returns>An IEnumerator that can be used in a coroutine to wait and execute the specified method.</returns>
     private IEnumerator TaskDone(int taskNumber)
     {
         if (activeTaskToggles.TryGetValue(taskNumber, out Toggle toggle))
@@ -142,5 +222,8 @@ public class TaskManager : MonoBehaviour, IObserver
             toggle.isOn = false;
             Destroy(toggle.gameObject);
         }
+
+        allTypeOfTasksActivated = false;
+        timer = Time.time + addTaskTime;
     }
 }
