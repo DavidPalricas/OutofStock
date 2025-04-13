@@ -200,31 +200,31 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// <summary>
     /// The NotifyObservers method is responsible for notifying the customer observers (ISubject interface method).
     /// </summary>
-    /// <param name="data">Any argument to be sent to the observer.</param>
+    /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
     public void NotifyObservers(object data = null)
     {
         foreach (IObserver observer in observers)
         {
-            observer.UpdateObserver();
+            observer.OnNotify();
         }
     }
 
     /// <summary>
     /// The AddObserver method is responsible for adding observers to the customer (ISubject interface method).
     /// </summary>
-    /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>s
+    /// <param name="observers">The observers (only one the customers spawn).</param>
     public void AddObservers(IObserver[] observers)
     {   
         this.observers = observers;
     }
 
     /// <summary>
-    /// The UpdateObserver method is responsible for updating the observer (IObserver interface method).
+    /// The OnNotify (IObserver method) method is responsible for updating the observer (this game object), when a subject notifies it.
     /// The customer state is changed to GO_HOME and the agent destination is set to the market exit area.
     /// Because the player picked the item that the customer was looking for, so he exits the market.
     /// </summary>
     /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
-    public void UpdateObserver(object data = null)
+    public void OnNotify(object data = null)
     {
         currentState = CustomerStates.GO_HOME;
 
