@@ -17,6 +17,14 @@ public class GameConfig : MonoBehaviour
     private string fileName;
 
     /// <summary>
+    /// The shiftDuration property stores the duration of the shift in minutes.
+    /// It is ranged between 1 and 1440 minutes (24 hours).
+    /// </summary>
+    [Range(1, 1440)]
+    [SerializeField]
+    private int shiftDuration;
+
+    /// <summary>
     /// The days property stores a list of configurations for each day in the game.
     /// These configurations are made in the Unity editor.
     /// </summary>
@@ -33,7 +41,15 @@ public class GameConfig : MonoBehaviour
     /// <summary>
     /// The currentDay property stores the data for the current day in the game.
     /// </summary>
-    private DayData currentDay = new();
+    public DayData CurrentDayData { get; private set; } = new();
+
+    /// <summary>
+    /// The CurrentWeekDay property stores the name of the current week day (abrevieated).
+    /// </summary>
+    /// <value>
+    /// The abreviated name of the current week day (e.g., "mon", "tue", "wed", "thu", "fri").
+    /// </value>
+    public string CurrentWeekDay { get; private set; }
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded. (Unity callback)
@@ -57,9 +73,14 @@ public class GameConfig : MonoBehaviour
     /// </remarks>
     private void GenConfigFile()
     {
-        Dictionary <string, DayData> daysData = GetDaysData();
+        Dictionary<string, int> generalData = new()
+        {
+         {  "shiftDuration", shiftDuration } 
+        };
 
-        string jsonData = JsonConvert.SerializeObject(daysData, Formatting.Indented);
+        Dictionary<string, DayData> daysData = GetDaysData();
+
+        string jsonData = JsonConvert.SerializeObject(new { generalData, daysData }, Formatting.Indented);
 
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
 
@@ -119,12 +140,30 @@ public class GameConfig : MonoBehaviour
             dayData.tasksProbs["FixFuseBox"] = day.fixFuseBoxProb;
             dayData.tasksProbs["FixToilet"] = day.fixToiletProb;
 
-            dayData.SetDayName(i);
+            string weekDay = GetWeekDay(i);
 
-            daysData.Add(dayData.dayName, dayData);
+            daysData.Add(weekDay, dayData);
         }
      
         return daysData;
+    }
+
+    /// <summary>
+    /// The GetWeekDay method returns the name of the week day (abrevieated) based on its number.
+    /// </summary>
+    /// <param name="weekdayNumber">The weekday number.</param>
+    /// <returns></returns>
+    private string GetWeekDay(int weekdayNumber)
+    {   
+        if (weekdayNumber < 0 || weekdayNumber > 4)
+        {
+            Debug.LogError($"Invalid week day number: {weekdayNumber}");
+            return string.Empty;
+        }
+
+        string[] weekDays = { "mon", "tue", "wed", "thu", "fri" };
+
+        return weekDays[weekdayNumber];
     }
 
     /// <summary>
@@ -152,13 +191,22 @@ public class GameConfig : MonoBehaviour
 
         int dayNumber = days.Capacity - days.Count;
 
-        currentDay.SetDayName(dayNumber);
+        CurrentWeekDay = GetWeekDay(dayNumber);
 
-        if (daysData.TryGetValue(currentDay.dayName, out DayData dayData))
+        if (daysData.TryGetValue(CurrentWeekDay, out DayData dayData))
         {
-            currentDay = dayData;
+            CurrentDayData = dayData;
         }
       
         days.RemoveAt(0);
+    }
+
+    /// <summary>
+    /// The GetShiftDuration method returns the duration of the shift in minutes.
+    /// </summary>
+    /// <returns>The duration of the shift in minutes.</returns>
+    public int GetShiftDuration()
+    {
+        return shiftDuration;
     }
 }

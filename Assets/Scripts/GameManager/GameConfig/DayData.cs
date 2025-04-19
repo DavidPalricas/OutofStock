@@ -41,21 +41,4 @@ public class DayData
         { "FixFuseBox", 0 },
         { "FixToilet", 0 }
     };
-
-    /// <summary>
-    /// The dayName property stores an abreviated week day name, to show in the UI the day of the week 
-    /// (game level) that is being played
-    /// </summary>
-    public string dayName;
-
-    /// <summary>
-    /// The SetDayName method sets the dayName property based on the day number passed as a parameter.
-    /// </summary>
-    /// <param name="dayNumber">The day number.</param>
-    public void SetDayName(int dayNumber)
-    {
-        string[] weekDays = { "mon", "tue", "wed", "thu", "fri" };
-
-        dayName = weekDays[dayNumber];
-    }
 }
