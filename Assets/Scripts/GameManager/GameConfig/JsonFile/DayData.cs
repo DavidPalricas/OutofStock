@@ -9,21 +9,14 @@ public class DayData
     /// The customersSpawnProbs property stores the probabilities of spawning a customer in the market
     /// based on its stereotype.
     /// </summary>
-    public Dictionary<string, float> customersSpawnProbs = new()
-    {
-      { "Karen", 0 },
-      { "AnnoyingKid", 0 }
-    };
+    public Dictionary<string, float> customersSpawnProbs;
+
 
     /// <summary>
     /// The managerTimes property stores the time the manager spends doing
     /// its activities in the market.
     /// </summary>
-    public Dictionary<string, float> managerTimes = new ()
-    {
-      { "OfficeTime", 0 },
-      { "PatrolTime", 0 }
-    };
+    public Dictionary<string, float> managerTimes;
 
     /// <summary>
     /// The numberOfTasks property stores the number of tasks that can be assigned to the player
@@ -35,10 +28,5 @@ public class DayData
     /// The tasksProbs property stores the probabilities of a task being assigned to the player
     /// based on its type.
     /// </summary>
-    public Dictionary<string, float> tasksProbs = new()
-    {
-        { "CleanFloor", 0 },
-        { "FixFuseBox", 0 },
-        { "FixToilet", 0 }
-    };
+    public Dictionary<string, float> tasksProbs;
 }

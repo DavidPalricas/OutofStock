@@ -27,7 +27,7 @@ public class ManagerMovement : NPCMovement
     private enum ManagerStates
     {
         PATROL,
-        POST
+        OFFICE
     }
 
     /// <summary>
@@ -84,7 +84,15 @@ public class ManagerMovement : NPCMovement
         base.DestinationReached();
 
         ChangeState();
-        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(3f, 5f), () => SetAgentDestination()));
+
+        float timeToWait = currentState == ManagerStates.PATROL ? PlayerPrefs.GetFloat("ManagerPatrolTime") : PlayerPrefs.GetFloat("ManagerOfficeTime");
+
+        // Convert the time to wait from minutes to seconds
+        timeToWait *= 60f;
+
+        Debug.Log($"Manager is waiting for {timeToWait} seconds in {currentState} state.");
+
+        StartCoroutine(Utils.WaitAndExecute(timeToWait, () => SetAgentDestination()));
     }
 
     /// <summary>
@@ -93,6 +101,6 @@ public class ManagerMovement : NPCMovement
     /// </summary>
     protected override void ChangeState()
     {
-        currentState = currentState == ManagerStates.PATROL ? ManagerStates.POST : ManagerStates.PATROL;
+        currentState = currentState == ManagerStates.PATROL ? ManagerStates.OFFICE : ManagerStates.PATROL;
     }
 }

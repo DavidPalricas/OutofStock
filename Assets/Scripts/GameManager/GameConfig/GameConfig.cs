@@ -22,7 +22,12 @@ public class GameConfig : MonoBehaviour
     /// </summary>
     [Range(1, 1440)]
     [SerializeField]
-    private int shiftDuration;
+    private int shiftDurationIRL;
+
+
+    [Range(1, 24)]
+    [SerializeField]
+    private int shiftDuration, lunchBreakTime, startHour;
 
     /// <summary>
     /// The days property stores a list of configurations for each day in the game.
@@ -39,26 +44,13 @@ public class GameConfig : MonoBehaviour
     };
 
     /// <summary>
-    /// The currentDay property stores the data for the current day in the game.
-    /// </summary>
-    public DayData CurrentDayData { get; private set; } = new();
-
-    /// <summary>
-    /// The CurrentWeekDay property stores the name of the current week day (abrevieated).
-    /// </summary>
-    /// <value>
-    /// The abreviated name of the current week day (e.g., "mon", "tue", "wed", "thu", "fri").
-    /// </value>
-    public string CurrentWeekDay { get; private set; }
-
-    /// <summary>
     /// The Awake method is called when the script instance is being loaded. (Unity callback)
     /// In this method, the configuration file is generated and the first day data is loaded.
     /// </summary>
     private void Awake()
     {
         GenConfigFile();
-
+        LoadGeneralData();
         LoadCurrentDayData();
     }
 
@@ -75,7 +67,10 @@ public class GameConfig : MonoBehaviour
     {
         Dictionary<string, int> generalData = new()
         {
-         {  "shiftDuration", shiftDuration } 
+         { "shiftDurationIRL", shiftDurationIRL },
+         { "startHour", startHour },
+         { "shiftDuration", shiftDuration },
+         { "lunchBreakTime", lunchBreakTime }
         };
 
         Dictionary<string, DayData> daysData = GetDaysData();
@@ -128,21 +123,27 @@ public class GameConfig : MonoBehaviour
 
             DayConfig day = days[i];
 
-            dayData.customersSpawnProbs["Karen"] = day.karenSpawnProb;
-            dayData.customersSpawnProbs["AnnoyingKid"] = day.annoyingKidSpawnProb;
+            // The Dictionaries properties are initialized here, becuase if they are initialized in the class can be conflicts while desirializing the json data.
+            dayData.customersSpawnProbs = new Dictionary<string, float>();
+            dayData.managerTimes = new Dictionary<string, float>();
+            dayData.tasksProbs = new Dictionary<string, float>();
 
-            dayData.managerTimes["OfficeTime"] = day.managerOfficeTime;
-            dayData.managerTimes["PatrolTime"] = day.managerPatrolTime;
+
+            dayData.customersSpawnProbs.Add("Karen", day.karenSpawnProb);
+            dayData.customersSpawnProbs.Add("AnnoyingKid", day.annoyingKidSpawnProb);
+
+            dayData.managerTimes.Add("OfficeTime", day.managerOfficeTime);
+            dayData.managerTimes.Add("PatrolTime", day.managerPatrolTime);
 
             dayData.numberOfTasks = day.numberOfTasks;
 
-            dayData.tasksProbs["CleanFloor"] = day.cleanFloorProb;
-            dayData.tasksProbs["FixFuseBox"] = day.fixFuseBoxProb;
-            dayData.tasksProbs["FixToilet"] = day.fixToiletProb;
+            dayData.tasksProbs.Add("CleanFloor", day.cleanFloorProb);
+            dayData.tasksProbs.Add("FixFuseBox", day.fixFuseBoxProb);
+            dayData.tasksProbs.Add("FixToilet", day.fixToiletProb);
 
             string weekDay = GetWeekDay(i);
 
-            daysData.Add(weekDay, dayData);
+            daysData.Add(weekDay.ToLower(), dayData);
         }
      
         return daysData;
@@ -161,9 +162,45 @@ public class GameConfig : MonoBehaviour
             return string.Empty;
         }
 
-        string[] weekDays = { "mon", "tue", "wed", "thu", "fri" };
+        string[] weekDays = { "Mon", "Tue", "Wed", "Thu", "Fri" };
 
         return weekDays[weekdayNumber];
+    }
+
+
+    private void LoadGeneralData()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, fileName);
+
+        if (!File.Exists(filePath))
+        {
+            Debug.LogError($"File not found: {filePath}");
+            return;
+        }
+
+        string jsonData = File.ReadAllText(filePath);
+
+        GeneralData generalData = JsonConvert.DeserializeObject<RootObject>(jsonData).generalData;
+
+        PlayerPrefs.SetInt("ShiftDurationIRL", generalData.shiftDurationIRL);
+        PlayerPrefs.SetInt("ShiftDuration", generalData.shiftDuration);
+        PlayerPrefs.SetInt("LunchBreakTime", generalData.lunchBreakTime);
+        PlayerPrefs.SetInt("StartHour", generalData.startHour);
+
+        PlayerPrefs.Save();
+    }
+
+    private DayData GetDayData(DaysData daysData, string weekDay)
+    {
+        return weekDay.ToLower() switch
+        {
+            "mon" => daysData.mon,
+            "tue" => daysData.tue,
+            "wed" => daysData.wed,
+            "thu" => daysData.thu,
+            "fri" => daysData.fri,
+            _ => null,
+        };
     }
 
     /// <summary>
@@ -175,7 +212,7 @@ public class GameConfig : MonoBehaviour
     /// The method calculates the current day number based on the remaining days in the list and retrieves the corresponding day data.
     /// The loaded data is assigned to `currentDay`, and the processed day is removed from the `days` list.
     /// </remarks>
-    public void LoadCurrentDayData()
+    private void LoadCurrentDayData()
     {   
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
 
@@ -185,28 +222,59 @@ public class GameConfig : MonoBehaviour
             return;
         }
 
+        string currentWeekDay = GetCurrentWeekDay();
+
+        if (string.IsNullOrEmpty(currentWeekDay))
+        {
+            Debug.Log("Final day completed, exiting the game");
+            Utils.ExitGame();
+            return;
+        }
+
+        PlayerPrefs.SetString("CurrentDay", currentWeekDay);
+
         string jsonData = File.ReadAllText(filePath);
 
-        Dictionary<string, DayData> daysData = JsonConvert.DeserializeObject<Dictionary<string, DayData>>(jsonData);
+        RootObject jsonRoot = JsonConvert.DeserializeObject<RootObject>(jsonData);
 
-        int dayNumber = days.Capacity - days.Count;
+        DayData dayData = GetDayData(jsonRoot.daysData, currentWeekDay);
 
-        CurrentWeekDay = GetWeekDay(dayNumber);
-
-        if (daysData.TryGetValue(CurrentWeekDay, out DayData dayData))
+        if (dayData != null)
         {
-            CurrentDayData = dayData;
+            PlayerPrefs.SetFloat("KarenSpawnProb", dayData.customersSpawnProbs["Karen"]);
+            PlayerPrefs.SetFloat("AnnoyingKidSpawnProb", dayData.customersSpawnProbs["AnnoyingKid"]);
+            PlayerPrefs.SetFloat("ManagerOfficeTime", dayData.managerTimes["OfficeTime"]);
+            PlayerPrefs.SetFloat("ManagerPatrolTime", dayData.managerTimes["PatrolTime"]);
+            PlayerPrefs.SetInt("NumberOfTasks", dayData.numberOfTasks);
+            PlayerPrefs.SetFloat("CleanFloorProb", dayData.tasksProbs["CleanFloor"]);
+            PlayerPrefs.SetFloat("FixFuseBoxProb", dayData.tasksProbs["FixFuseBox"]);
+            PlayerPrefs.SetFloat("FixToiletProb", dayData.tasksProbs["FixToilet"]);
+
+            PlayerPrefs.Save();
         }
-      
-        days.RemoveAt(0);
     }
 
-    /// <summary>
-    /// The GetShiftDuration method returns the duration of the shift in minutes.
-    /// </summary>
-    /// <returns>The duration of the shift in minutes.</returns>
-    public int GetShiftDuration()
+
+    private string GetCurrentWeekDay()
     {
-        return shiftDuration;
+        if (PlayerPrefs.HasKey("CurrentDay"))
+        {   return GetNextWeekDay(PlayerPrefs.GetString("CurrentDay"));
+        }
+   
+         return "Mon";
+    }
+
+    private string GetNextWeekDay(string previousDay)
+    {
+        string[] weekDays = { "Mon", "Tue", "Wed", "Thu", "Fri" };
+
+        int currentIndex = System.Array.IndexOf(weekDays, previousDay);
+
+        if (currentIndex == -1 || currentIndex == weekDays.Length - 1)
+        {
+            return null; 
+        }
+
+        return weekDays[currentIndex + 1];
     }
 }
