@@ -17,17 +17,24 @@ public class ManagerMovement : NPCMovement
     private GameObject[] wayPoints;
 
     /// <summary>
-    /// The managerPost attribute represents the manager post position.
+    /// The managerOffice attribute represents the manager's office position.
     /// </summary>
-    private Vector3 managerPost;
+    private Vector3 managerOffice;
 
     /// <summary>
     /// The ManagerStates enum represents the manager states.
     /// </summary>
     private enum ManagerStates
     {
+        /// <summary>
+        /// The PATROL state represents the manager patrolling the supermarket.
+        /// </summary>
         PATROL,
-        POST
+
+        /// <summary>
+        /// The OFFICE state represents the manager going to his office an staying there.
+        /// </summary>
+        OFFICE
     }
 
     /// <summary>
@@ -37,13 +44,13 @@ public class ManagerMovement : NPCMovement
 
     /// <summary>
     /// The OnEnable method is called when the object becomes enabled and active (Unity Callback).
-    /// In this method, the waypoints are retrieved and the manager post position is set.
+    /// In this method, the waypoints are retrieved and the manager office position is set.
     /// This method overrides the <see cref="NPCMovement.OnEnable"/> method from the <see cref="NPCMovement"/> class."/> and uses its base implementation.
     /// </summary>
     protected override void OnEnable()
     {
         wayPoints = Utils.GetChildren(waypointsGroup);
-        managerPost = transform.position;
+        managerOffice = transform.position;
 
         // Calls the base implementation of the OnEnable method from the NPCMovement class.
         base.OnEnable();
@@ -55,7 +62,7 @@ public class ManagerMovement : NPCMovement
     /// </summary>
     /// <remarks>
     /// If the current state is PATROL, a random waypoint is selected from the waypoints group and set as the agent destination.
-    /// Otherwise, the manager post position is set as the agent destination.
+    /// Otherwise, the manager office position is set as the agent destination.
     /// </remarks>
     protected override void SetAgentDestination()
     {
@@ -67,7 +74,7 @@ public class ManagerMovement : NPCMovement
         }
         else
         {
-            agent.SetDestination(managerPost);
+            agent.SetDestination(managerOffice);
         }
 
         agent.isStopped = false;
@@ -84,7 +91,15 @@ public class ManagerMovement : NPCMovement
         base.DestinationReached();
 
         ChangeState();
-        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(3f, 5f), () => SetAgentDestination()));
+
+        float timeToWait = currentState == ManagerStates.PATROL ? PlayerPrefs.GetFloat("ManagerPatrolTime") : PlayerPrefs.GetFloat("ManagerOfficeTime");
+
+        // Convert the time to wait from minutes to seconds
+        timeToWait *= 60f;
+
+        Debug.Log($"Manager is waiting for {timeToWait} seconds in {currentState} state.");
+
+        StartCoroutine(Utils.WaitAndExecute(timeToWait, () => SetAgentDestination()));
     }
 
     /// <summary>
@@ -93,6 +108,6 @@ public class ManagerMovement : NPCMovement
     /// </summary>
     protected override void ChangeState()
     {
-        currentState = currentState == ManagerStates.PATROL ? ManagerStates.POST : ManagerStates.PATROL;
+        currentState = currentState == ManagerStates.PATROL ? ManagerStates.OFFICE : ManagerStates.PATROL;
     }
 }

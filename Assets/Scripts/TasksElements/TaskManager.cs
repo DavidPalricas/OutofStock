@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Linq;
 
 /// <summary>
 /// The TaskManager class is responsible for generating tasks, show their names and status in the UI.
@@ -10,15 +12,9 @@ using UnityEngine.UI;
 public class TaskManager : MonoBehaviour, IObserver
 {
     /// <summary>
-    /// The MAX_GAME_TIME constant property is responsible for storing the maximum game time in seconds.
-    /// This property will be probably removed in the future when a configuration file is implemented.
-    /// </summary>
-    private const int MAX_GAME_TIME = 10;
-
-    /// <summary>
     /// The addTaskTime property represents the time in seconds to add a new task.
     /// </summary>
-    [Range(1, MAX_GAME_TIME)]
+    [Range(1, 10)]
     [SerializeField]
     private float addTaskTime;
 
@@ -85,27 +81,12 @@ public class TaskManager : MonoBehaviour, IObserver
     {
         if (!allTypeOfTasksActivated && Time.time >= timer)
         {
-            TryGenerateTask();
+            GenerateTask();
             timer = Time.time + addTaskTime;
         }
     }
 
-    /// <summary>
-    /// The TryGenerateTask method is responsible for trying to generate a new task, to do that
-    /// a random number is generated if it satisfies tha probabilty to add a new task, a new
-    /// task is generated.
-    /// </summary>
-    private void TryGenerateTask()
-    {
-        float randomValue = Random.value;
-        const float ADDTASKPROB = 0.4f;
-
-        if (randomValue <= ADDTASKPROB)
-        {
-            GenerateTask();
-        }
-    }
-
+ 
     /// <summary>
     /// The GenerateTask method is responsible for generating a new task.
     /// </summary>
@@ -136,9 +117,7 @@ public class TaskManager : MonoBehaviour, IObserver
             return;
         }
 
-        int taskNumber = availableTasks[Utils.RandomInt(0 , availableTasks.Count)];
-
-        availableTasks.Remove(taskNumber);
+        int taskNumber = GetRandomTaskNumber(availableTasks);
 
         Toggle newToggle = Instantiate(taskTogglePrefab, taskContainerTransform);
 
@@ -151,6 +130,41 @@ public class TaskManager : MonoBehaviour, IObserver
         activeTaskToggles.Add(taskNumber, newToggle);
 
         allTypeOfTasksActivated = activeTaskToggles.Count == tasksTypes.Count;
+    }
+
+
+    /// <summary>
+    /// ´tHE GetRandomTaskNumber method is responsible for generating a random task number based on the available tasks.
+    /// </summary>
+    /// <remarks>
+    /// It reads the probabilities of each task from PlayerPrefs and generates a random number.
+    /// Then iterates through the task probabilities and checks if the random number is less than or equal to the task probability, 
+    /// and checks if the task is available.
+    /// If it is, it returns the task number, otherwise it returns the first available task.
+    /// </remarks>
+    /// <param name="availableTasks">The available tasks.</param>
+    /// <returns>The number of an avaible task</returns>
+    private int GetRandomTaskNumber(List<int> availableTasks)
+    {
+        float fixFuseBoxProb = PlayerPrefs.GetFloat("FixFuseBoxProb");
+        float cleanFloorProb = PlayerPrefs.GetFloat("CleanFloorProb");
+        float randomValue = Utils.RandomFloat(0f, 1f);
+
+        var taskProbabilities = new Dictionary<int, float>
+       {
+           { 0, fixFuseBoxProb },
+           { 1, cleanFloorProb }
+       };
+
+        foreach (var task in taskProbabilities.OrderBy(t => t.Value))
+        {
+            if (availableTasks.Contains(task.Key) && task.Value > 0 && randomValue <= task.Value)
+            {
+                return task.Key;
+            }
+        }
+
+        return availableTasks.First();
     }
 
     /// <summary>

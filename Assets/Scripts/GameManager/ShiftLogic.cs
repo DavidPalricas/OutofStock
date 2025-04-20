@@ -5,33 +5,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 /// <summary>
 /// The ShiftLogic class is responsible for handling the players shift time in the game.
 /// </summary>
 public class ShiftLogic : MonoBehaviour
 {
     /// <summary>
-    /// The gameShiftMinutesIRL attribute is used to store the duration of the game shift in minutes in real life.
-    /// It is a range attribute that allows the duration of the game shift to be between 1 and 1440 minutes (24 hours).
-    /// </summary>
-    [SerializeField]
-    [Range(1, 1440)]
-    private int gameShiftMinutesIRL;
-
-    /// <summary>
     /// The fadeImage attribute is used to store the image component that is used to fade the screen.
     /// </summary>
     [SerializeField]
     private Image fadeImage;
-
-    /// <summary>
-    /// The startHour attribute is used to store the starting hour of the game.
-    /// It is a range attribute that allows the starting hour to be between 0 and 24 (real -life hours).
-    /// </summary>
-    [SerializeField]
-    [Range(0, 24)]
-    private int startHour;
 
     /// <summary>
     /// The dayText and timeText attributes are used to store the text components that display the day and time in the game respectively.
@@ -41,7 +24,7 @@ public class ShiftLogic : MonoBehaviour
 
     /// <summary>
     /// The following attributes are used to store the game time properties.
-    /// 
+    ///
     /// The gameMinuteInSecondsIRL attribute stores the duration of a game minute in seconds in real life.
     /// The gameHourInSecondsIRL attribute stores the duration of a game hour in seconds in real life.
     /// The currentGameMinutes attribute stores the current game time in minutes.
@@ -50,9 +33,15 @@ public class ShiftLogic : MonoBehaviour
     private float gameMinuteInSecondsIRL, gameHourInSecondsIRL, currentGameMinutes, timer;
 
     /// <summary>
-    /// The day attribute stores the current day of the game.
+    /// The day attribute stores the current week day in the game.
     /// </summary>
-    private int day;
+    private string day;
+
+    /// <summary>
+    /// The startHour attribute is used get a reference to the starting hour of the game.
+    /// This atribute reads the start hour from the PlayerPrefs.
+    /// </summary>
+    private int startHour;
 
     /// <summary>
     /// The isOnBreak attribute is a boolean flag that indicates if the player is on a break or not.
@@ -90,47 +79,21 @@ public class ShiftLogic : MonoBehaviour
         {23, "11 PM"}
     };
 
-    /// <summary>
-    /// The weekDays attribute is a dictionary that stores the week days with the corresponding number.
-    /// </summary>
-    private readonly Dictionary<int, string> weekDays = new()
-    {
-        {1, "Mon"},
-        {2, "Tue"},
-        {3, "Wed"},
-        {4, "Thu"},
-        {5, "Fri"},
-    };
-
-    private void OnEnable()
-    {
-        PlayerPrefs.SetInt("CurrentDay", 1);
-
-        PlayerPrefs.Save();
-
-    }
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded. (Unity Callback)
     /// In this method, the game time properties are initillizaized and the game time is set (SetGameTime method).
     /// </summary>
     private void Awake()
-    {
-        // Just for testing purposes to rest the day player prefs when its clicked on play in the editor
-        if (!PlayerPrefs.HasKey("GameStarted"))
-        {
-            PlayerPrefs.DeleteKey("CurrentDay");
-            PlayerPrefs.DeleteKey("GameStarted");
-
-            PlayerPrefs.SetInt("GameStarted", 1);
-        }
-
-
+    {   
         fadeImage.gameObject.SetActive(false);
+
         timer = Time.time;
         isOnBreak = false;
 
-        day = PlayerPrefs.GetInt("CurrentDay", 1);
+        day = PlayerPrefs.GetString("CurrentDay", "Mon");
+
+        startHour = PlayerPrefs.GetInt("StartHour", 0);
 
         SetGameTime();
     }
@@ -150,6 +113,7 @@ public class ShiftLogic : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// The SetGameTime method is responsible for setting the game time.
     /// It calculates the duration of a game minute and hour in  in real life seconds.
@@ -157,16 +121,15 @@ public class ShiftLogic : MonoBehaviour
     /// </summary>
     private void SetGameTime()
     {
-        // 9 hours in real life shift duration in minutes
-        const int SHIFT_DURATION_MINUTES_IRL = 540;
+        int shiftDurationMinutesIRL = PlayerPrefs.GetInt("ShiftDuration") * 60;
 
-        float gameMinuteDuration = (float)gameShiftMinutesIRL / SHIFT_DURATION_MINUTES_IRL;
+        float gameMinuteDuration = (float) PlayerPrefs.GetInt("ShiftDurationIRL") / shiftDurationMinutesIRL;
 
         gameMinuteInSecondsIRL = gameMinuteDuration * 60;
 
         gameHourInSecondsIRL = gameMinuteDuration * 3600;
 
-        dayText.text = $"{weekDays[day]}";
+        dayText.text = day;
 
         string[] time = daytime[startHour].Split(' ');
 
@@ -205,10 +168,11 @@ public class ShiftLogic : MonoBehaviour
     /// <param name="workTime">The time tha player has benn working.</param>
     private void CheckWorkBreaks(int workTime)
     {
-        const int SHIFT_DURATION = 9;
-        const int LUNCH_BREAK_DURATION = SHIFT_DURATION / 2;
+        int shiftDuration = PlayerPrefs.GetInt("ShiftDuration");
 
-        if (workTime == LUNCH_BREAK_DURATION)
+        int lunchBreakTime = PlayerPrefs.GetInt("LunchBreakTime");
+
+        if (workTime == lunchBreakTime)
         {
             isOnBreak = true;
             StartCoroutine(GoLunch());
@@ -216,13 +180,9 @@ public class ShiftLogic : MonoBehaviour
             return;
         }
 
-
-        if (workTime == SHIFT_DURATION)
+        if (workTime == shiftDuration)
         {
-            isOnBreak = true;
             NextDay();
-
-            return;
         }
     }
 
@@ -253,22 +213,10 @@ public class ShiftLogic : MonoBehaviour
 
     /// <summary>
     /// The NextDay method is responsible for advancing to the next day of the game.
-    /// For now, it just reloads the current scene to test the day increment.
+    /// For now, it just reloads the current scene for testing the days progression.
     /// </summary>
     private void NextDay()
     {
-        day++;
-
-        if (day == 6)
-        {
-            Utils.ExitGame();
-
-            return;
-        }
-
-        PlayerPrefs.SetInt("CurrentDay", day);
-        PlayerPrefs.Save();
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

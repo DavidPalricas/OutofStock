@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Customer
   - Item
+  - GameManager
   layers:
   - Default
   - TransparentFX
