@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// The DayData class is used to store the data for a day in the game.
+/// Each property of this class represents a key of the JSON file that contains part of the data for a day.
 /// </summary>
 public class DayData
 {

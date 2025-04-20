@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 /// <summary>
 /// The ShiftLogic class is responsible for handling the players shift time in the game.
 /// </summary>
@@ -25,7 +24,7 @@ public class ShiftLogic : MonoBehaviour
 
     /// <summary>
     /// The following attributes are used to store the game time properties.
-    /// 
+    ///
     /// The gameMinuteInSecondsIRL attribute stores the duration of a game minute in seconds in real life.
     /// The gameHourInSecondsIRL attribute stores the duration of a game hour in seconds in real life.
     /// The currentGameMinutes attribute stores the current game time in minutes.
@@ -40,6 +39,7 @@ public class ShiftLogic : MonoBehaviour
 
     /// <summary>
     /// The startHour attribute is used get a reference to the starting hour of the game.
+    /// This atribute reads the start hour from the PlayerPrefs.
     /// </summary>
     private int startHour;
 
@@ -213,7 +213,7 @@ public class ShiftLogic : MonoBehaviour
 
     /// <summary>
     /// The NextDay method is responsible for advancing to the next day of the game.
-    /// For now, it just reloads the current scene to test the day increment.
+    /// For now, it just reloads the current scene for testing the days progression.
     /// </summary>
     private void NextDay()
     {

@@ -133,7 +133,17 @@ public class TaskManager : MonoBehaviour, IObserver
     }
 
 
-
+    /// <summary>
+    /// ´tHE GetRandomTaskNumber method is responsible for generating a random task number based on the available tasks.
+    /// </summary>
+    /// <remarks>
+    /// It reads the probabilities of each task from PlayerPrefs and generates a random number.
+    /// Then iterates through the task probabilities and checks if the random number is less than or equal to the task probability, 
+    /// and checks if the task is available.
+    /// If it is, it returns the task number, otherwise it returns the first available task.
+    /// </remarks>
+    /// <param name="availableTasks">The available tasks.</param>
+    /// <returns>The number of an avaible task</returns>
     private int GetRandomTaskNumber(List<int> availableTasks)
     {
         float fixFuseBoxProb = PlayerPrefs.GetFloat("FixFuseBoxProb");

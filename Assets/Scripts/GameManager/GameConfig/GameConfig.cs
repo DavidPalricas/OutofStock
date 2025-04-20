@@ -4,8 +4,8 @@ using UnityEngine;
 using Newtonsoft.Json;
 
 /// <summary>
-/// The GameConfig class is used to generate a configuration file (json format) for the game and load data
-/// from it.
+/// The GameConfig class is used to generate a configuration file (json format) for the game and load its data,
+/// by reading the data from the file and saving it on the PlayerPrefs (Unity's local storage).
 /// </summary>
 public class GameConfig : MonoBehaviour
 {
@@ -45,7 +45,7 @@ public class GameConfig : MonoBehaviour
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded. (Unity callback)
-    /// In this method, the configuration file is generated and the first day data is loaded.
+    /// In this method, the configuration file is generated and the its infomation is loaded.
     /// </summary>
     private void Awake()
     {
@@ -103,7 +103,7 @@ public class GameConfig : MonoBehaviour
     }
 
     /// <summary>
-    /// Tje GetDaysData method generates a dictionary with stores the data for each day in the game.
+    /// The GetDaysData method generates a dictionary with stores the data for each day in the game.
     /// </summary>
     /// <remarks>
     /// This method iterates over the list of day configurations (`days`) which is editable in the Unity Editor.
@@ -167,7 +167,13 @@ public class GameConfig : MonoBehaviour
         return weekDays[weekdayNumber];
     }
 
-
+    /// <summary>
+    /// The LoadGeneralData method loads the general data from the JSON file and updates the PlayerPrefs with this data
+    /// </summary>
+    /// <remarks>
+    /// This method attempts to read the game configuration file from its path. (persistent data path)
+    /// If the file exists, it deserializes the JSON data and updates the PlayerPrefs with the values from the `GeneralData` object.
+    /// </remarks>
     private void LoadGeneralData()
     {
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
@@ -180,6 +186,7 @@ public class GameConfig : MonoBehaviour
 
         string jsonData = File.ReadAllText(filePath);
 
+        // The key of the json file which stores the general data of the game.
         GeneralData generalData = JsonConvert.DeserializeObject<RootObject>(jsonData).generalData;
 
         PlayerPrefs.SetInt("ShiftDurationIRL", generalData.shiftDurationIRL);
@@ -190,27 +197,17 @@ public class GameConfig : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private DayData GetDayData(DaysData daysData, string weekDay)
-    {
-        return weekDay.ToLower() switch
-        {
-            "mon" => daysData.mon,
-            "tue" => daysData.tue,
-            "wed" => daysData.wed,
-            "thu" => daysData.thu,
-            "fri" => daysData.fri,
-            _ => null,
-        };
-    }
+
 
     /// <summary>
     /// The LoadCurrentDatData loads the current day's data from a JSON file and updates the game state.
     /// </summary>
     /// <remarks>
     /// This method attempts to read the game configuration file from its path. (persistent data path)
-    /// If the file exists, it deserializes the JSON data into a dictionary of `DayData` objects.
-    /// The method calculates the current day number based on the remaining days in the list and retrieves the corresponding day data.
-    /// The loaded data is assigned to `currentDay`, and the processed day is removed from the `days` list.
+    /// If the file exists, it deserializes the JSON data.
+    /// This method gets the current week day from PlayerPrefs, if the current week day is null or empty, it exits the game.
+    /// Otherwise it finds the corresponding `DayData` object for this week day from the JSON data.
+    /// And updates the PlayerPrefs with the values from the `DayData` object.
     /// </remarks>
     private void LoadCurrentDayData()
     {   
@@ -254,7 +251,31 @@ public class GameConfig : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The GetDayData method retrieves the day data for a specific week day from the JSON data.
+    /// </summary>
+    /// <param name="daysData">A key from the JSON file with data from all weekdays.</param>
+    /// <param name="weekDay">The current week day in the game.</param>
+    /// <returns> The day data for a specific week day from the JSON data.</returns>
+    private DayData GetDayData(DaysData daysData, string weekDay)
+    {
+        return weekDay.ToLower() switch
+        {
+            "mon" => daysData.mon,
+            "tue" => daysData.tue,
+            "wed" => daysData.wed,
+            "thu" => daysData.thu,
+            "fri" => daysData.fri,
+            _ => null,
+        };
+    }
 
+    /// <summary>
+    /// The GetCurrentWeekDay method retrieves the current week day.
+    /// It checks if the "CurrentDay" key exists in PlayerPrefs, if it does, it retrieves the value.
+    /// Otherwise, it returns "Mon" (Monday abreviation) as the default value.
+    /// </summary>
+    /// <returns></returns>
     private string GetCurrentWeekDay()
     {
         if (PlayerPrefs.HasKey("CurrentDay"))
@@ -264,6 +285,16 @@ public class GameConfig : MonoBehaviour
          return "Mon";
     }
 
+    /// <summary>
+    /// The GetNextWeekDay method retrieves the next week day based on the previous day.
+    /// </summary>
+    /// <remarks>
+    /// It checks if the previous day is valid and not the last day of the week (Friday).
+    /// If none of these conditions are met, it returns null. Otherwise, it returns the next week day.
+    /// by incrementing the index of the previous day in the weekDays array.
+    /// </remarks>
+    /// <param name="previousDay">The previous day.</param>
+    /// <returns></returns>
     private string GetNextWeekDay(string previousDay)
     {
         string[] weekDays = { "Mon", "Tue", "Wed", "Thu", "Fri" };
