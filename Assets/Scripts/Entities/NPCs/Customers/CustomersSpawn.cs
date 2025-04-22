@@ -94,13 +94,14 @@ public class CustomersSpawn : MonoBehaviour, IObserver
 
         Transform pickItemArea = targetItem.GetComponent<MarketProduct>().pickProductArea;
 
-        customerMovement.AreasPos["PickItem"] = pickItemArea == null ? Vector3.zero : pickItemArea.position;
+        customerMovement.AreasPos["Product"] = pickItemArea == null ? Vector3.zero : pickItemArea.position;
         customerMovement.AreasPos["MarketExit"] = transform.position;
         customerMovement.AreasPos["Payment"] = paymentAreas[Utils.RandomInt(0, paymentAreas.Length)].transform.position;
 
         customerMovement.AddObservers(new IObserver[] { this });
 
         customerMovement.enabled = true;
+        customerMovement.GetComponent<FSM>().enabled = true;
 
         customersSpawned++;
     }

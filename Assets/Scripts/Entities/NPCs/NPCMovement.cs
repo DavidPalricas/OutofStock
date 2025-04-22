@@ -32,7 +32,6 @@ public class NPCMovement : MonoBehaviour
     protected virtual void OnEnable()
     {
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-        SetAgentDestination();
     }
 
     /// <summary>
