@@ -8,9 +8,9 @@ public class Steal : CustomerBaseState
     [SerializeField]
     private Material thiefMaterial;
 
-    protected override void OnEnable()
+    protected override void Awake()
     {
-        base.OnEnable();
+        base.Awake();
         stateName = GetType().Name;
     }
 
@@ -24,7 +24,7 @@ public class Steal : CustomerBaseState
     {
         base.Execute();
 
-        if (customerMovement.GoalReached)
+        if (customerMovement.DestinationReached)
         {   
             StealProduct();
         }

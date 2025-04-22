@@ -26,23 +26,28 @@ public class GeneralData
     /// <summary>
     /// The shiftDurationIRL property represents the duration of the player's shift in real life.
     /// </summary>
-    public int shiftDurationIRL;
+    public float shiftDurationIRL;
 
     /// <summary>
     /// The startHourIRL property represents the start hour of the player's shift.
     /// </summary>
-    public int startHour;
+    public float startHour;
 
     /// <summary>
     /// The shiftDuration property represents the duration of the player's shift in the game.
     /// </summary>
-    public int shiftDuration;
+    public float shiftDuration;
 
     /// <summary>  
     /// The lunchBreakTime property represents the hour which is used to calculate the lunch break time.
     /// Ex: If the lunchBreakTime is 2, the lunch break will be at 2 hours after the start hour.
     /// </summary>  
-    public int lunchBreakTime;
+    public float lunchBreakTime;
+
+    /// <summary>
+    /// The customersPerHour property represents the probability of a normal customer becoming a thief.
+    /// </summary>
+    public float customerBecameThiefProb;
 }
 
 /// <summary>

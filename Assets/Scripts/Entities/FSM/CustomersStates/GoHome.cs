@@ -1,8 +1,8 @@
 public class GoHome : CustomerBaseState
 {
-    protected override void OnEnable()
+    protected override void Awake()
     {
-        base.OnEnable();
+        base.Awake();
         stateName = GetType().Name;
       
     }
@@ -17,7 +17,7 @@ public class GoHome : CustomerBaseState
     {
         base.Execute();
 
-        if (customerMovement.GoalReached)
+        if (customerMovement.DestinationReached)
         {
             customerMovement.ExitMarket();
         }

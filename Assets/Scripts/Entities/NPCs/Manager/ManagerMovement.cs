@@ -19,95 +19,19 @@ public class ManagerMovement : NPCMovement
     /// <summary>
     /// The managerOffice attribute represents the manager's office position.
     /// </summary>
-    private Vector3 managerOffice;
+    public Vector3 ManagerOffice { get; private set; }
 
-    /// <summary>
-    /// The ManagerStates enum represents the manager states.
-    /// </summary>
-    private enum ManagerStates
-    {
-        /// <summary>
-        /// The PATROL state represents the manager patrolling the supermarket.
-        /// </summary>
-        PATROL,
 
-        /// <summary>
-        /// The OFFICE state represents the manager going to his office an staying there.
-        /// </summary>
-        OFFICE
-    }
-
-    /// <summary>
-    /// The currentState attribute represents the current state of the manager.
-    /// </summary>
-    private ManagerStates currentState = ManagerStates.PATROL;
-
-    /// <summary>
-    /// The OnEnable method is called when the object becomes enabled and active (Unity Callback).
-    /// In this method, the waypoints are retrieved and the manager office position is set.
-    /// This method overrides the <see cref="NPCMovement.OnEnable"/> method from the <see cref="NPCMovement"/> class."/> and uses its base implementation.
-    /// </summary>
-    protected override void OnEnable()
-    {
-        wayPoints = Utils.GetChildren(waypointsGroup);
-        managerOffice = transform.position;
-
-        // Calls the base implementation of the OnEnable method from the NPCMovement class.
-        base.OnEnable();
-    }
-
-    /// <summary>
-    /// The SetAgentDestination method is responsible for setting the agent destination.
-    /// This method overrides the <see cref="NPCMovement.SetAgentDestination"/> method from the <see cref="NPCMovement"/> class.
-    /// </summary>
-    /// <remarks>
-    /// If the current state is PATROL, a random waypoint is selected from the waypoints group and set as the agent destination.
-    /// Otherwise, the manager office position is set as the agent destination.
-    /// </remarks>
-    protected override void SetAgentDestination()
-    {
-        if (currentState == ManagerStates.PATROL)
-        {
-            int randomWayPoint = Utils.RandomInt(0, wayPoints.Length);
-
-            agent.SetDestination(wayPoints[randomWayPoint].transform.position);
-        }
-        else
-        {
-            agent.SetDestination(managerOffice);
-        }
-
-        agent.isStopped = false;
-    }
-
-    /// <summary>
-    /// The DestinationReached method is responsible for handling the destination reached event.
-    /// This method uses its base implementation (stop the manager) and his state 
-    /// is changed and the agent destination is updated after an random interval between 3 and 5 seconds.
-    /// This method overrides the <see cref="NPCMovement.DestinationReached"/> method from the <see cref="NPCMovement"/> class.
-    /// </summary>
-    protected override void DestinationReached()
+    private void Awake()
     {   
-        base.DestinationReached();
-
-        ChangeState();
-
-        float timeToWait = currentState == ManagerStates.PATROL ? PlayerPrefs.GetFloat("ManagerPatrolTime") : PlayerPrefs.GetFloat("ManagerOfficeTime");
-
-        // Convert the time to wait from minutes to seconds
-        timeToWait *= 60f;
-
-        Debug.Log($"Manager is waiting for {timeToWait} seconds in {currentState} state.");
-
-        StartCoroutine(Utils.WaitAndExecute(timeToWait, () => SetAgentDestination()));
+        wayPoints = Utils.GetChildren(waypointsGroup);
+        ManagerOffice = transform.position;
     }
 
-    /// <summary>
-    /// The ChangeState method is responsible for changing the Manager state.
-    /// This method overrides the <see cref="NPCMovement.ChangeState"/> method from the <see cref="NPCMovement"/> class.
-    /// </summary>
-    protected override void ChangeState()
-    {
-        currentState = currentState == ManagerStates.PATROL ? ManagerStates.OFFICE : ManagerStates.PATROL;
+    public void ChoosePointToPatrol()
+    {   
+        int randomWayPoint = Utils.RandomInt(0, wayPoints.Length);
+
+        agent.SetDestination(wayPoints[randomWayPoint].transform.position);
     }
 }
