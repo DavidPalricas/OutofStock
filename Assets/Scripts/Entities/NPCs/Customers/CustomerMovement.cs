@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,21 +17,6 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     private IObserver[] observers;
 
     /// <summary>
-    /// The CustomerStates enum represents the customer states.
-    /// </summary>
-    private enum CustomerStates
-    {
-        SHOPPING,
-        PAY,
-        GO_HOME
-    }
-
-    /// <summary>
-    /// The currentState attribute represents the current state of the customer.
-    /// </summary>
-    private CustomerStates currentState = CustomerStates.SHOPPING;
-
-    /// <summary>
     /// The TargetItem attribute represents the target item of the customer.
     /// </summary>
     /// <value>
@@ -44,41 +30,31 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// </summary>
     public Dictionary<string, Vector3> AreasPos = new ()
     {
-        { "PickItem", Vector3.zero},
+        { "Product", Vector3.zero},
         { "Payment", Vector3.zero },
         { "MarketExit", Vector3.zero }
     };
 
- 
+    public bool GoalReached { get; private set; } = false;
+
+
     /// <summary>
     /// The PayOrPickItem method is responsible for handling the logic when the customer pays or picks the item.
     /// It simulates the time it takes for the customer to pay or pick the item, the time of each type of simulitaion is different.
     /// After getiing the time, the customer state is changed and its destination is set.
     /// </summary>
-    private void PayOrPickItem(){
-        float minTimeSimulation , maxTimeSimulation;
+    public void InteractWithProduct(Tuple<float,float> simulationTime, Vector3 destination){
+        float minTimeSimulation = simulationTime.Item1;
+        float maxTimeSimulation = simulationTime.Item2;
 
-        if (currentState == CustomerStates.SHOPPING)
-        {
-            minTimeSimulation = 2f;
-            maxTimeSimulation = 3f;
-        }
-        else
-        {
-            minTimeSimulation = 3f;
-            maxTimeSimulation = 5f;
-        }
-
-        ChangeState();
-
-        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeSimulation, maxTimeSimulation), () => SetAgentDestination()));
+        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeSimulation, maxTimeSimulation), () => SetAgentDestination(destination)));
     }
 
     /// <summary>
     /// The ExitMarket method is responsible for handling the logic when the customer exits the market.
     /// In this method, the observers are notified and removed, and the customer game object is destroyed.
     /// </summary>
-    private void ExitMarket()
+    public void ExitMarket()
     {
         NotifyObservers();
         RemoveObservers();
@@ -91,37 +67,20 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// The destination can be the pick item area, the payment area, or the market exit area, dpeending on the current state of the customer.
     /// This method overrides the <see cref="NPCMovement.SetAgentDestination"/> method from the <see cref="NPCMovement"/> class.
     /// </summary>
-    protected override void SetAgentDestination()
+    public void SetAgentDestination(Vector3 destination)
     {
-        if (AreasPos["PickItem"] == Vector3.zero)
+        if (AreasPos["Product"] == Vector3.zero)
         {
             agent.SetDestination(AreasPos["MarketExit"]);
 
-            Debug.LogWarning("The item " + TargetItem.name + "does not have a pickItem Area");
+           //  Debug.LogWarning("The item " + TargetItem.name + "does not have a pickItem Area");
             return;
         }
 
-        switch(currentState)
-        {
-            case CustomerStates.SHOPPING:
-                agent.SetDestination(AreasPos["PickItem"]);
-               break;
 
-            case CustomerStates.PAY:
-                // Destroys the item that he picked
-                Destroy(TargetItem);
+        GoalReached = false;
 
-                agent.SetDestination(AreasPos["Payment"]);
-                break;
-
-            case CustomerStates.GO_HOME:
-                agent.SetDestination(AreasPos["MarketExit"]);
-               break;
-
-            default:
-                break;
-        }
-
+        agent.SetDestination(destination);
         agent.isStopped = false;
     }
 
@@ -139,40 +98,7 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     {
         base.DestinationReached();
 
-        switch (currentState)
-        {
-            case CustomerStates.SHOPPING:
-            case CustomerStates.PAY:
-                PayOrPickItem();
-                return;
-
-            case CustomerStates.GO_HOME:
-                ExitMarket();
-                return;
-
-            default:
-                return;
-        }
-    }
-
-    /// <summary>
-    /// The ChangeState method is responsible for changing the Customer state.
-    /// This method overrides the <see cref="NPCMovement.ChangeState"/> method from the <see cref="NPCMovement"/> class.
-    /// </summary>
-    protected override void ChangeState()
-    {   
-        if (currentState == CustomerStates.SHOPPING)
-        {
-            currentState = CustomerStates.PAY;
-
-            return;
-
-        }
-        
-        if(currentState == CustomerStates.PAY)
-        {
-            currentState = CustomerStates.GO_HOME;
-        }
+        GoalReached = true;
     }
 
     /// <summary>
@@ -226,7 +152,6 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
     public void OnNotify(object data = null)
     {
-        currentState = CustomerStates.GO_HOME;
 
         SetAgentDestination();
     }
