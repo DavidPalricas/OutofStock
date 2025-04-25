@@ -1,13 +1,13 @@
 public class CustomerBaseState : State
-{   
-    protected enum CustumersTypes
+{
+    protected enum CustomersTypes
     {
         Normal,
         Karen,
         AnnoyingKid
     }
 
-    protected CustumersTypes custumerType = CustumersTypes.Normal;
+    protected CustomersTypes customerType;
 
     protected CustomerMovement customerMovement;
 
@@ -15,5 +15,22 @@ public class CustomerBaseState : State
     {
         fSM = GetComponent<FSM>();
         customerMovement = GetComponent<CustomerMovement>();
+        customerType = GetCustomerType();
+    }
+
+
+    private CustomersTypes GetCustomerType()
+    {
+       if (gameObject.name.Contains("Karen"))
+       {
+            return CustomersTypes.Karen;
+       }
+
+       if (gameObject.name.Contains("AnnoyingKid"))
+       {
+           return CustomersTypes.AnnoyingKid;
+       }
+
+       return CustomersTypes.Normal;
     }
 }

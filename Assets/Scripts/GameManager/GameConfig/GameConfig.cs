@@ -140,7 +140,6 @@ public class GameConfig : MonoBehaviour
             dayData.managerTimes = new Dictionary<string, float>();
             dayData.tasksProbs = new Dictionary<string, float>();
 
-
             dayData.customersSpawnProbs.Add("Karen", day.karenSpawnProb);
             dayData.customersSpawnProbs.Add("AnnoyingKid", day.annoyingKidSpawnProb);
 

@@ -17,7 +17,7 @@ public class Shopping : CustomerBaseState
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
 
 
-        if (custumerType == CustumersTypes.Normal && BecamesThief())
+        if (customerType == CustomersTypes.Normal && BecamesThief())
         {
             fSM.ChangeState("BecameThief");
             return;
@@ -49,7 +49,12 @@ public class Shopping : CustomerBaseState
     }
 
     private void PickProduct()
-    {
+    {   
+        if (customerMovement is AnnoyingKidMovement annoyingKid)
+        {
+            annoyingKid.HoldsProduct = true;
+        }
+
         StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeToPickProduct, maxTimeToPickProduct), () => fSM.ChangeState("ProductPicked")));
     }
 }

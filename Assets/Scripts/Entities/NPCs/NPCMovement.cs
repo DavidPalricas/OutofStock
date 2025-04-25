@@ -25,6 +25,7 @@ public class NPCMovement : MonoBehaviour
 
     public bool DestinationReached { get; protected set; } = false;
 
+  
     /// <summary>
     /// The Update method is called every frame (Unity Callback).
     /// In this method, we are checking if the NPC has reached its destination, if so, the ReachDestination method is called.

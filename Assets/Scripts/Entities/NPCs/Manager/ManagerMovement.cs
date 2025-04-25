@@ -32,6 +32,9 @@ public class ManagerMovement : NPCMovement
     {   
         int randomWayPoint = Utils.RandomInt(0, wayPoints.Length);
 
+
+        Debug.Log(agent);
+
         agent.SetDestination(wayPoints[randomWayPoint].transform.position);
     }
 }
