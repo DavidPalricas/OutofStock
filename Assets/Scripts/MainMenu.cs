@@ -38,4 +38,11 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
+        //Utils.PlaySoundEffect("fall");
+        //fadeManager.GetComponent<LevelChanger>().FadeToLevel(currentSceneIndex + 1);
+    }
 }
