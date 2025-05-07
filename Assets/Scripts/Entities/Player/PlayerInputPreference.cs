@@ -18,11 +18,9 @@ public class PlayerInputPreferences : MonoBehaviour
     /// The Awake method is called when the script instance is being loaded (Unity Method).
     /// In this method, the player's input preferences are loaded and applied by calling the LoadAndApplyBindings method and the object is set to not be destroyed when loading a new scene, or in the pause menu.
     /// </summary>
-    private void Awake()
+    private void Start()
     {
         Utils.LoadAndApplyBindings(playerInput);
-
-        DontDestroyOnLoad(gameObject);
     }
 
 }

@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Grab/ThrowItem",
+                    "name": "GrabOrThrowItem",
                     "type": "Button",
                     "id": "496961cf-fd44-4924-a663-cc20def591a1",
                     "expectedControlType": "",
@@ -251,7 +251,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Grab/ThrowItem",
+                    "action": "GrabOrThrowItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -175,9 +175,10 @@ public static class Utils
         #endif
     }
 
-    /// <summary>
-    /// The LoadAndApplyBindings method is responsible for loading and applying if there are any player's input preferences saved.
-    /// </summary>
+    /// <summary>  
+    /// The LoadAndApplyBindings method is responsible for loading and applying if there are any player's input preferences saved.  
+    /// After applying, it prints all the current bindings to the console.  
+    /// </summary>  
     public static void LoadAndApplyBindings(PlayerInput playerInput)
     {
         string rebinds = PlayerPrefs.GetString("inputBindings", string.Empty);
@@ -185,6 +186,7 @@ public static class Utils
         if (!string.IsNullOrEmpty(rebinds))
         {
             playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+            playerInput.actions.Enable();
         }
     }
 }

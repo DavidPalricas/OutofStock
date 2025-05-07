@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+
 
 /// <summary>
 /// The RebindingMenu class is responsible for handling the rebinding menu logic.
@@ -36,7 +36,15 @@ public class RebindingMenu : MonoBehaviour
     /// The action index property is responsible for storing the index of the action.
     /// 0 for keyboard, this
     /// </summary>
-    private int actionIndex = 0;
+    private readonly int actionIndex = 0;
+
+
+
+
+    private void OnEnable()
+    {
+        UpdateUIText();
+    }
 
     /// <summary>
     /// The SaveBindings method is responsible for saving the bindings.
@@ -60,7 +68,8 @@ public class RebindingMenu : MonoBehaviour
     /// <param name="actionToRebind">The action to rebind.</param>
     /// <param name="actionButton">The button of the action to rebind.</param>
     private void WaitingForRebind(InputActionReference actionToRebind, GameObject actionButton)
-    {
+    {   
+        actionToRebind.action.Disable();
         var rebindOperation = actionToRebind.action.PerformInteractiveRebinding();
 
         rebindOperation = rebindOperation.WithControlsExcluding("<Gamepad>");
@@ -71,6 +80,7 @@ public class RebindingMenu : MonoBehaviour
             .OnComplete(operation =>
             {
                 RebindingComplete(actionToRebind, actionButton);
+                actionToRebind.action.Enable();
                 operation.Dispose();
             })
             .Start();
@@ -126,7 +136,7 @@ public class RebindingMenu : MonoBehaviour
             _ when button == crouchButton => playerInput.actions["Crouch"],
             _ when button == jumpButton => playerInput.actions["Jump"],
             _ when button == sprintButton => playerInput.actions["Sprint"],
-            _ when button == grabThrowButton => playerInput.actions["GrabThrow"],
+            _ when button == grabThrowButton => playerInput.actions["GrabOrThrowItem"],
             _ => null
         };
     }
@@ -146,7 +156,7 @@ public class RebindingMenu : MonoBehaviour
 
         foreach (InputAction action in playerInput.actions)
         {
-            if (action.name != "Movement" || action.name != "Look")
+            if (action.name != "Move")
             {
                 if (action.bindings[actionIndex].effectivePath == newBindingPath)
                 {
@@ -161,7 +171,7 @@ public class RebindingMenu : MonoBehaviour
             else
             {
                 foreach (InputBinding binding in action.bindings)
-                {
+                {   
                     if (binding.effectivePath == newBindingPath)
                     {
                         if (duplicateCount == 1)
@@ -207,11 +217,9 @@ public class RebindingMenu : MonoBehaviour
     /// The UpdateUIText method is responsible for updating the UI text (action buttons text).
     /// To update the action buttons text, the action bindings are loaded in order to get the key or button that is binded to the action.
     /// </summary>
-    public void UpdateUIText(int newActionIndex)
+    private void UpdateUIText()
     {
         Utils.LoadAndApplyBindings(playerInput);
-
-        actionIndex = newActionIndex;
 
         Dictionary<GameObject, string> actions = new()
         {
@@ -220,7 +228,7 @@ public class RebindingMenu : MonoBehaviour
             { crouchButton, "Crouch" },
             { jumpButton, "Jump" },
             { sprintButton, "Sprint" },
-            { grabThrowButton, "GrabThrow" }
+            { grabThrowButton, "GrabOrThrowItem" }
         };
 
         foreach (KeyValuePair<GameObject, string> action in actions)
@@ -249,6 +257,6 @@ public class RebindingMenu : MonoBehaviour
 
         PlayerPrefs.SetString("inputBindings", string.Empty);
 
-        UpdateUIText(actionIndex);
+        UpdateUIText();
     }
 }
