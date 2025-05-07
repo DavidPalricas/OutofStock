@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// The Utils class is responsible for storing some methods 
@@ -172,5 +173,18 @@ public static class Utils
         #else
                     Application.Quit();
         #endif
+    }
+
+    /// <summary>
+    /// The LoadAndApplyBindings method is responsible for loading and applying if there are any player's input preferences saved.
+    /// </summary>
+    public static void LoadAndApplyBindings(PlayerInput playerInput)
+    {
+        string rebinds = PlayerPrefs.GetString("inputBindings", string.Empty);
+
+        if (!string.IsNullOrEmpty(rebinds))
+        {
+            playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+        }
     }
 }
