@@ -38,9 +38,6 @@ public class RebindingMenu : MonoBehaviour
     /// </summary>
     private readonly int actionIndex = 0;
 
-
-
-
     private void OnEnable()
     {
         UpdateUIText();

@@ -3320,6 +3320,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1518372816978788098, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: jumpActionReference
+      value: 
+      objectReference: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 1518372816978788098, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: crouchActionReference
+      value: 
+      objectReference: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 1518372816978788098, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: sprintActionReference
+      value: 
+      objectReference: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 2450988668983306783, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_Name
       value: PlayerController
