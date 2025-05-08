@@ -11,7 +11,7 @@ public class FSM : MonoBehaviour
 
     public State CurrentState { get; private set; }
 
-    private void OnEnable()
+    private void Start()
     {
         CurrentState = states[0];
 

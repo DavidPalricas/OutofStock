@@ -12,7 +12,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// The customerPrefab attribute represents the customer prefab.
     /// </summary>
     [SerializeField]
-    private GameObject customerPrefab;
+    private GameObject normalCustomerPrefab, annoyingKidPrefab, karenPrefab;
 
     /// <summary>
     /// The maximumCustomersInMarket attribute represents the maximum number of customers in the market.
@@ -79,8 +79,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     // to notify when the customer exits the market.
     /// </remarks>
     private void SpawnCustomer()
-    {    
-        GameObject customer = Instantiate(customerPrefab, GetCustomerPos(), Quaternion.identity);
+    {         
+        GameObject customer =  Instantiate(GetTypeOfCustomer(), GetCustomerPos(), Quaternion.identity);
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
@@ -101,10 +101,37 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         customerMovement.AddObservers(new IObserver[] { this });
 
         customerMovement.enabled = true;
-        customerMovement.GetComponent<FSM>().enabled = true;
 
         customersSpawned++;
     }
+
+
+    private GameObject GetTypeOfCustomer()
+    {
+        float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
+        float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
+        float normalCustomerSpawnProb = 1 - (karenSpawnProb + annoyinKidSpawnProb);
+
+        List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
+        {
+           new KeyValuePair<GameObject, float>(karenPrefab, karenSpawnProb),
+           new KeyValuePair<GameObject, float>(annoyingKidPrefab, annoyinKidSpawnProb),
+           new KeyValuePair<GameObject, float>(normalCustomerPrefab, normalCustomerSpawnProb),
+        };
+
+        customersSpawnProbs.OrderBy(customersSpawnProb => customersSpawnProb.Value);
+
+        float randomValue = Utils.RandomFloat(0f, 1f);
+
+        foreach (KeyValuePair<GameObject, float> customerSpawnProb in customersSpawnProbs)
+        {    
+            if (randomValue <= customerSpawnProb.Value) { 
+                return customerSpawnProb.Key;
+            }
+        }
+
+        return customersSpawnProbs[^1].Key;
+}
 
     /// <summary>
     /// The GetCustomerPos method is responsible for getting a random position in the spawn area (plane).

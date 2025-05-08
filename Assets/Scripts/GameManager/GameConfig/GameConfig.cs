@@ -24,10 +24,21 @@ public class GameConfig : MonoBehaviour
     [SerializeField]
     private int shiftDurationIRL;
 
-
+    /// <summary>
+    /// The shiftDuration, lunchBreakTim, startHour properties store respectibly:
+    /// the players shift duration in the game (in hours), the hour which is used to calculate the lunch break time 
+    /// and the start hour of the shift.
+    /// </summary>
     [Range(1, 24)]
     [SerializeField]
     private int shiftDuration, lunchBreakTime, startHour;
+
+    /// <summary>
+    /// The customerBecameThiefProb property stores the probability of a normal customer becoming a thief.
+    /// </summary>
+    [Range(0, 1)]
+    [SerializeField]
+    private float customerBecameThiefProb;
 
     /// <summary>
     /// The days property stores a list of configurations for each day in the game.
@@ -65,12 +76,13 @@ public class GameConfig : MonoBehaviour
     /// </remarks>
     private void GenConfigFile()
     {
-        Dictionary<string, int> generalData = new()
+        Dictionary<string, float> generalData = new()
         {
          { "shiftDurationIRL", shiftDurationIRL },
          { "startHour", startHour },
          { "shiftDuration", shiftDuration },
-         { "lunchBreakTime", lunchBreakTime }
+         { "lunchBreakTime", lunchBreakTime },
+         { "customerBecameThiefProb", customerBecameThiefProb }
         };
 
         Dictionary<string, DayData> daysData = GetDaysData();
@@ -127,7 +139,6 @@ public class GameConfig : MonoBehaviour
             dayData.customersSpawnProbs = new Dictionary<string, float>();
             dayData.managerTimes = new Dictionary<string, float>();
             dayData.tasksProbs = new Dictionary<string, float>();
-
 
             dayData.customersSpawnProbs.Add("Karen", day.karenSpawnProb);
             dayData.customersSpawnProbs.Add("AnnoyingKid", day.annoyingKidSpawnProb);
@@ -189,10 +200,11 @@ public class GameConfig : MonoBehaviour
         // The key of the json file which stores the general data of the game.
         GeneralData generalData = JsonConvert.DeserializeObject<RootObject>(jsonData).generalData;
 
-        PlayerPrefs.SetInt("ShiftDurationIRL", generalData.shiftDurationIRL);
-        PlayerPrefs.SetInt("ShiftDuration", generalData.shiftDuration);
-        PlayerPrefs.SetInt("LunchBreakTime", generalData.lunchBreakTime);
-        PlayerPrefs.SetInt("StartHour", generalData.startHour);
+        PlayerPrefs.SetFloat("ShiftDurationIRL", generalData.shiftDurationIRL);
+        PlayerPrefs.SetFloat("ShiftDuration", generalData.shiftDuration);
+        PlayerPrefs.SetFloat("LunchBreakTime", generalData.lunchBreakTime);
+        PlayerPrefs.SetFloat("StartHour", generalData.startHour);
+        PlayerPrefs.SetFloat("CustomerBecameThiefProb", generalData.customerBecameThiefProb);
 
         PlayerPrefs.Save();
     }

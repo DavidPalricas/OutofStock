@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,21 +34,6 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
         { "MarketExit", Vector3.zero }
     };
 
-    public bool GoalReached { get; private set; } = false;
-
-
-    /// <summary>
-    /// The PayOrPickItem method is responsible for handling the logic when the customer pays or picks the item.
-    /// It simulates the time it takes for the customer to pay or pick the item, the time of each type of simulitaion is different.
-    /// After getiing the time, the customer state is changed and its destination is set.
-    /// </summary>
-    public void InteractWithProduct(Tuple<float,float> simulationTime, Vector3 destination){
-        float minTimeSimulation = simulationTime.Item1;
-        float maxTimeSimulation = simulationTime.Item2;
-
-        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeSimulation, maxTimeSimulation), () => SetAgentDestination(destination)));
-    }
-
     /// <summary>
     /// The ExitMarket method is responsible for handling the logic when the customer exits the market.
     /// In this method, the observers are notified and removed, and the customer game object is destroyed.
@@ -67,38 +51,17 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// The destination can be the pick item area, the payment area, or the market exit area, dpeending on the current state of the customer.
     /// This method overrides the <see cref="NPCMovement.SetAgentDestination"/> method from the <see cref="NPCMovement"/> class.
     /// </summary>
-    public void SetAgentDestination(Vector3 destination)
+    public override void SetAgentDestination(Vector3 destination)
     {
         if (AreasPos["Product"] == Vector3.zero)
         {
             agent.SetDestination(AreasPos["MarketExit"]);
 
-           //  Debug.LogWarning("The item " + TargetItem.name + "does not have a pickItem Area");
+            Debug.LogWarning("The item " + TargetItem.name + "does not have a pickItem Area");
             return;
         }
 
-
-        GoalReached = false;
-
-        agent.SetDestination(destination);
-        agent.isStopped = false;
-    }
-
-    /// <summary>
-    /// The DestinationReached method is responsible for handling the destination reached event.
-    /// This method overrides the <see cref="NPCMovement.DestinationReached"/> method from the <see cref="NPCMovement"/> class.
-    /// </summary>
-    /// <remarks>
-    /// This method uses its base implementation (stop the customer) and checks the current state of the customer.
-    /// If the customer is shopping, the PickItem method is called to handle the logic when the customer picks the item.
-    /// If the customer is paying, the Pay method is called to handle the logic when the customer pays the item.
-    /// Otherwise, the customer exits the market by calling the ExitMarket method.
-    /// </remarks>
-    protected override void DestinationReached()
-    {
-        base.DestinationReached();
-
-        GoalReached = true;
+        base.SetAgentDestination(destination);
     }
 
     /// <summary>
@@ -109,10 +72,6 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     {
         agent.enabled = enable;
 
-        if (enable)
-        {
-            SetAgentDestination();
-        }
     }
 
     /// <summary>
@@ -152,7 +111,6 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
     public void OnNotify(object data = null)
     {
-
-        SetAgentDestination();
+       
     }
 }

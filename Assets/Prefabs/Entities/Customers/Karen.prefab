@@ -13,8 +13,13 @@ GameObject:
   - component: {fileID: 5278353597360104937}
   - component: {fileID: 3473760308147473549}
   - component: {fileID: 4261712987010149697}
-  - component: {fileID: 5761002168115495589}
   - component: {fileID: 8851329125210948687}
+  - component: {fileID: 5761002168115495589}
+  - component: {fileID: 9066151018471758210}
+  - component: {fileID: 3105596090923455940}
+  - component: {fileID: 5145648033257922928}
+  - component: {fileID: 3296232279862184878}
+  - component: {fileID: 6005602209483936697}
   m_Layer: 6
   m_Name: Karen
   m_TagString: Customer
@@ -69,7 +74,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ceb0706755b3d114f9e37fd16a1dc19f, type: 2}
+  - {fileID: 2100000, guid: 7c958899f17b81a4cabd3aafc237f8eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,19 +141,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5761002168115495589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2612030879575213846}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b34b396ae723940baacc04550ce79a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 4261712987010149697}
 --- !u!54 &8851329125210948687
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,6 +168,107 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &5761002168115495589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b34b396ae723940baacc04550ce79a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 4261712987010149697}
+--- !u!114 &9066151018471758210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95027236592768f4dbd9ad34e68c0aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states:
+  - {fileID: 3105596090923455940}
+  - {fileID: 5145648033257922928}
+  - {fileID: 3296232279862184878}
+  - {fileID: 6005602209483936697}
+  transitions:
+  - name: ProductPicked
+    from: {fileID: 3105596090923455940}
+    to: {fileID: 5145648033257922928}
+  - name: BecameThief
+    from: {fileID: 3105596090923455940}
+    to: {fileID: 3296232279862184878}
+  - name: ProductStealed
+    from: {fileID: 3296232279862184878}
+    to: {fileID: 6005602209483936697}
+  - name: ProductPaid
+    from: {fileID: 5145648033257922928}
+    to: {fileID: 6005602209483936697}
+  - name: Atacked
+    from: {fileID: 0}
+    to: {fileID: 6005602209483936697}
+--- !u!114 &3105596090923455940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbda8a73af0ae6948a7e6c7531c08a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeToPickProduct: 3
+  maxTimeToPickProduct: 5
+--- !u!114 &5145648033257922928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9443fbd2ce6d12b4aa0adddbf4f2761b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeToPay: 5
+  maxTimeToPay: 10
+--- !u!114 &3296232279862184878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4743e5beb106dc348ac4821121a5c012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeToSteal: 1
+  maxTimeToSteal: 3
+  thiefMaterial: {fileID: 2100000, guid: 2458794a4f2699b40b311aabbb4ff8f2, type: 2}
+--- !u!114 &6005602209483936697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f72ff336a521824ebac3d70830531bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8374261453552148881
 GameObject:
   m_ObjectHideFlags: 0
