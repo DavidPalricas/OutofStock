@@ -5,15 +5,10 @@ public class Shopping : CustomerBaseState
     [SerializeField]
     private float minTimeToPickProduct, maxTimeToPickProduct;
 
-    [Range(0f, 1f)]
-    [SerializeField]
-    private float probBecamingThief;
-
-    protected override void OnEnable()
+    protected override void Awake()
     {   
-        base.OnEnable();
+        base.Awake();
         stateName = GetType().Name;
-        Debug.Log(customerMovement);
     }
 
     public override void Enter()
@@ -22,7 +17,7 @@ public class Shopping : CustomerBaseState
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
 
 
-        if (custumerType == CustumersTypes.Normal && BecamesThief())
+        if (customerType == CustomersTypes.Normal && BecamesThief())
         {
             fSM.ChangeState("BecameThief");
             return;
@@ -33,7 +28,7 @@ public class Shopping : CustomerBaseState
     {
         base.Execute();
 
-        if (customerMovement.GoalReached)
+        if (customerMovement.DestinationReached)
         {
             PickProduct();
         }
@@ -48,11 +43,18 @@ public class Shopping : CustomerBaseState
     {
         float randomValue = Random.Range(0f, 1f);
 
+        float probBecamingThief = PlayerPrefs.GetFloat("CustomerBecameThiefProb");
+
         return randomValue < probBecamingThief;
     }
 
     private void PickProduct()
-    {
+    {   
+        if (customerMovement is AnnoyingKidMovement annoyingKid)
+        {
+            annoyingKid.HoldsProduct = true;
+        }
+
         StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeToPickProduct, maxTimeToPickProduct), () => fSM.ChangeState("ProductPicked")));
     }
 }

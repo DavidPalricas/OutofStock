@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 8851329125210948687}
   - component: {fileID: 320261405349045300}
   - component: {fileID: 922716275515113717}
+  - component: {fileID: 7047928780537775341}
+  - component: {fileID: 1036962616085312715}
+  - component: {fileID: 1214290299044241336}
   m_Layer: 6
   m_Name: Manager
   m_TagString: Untagged
@@ -126,7 +129,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 40
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -189,5 +192,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fba059d3c59af4a9299b78fd5a7e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  angle: 0
+  targetsMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 128
+  radius: 5
+  angle: 90
+--- !u!114 &7047928780537775341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95027236592768f4dbd9ad34e68c0aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states:
+  - {fileID: 1036962616085312715}
+  - {fileID: 1214290299044241336}
+  transitions:
+  - name: Patrol
+    from: {fileID: 1214290299044241336}
+    to: {fileID: 1036962616085312715}
+  - name: GoToOffice
+    from: {fileID: 1036962616085312715}
+    to: {fileID: 1214290299044241336}
+--- !u!114 &1036962616085312715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff764b104f418ad42b2c915a24857f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1214290299044241336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5769ba4db5bca0d4c85a1cdbd8f89b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

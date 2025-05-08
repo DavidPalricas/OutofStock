@@ -23,26 +23,19 @@ public class NPCMovement : MonoBehaviour
     /// </summary>
     protected Vector3 currentTargetPos;
 
-    /// <summary>
-    /// The OnEnable method is called when the object becomes enabled and active (Unity Callback).
-    /// In this method, the agent obstacle avoidance type is set to HighQualityObstacleAvoidance 
-    /// and the agent destination is set by calling the SetAgentDestination method.
-    /// This method can be overridden in the child classes.
-    /// </summary>
-    protected virtual void OnEnable()
-    {
-        agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-    }
+    public bool DestinationReached { get; protected set; } = false;
 
+  
     /// <summary>
     /// The Update method is called every frame (Unity Callback).
     /// In this method, we are checking if the NPC has reached its destination, if so, the ReachDestination method is called.
     /// </summary>
-    protected void Update()
+    private void Update()
     {
         if (IsAgentEnabled() && !agent.isStopped && agent.remainingDistance <= DESTINATION_OFFSET)
         {
-            DestinationReached();
+            agent.isStopped = true;
+            DestinationReached = true;
         }
     }
 
@@ -50,23 +43,15 @@ public class NPCMovement : MonoBehaviour
     /// The SetAgentDestination method is responsible for setting the agent destination.
     /// Its implementation is defined in the child classes.
     /// </summary>
-    protected virtual void SetAgentDestination() { }
+    public virtual void SetAgentDestination(Vector3 destination) {
 
-    /// <summary>
-    /// The DestinationReached method is responsible for handling the destination reached event.
-    /// It stops the agent from moving and can be overridden in the child classes.
-    /// </summary>
-    protected virtual void DestinationReached()
-    {   
-        agent.isStopped = true;
+        DestinationReached = false;
+
+        agent.SetDestination(destination);
+        agent.isStopped = false;
     }
 
-    /// <summary>
-    /// The ChangeState method is responsible for changing the NPC state.
-    /// Its implementation is defined in the child classes.
-    /// </summary>
-    protected virtual void ChangeState() { }
-
+   
     /// <summary>
     /// The IsAgentEnabled method is responsible for checking if the agent is enabled.
     /// </summary>

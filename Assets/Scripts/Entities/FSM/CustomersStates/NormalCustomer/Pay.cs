@@ -5,9 +5,9 @@ public class Pay : CustomerBaseState
     [SerializeField] 
     private float minTimeToPay, maxTimeToPay;
 
-    protected override void OnEnable()
+    protected override void Awake()
     {
-        base.OnEnable();
+        base.Awake();
         stateName = GetType().Name;
     
     }
@@ -23,7 +23,7 @@ public class Pay : CustomerBaseState
         base.Execute();
 
 
-        if (customerMovement.GoalReached)
+        if (customerMovement.DestinationReached)
         {
             PayItem();
         }
