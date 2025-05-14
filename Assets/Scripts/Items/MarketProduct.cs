@@ -5,13 +5,8 @@ using UnityEngine;
 ///  It implements the ISubject interface to notify its observers (customer tha want this product) when the product is
 ///  grabbed by the player.
 /// </summary>
-public class MarketProduct :Item, ISubject
+public class MarketProduct : Item, ISubject
 {
-    /// <summary>
-    /// The eventDispatcher attribute is used to store the singleton instance of the EventDispatcher class to dispatch events.
-    /// </summary>
-    private EventDispatcher eventDispatcher;
-
     /// <summary>
     /// The observers attribute is used to store the observers of the product.
     /// In this case there is only one observer, the customer who is looking for the product.
@@ -30,8 +25,6 @@ public class MarketProduct :Item, ISubject
     protected override void Awake()
     {
         base.Awake();
-
-        eventDispatcher = EventDispatcher.GetInstance();
     }
 
 
@@ -63,7 +56,7 @@ public class MarketProduct :Item, ISubject
     {
         if (collision.gameObject.CompareTag("Customer") && thrown)
         {
-            eventDispatcher.DispatchEvent("CustomerAttacked", collision.gameObject);
+            EventManager.GetInstance().OnCustomerHitted();
             KnockCustumer(collision.gameObject);
         }
 

@@ -12,7 +12,6 @@ public class DayData
     /// </summary>
     public Dictionary<string, float> customersSpawnProbs;
 
-
     /// <summary>
     /// The managerTimes property stores the time the manager spends doing
     /// its activities in the market.
@@ -20,10 +19,12 @@ public class DayData
     public Dictionary<string, float> managerTimes;
 
     /// <summary>
-    /// The numberOfTasks property stores the number of tasks that can be assigned to the player
+    /// The numberOfTasks property stores the number of tasks that can be assigned to the player and
+    /// the customersToSend property stores the number of customers that the player must send(by attacking them) to his uncle
+    /// market.
     /// in one day.
     /// </summary>
-    public int numberOfTasks;
+    public int numberOfTasks, customersToSend;
 
     /// <summary>
     /// The tasksProbs property stores the probabilities of a task being assigned to the player

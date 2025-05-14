@@ -147,6 +147,7 @@ public class GameConfig : MonoBehaviour
             dayData.managerTimes.Add("PatrolTime", day.managerPatrolTime);
 
             dayData.numberOfTasks = day.numberOfTasks;
+            dayData.customersToSend = day.customersToSend;
 
             dayData.tasksProbs.Add("CleanFloor", day.cleanFloorProb);
             dayData.tasksProbs.Add("FixFuseBox", day.fixFuseBoxProb);
@@ -233,6 +234,8 @@ public class GameConfig : MonoBehaviour
 
         string currentWeekDay = GetCurrentWeekDay();
 
+        Debug.Log($"Current week day: {currentWeekDay}");
+
         if (string.IsNullOrEmpty(currentWeekDay))
         {
             Debug.Log("Final day completed, exiting the game");
@@ -255,6 +258,7 @@ public class GameConfig : MonoBehaviour
             PlayerPrefs.SetFloat("ManagerOfficeTime", dayData.managerTimes["OfficeTime"]);
             PlayerPrefs.SetFloat("ManagerPatrolTime", dayData.managerTimes["PatrolTime"]);
             PlayerPrefs.SetInt("NumberOfTasks", dayData.numberOfTasks);
+            PlayerPrefs.SetInt("CustomersToSend", dayData.customersToSend);
             PlayerPrefs.SetFloat("CleanFloorProb", dayData.tasksProbs["CleanFloor"]);
             PlayerPrefs.SetFloat("FixFuseBoxProb", dayData.tasksProbs["FixFuseBox"]);
             PlayerPrefs.SetFloat("FixToiletProb", dayData.tasksProbs["FixToilet"]);
@@ -289,9 +293,10 @@ public class GameConfig : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     private string GetCurrentWeekDay()
-    {
+    {   
         if (PlayerPrefs.HasKey("CurrentDay"))
-        {   return GetNextWeekDay(PlayerPrefs.GetString("CurrentDay"));
+        {   
+            return GetNextWeekDay(PlayerPrefs.GetString("CurrentDay"));
         }
    
          return "Mon";

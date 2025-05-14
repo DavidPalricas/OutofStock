@@ -24,8 +24,10 @@ public class DayConfig
     /// <summary>
     /// The numberOfTasks property defines the number of tasks that can be assigned to the player
     /// in one day.
+    /// The customersToSend property defines the number of customers that the player must send (by attacking them)
+    /// to his uncle's market in one day.
     /// </summary>
-    public int numberOfTasks;
+    public int numberOfTasks, customersToSend;
 
     /// <summary>
     /// The cleanFloorProb, fixFuseBoxProb and fixToiletProb properties define the probabilities of

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622017229548695560}
   - component: {fileID: 8514093232553443937}
+  - component: {fileID: -1411920706285211902}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,12 +47,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: gameconfig
+  shiftDurationIRL: 1
+  shiftDuration: 1
+  lunchBreakTime: 0
+  startHour: 0
+  customerBecameThiefProb: 0
   days:
   - karenSpawnProb: 0.2
     annoyingKidSpawnProb: 0.8
     managerOfficeTime: 60
     managerPatrolTime: 20
     numberOfTasks: 20
+    customersToSend: 0
     cleanFloorProb: 0.5
     fixFuseBoxProb: 0.3
     fixToiletProb: 0
@@ -60,6 +67,7 @@ MonoBehaviour:
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
+    customersToSend: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
     fixToiletProb: 0
@@ -68,6 +76,7 @@ MonoBehaviour:
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
+    customersToSend: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
     fixToiletProb: 0
@@ -76,6 +85,7 @@ MonoBehaviour:
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
+    customersToSend: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
     fixToiletProb: 0
@@ -84,9 +94,22 @@ MonoBehaviour:
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
+    customersToSend: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
     fixToiletProb: 0
+--- !u!114 &-1411920706285211902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747278327246381498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04461c244d93354da86921bf1ff715f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2216572002558071238
 PrefabInstance:
   m_ObjectHideFlags: 0
