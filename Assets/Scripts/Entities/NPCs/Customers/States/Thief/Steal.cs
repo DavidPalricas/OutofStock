@@ -24,6 +24,11 @@ public class Steal : CustomerBaseState
     {
         base.Execute();
 
+        if (customerMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+        }
+
         if (customerMovement.DestinationReached)
         {   
             StealProduct();

@@ -23,11 +23,17 @@ public class Pay : CustomerBaseState
         base.Execute();
 
 
+        if (customerMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+        }
+
         if (customerMovement.DestinationReached)
         {
             PayItem();
         }
     }
+
     public override void Exit()
     {
         base.Exit();

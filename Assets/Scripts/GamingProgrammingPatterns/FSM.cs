@@ -34,7 +34,7 @@ public class FSM : MonoBehaviour
     {
         foreach (var transition in transitions)
         {
-            if (transition.name.ToLower() == transitionName.ToLower() && CurrentState == transition.from)
+            if (transition.name.ToLower() == transitionName.ToLower() && (transition.from == null || CurrentState == transition.from))
             {
                 CurrentState.Exit();
                 CurrentState = transition.to;

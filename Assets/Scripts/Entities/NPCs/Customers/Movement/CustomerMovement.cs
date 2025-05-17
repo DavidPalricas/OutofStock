@@ -23,6 +23,15 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// </value>
     public GameObject TargetItem { get; set; }
 
+
+    /// <summary>
+    /// The WasAttacked attribute  is a flag that indicates whether the customer was attacked or not.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if [was attacked]; otherwise, <c>false</c>.
+    /// </value>
+    public bool WasAttacked { get; set; } = false;
+
     /// <summary>
     /// The AreasPos attribute represents the positions of the areas in which 
     ///  the customer will move depending on its current state.

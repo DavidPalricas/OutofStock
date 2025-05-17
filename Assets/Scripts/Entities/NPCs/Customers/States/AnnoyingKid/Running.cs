@@ -47,6 +47,12 @@ public class Running : CustomerBaseState
     {
         base.Execute();
 
+        if (customerMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+            return;
+        }
+
         if (!holdsProduct)
         {
             timerToDecideToGrabAProduct += Time.deltaTime;

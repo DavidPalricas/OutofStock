@@ -28,11 +28,18 @@ public class Shopping : CustomerBaseState
     {
         base.Execute();
 
+        if (customerMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+            return;
+        }
+
         if (customerMovement.DestinationReached)
         {
             PickProduct();
         }
     }
+
     public override void Exit()
     {
         base.Exit();
