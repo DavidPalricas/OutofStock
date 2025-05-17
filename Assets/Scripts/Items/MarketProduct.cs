@@ -45,18 +45,23 @@ public class MarketProduct : Item, ISubject
     /// The OnCollisionEnter Method is called when this collider/rigidbody has begun touching another rigidbody/collider (Unity Callback).
     /// </summary>
     /// <remarks>
-    /// This method checks if the procut is thrown and collided with a customer, 
-    /// If these conditions are met the KnockCustumer method is called to knock down the customer hitted, 
-    /// and the "CustomerAttacked" event is dispatched.
+    /// This method checks if the product is thrown and collided with a customer, 
+    /// If these conditions are met the attack event is triggered, and the customer is knocked down.
+    /// It also is checked if the attacked customer is a hostile Karen.
     /// After that, the base class behavior of this method is called.
     /// </remarks>
     /// <param name="collision">The collision.</param>
     protected override void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Customer") && thrown)
-        {
-            EventManager.GetInstance().OnCustomerHitted(collision.gameObject);
-            KnockCustumer(collision.gameObject);
+        {   
+            GameObject customer = collision.gameObject;
+
+            EventManager.GetInstance().OnCustomerAttacked(customer);
+
+            HostileKarenAttacked(customer);
+
+            KnockCustumer(customer);
         }
 
         base.OnCollisionEnter(collision); 
@@ -113,6 +118,23 @@ public class MarketProduct : Item, ISubject
         customer.transform.position = new Vector3(customerPos.x, originalCustomerPosY, customerPos.z);
 
         customer.GetComponent<CustomerMovement>().EnableOrDisanableAgent(true);
+    }
+
+    /// <summary>
+    /// The HostileKarenAttacked method is responsible for checking if the customer attacked is a hostile Karen.
+    /// </summary>
+    /// <remarks>
+    /// To check if the customer is a hostile Karen, it is checked if the current state of the customer is AttackPlayer.
+    /// This state is exclusive to the Karen Stereotype and is used when she wants to attack the player (is hostile)
+    /// If this condition is met, the attacked counter of the Karen is increased.
+    /// </remarks>
+    /// <param name="customer">The customer.</param>
+    private void HostileKarenAttacked(GameObject customer)
+    {
+        if (customer.GetComponent<FSM>().CurrentState is AttackPlayer)
+        {
+             customer.GetComponent<AttackPlayer>().AttackedCounter++;   
+        }
     }
 
     /// <summary>

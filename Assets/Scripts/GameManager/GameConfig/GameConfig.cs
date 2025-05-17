@@ -234,8 +234,6 @@ public class GameConfig : MonoBehaviour
 
         string currentWeekDay = GetCurrentWeekDay();
 
-        Debug.Log($"Current week day: {currentWeekDay}");
-
         if (string.IsNullOrEmpty(currentWeekDay))
         {
             Debug.Log("Final day completed, exiting the game");

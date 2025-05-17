@@ -63,7 +63,7 @@ public abstract class State : MonoBehaviour
     protected string stateName;
 
     public virtual void Enter() {
-        // Debug.Log($"Entering {stateName} State");
+        Debug.Log($"Entering {stateName} State");
     }
 
     public virtual void Execute() { 

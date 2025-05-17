@@ -29,7 +29,6 @@ public class Running : CustomerBaseState
 
         timerToDecideToGrabAProduct = 0f;
 
-        // Corrected the issue by calling a valid method or property on customerMovement  
         if (customerMovement is AnnoyingKidMovement annoyingKid)
         { 
             annoyingKid.Run();

@@ -194,12 +194,12 @@ public class MangerFov : MonoBehaviour
 
     private void CheckIfPlayerAttackedCustomer()
     {   
-        GameObject customerAttacked = EventManager.GetInstance().CustomerAttacked;
+        GameObject customerAttacked = EventManager.GetInstance().LastCustomerAttacked;
 
         if ( customerAttacked != null && CustomersSeen.Contains(customerAttacked))
         {
             strikes++;
-            EventManager.GetInstance().CustomerAttacked = null;
+            EventManager.GetInstance().LastCustomerAttacked = null;
 
             const int MAXSTRIKES = 3;
 
