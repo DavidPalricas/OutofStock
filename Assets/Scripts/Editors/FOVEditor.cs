@@ -34,7 +34,7 @@ public class FOVEditor : Editor
             Handles.color = Color.green;
             Handles.DrawLine(fov.transform.position, fov.Player.transform.position);
   
-           foreach (GameObject customerHitted in fov.CustomersHitted)
+           foreach (GameObject customerHitted in fov.CustomersSeen)
            {
                 Handles.color = Color.red;
                 Handles.DrawLine(fov.transform.position, customerHitted.transform.position);

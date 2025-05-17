@@ -27,7 +27,6 @@ public class MarketProduct : Item, ISubject
         base.Awake();
     }
 
-
     /// <summary>
     /// The Update method is called every frame (Unity Callback).
     /// In this method, its checked if the product was grabbed and there are observers
@@ -56,7 +55,7 @@ public class MarketProduct : Item, ISubject
     {
         if (collision.gameObject.CompareTag("Customer") && thrown)
         {
-            EventManager.GetInstance().OnCustomerHitted();
+            EventManager.GetInstance().OnCustomerHitted(collision.gameObject);
             KnockCustumer(collision.gameObject);
         }
 
@@ -116,7 +115,6 @@ public class MarketProduct : Item, ISubject
         customer.GetComponent<CustomerMovement>().EnableOrDisanableAgent(true);
     }
 
-  
     /// <summary>
     /// The AddObserver method is responsible for adding observers to the customer (ISubject interface method).
     /// </summary>
