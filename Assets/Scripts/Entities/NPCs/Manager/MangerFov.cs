@@ -5,20 +5,13 @@ using UnityEngine;
 
 /// <summary>
 /// The ManagerFov class is used to represent the field of view of the manager by handling if detects a player hitting a customer 
-/// /// This class extends the IEventListener interface to listen to the "CustomerAttacked" event (the event that manager sees).
 /// </summary>
-public class MangerFov : MonoBehaviour, IEventListener
+public class MangerFov : MonoBehaviour
 {
     /// <summary>
     /// The strikes attribute is used to store the number of strikes the player has.
     /// </summary>
     private int strikes = 0;
-
-    /// <summary>
-    /// The eventDispatcher attribute is used to store the singleton instance 
-    /// of the EventDispatcher class to listen to events.
-    /// </summary>
-    private EventDispatcher eventDispatcher;
 
     /// <summary>
     /// The targetsMask and obstructionMask attributes are used to store the layers that the manager can see and the layers that can obstruct the view, respectively.
@@ -64,9 +57,9 @@ public class MangerFov : MonoBehaviour, IEventListener
     /// The CustomersHitted attribute is used to store a list of customers that have been hit by player and seen by the manager.
     /// </summary>
     /// <value>
-    /// A list of references to the customers GameObjects who have been hit by the player and seen by the manager.
+    /// A list of references to the customers GameObjects who have been seen by the manager.
     /// </value>
-    public List<GameObject> CustomersHitted { get; private set; }
+    public List<GameObject> CustomersSeen { get; private set; }
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity callback).
@@ -78,25 +71,16 @@ public class MangerFov : MonoBehaviour, IEventListener
     /// </remarks>
     private void Awake()
     {
-      eventDispatcher = EventDispatcher.GetInstance();
-      eventDispatcher.AddListener("CustomerAttacked", this);
+      // eventDispatcher = EventDispatcher.GetInstance();
+       // eventDispatcher.AddListener("CustomerAttacked", this);
 
       Player = GameObject.FindGameObjectWithTag("Player");
 
-      CustomersHitted = new List<GameObject>();
+      CustomersSeen = new List<GameObject>();
 
       TargetsSeen = false;
 
       StartCoroutine(FovRoutine());
-    }
-
-    /// <summary>
-    /// The OnDestroy method is called when the MonoBehaviour will be destroyed (Unity callback).
-    /// In this metod, this class is removed as a listener to the "CustomerAttacked" event.
-    /// </summary>
-    private void OnDestroy()
-    {
-        eventDispatcher.RemoveListener("CustomerAttacked", this);
     }
 
     /// <summary>
@@ -146,7 +130,7 @@ public class MangerFov : MonoBehaviour, IEventListener
                 else if (target.CompareTag("Customer"))
                 {
                     directionsToTargets.Add((target.position - transform.position).normalized);
-                    CustomersHitted.Add(target.gameObject);
+                    CustomersSeen.Add(target.gameObject);
                 }
             }
 
@@ -193,6 +177,7 @@ public class MangerFov : MonoBehaviour, IEventListener
         }
 
         TargetsSeen = true;
+        CheckIfPlayerAttackedCustomer();
     }
 
     /// <summary>
@@ -202,24 +187,19 @@ public class MangerFov : MonoBehaviour, IEventListener
     private void ResetTargetsAtributes()
     {
         TargetsSeen = false;   
-        CustomersHitted.Clear();
+        CustomersSeen.Clear();
     }
 
-    /// <summary>
-    /// The OnEvent method is used to handle the events dispatched by the EventDispatcher.
-    /// In this method is checked if the event is "CustomerAttacked" and if the target is in the CustomersHitted list.
-    /// </summary>
-    /// <param name="eventType">Type of the event.</param>
-    /// <param name="target">The target.</param>
-    public void OnEvent(string eventType, GameObject target)
-    {
-        if (eventType == "CustomerAttacked" && CustomersHitted.Count > 0 && CustomersHitted.Contains(target))
-        {   
-            GameObject custumerHitted = CustomersHitted.Find(c => c == target);
 
-            eventDispatcher.RemoveEventDispatched("CustomerAttacked", custumerHitted);
 
+    private void CheckIfPlayerAttackedCustomer()
+    {   
+        GameObject customerAttacked = EventManager.GetInstance().CustomerAttacked;
+
+        if ( customerAttacked != null && CustomersSeen.Contains(customerAttacked))
+        {
             strikes++;
+            EventManager.GetInstance().CustomerAttacked = null;
 
             const int MAXSTRIKES = 3;
 
@@ -230,7 +210,7 @@ public class MangerFov : MonoBehaviour, IEventListener
                 return;
             }
 
-            Debug.Log("Strike N� "+ strikes);
+            Debug.Log("Strike N� " + strikes);
         }
     }
 }

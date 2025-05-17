@@ -79,12 +79,11 @@ public class ShiftLogic : MonoBehaviour
         {23, "11 PM"}
     };
 
-
     /// <summary>
     /// The Awake method is called when the script instance is being loaded. (Unity Callback)
     /// In this method, the game time properties are initillizaized and the game time is set (SetGameTime method).
     /// </summary>
-    private void Awake()
+    private void Start()
     {   
         fadeImage.gameObject.SetActive(false);
 
@@ -93,7 +92,7 @@ public class ShiftLogic : MonoBehaviour
 
         day = PlayerPrefs.GetString("CurrentDay", "Mon");
 
-        startHour = PlayerPrefs.GetInt("StartHour", 0);
+        startHour = (int) PlayerPrefs.GetFloat("StartHour", 0);
 
         SetGameTime();
     }
@@ -121,9 +120,9 @@ public class ShiftLogic : MonoBehaviour
     /// </summary>
     private void SetGameTime()
     {
-        int shiftDurationMinutesIRL = PlayerPrefs.GetInt("ShiftDuration") * 60;
+        int shiftDurationMinutesIRL = (int) PlayerPrefs.GetFloat("ShiftDuration") * 60;
 
-        float gameMinuteDuration = (float) PlayerPrefs.GetInt("ShiftDurationIRL") / shiftDurationMinutesIRL;
+        float gameMinuteDuration = PlayerPrefs.GetFloat("ShiftDurationIRL") / shiftDurationMinutesIRL;
 
         gameMinuteInSecondsIRL = gameMinuteDuration * 60;
 
@@ -168,9 +167,9 @@ public class ShiftLogic : MonoBehaviour
     /// <param name="workTime">The time tha player has benn working.</param>
     private void CheckWorkBreaks(int workTime)
     {
-        int shiftDuration = PlayerPrefs.GetInt("ShiftDuration");
+        int shiftDuration = (int) PlayerPrefs.GetFloat("ShiftDuration");
 
-        int lunchBreakTime = PlayerPrefs.GetInt("LunchBreakTime");
+        int lunchBreakTime = (int) PlayerPrefs.GetFloat("LunchBreakTime");
 
         if (workTime == lunchBreakTime)
         {
@@ -216,7 +215,15 @@ public class ShiftLogic : MonoBehaviour
     /// For now, it just reloads the current scene for testing the days progression.
     /// </summary>
     private void NextDay()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    {   
+        if (GetComponent<WinConditions>().PlayerWon())
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            return;
+        }
+
+        // Go to the Main Menu
+        SceneManager.LoadScene(0);
     }
 }
