@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Linq;
 
 /// <summary>
@@ -11,13 +10,6 @@ using System.Linq;
 /// </summary>
 public class TaskManager : MonoBehaviour, IObserver
 {
-    /// <summary>
-    /// The addTaskTime property represents the time in seconds to add a new task.
-    /// </summary>
-    [Range(1, 10)]
-    [SerializeField]
-    private float addTaskTime;
-
     /// <summary>
     /// The taskTogglePrefab property stores a reference to the prefab of the task toggle.
     /// </summary>
@@ -39,12 +31,6 @@ public class TaskManager : MonoBehaviour, IObserver
     private GameObject fixFuseBox, cleanFloor;
 
     /// <summary>
-    /// The timer property is responsible for representing a timer which will be used to add new tasks,
-    /// after a certain time.
-    /// </summary>
-    private float timer;
-
-    /// <summary>
     /// The activeTaskToggles property is responsible for storing the active tasks toggles in the game.
     /// </summary>
     private readonly Dictionary<int, Toggle> activeTaskToggles = new ();
@@ -63,25 +49,42 @@ public class TaskManager : MonoBehaviour, IObserver
     private bool allTypeOfTasksActivated = false;
 
     /// <summary>
+    /// The addTaskTime and timer properties are responsible for storing the time to add a new task and the timer to
+    /// count the time to add a new task, respectively.
+    /// </summary>
+    private float addTaskTime, timer;
+
+    /// <summary>
+    /// The maxTasks and tasksCompleted properties are responsible for storing the maximum number of tasks
+    /// and the number of tasks completed, respectively.
+    /// </summary>
+    private int maxTasks, tasksCompleted = 0;
+
+    /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
-    /// In this method, the timer is initialized to the current time plus the addTaskTime.
+    /// In this method, the timer is initialized the number of max tasks, the time to add a new task and the task timer.
     /// </summary>
     private void Awake()
-    {
+    {   maxTasks = PlayerPrefs.GetInt("NumberOfTasks");
+
+        addTaskTime = maxTasks / PlayerPrefs.GetFloat("ShiftDurationIRL") * 0.1f;
+
         timer = Time.time + addTaskTime;
     }
 
     /// <summary>
     /// The Update method is called every frame (Unity Callback).
     /// In this method, we are checking if a task can be generated.
-    /// To do that, we are checking if all types of tasks are activated and if the current time
-    /// is greater or equal to the time to add a new task.
+    /// To do that, we are checking if the tasks completed are less than the maximum number of tasks, if all types of tasks are not activated,
+    /// and if the its time to add a new task (timer).
     /// </summary>
     private void Update()
     {
-        if (!allTypeOfTasksActivated && Time.time >= timer)
+        if (tasksCompleted < maxTasks && !allTypeOfTasksActivated && Time.time >= timer)
         {
             GenerateTask();
+
+            // Reset the timer for the next task generation
             timer = Time.time + addTaskTime;
         }
     }
@@ -238,6 +241,10 @@ public class TaskManager : MonoBehaviour, IObserver
         }
 
         allTypeOfTasksActivated = false;
+
+        // Notify the event manager that a task is completed
+        EventManager.GetInstance().OnTaskCompleted();
+        tasksCompleted++;
         timer = Time.time + addTaskTime;
     }
 }

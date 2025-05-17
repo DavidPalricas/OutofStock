@@ -45,11 +45,16 @@ public class NPCMovement : MonoBehaviour
     /// </summary>
     public virtual void SetAgentDestination(Vector3 destination) {
 
-        DestinationReached = false;
+        if (agent.isOnNavMesh)
+        {
+            DestinationReached = false;
 
-        agent.SetDestination(destination);
-        agent.isStopped = false;
+            agent.SetDestination(destination);
+            agent.isStopped = false;
+        }
     }
+
+  
 
    
     /// <summary>

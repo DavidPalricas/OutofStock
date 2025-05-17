@@ -59,8 +59,6 @@ public class Running : CustomerBaseState
             }
         }
 
-        Debug.Log("Running");
-
         if (customerMovement.DestinationReached && customerMovement is AnnoyingKidMovement annoyingKid)
         {
             annoyingKid.Run();
