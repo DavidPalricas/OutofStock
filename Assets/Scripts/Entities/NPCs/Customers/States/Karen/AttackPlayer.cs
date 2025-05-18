@@ -74,6 +74,6 @@ public class AttackPlayer : CustomerBaseState
         
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        new KnockEntity().Knock(player,player.GetComponent<Rigidbody>(), player.transform.position);
+        GetComponent<KnockEntity>().Knock(player, player.GetComponent<Rigidbody>(), player.transform.position);
     }
 }

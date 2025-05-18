@@ -15,7 +15,7 @@ public class Knocked : CustomerBaseState
     protected override void Awake()
     {
         base.Awake();
-        knockEntity = new KnockEntity();
+        knockEntity = GetComponent<KnockEntity>();
         stateName = GetType().Name;
 
     }
@@ -47,7 +47,6 @@ public class Knocked : CustomerBaseState
 
         customerMovement.WasAttacked = false;
 
-        // Notifies the event manager that the customer has stand up
         EventManager.GetInstance().LastCustomerAttacked = null;
     }
 }

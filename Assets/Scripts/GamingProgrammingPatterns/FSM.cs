@@ -30,7 +30,7 @@ public class FSM : MonoBehaviour
     }
 
 
-    public bool ChangeState (string transitionName)
+    public void ChangeState (string transitionName)
     {
         foreach (var transition in transitions)
         {
@@ -39,10 +39,12 @@ public class FSM : MonoBehaviour
                 CurrentState.Exit();
                 CurrentState = transition.to;
                 CurrentState.Enter();
-                return true;
+
+                return;
             }
         }
-        return false;
+
+        Debug.LogWarning($"Transition {transitionName} not found");
     }
 }
 
@@ -63,7 +65,7 @@ public abstract class State : MonoBehaviour
     protected string stateName;
 
     public virtual void Enter() {
-        Debug.Log($"Entering {stateName} State");
+       // Debug.Log($"Entering {stateName} State");
     }
 
     public virtual void Execute() { 
