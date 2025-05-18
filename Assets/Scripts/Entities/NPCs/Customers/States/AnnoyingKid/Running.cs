@@ -70,7 +70,7 @@ public class Running : CustomerBaseState
     /// <remarks>
     /// This methods checks for possible conditions to change the state, otherwise it continues the states actions.
     /// The possible transitions are:
-    ///    1. Attacked Trnasition: If the kid IS attacked, it changes to the Knocked state.
+    ///    1. Attacked Transition: If the kid is attacked, it changes to the Knocked state.
     ///    2. PickAProduct Transition: If the time to decide a product and the kid decides to grab it, it changes to the Shopping state.
     ///    
     /// If the none of these conditions are met, this method checks if the kid has reached its destination, if so, it runs again to a new destination.

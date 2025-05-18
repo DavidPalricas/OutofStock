@@ -63,8 +63,7 @@ public class MarketProduct : Item, ISubject
 
         base.OnCollisionEnter(collision); 
     }
-
-  
+ 
     /// <summary>
     /// The AddObserver method is responsible for adding observers to the customer (ISubject interface method).
     /// </summary>

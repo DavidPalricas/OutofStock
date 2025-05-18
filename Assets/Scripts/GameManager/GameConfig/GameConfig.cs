@@ -210,8 +210,6 @@ public class GameConfig : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
-
     /// <summary>
     /// The LoadCurrentDatData loads the current day's data from a JSON file and updates the game state.
     /// </summary>
