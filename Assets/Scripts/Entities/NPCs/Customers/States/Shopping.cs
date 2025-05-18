@@ -74,6 +74,6 @@ public class Shopping : CustomerBaseState
 
     private bool NormalCustomer()
     {
-       return !name.Contains("Kid".ToLower()) && !name.Contains("Karen".ToLower());
+       return name.Contains("NormalCustomer");
     }
 }
