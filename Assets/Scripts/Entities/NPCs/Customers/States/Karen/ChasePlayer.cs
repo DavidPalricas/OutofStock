@@ -23,6 +23,12 @@ public class ChasePlayer : CustomerBaseState
         base.Execute();
 
 
+        if(karenMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+            return;
+        }
+
         if (karenMovement.PlayerInRange())
         {
             fSM.ChangeState("PlayerInRange");
@@ -35,5 +41,7 @@ public class ChasePlayer : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
+
+        karenMovement.StopChasingPlayer();
     }
 }

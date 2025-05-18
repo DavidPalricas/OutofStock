@@ -17,6 +17,12 @@ public class GoHome : CustomerBaseState
     {
         base.Execute();
 
+        if (customerMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+            return;
+        }
+
         if (customerMovement.DestinationReached)
         {
             customerMovement.ExitMarket();

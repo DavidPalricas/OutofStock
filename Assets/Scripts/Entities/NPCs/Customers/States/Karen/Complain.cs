@@ -12,6 +12,8 @@ public class Complain : CustomerBaseState
 
     private int complainingCounter = 0;
 
+    private float timer;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,6 +23,10 @@ public class Complain : CustomerBaseState
     public override void Enter()
     {
         base.Enter();
+        
+        timer = Time.time + complainingCooldown;
+
+
         if (customerMovement is KarenMovement movement)
         {
             karenMovement = movement;
@@ -35,19 +41,23 @@ public class Complain : CustomerBaseState
             return;
         }
 
-        if (karenMovement.WasAttacked)
-        {
-            fSM.ChangeState("Attacked");
-            return;
-        }
-
         if (complainingCounter >= maxComplaining)
         {
             fSM.ChangeState("ComplainedToMuch");
             return;
         }
 
-        StartCoroutine(Utils.WaitAndExecute(complainingCooldown, Complaining));
+        if (karenMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+            return;
+        }
+
+        if (Time.time >= timer)
+        {
+            Complaining();
+            timer = Time.time + complainingCooldown;
+        }
     }
     public override void Exit()
     {

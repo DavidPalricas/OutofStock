@@ -10,7 +10,10 @@ public class AttackPlayer : CustomerBaseState
 
     private KarenMovement karenMovement;
 
-    public int AttackedCounter { get; set; } = 1;
+    private float timer;
+
+
+    private int attacked;
 
     protected override void Awake()
     {
@@ -22,6 +25,8 @@ public class AttackPlayer : CustomerBaseState
     {
         base.Enter();
 
+        timer = Time.time + attackCooldown;
+
         if (customerMovement is KarenMovement movement)
         {
             karenMovement = movement;
@@ -31,19 +36,30 @@ public class AttackPlayer : CustomerBaseState
     {
         base.Execute();
 
+        if (karenMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+            attacked++;
+            return;
+        }
+
         if (!karenMovement.PlayerInRange())
         {
             fSM.ChangeState("PlayerNotInRange");
             return;
         }
 
-        if (AttackedCounter >= maxAttacks)
+        if (attacked >= maxAttacks)
         {
             fSM.ChangeState("AttackedToManyTimes");
             return;
         }
 
-        StartCoroutine(Utils.WaitAndExecute(attackCooldown, Attack));
+        if (Time.time >= timer)
+        {
+            Attack();
+            timer = Time.time + attackCooldown;
+        }
     }
 
 
@@ -55,5 +71,9 @@ public class AttackPlayer : CustomerBaseState
     private void Attack()
     {   
         Debug.Log("Attacking player");
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        new KnockEntity().Knock(player,player.GetComponent<Rigidbody>(), player.transform.position);
     }
 }

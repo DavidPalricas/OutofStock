@@ -15,7 +15,18 @@ public class KarenMovement : CustomerMovement
     }
 
     public void ChasePlayer()
-    {
+    {   
+        if (!agent.isOnNavMesh)
+        {
+          return;
+        }
+
+
+        if (agent.isStopped)
+        {
+            agent.isStopped = false;
+        }
+
         Vector3 playerPos = playerTransform.position;
 
         if (oldPlayerPos == Vector3.zero || Vector3.Distance(oldPlayerPos, playerPos) > tresholdToResetChase)
@@ -24,6 +35,18 @@ public class KarenMovement : CustomerMovement
             oldPlayerPos = playerPos;
         }
     }
+
+
+    public void StopChasingPlayer()
+    {   
+        if (!agent.isOnNavMesh)
+        {
+            return;
+        }
+
+        agent.isStopped = true;
+    }
+
 
     public bool PlayerInRange()
     {

@@ -39,7 +39,8 @@ public class EventManager
     /// </summary>
     /// <param name="customerAttacked">The attacked customer's game obejct.</param>
     public void OnCustomerAttacked(GameObject customerAttacked)
-    {
+    {   
+        customerAttacked.GetComponent<CustomerMovement>().WasAttacked = true;
         LastCustomerAttacked = customerAttacked;
         CustomerAttacked?.Invoke();
     }
