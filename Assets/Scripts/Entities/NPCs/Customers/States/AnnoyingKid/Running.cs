@@ -3,17 +3,17 @@ using UnityEngine;
 public class Running : CustomerBaseState
 {
     [SerializeField]
-    [Range(1, 1440)]
     private float timeToDecideToGrabAProduct;
 
     [SerializeField]
     [Range(0, 1)]
     private float probToGrabAProduct;
 
-    private float timerToDecideToGrabAProduct = 0f;
+    private float timer;
 
     private bool holdsProduct = false;
 
+    private AnnoyingKidMovement annoyingKidMovement;
 
     protected override void Awake()
     {
@@ -21,23 +21,18 @@ public class Running : CustomerBaseState
         stateName = GetType().Name;
     }
 
-
     public override void Enter()
     {
         base.Enter();
 
+        timer = Time.time + timeToDecideToGrabAProduct;
 
-        timerToDecideToGrabAProduct = 0f;
-
-        if (customerMovement is AnnoyingKidMovement annoyingKid)
-        { 
-            annoyingKid.Run();
-
-            holdsProduct = annoyingKid.HoldsProduct;
-        }
-        else
+        if (customerMovement is AnnoyingKidMovement)
         {
-            Debug.LogError("This state must be used only in the Annoying Kid prefab");
+            annoyingKidMovement = customerMovement as AnnoyingKidMovement;
+            annoyingKidMovement.Run();
+
+            holdsProduct = annoyingKidMovement.HoldsProduct;
         }
     }
 
@@ -46,27 +41,26 @@ public class Running : CustomerBaseState
     {
         base.Execute();
 
-        if (customerMovement.WasAttacked)
+        if (annoyingKidMovement.WasAttacked)
         {
             fSM.ChangeState("Attacked");
             return;
         }
+ 
+       if (!holdsProduct && Time.time >= timer)
+       {
+         if (DecidedToGrabAProduct())
+         {
+            fSM.ChangeState("PickAProduct");
+            return;
+         }
 
-        if (!holdsProduct)
+         timer = Time.time + timeToDecideToGrabAProduct;
+       }
+        
+        if (annoyingKidMovement.DestinationReached)
         {
-            timerToDecideToGrabAProduct += Time.deltaTime;
-
-            if (timerToDecideToGrabAProduct >= timeToDecideToGrabAProduct * 60 && DecidedToGrabAProduct())
-            {
-                fSM.ChangeState("Pick a product");
-
-                return;
-            }
-        }
-
-        if (customerMovement.DestinationReached && customerMovement is AnnoyingKidMovement annoyingKid)
-        {
-            annoyingKid.Run();
+            annoyingKidMovement.Run();
         }
     }
 

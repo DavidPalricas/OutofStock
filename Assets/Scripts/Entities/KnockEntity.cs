@@ -103,8 +103,11 @@ public class KnockEntity : MonoBehaviour
         if (entity.CompareTag("Customer"))
         {
             entity.GetComponent<CustomerMovement>().EnableOrDisanableAgent(true);
+
+            entity.GetComponent<FSM>().ChangeState("StandUp");
         }
     }
+
 
     public void Knock(GameObject entity, Rigidbody rb, Vector3 entityPosBeforeKnock)
     {   
@@ -123,10 +126,5 @@ public class KnockEntity : MonoBehaviour
         }
 
         StartCoroutine(AnimateFall(entity, rb, entityPosBeforeKnock));
-    }
-
-    public void StandUp(GameObject entity, Rigidbody rb, float entityPosYBeforeKnock)
-    {
-        StartCoroutine(AnimateStandUp(entity, rb, entityPosYBeforeKnock));
     }
 }

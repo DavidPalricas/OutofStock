@@ -55,7 +55,7 @@ public class Shopping : CustomerBaseState
 
     private bool BecamesThief()
     {
-        float randomValue = Random.Range(0f, 1f);
+        float randomValue = Utils.RandomFloat(0f, 1f);
 
         float probBecamingThief = PlayerPrefs.GetFloat("CustomerBecameThiefProb");
 
