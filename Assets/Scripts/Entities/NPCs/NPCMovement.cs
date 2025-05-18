@@ -54,9 +54,6 @@ public class NPCMovement : MonoBehaviour
         }
     }
 
-  
-
-   
     /// <summary>
     /// The IsAgentEnabled method is responsible for checking if the agent is enabled.
     /// </summary>

@@ -105,12 +105,33 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         customersSpawned++;
     }
 
-
+    /// <summary>
+    /// The GetTypeOfCustomer method is responsible for getting a random customer prefab based on the spawn probabilities.
+    /// </summary>
+    /// <remarks>
+    /// This method works as follows:
+    ///   1. Starts by getting the spawn probabilities of the customers stereotypes from the PlayerPrefs.
+    ///   2. It calculates the normal customer spawn probability by subtracting the sum of the other customers spawn probabilities from 1.
+    ///   3. Checks if stereotype probabilities are valid (sum <= 1).
+    ///   4. Creates a list of KeyValuePair with the customer prefab and its spawn probability.
+    ///   5. Generates a random value between 0 and 1.
+    ///   6. Iterates through the list of customers and their spawn probabilities, checking if the random value is less than or equal to the spawn probability.
+    ///   7. If it finds a match, it returns the corresponding customer prefab, otherwise returns the hightest probability prefab from the list.
+    ///  
+    /// </remarks>
+    /// <returns> A prefab of a customer to spawn</returns>
     private GameObject GetTypeOfCustomer()
     {
         float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
         float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
         float normalCustomerSpawnProb = 1 - (karenSpawnProb + annoyinKidSpawnProb);
+
+        // The probs of the other customers are wrong the sum of the spawn probabilities is greater than 1
+        if (normalCustomerSpawnProb <= 0f)
+        {
+            Debug.LogError("The sum of customer stereotype spawn probabilities exceeds 1.");
+            return null;
+        }
 
         List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
         {

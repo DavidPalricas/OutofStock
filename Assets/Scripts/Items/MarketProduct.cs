@@ -45,9 +45,9 @@ public class MarketProduct : Item, ISubject
     /// The OnCollisionEnter Method is called when this collider/rigidbody has begun touching another rigidbody/collider (Unity Callback).
     /// </summary>
     /// <remarks>
-    /// This method checks if the procut is thrown and collided with a customer, 
-    /// If these conditions are met the KnockCustumer method is called to knock down the customer hitted, 
-    /// and the "CustomerAttacked" event is dispatched.
+    /// This method checks if the product is thrown and collided with a customer, 
+    /// If these conditions are met the attack event is triggered, and the customer is knocked down.
+    /// It also is checked if the attacked customer is a hostile Karen.
     /// After that, the base class behavior of this method is called.
     /// </remarks>
     /// <param name="collision">The collision.</param>
@@ -55,66 +55,15 @@ public class MarketProduct : Item, ISubject
     {
         if (collision.gameObject.CompareTag("Customer") && thrown)
         {
-            EventManager.GetInstance().OnCustomerHitted(collision.gameObject);
-            KnockCustumer(collision.gameObject);
+            // Checks if product collided with the customer or its extra collider that is used to block entities collisions
+            GameObject customer =  collision.gameObject.GetComponent<CustomerMovement>() != null ? collision.gameObject : collision.gameObject.transform.parent.gameObject;
+
+            EventManager.GetInstance().OnCustomerAttacked(customer);
         }
 
         base.OnCollisionEnter(collision); 
     }
-
-    /// <summary>
-    /// The KnockCustumer method is responsible for knocking down a customer.
-    /// </summary>
-    /// <remarks>
-    ///  When a customer is hitted by a product, its navmesh agent is disabled, its rigidbody is set to kinematic (disabling physics), its position and rotation are changed to simultate the customer is layed.
-    /// After 5 seconds, the customer is set to stand up again (StandUp Coroutine).
-    /// </remarks>
-    /// <param name="customer"> The customer hitted by the objected </param>
-    private void KnockCustumer(GameObject customer)
-    {
-        if (!customer.GetComponent<CustomerMovement>().IsAgentEnabled())
-        {
-            return;
-        }
-
-        customer.GetComponent<CustomerMovement>().EnableOrDisanableAgent(false);
-
-        Rigidbody customerRb = customer.GetComponent<Rigidbody>();
-
-        customerRb.isKinematic = true;
-
-        customer.transform.rotation = Quaternion.Euler(90f, 0, 0);
-
-        Vector3 customerPos = customer.transform.position;
-
-        customer.transform.position = new Vector3(customerPos.x, 0.5f, customerPos.z);
-
-        const float KNOCKDOWNTIME = 5f;
-
-        StartCoroutine(Utils.WaitAndExecute(KNOCKDOWNTIME, () => StandUp(customerRb, customer, customerPos.y)));
-    }
-
-    /// <summary>
-    /// The StandUp method is responsible for making the customer stand up again.
-    /// </summary>
-    /// <remarks>
-    /// In this method, the customer rigidbody is set to non kinematic, its position and rotation are changed to simulate the customer is standing up and its navmesh agent is enabled.
-    /// </remarks>
-    /// <param name="custumerRb">The custumer rigid body.</param>
-    /// <param name="customer">The customer.</param>
-    /// <param name="originalCustomerPosY">The original position in the y axis</param>
-    private void StandUp(Rigidbody custumerRb, GameObject customer, float originalCustomerPosY)
-    {
-        custumerRb.isKinematic = false;
-
-        customer.transform.rotation = Quaternion.identity;
-
-        Vector3 customerPos = customer.transform.position;
-        customer.transform.position = new Vector3(customerPos.x, originalCustomerPosY, customerPos.z);
-
-        customer.GetComponent<CustomerMovement>().EnableOrDisanableAgent(true);
-    }
-
+ 
     /// <summary>
     /// The AddObserver method is responsible for adding observers to the customer (ISubject interface method).
     /// </summary>

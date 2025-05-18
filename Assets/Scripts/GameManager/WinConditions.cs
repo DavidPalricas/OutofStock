@@ -30,7 +30,7 @@ public class WinConditions : MonoBehaviour
     {   
         EventManager eventManager = EventManager.GetInstance();
 
-        eventManager.CustomerHitted += CustomerHitted;
+        eventManager.CustomerAttacked += CustomerHitted;
         eventManager.TaskCompleted += TaskCompleted;
     }
 

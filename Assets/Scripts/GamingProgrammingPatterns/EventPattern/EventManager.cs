@@ -12,17 +12,17 @@ public class EventManager
     private static EventManager instance = null;
 
     /// <summary>
-    /// The CustomerHitted and TaskCompleted atributes, are events used to notify when a customer is hitted or a task is completed, respectively.
+    /// The CustomerAttacked and TaskCompleted atributes, are events used to notify when a customer is attacked or a task is completed, respectively.
     /// </summary>
-    public event Action CustomerHitted, TaskCompleted;
+    public event Action CustomerAttacked, TaskCompleted;
 
     /// <summary>
-    /// The CustomerAttacked attribute is used to store a reference to the customer that was attacked.
+    /// The LastCustomerAttacked attribute is used to store a reference to the last customer that was attacked.
     /// </summary>
     /// <value>
     /// The GameObject of the customer that was attacked.
     /// </value>
-    public GameObject CustomerAttacked { get; set; } = null;
+    public GameObject LastCustomerAttacked { get; set; } = null;
 
     /// <summary>
     /// The GetInstance method is used to get the instance of the EventManager class.
@@ -35,13 +35,14 @@ public class EventManager
     }
 
     /// <summary>
-    /// The OnCustomerHitted method is used to invoke the CustomerHitted event and updating the CustomerAttacked attribute.
+    /// The OnCustomerAttacked method is used to invoke the CustomerHitted event and updating the CustomerAttacked attribute.
     /// </summary>
-    /// <param name="customerHitted">The hitted customer's game obejct.</param>
-    public void OnCustomerHitted(GameObject customerHitted)
-    {
-        CustomerAttacked = customerHitted;
-        CustomerHitted?.Invoke();
+    /// <param name="customerAttacked">The attacked customer's game obejct.</param>
+    public void OnCustomerAttacked(GameObject customerAttacked)
+    {   
+        customerAttacked.GetComponent<CustomerMovement>().WasAttacked = true;
+        LastCustomerAttacked = customerAttacked;
+        CustomerAttacked?.Invoke();
     }
 
     /// <summary>

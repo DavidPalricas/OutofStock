@@ -14,10 +14,10 @@ TagManager:
   - GrabbedItem
   - Water
   - UI
-  - Enitity
+  - Entity
   - Obstacle
   - Item
-  - 
+  - EntityCollisionBlocker
   - 
   - 
   - 
