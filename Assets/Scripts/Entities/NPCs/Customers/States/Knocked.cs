@@ -47,7 +47,5 @@ public class Knocked : CustomerBaseState
         base.Exit();
 
         customerMovement.WasAttacked = false;
-
-        EventManager.GetInstance().LastCustomerAttacked = null;
     }
 }

@@ -13,6 +13,11 @@ public class Shopping : CustomerBaseState
     private float minTimeToPickProduct, maxTimeToPickProduct;
 
     /// <summary>
+    /// The timer attribute is used to store the time when the customer started picking a product.
+    /// </summary>
+    private float timer;
+
+    /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
     /// It calls the base class Awake method and sets the stateName to the name of the current class.
     /// </summary>
@@ -20,6 +25,7 @@ public class Shopping : CustomerBaseState
     {   
         base.Awake();
         stateName = GetType().Name;
+        timer = 0f;
     }
 
     /// <summary>
@@ -48,7 +54,7 @@ public class Shopping : CustomerBaseState
     /// The possible transitions are:
     ///    1. Attacked Transition: If the customer is attacked, it changes to the Knocked state.
     ///    2. ProductFound Transition: If the customer is a Karen and its destinaion is reached, it changes to the Chase Player state.
-    ///    3. ProductPicked Transition: It calls the PickProduct method and changes to the Running state (Annoying Kid) or to the Pay state (Normal Customer).
+    ///    3. ProductPicked Transition: It calls the PickProduct method (when the timer to simulate the customer picking the market ends) and changes to the Running state (Annoying Kid) or to the Pay state (Normal Customer).
     ///    
     /// If the none of these conditions are met, nothing happens until the customer reaches its destination or is attacked.
     /// </remarks>
@@ -72,7 +78,15 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
-            PickProduct();
+            // Initialize the timer to pick a product
+            if (timer == 0f)
+            {
+                timer = Time.time + Utils.RandomFloat(minTimeToPickProduct, maxTimeToPickProduct);
+            }
+            else if (Time.time >= timer)
+            {
+                PickProduct();
+            }
         }
     }
 
@@ -103,9 +117,8 @@ public class Shopping : CustomerBaseState
     }
 
     /// <summary>
-    /// The PickProduct method is responsible for simulating a customer picking a product(Normal Customer or a Annoying Kid),
-    /// after a random time and then chaging its state to the Pay state (Normal Customer) or to the Running state (Annoying Kid).
-    /// If the customer is as Annoying Kid, it sets the HoldsProduct attribute to true.
+    /// The PickProduct method is responsible for handling the remaining actions of the customer when it picks a product and changes its state.
+    /// If the customer is an Annoying Kid, it sets the HoldsProduct attribute to true and its state to Running, otherwise it sets the state to Pay (only Normal Customer).
     /// </summary>
     private void PickProduct()
     {   
@@ -114,7 +127,7 @@ public class Shopping : CustomerBaseState
             annoyingKid.HoldsProduct = true;
         }
 
-        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeToPickProduct, maxTimeToPickProduct), () => fSM.ChangeState("ProductPicked")));
+        fSM.ChangeState("ProductPicked");
     }
 
     /// <summary>

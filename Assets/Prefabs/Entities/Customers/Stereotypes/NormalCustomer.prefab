@@ -200,6 +200,7 @@ MonoBehaviour:
   - {fileID: 5145648033257922928}
   - {fileID: 3296232279862184878}
   - {fileID: 6005602209483936697}
+  - {fileID: 2769351854970881968}
   transitions:
   - name: ProductPicked
     from: {fileID: 3105596090923455940}
@@ -219,6 +220,9 @@ MonoBehaviour:
   - name: StandUp
     from: {fileID: 2769351854970881968}
     to: {fileID: 6005602209483936697}
+  - name: ProductPicked
+    from: {fileID: 3105596090923455940}
+    to: {fileID: 5145648033257922928}
   - name: ProductNotFound
     from: {fileID: 3105596090923455940}
     to: {fileID: 6005602209483936697}

@@ -2,10 +2,10 @@ using UnityEngine;
 
 /// <summary>
 ///  The MarketProduct class is responsible for handling the logic of the products in the market.
-///  It implements the ISubject interface to notify its observers (customer tha want this product) when the product is
-///  grabbed by the player.
+///  It implements the ISubject interface to notify its observers (customer tha want this product) when the product is grabbed by the player.
+///  And implements the IEventDispatcher interface to dispatch the event when a thrown product hits a customer (customer attacked event).
 /// </summary>
-public class MarketProduct : Item, ISubject
+public class MarketProduct : Item, ISubject, IEventDispatcher
 {
     /// <summary>
     /// The observers attribute is used to store the observers of the product.
@@ -17,6 +17,11 @@ public class MarketProduct : Item, ISubject
     /// The pickProductArea attribute is the area where the custumers can pick up the product.
     /// </summary>
     public Transform pickProductArea;
+
+    /// <summary>
+    /// The customerHitted attribute is used to store the customer that was hit by the product.
+    /// </summary>
+    private GameObject customerHitted = null;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -46,9 +51,7 @@ public class MarketProduct : Item, ISubject
     /// </summary>
     /// <remarks>
     /// This method checks if the product is thrown and collided with a customer, 
-    /// If these conditions are met the attack event is triggered, and the customer is knocked down.
-    /// It also is checked if the attacked customer is a hostile Karen.
-    /// After that, the base class behavior of this method is called.
+    /// If these conditions are met the attack event is triggered (called in the DispatchEvents method).
     /// </remarks>
     /// <param name="collision">The collision.</param>
     protected override void OnCollisionEnter(Collision collision)
@@ -56,9 +59,9 @@ public class MarketProduct : Item, ISubject
         if (collision.gameObject.CompareTag("Customer") && thrown)
         {
             // Checks if product collided with the customer or its extra collider that is used to block entities collisions
-            GameObject customer =  collision.gameObject.GetComponent<CustomerMovement>() != null ? collision.gameObject : collision.gameObject.transform.parent.gameObject;
+            customerHitted =  collision.gameObject.GetComponent<CustomerMovement>() != null ? collision.gameObject : collision.gameObject.transform.parent.gameObject;
 
-            EventManager.GetInstance().OnCustomerAttacked(customer);
+            DispatchEvents();
         }
 
         base.OnCollisionEnter(collision); 
@@ -93,5 +96,14 @@ public class MarketProduct : Item, ISubject
     public void RemoveObservers()
     {
         observers = null;
+    }
+
+    /// <summary>
+    /// The DispatchEvents method is used to dispatch one or more events.
+    /// It notifies the event manager when a product is thrown and hits a customer.
+    /// </summary>
+    public void DispatchEvents()
+    {
+        EventManager.GetInstance().OnCustomerAttacked(customerHitted);
     }
 }

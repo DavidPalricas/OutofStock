@@ -13,6 +13,11 @@ public class Pay : CustomerBaseState
     private float minTimeToPay, maxTimeToPay;
 
     /// <summary>
+    /// The timer attribute is used to store the time when the customer started paying for the product.
+    /// </summary>
+    private float timer;
+
+    /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
     /// It calls the base class Awake method and sets the stateName to the name of the current class.
     /// </summary>
@@ -40,7 +45,7 @@ public class Pay : CustomerBaseState
     /// This methods checks for possible conditions to change the state, otherwise it continues the states actions.
     /// The possible transitions are:
     ///    1. Attacked Transition: If the customer is attacked, it changes to the Knocked state.
-    ///    2. ProductPaid Transition: Calls the PayItem method when the customer reaches its destination to handle the payment process and then changes to the Go Home state.
+    ///    2. ProductPaid Transition: When the customer reaches its destination, it starts a timer to simulate the time it takes to pay for the product, after the timer ends, it changes to the Go Home state.
     ///    
     /// If the none of these conditions are met, nothing happens until the customer reaches its destination or is attacked.
     /// </remarks>
@@ -56,8 +61,15 @@ public class Pay : CustomerBaseState
         }
 
         if (customerMovement.DestinationReached)
-        {
-            PayItem();
+        {    
+            if (timer == 0f)
+            {
+                timer = Time.time + Utils.RandomFloat(minTimeToPay, maxTimeToPay);
+            }
+            else if (Time.time >= timer)
+            {
+                fSM.ChangeState("ProductPaid");
+            }
         }
     }
 
@@ -68,14 +80,5 @@ public class Pay : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
-    }
-
-    /// <summary>
-    /// The PayItem method is responsible for handling the payment process.
-    /// It simulates the time taken to pay for the product and then changes the state to the Go Home state.
-    /// </summary>
-    private void PayItem()
-    {
-        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeToPay, maxTimeToPay), () => fSM.ChangeState("ProductPaid")));
     }
 }
