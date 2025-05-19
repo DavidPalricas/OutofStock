@@ -8,7 +8,7 @@ using System.Linq;
 /// The TaskManager class is responsible for generating tasks, show their names and status in the UI.
 /// It implements the IObserver interface to be notified when a task is completed.
 /// </summary>
-public class TaskManager : MonoBehaviour, IObserver
+public class TaskManager : MonoBehaviour, IEventListener
 {
     /// <summary>
     /// The taskTogglePrefab property stores a reference to the prefab of the task toggle.
@@ -73,6 +73,15 @@ public class TaskManager : MonoBehaviour, IObserver
     }
 
     /// <summary>
+    /// The Start method is called on the frame when a script is enabled just before any of the Update methods are called the first time (Unity Callback).
+    /// It calls the ListenToEvents method to subscribe to the events of the EventManager.
+    /// </summary>
+    private void Start()
+    {
+        ListenToEvents();
+    }
+
+    /// <summary>
     /// The Update method is called every frame (Unity Callback).
     /// In this method, we are checking if a task can be generated.
     /// To do that, we are checking if the tasks completed are less than the maximum number of tasks, if all types of tasks are not activated,
@@ -89,7 +98,6 @@ public class TaskManager : MonoBehaviour, IObserver
         }
     }
 
- 
     /// <summary>
     /// The GenerateTask method is responsible for generating a new task.
     /// </summary>
@@ -134,7 +142,6 @@ public class TaskManager : MonoBehaviour, IObserver
 
         allTypeOfTasksActivated = activeTaskToggles.Count == tasksTypes.Count;
     }
-
 
     /// <summary>
     /// ´tHE GetRandomTaskNumber method is responsible for generating a random task number based on the available tasks.
@@ -202,22 +209,11 @@ public class TaskManager : MonoBehaviour, IObserver
         }
 
         Task task =  taskObjectTransform.gameObject.GetComponent<Task>();
-        task.AddObservers(new IObserver[] { this });
         task.Number = taskNumber;
     }
 
     /// <summary>
-    /// The OnNotify (IObserver method) method is responsible for updating the observer (this game object), when a subject notifies it.
-    /// In this method, a start coroutine is called to handle the task completion (TaskDone method).
-    /// </summary>
-    /// <param name="data">The number of the task completed</param>
-    public void OnNotify(object data)
-    {
-        StartCoroutine(TaskDone((int) data));
-    }
-
-    /// <summary>
-    /// The TaskDone method is responsible for handling the task completion.
+    /// The HandleTaskCompletion method is responsible for handling the task completion.
     /// </summary>
     /// <remarks>
     /// This method turns the toggle on for 3 seconds, then turns it off and destroys it.
@@ -226,7 +222,7 @@ public class TaskManager : MonoBehaviour, IObserver
     /// </remarks>
     /// <param name="taskNumber">The task number.</param>
     /// <returns>An IEnumerator that can be used in a coroutine to wait and execute the specified method.</returns>
-    private IEnumerator TaskDone(int taskNumber)
+    private IEnumerator HandleTaskCompletion(int taskNumber)
     {
         if (activeTaskToggles.TryGetValue(taskNumber, out Toggle toggle))
         {
@@ -242,9 +238,24 @@ public class TaskManager : MonoBehaviour, IObserver
 
         allTypeOfTasksActivated = false;
 
-        // Notify the event manager that a task is completed
-        EventManager.GetInstance().OnTaskCompleted();
         tasksCompleted++;
         timer = Time.time + addTaskTime;
+    }
+
+    /// <summary>
+    /// The TaskCompleted method is called when the "TaskCompleted" event is dispatched.
+    /// </summary>
+    private void TaskCompleted()
+    {
+        StartCoroutine(HandleTaskCompletion(EventManager.GetInstance().LastTaskCompletedNumber));
+    }
+
+    /// <summary>
+    /// The ListenToEvents method is used to listen to one or more events.
+    /// It subscribes to the "TaskCompleted" event from the EventManager.
+    /// </summary>
+    public void ListenToEvents()
+    {
+        EventManager.GetInstance().TaskCompleted += TaskCompleted;
     }
 }

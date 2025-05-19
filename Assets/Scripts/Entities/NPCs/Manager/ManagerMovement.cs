@@ -21,13 +21,19 @@ public class ManagerMovement : NPCMovement
     /// </summary>
     public Vector3 ManagerOffice { get; private set; }
 
-
+    /// <summary>
+    /// The Awake method is called when the script instance is being loaded (Unity Callback).
+    /// It initializes the wayPoints attribute with the children of the waypointsGroup transform and the ManagerOffice attribute with the transform position.
+    /// </summary>
     private void Awake()
     {   
         wayPoints = Utils.GetChildren(waypointsGroup);
         ManagerOffice = transform.position;
     }
 
+    /// <summary>
+    /// The ChoosePointToPatrol method is responsible for choosing a random waypoint from the wayPoints array and setting it as the agent's destination.
+    /// </summary>
     public void ChoosePointToPatrol()
     {   
         int randomWayPoint = Utils.RandomInt(0, wayPoints.Length);

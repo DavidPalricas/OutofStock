@@ -32,9 +32,9 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     private int customersSpawned = 0;
 
     /// <summary>
-    /// The targetItemsList attribute represents the list of  the customers target items in the market.
+    /// The MarketProductsList attribute represents the products in the market.
     /// </summary>
-    private  List<GameObject> targetItemsList = new ();
+    private List<GameObject> MarketProductsList = new ();
 
     /// <summary>
     /// The paymentAreas attribute represents the payment areas in the market.
@@ -46,8 +46,12 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// In this method, the items are added to the targetItemsList by calling the AddItems method.
     /// </summary>
     private void Awake()
-    { 
-        targetItemsList = GameObject.FindGameObjectsWithTag("Item").ToList();
+    {
+        // Because the are items that are not market products (like the broom to clean the floor).
+        MarketProductsList = GameObject.FindGameObjectsWithTag("Item")
+           .Where(item => item.GetComponent<MarketProduct>() != null)
+           .ToList();
+
         paymentAreas = Utils.GetChildren(paymentAreasTransform);
     }
 
@@ -60,7 +64,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </remarks>
     private void Update()
     {
-        if (targetItemsList.Count > 0 && customersSpawned < maxCustomersInMarket)
+        if (MarketProductsList.Count > 0 && customersSpawned < maxCustomersInMarket)
         {
             SpawnCustomer();
         }
@@ -71,8 +75,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </summary>
     /// <remarks>
     /// The SpawnCustomer method instantiates the customer prefab in a random position of the spawn area (GetCustomerPos method).
-    /// After that, it sets the customer target item randomly from the targetItemsList (items in the market), 
-    /// this item area position is passed to the customer movement script (AreasPos dictionary) and this script is added
+    /// After that, it sets the customer target item randomly from the MarketProductsList (products in the market), 
+    /// this product area position is passed to the customer movement script (AreasPos dictionary) and this script is added
     /// as an observer of the item (ItemLogic class).
     /// The payment area is also set randomly from the paymentAreas array (payment areas in the market), and 
     /// the customer movement script is enable also added as an observer of the customers spawn (this class) 
@@ -84,15 +88,15 @@ public class CustomersSpawn : MonoBehaviour, IObserver
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
-        GameObject targetItem = targetItemsList[Utils.RandomInt(0, targetItemsList.Count)];
+        GameObject targetProduct = MarketProductsList[Utils.RandomInt(0, MarketProductsList.Count)];
 
-        targetItemsList.Remove(targetItem);
+        MarketProductsList.Remove(targetProduct);
 
-        customerMovement.TargetItem = targetItem;
+        customerMovement.TargetItem = targetProduct;
 
-        targetItem.GetComponent<MarketProduct>().AddObservers(new IObserver[] { customerMovement });
+        targetProduct.GetComponent<MarketProduct>().AddObservers(new IObserver[] { customerMovement });
 
-        Transform pickItemArea = targetItem.GetComponent<MarketProduct>().pickProductArea;
+        Transform pickItemArea = targetProduct.GetComponent<MarketProduct>().pickProductArea;
 
         customerMovement.AreasPos["Product"] = pickItemArea == null ? Vector3.zero : pickItemArea.position;
         customerMovement.AreasPos["MarketExit"] = transform.position;

@@ -190,8 +190,13 @@ public class MangerFov : MonoBehaviour
         CustomersSeen.Clear();
     }
 
-
-
+    /// <summary>
+    /// The CheckIfPlayerAttackedCustomer method is used to check if the player attacked a customer, if so, it increments the strikes attribute.
+    /// </summary>
+    /// <remarks>
+    /// It gets the last customer attacked from the EventManager and checks if it is not null and if it is in the CustomersSeen list.
+    /// If these conditions are met, it increments the strikes attribute and sets the LastCustomerAttacked attribute to null (from the EventManager, to avoid being detected again as hitted).
+    /// </remarks>
     private void CheckIfPlayerAttackedCustomer()
     {   
         GameObject customerAttacked = EventManager.GetInstance().LastCustomerAttacked;
