@@ -12,8 +12,12 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
 
-    [SerializeField]
-    private PlayerInput playerInput;
+    private FirstPersonController firstPersonController;
+
+    private void Awake()
+    {
+        firstPersonController = GetComponent<FirstPersonController>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -34,7 +38,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = !isPaused;
         pauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
-        HandlingInput();
+        HandlingInput(isPaused);
     }
 
     /// <summary>
@@ -42,21 +46,8 @@ public class PauseMenu : MonoBehaviour
     /// This method activates or deactivates the player input depending on the game pause status, if the game is paused the player input is disabled otherwise it is enabled.
     /// The only input action that is not disabled when the game is paused is the pause/unpause input.
     /// </summary>
-    private void HandlingInput()
+    private void HandlingInput(bool isPaused)
     {
-        foreach (var action in playerInput.actions)
-        {
-            if (action.name != "Pause")
-            {
-                if (isPaused)
-                {
-                    action.Disable();
-                }
-                else
-                {
-                    action.Enable();
-                }
-            }
-        }
+        firstPersonController.enabled = !isPaused;
     }
 }
