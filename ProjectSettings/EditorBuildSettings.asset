@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 09131bc79a8adf14b8092ba7ff7cbc5f
   - enabled: 1
-    path: Assets/Scenes/TestScenes/Teste01_PauseMenu.unity
-    guid: f57dddf6ade163c4b86eea280670d958
+    path: Assets/Scenes/BlockoutScene.unity
+    guid: dd92dc79038d97849ace6b235c93b0af
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
