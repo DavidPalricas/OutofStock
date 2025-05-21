@@ -164,6 +164,7 @@ public class KnockEntity : MonoBehaviour
         if (entity.CompareTag("Player"))
         {   
             entity.GetComponent<PlayerInput>().enabled = true;
+            entity.GetComponent<FirstPersonController>().enabled = true;
         }
 
         if (entity.CompareTag("Customer"))
@@ -198,8 +199,10 @@ public class KnockEntity : MonoBehaviour
 
         if (entity.CompareTag("Player"))
         {
-            // Disables the player input to prevent the player from moving
+            // Disables the player input and FirstPersonController to prevent the player from moving
             entity.GetComponent<PlayerInput>().enabled = false;
+            entity.GetComponent<FirstPersonController>().enabled = false;
+
         }
 
         StartCoroutine(AnimateFall(entity, rb, entityPosBeforeKnock));

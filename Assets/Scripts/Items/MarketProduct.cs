@@ -2,8 +2,7 @@ using UnityEngine;
 
 /// <summary>
 ///  The MarketProduct class is responsible for handling the logic of the products in the market.
-///  It implements the ISubject interface to notify its observers (customer tha want this product) when the product is
-///  grabbed by the player.
+///  It implements the ISubject interface to notify its observers (customer tha want this product) when the product is grabbed by the player.
 /// </summary>
 public class MarketProduct : Item, ISubject
 {
@@ -18,52 +17,6 @@ public class MarketProduct : Item, ISubject
     /// </summary>
     public Transform pickProductArea;
 
-    /// <summary>
-    /// The Awake Method is called when the script instance is being loaded (Unity Callback).
-    /// In this method, its base class is called and the eventDispatcher property is initialized.
-    /// </summary>
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    /// <summary>
-    /// The Update method is called every frame (Unity Callback).
-    /// In this method, its checked if the product was grabbed and there are observers
-    /// if these conditions are met, the observers are notified and removed.
-    /// </summary>
-    private void Update()
-    {
-        if (observers != null && Grabbed)
-        {
-            NotifyObservers();
-            RemoveObservers();
-        }
-    }
-
-    /// <summary>
-    /// The OnCollisionEnter Method is called when this collider/rigidbody has begun touching another rigidbody/collider (Unity Callback).
-    /// </summary>
-    /// <remarks>
-    /// This method checks if the product is thrown and collided with a customer, 
-    /// If these conditions are met the attack event is triggered, and the customer is knocked down.
-    /// It also is checked if the attacked customer is a hostile Karen.
-    /// After that, the base class behavior of this method is called.
-    /// </remarks>
-    /// <param name="collision">The collision.</param>
-    protected override void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Customer") && thrown)
-        {
-            // Checks if product collided with the customer or its extra collider that is used to block entities collisions
-            GameObject customer =  collision.gameObject.GetComponent<CustomerMovement>() != null ? collision.gameObject : collision.gameObject.transform.parent.gameObject;
-
-            EventManager.GetInstance().OnCustomerAttacked(customer);
-        }
-
-        base.OnCollisionEnter(collision); 
-    }
- 
     /// <summary>
     /// The AddObserver method is responsible for adding observers to the customer (ISubject interface method).
     /// </summary>
@@ -93,5 +46,22 @@ public class MarketProduct : Item, ISubject
     public void RemoveObservers()
     {
         observers = null;
+    }
+
+    /// <summary>
+    /// The WasGrabbed method is responsible for handling the logic when the item is grabbed by the player.
+    /// It overrides the base class method to set the grabbed flag to true and notify the observers.
+    /// </summary>
+    /// <remarks>
+    /// This method is override to notify the observers when the item is grabbed by the player.
+    /// </remarks>
+    public override void WasGrabbed()
+    {
+        base.WasGrabbed();
+
+        if (observers != null)
+        {
+            NotifyObservers();
+        }
     }
 }

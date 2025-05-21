@@ -6,7 +6,7 @@ public class Office: ManagerState
     protected override void Awake()
     {
         base.Awake();
-        stateName = GetType().Name;
+        StateName = GetType().Name;
         timetoWait = PlayerPrefs.GetFloat("ManagerOfficeTime");
     }
 

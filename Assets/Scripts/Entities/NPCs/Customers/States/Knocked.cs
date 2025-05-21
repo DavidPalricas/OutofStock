@@ -13,7 +13,7 @@ public class Knocked : CustomerBaseState
     protected override void Awake()
     {
         base.Awake();
-        stateName = GetType().Name;
+        StateName = GetType().Name;
 
     }
 
@@ -47,7 +47,5 @@ public class Knocked : CustomerBaseState
         base.Exit();
 
         customerMovement.WasAttacked = false;
-
-        EventManager.GetInstance().LastCustomerAttacked = null;
     }
 }

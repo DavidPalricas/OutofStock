@@ -25,6 +25,14 @@ public class EventManager
     public GameObject LastCustomerAttacked { get; set; } = null;
 
     /// <summary>
+    /// The LastTaskCompletedNumber attribute is used to store the number of the last task completed.
+    /// </summary>
+    /// <value>
+    ///  The number of the last task completed, or int.MaxValue if there is no task completed yet.
+    /// </value>
+    public int LastTaskCompletedNumber { get; private set; } = int.MaxValue;
+
+    /// <summary>
     /// The GetInstance method is used to get the instance of the EventManager class.
     /// It creates a new instance if it doesn't exist yet.
     /// </summary>
@@ -46,10 +54,12 @@ public class EventManager
     }
 
     /// <summary>
-    /// The OnTaskCompleted method is used to invoke the TaskCompleted event.
+    /// The OnTaskCompleted method is used to invoke the TaskCompleted event and updating the LastTaskCompletedNumber attribute.
     /// </summary>
-    public void OnTaskCompleted()
-    {   
+    /// <param name="taskNumber">The task completed number.</param>
+    public void OnTaskCompleted(int taskNumber)
+    {
+        LastTaskCompletedNumber = taskNumber;
         TaskCompleted?.Invoke();
     }
 }

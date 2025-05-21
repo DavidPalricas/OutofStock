@@ -2,10 +2,10 @@ using UnityEngine;
 
 /// <summary>
 /// The Task class is responsible for representing a task in the game.
-/// It implements the IObserver interface to be notified when a subtask (subject) is completed 
-/// and implements the ISubject interface to notify its observers (task manager) when the task is completed.
+/// It implements the IObserver interface to be notified when a subtask (subject) is completed  and
+/// the IEventDispatcher interface to notify the to event manager when the task is completed.
 /// </summary>
-public class Task : MonoBehaviour, ISubject, IObserver
+public class Task : MonoBehaviour, IObserver, IEventDispatcher
 {
     /// <summary>
     /// The observers property is responsible for storing a reference to the observers of the task.
@@ -31,14 +31,13 @@ public class Task : MonoBehaviour, ISubject, IObserver
     /// </value>
     public int Number { get; set; }
 
-
     /// <summary>
     /// The TaskCompleted method is responsible for handling the logic when the task is completed.
-    /// It notifies the observers, resets the subtask count and disables its script.
+    /// It dispatches the task completed event by calling the DispatchEvents method, and resets the completed Subtasks.
     /// </summary>
     protected void TaskCompleted()
     {
-        NotifyObservers();
+        DispatchEvents();
         completedSubtasks = 0;
         enabled = false;
     }
@@ -54,31 +53,11 @@ public class Task : MonoBehaviour, ISubject, IObserver
     }
 
     /// <summary>
-    /// The AddObserver method is responsible for adding observers to the subtask (ISubject interface method).
+    /// The DispatchEvents method is used to dispatch one or more events.
+    /// It notifies the event manager when a task is completed.
     /// </summary>
-    /// <param name="observers">The observers (only one the task manager).</param>
-    public void AddObservers(IObserver[] observers)
+    public void DispatchEvents()
     {
-        this.observers = observers;
-    }
-
-    /// <summary>
-    /// The NotifyObservers method is responsible for notifying the subtask observers (ISubject interface method).
-    /// </summary>
-    /// <param name="data">Any argument to be sent to the observer,in this case no argument is specified (null) .</param>
-    public void NotifyObservers(object data = null)
-    {
-        foreach (IObserver observer in observers)
-        {
-            observer.OnNotify(Number);
-        }
-    }
-
-    /// <summary>
-    /// The RemoveObservers method is responsible for removing the observers from the subject (ISubject interface method).
-    /// </summary>
-    public void RemoveObservers()
-    {
-        observers = null;
+        EventManager.GetInstance().OnTaskCompleted(Number);
     }
 }

@@ -61,10 +61,11 @@ public class FSM : MonoBehaviour
     /// </remarks>
     /// <param name="transitionName">The name of the transition.</param>
     public void ChangeState (string transitionName)
-    {
+    {   
         foreach (var transition in transitions)
         {
-            if (transition.name.ToLower() == transitionName.ToLower() && (transition.from == null || CurrentState == transition.from))
+            // Removes whitespaces and converts to lowercase to avoid case sensitivity and whitespaces issues
+            if (transition.name.Replace(" ", "").ToLower() == transitionName.Replace(" ", "").ToLower() && (transition.from == null || CurrentState == transition.from))
             {
                 CurrentState.Exit();
                 CurrentState = transition.to;
@@ -74,7 +75,7 @@ public class FSM : MonoBehaviour
             }
         }
 
-        Debug.LogWarning($"Transition {transitionName} not found");
+        Debug.LogWarning($"Transition {transitionName} not found for customer {gameObject.name}, from {CurrentState.StateName}");
     }
 }
 
@@ -114,9 +115,12 @@ public abstract class State : MonoBehaviour
     protected FSM fSM;
 
     /// <summary>
-    /// The stateName attribute is the name of the state.
+    /// The StateName attribute is the name of the state.
     /// </summary>
-    protected string stateName;
+    /// <value>
+    /// The name of the state.
+    /// </value>
+    public string StateName {get; protected set; }
 
     /// <summary>
     /// The Enter method is called when the state is entered, to handle its initial actions.

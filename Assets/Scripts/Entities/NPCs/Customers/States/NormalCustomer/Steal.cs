@@ -25,7 +25,7 @@ public class Steal : CustomerBaseState
     protected override void Awake()
     {
         base.Awake();
-        stateName = GetType().Name;
+        StateName = GetType().Name;
     }
 
     /// <summary>
