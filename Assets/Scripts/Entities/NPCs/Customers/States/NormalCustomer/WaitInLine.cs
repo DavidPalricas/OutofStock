@@ -1,9 +1,11 @@
-/// <summary>
-/// The GoHome class is responsible for handling the go home state of the customer.
-/// This state is used by all customer stereotypes.
-/// </summary>
-public class GoHome : CustomerBaseState
-{
+using UnityEngine;
+
+public class WaitInLine : CustomerBaseState
+{   
+
+    private PaymentLines paymentLines;
+
+    private Vector3 paymentAreaPos;
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
     /// It calls the base class Awake method and sets the stateName to the name of the current class.
@@ -12,18 +14,25 @@ public class GoHome : CustomerBaseState
     {
         base.Awake();
         StateName = GetType().Name;
-      
+
+        paymentLines = GameObject.FindGameObjectWithTag("PaymentLines").GetComponent<PaymentLines>();
+    }
+
+
+    private void Start()
+    {
+        paymentAreaPos = customerMovement.AreasPos["Payment"];
     }
 
     /// <summary>
     /// The Enter method is called when the state is entered.
-    /// It calls the base class Enter method and sets the market's exit as the destination for the customer.
+    /// It calls the base class Enter method and sets the customer destination to the payment area.
     /// </summary>
     public override void Enter()
     {
         base.Enter();
 
-        customerMovement.SetDestination(customerMovement.AreasPos["MarketExit"]); 
+        paymentLines.AddCustomerToLine(gameObject, paymentAreaPos);
     }
 
     /// <summary>
@@ -33,9 +42,9 @@ public class GoHome : CustomerBaseState
     /// This methods checks for possible conditions to change the state, otherwise it continues the states actions.
     /// The possible transitions are:
     ///    1. Attacked Transition: If the customer is attacked, it changes to the Knocked state.
-    /// 
-    /// If the none of these conditions are met, this method checks if the customer has reached its destination, if so, the ExitMarket method is called,
-    /// to handle the customer's exit from the market.
+    ///    2. ProductPaid Transition: Calls the PayItem method when the customer reaches its destination to handle the payment process and then changes to the Go Home state.
+    ///    
+    /// If the none of these conditions are met, nothing happens until the customer reaches its destination or is attacked.
     /// </remarks>
     /// </summary>
     public override void Execute()
@@ -44,13 +53,17 @@ public class GoHome : CustomerBaseState
 
         if (customerMovement.WasAttacked)
         {
+            paymentLines.RemoveCustomer(gameObject, paymentAreaPos);
+
             fSM.ChangeState("Attacked");
             return;
         }
 
-        if (customerMovement.DestinationReached)
+        if (paymentLines.ReadyToPay(gameObject, paymentAreaPos))
         {
-            customerMovement.ExitMarket();
+            paymentLines.RemoveCustomer(gameObject, paymentAreaPos);
+            fSM.ChangeState("ReadyToPay");
+            return;
         }
     }
 

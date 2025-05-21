@@ -41,10 +41,10 @@ public class AnnoyingKidMovement : CustomerMovement
 
     /// <summary>
     /// The Run method is responsible for setting the annoying kid's destination to a random position in the market,
-    /// by calling the SetAgentDestination method with the GetRandomPos method as parameter.
+    /// by calling the SetDestination method with the GetRandomPos method as parameter.
     /// </summary>
     public void Run()
     {
-        SetAgentDestination(GetRandomPos());
+        SetDestination(GetRandomPos());
     }
 }

@@ -36,7 +36,7 @@ public class Steal : CustomerBaseState
     {
         base.Enter();
 
-        customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+        customerMovement.SetDestination(customerMovement.AreasPos["Product"]);
     }
 
     /// <summary>

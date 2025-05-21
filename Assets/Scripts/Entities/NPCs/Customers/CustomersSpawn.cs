@@ -34,12 +34,17 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// <summary>
     /// The MarketProductsList attribute represents the products in the market.
     /// </summary>
-    private List<GameObject> MarketProductsList = new ();
+    private List<GameObject> MarketProductsList = new();
 
     /// <summary>
     /// The paymentAreas attribute represents the payment areas in the market.
     /// </summary>
     private GameObject[] paymentAreas;
+
+    /// <summary>
+    /// The customersCount attribute stores the prefabs of the customers and their spawn probabilities.
+    /// </summary>
+    private List<KeyValuePair<GameObject, float>> customersSpawnProbs;
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
@@ -53,6 +58,15 @@ public class CustomersSpawn : MonoBehaviour, IObserver
            .ToList();
 
         paymentAreas = Utils.GetChildren(paymentAreasTransform);
+    }
+
+    /// <summary>
+    /// The Start method is called before the first frame update (Unity Callback).
+    /// In this method, the customers spawn probabilities are set by calling the SetCustomersProbs method.
+    /// </summary>
+    private void Start()
+    {
+        SetCustomersProbs();
     }
 
     /// <summary>
@@ -71,6 +85,29 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     }
 
     /// <summary>
+    /// The SetCustomersProbs method is responsible for setting the spawn probabilities of the customers stereotypes.
+    /// </summary>
+    /// <remarks>
+    /// It retrieves the spawn probabilities from the PlayerPrefs and calculates the normal customer spawn probability by subtracting the sum of the other customers spawn probabilities from 1.
+    /// Then creates a list of KeyValuePair with the customer prefab and its spawn probability.
+    /// </remarks>
+    private void SetCustomersProbs()
+    {
+        float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
+        float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
+        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
+
+        customersSpawnProbs = new()
+        {
+           new KeyValuePair<GameObject, float>(karenPrefab, karenSpawnProb),
+           new KeyValuePair<GameObject, float>(annoyingKidPrefab, annoyinKidSpawnProb),
+           new KeyValuePair<GameObject, float>(normalCustomerPrefab, normalCustomerSpawnProb),
+        };
+
+        customersSpawnProbs.OrderBy(customersSpawnProb => customersSpawnProb.Value);
+    }
+
+    /// <summary>
     ///The SpawnCustomer method is responsible for spawning the customers in the market.
     /// </summary>
     /// <remarks>
@@ -83,8 +120,17 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     // to notify when the customer exits the market.
     /// </remarks>
     private void SpawnCustomer()
-    {         
-        GameObject customer =  Instantiate(GetTypeOfCustomer(), GetCustomerPos(), Quaternion.identity);
+    {   
+
+        GameObject customerStreotype = GetTypeOfCustomer();
+
+        // To avoid a bug that for some reason returns null the method above
+        if (customerStreotype == null)
+        {
+            customerStreotype = normalCustomerPrefab;
+        }
+
+        GameObject customer = Instantiate(customerStreotype, GetCustomerPos(), Quaternion.identity);
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
@@ -114,43 +160,25 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </summary>
     /// <remarks>
     /// This method works as follows:
-    ///   1. Starts by getting the spawn probabilities of the customers stereotypes from the PlayerPrefs.
-    ///   2. It calculates the normal customer spawn probability by subtracting the sum of the other customers spawn probabilities from 1.
-    ///   3. Checks if stereotype probabilities are valid (sum <= 1).
-    ///   4. Creates a list of KeyValuePair with the customer prefab and its spawn probability.
-    ///   5. Generates a random value between 0 and 1.
-    ///   6. Iterates through the list of customers and their spawn probabilities, checking if the random value is less than or equal to the spawn probability.
-    ///   7. If it finds a match, it returns the corresponding customer prefab, otherwise returns the hightest probability prefab from the list.
-    ///  
+    ///   1. Generates a random value between 0 and 1.
+    ///   2. Iterates through the list of customers and their spawn probabilities, checking if the random value is less than or equal to the spawn probability.
+    ///   3. If it finds a match, it returns the corresponding customer prefab, otherwise returns the hightest probability prefab from the list.
     /// </remarks>
     /// <returns> A prefab of a customer to spawn</returns>
     private GameObject GetTypeOfCustomer()
     {
-        float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
-        float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
-        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
-
-
-        List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
-        {
-           new KeyValuePair<GameObject, float>(karenPrefab, karenSpawnProb),
-           new KeyValuePair<GameObject, float>(annoyingKidPrefab, annoyinKidSpawnProb),
-           new KeyValuePair<GameObject, float>(normalCustomerPrefab, normalCustomerSpawnProb),
-        };
-
-        customersSpawnProbs.OrderBy(customersSpawnProb => customersSpawnProb.Value);
-
         float randomValue = Utils.RandomFloat(0f, 1f);
 
         foreach (KeyValuePair<GameObject, float> customerSpawnProb in customersSpawnProbs)
-        {    
-            if (randomValue <= customerSpawnProb.Value) { 
+        {
+            if (randomValue <= customerSpawnProb.Value) {
                 return customerSpawnProb.Key;
             }
         }
 
         return customersSpawnProbs[^1].Key;
-}
+    }
+
 
     /// <summary>
     /// The GetCustomerPos method is responsible for getting a random position in the spawn area (plane).

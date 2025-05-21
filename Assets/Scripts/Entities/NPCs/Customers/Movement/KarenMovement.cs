@@ -56,7 +56,7 @@ public class KarenMovement : CustomerMovement
 
         if (oldPlayerPos == Vector3.zero || Vector3.Distance(oldPlayerPos, playerPos) > tresholdToResetChase)
         {
-            SetAgentDestination(playerPos);
+            SetDestination(playerPos);
             oldPlayerPos = playerPos;
         }
     }

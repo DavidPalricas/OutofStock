@@ -25,7 +25,6 @@ public class Shopping : CustomerBaseState
     {   
         base.Awake();
         StateName = GetType().Name;
-        timer = 0f;
     }
 
     /// <summary>
@@ -43,7 +42,9 @@ public class Shopping : CustomerBaseState
             return;
         }
 
-        customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+        customerMovement.SetDestination(customerMovement.AreasPos["Product"]);
+
+        timer = 0f;
     }
 
     /// <summary>

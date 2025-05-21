@@ -4013,8 +4013,8 @@ Transform:
   m_GameObject: {fileID: 559834891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.18, y: 0, z: 16.87}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.5}
+  m_LocalPosition: {x: -7.1800003, y: 0, z: 17.87}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1407138458}
@@ -5360,6 +5360,10 @@ PrefabInstance:
       value: CustomerSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 3103284366580412112, guid: c4d9b01b56dc00e45abf2d73c8034a1e, type: 3}
+      propertyPath: maxCustomersInMarket
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103284366580412112, guid: c4d9b01b56dc00e45abf2d73c8034a1e, type: 3}
       propertyPath: paymentAreasTransform
       value: 
       objectReference: {fileID: 1407138458}
@@ -6572,7 +6576,7 @@ MonoBehaviour:
   dayText: {fileID: 4883508059226127671}
   timeText: {fileID: 4883508059226127670}
   timeSlider: {fileID: 1174281294}
-  sliderSpeed: 5
+  timeSliderSpeed: 5
 --- !u!1 &1044878106
 GameObject:
   m_ObjectHideFlags: 0
@@ -9029,9 +9033,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407138458}
+  - component: {fileID: 1407138459}
   m_Layer: 0
   m_Name: PaymentAreas
-  m_TagString: Untagged
+  m_TagString: PaymentLines
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9053,6 +9058,19 @@ Transform:
   - {fileID: 559834892}
   m_Father: {fileID: 1628482126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1407138459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407138457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796c8b2106bb2a34ca450569160c551c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paymentArea1Transform: {fileID: 1451397424}
 --- !u!1 &1436435344
 GameObject:
   m_ObjectHideFlags: 0
@@ -9206,8 +9224,8 @@ Transform:
   m_GameObject: {fileID: 1451397423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.345, y: 0, z: 17.297}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.5}
+  m_LocalPosition: {x: -12.345, y: 0, z: 17.87}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1407138458}
@@ -24916,8 +24934,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8514093232553443937, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
+      propertyPath: days.Array.data[0].karenSpawnProb
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514093232553443937, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
       propertyPath: days.Array.data[0].customersToSend
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514093232553443937, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
+      propertyPath: days.Array.data[0].annoyingKidSpawnProb
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

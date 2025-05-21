@@ -16,14 +16,20 @@ public class NPCMovement : MonoBehaviour
     /// <summary>
     /// The destinationoffset attribute represents a offset from the NPC destination 
     /// </summary>
-    protected const float DESTINATION_OFFSET = 1.5f;
+    private const float DESTINATION_OFFSET = 0.5f;
 
     /// <summary>
     /// The currentTargetPos attribute represents the current target position of the NPC
     /// </summary>
     protected Vector3 currentTargetPos;
 
-    public bool DestinationReached { get; protected set; } = false;
+    /// <summary>
+    /// The DestinationReached attribute is a flag that indicates whether the NPC has reached its destination or not.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if [destination reached]; otherwise, <c>false</c>.
+    /// </value>
+    public bool DestinationReached { get; private set; } = false;
 
   
     /// <summary>
@@ -31,8 +37,8 @@ public class NPCMovement : MonoBehaviour
     /// In this method, we are checking if the NPC has reached its destination, if so, the ReachDestination method is called.
     /// </summary>
     private void Update()
-    {
-        if (IsAgentEnabled() && !agent.isStopped && agent.remainingDistance <= DESTINATION_OFFSET)
+    {   
+        if (IsAgentEnabled() && !agent.pathPending && !agent.isStopped && agent.remainingDistance <= DESTINATION_OFFSET)
         {
             agent.isStopped = true;
             DestinationReached = true;
@@ -40,17 +46,17 @@ public class NPCMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// The SetAgentDestination method is responsible for setting the agent destination.
+    /// The SetDestination method is responsible for setting the agent destination.
     /// Its implementation is defined in the child classes.
     /// </summary>
-    public virtual void SetAgentDestination(Vector3 destination) {
+    public virtual void SetDestination(Vector3 destination) {
 
         if (agent.isOnNavMesh)
-        {
+        {   
             DestinationReached = false;
+            agent.isStopped = false;
 
             agent.SetDestination(destination);
-            agent.isStopped = false;
         }
     }
 

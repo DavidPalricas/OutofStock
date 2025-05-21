@@ -56,21 +56,20 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     }
 
     /// <summary>
-    /// The SetAgentDestination method is responsible for setting the agent destination and enabling its movement.
+    /// The SetDestination method is responsible for setting the agent destination and enabling its movement.
     /// The destination can be the pick item area, the payment area, or the market exit area, dpeending on the current state of the customer.
-    /// This method overrides the <see cref="NPCMovement.SetAgentDestination"/> method from the <see cref="NPCMovement"/> class.
+    /// This method overrides the <see cref="NPCMovement.SetDestination"/> method from the <see cref="NPCMovement"/> class.
     /// </summary>
-    public override void SetAgentDestination(Vector3 destination)
+    public override void SetDestination(Vector3 destination)
     {
         if (AreasPos["Product"] == Vector3.zero)
         {
-            agent.SetDestination(AreasPos["MarketExit"]);
+           Destroy(gameObject);
 
-            Debug.LogWarning("The item " + TargetItem.name + "does not have a pickItem Area");
             return;
         }
 
-        base.SetAgentDestination(destination);
+        base.SetDestination(destination);
     }
 
     /// <summary>

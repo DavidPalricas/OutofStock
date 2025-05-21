@@ -14,7 +14,7 @@ public class Office: ManagerState
     {
         base.Enter();
 
-        movement.SetAgentDestination(movement.ManagerOffice);
+        movement.SetDestination(movement.ManagerOffice);
     }
 
     public override void Execute()

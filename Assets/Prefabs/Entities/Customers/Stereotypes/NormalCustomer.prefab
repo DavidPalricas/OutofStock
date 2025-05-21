@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3473760308147473549}
   - component: {fileID: 4261712987010149697}
   - component: {fileID: 8851329125210948687}
-  - component: {fileID: 5761002168115495589}
+  - component: {fileID: 8534848397120600672}
   - component: {fileID: 9066151018471758210}
   - component: {fileID: 3105596090923455940}
   - component: {fileID: 5145648033257922928}
@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 6005602209483936697}
   - component: {fileID: 2769351854970881968}
   - component: {fileID: 5233630861350326501}
+  - component: {fileID: 6786900972437590673}
   m_Layer: 6
   m_Name: NormalCustomer
   m_TagString: Customer
@@ -142,7 +143,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
 --- !u!54 &8851329125210948687
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,14 +171,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &5761002168115495589
+--- !u!114 &8534848397120600672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2612030879575213846}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1b34b396ae723940baacc04550ce79a, type: 3}
   m_Name: 
@@ -201,6 +202,7 @@ MonoBehaviour:
   - {fileID: 3296232279862184878}
   - {fileID: 6005602209483936697}
   - {fileID: 2769351854970881968}
+  - {fileID: 6786900972437590673}
   transitions:
   - name: ProductPicked
     from: {fileID: 3105596090923455940}
@@ -226,6 +228,12 @@ MonoBehaviour:
   - name: ProductNotFound
     from: {fileID: 3105596090923455940}
     to: {fileID: 6005602209483936697}
+  - name: WaitToPay
+    from: {fileID: 5145648033257922928}
+    to: {fileID: 6786900972437590673}
+  - name: ReadyToPay
+    from: {fileID: 6786900972437590673}
+    to: {fileID: 5145648033257922928}
 --- !u!114 &3105596090923455940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,8 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9443fbd2ce6d12b4aa0adddbf4f2761b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToPay: 5
-  maxTimeToPay: 10
+  minTimeToPay: 3
+  maxTimeToPay: 5
 --- !u!114 &3296232279862184878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +311,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebb80ea433de9914faa70c86406a2d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6786900972437590673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612030879575213846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88108352b64c7f488f9d5a34bc260da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &254396744032765512
