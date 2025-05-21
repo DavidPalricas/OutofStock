@@ -128,14 +128,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     {
         float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
         float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
-        float normalCustomerSpawnProb = 1 - (karenSpawnProb + annoyinKidSpawnProb);
+        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
 
-        // The probs of the other customers are wrong the sum of the spawn probabilities is greater than 1
-        if (normalCustomerSpawnProb < 0f)
-        {
-            Debug.LogError("The sum of customer stereotype spawn probabilities exceeds 1.");
-            return null;
-        }
 
         List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
         {

@@ -75,7 +75,7 @@ public class FSM : MonoBehaviour
             }
         }
 
-        Debug.LogWarning($"Transition {transitionName} not found for customer {gameObject.name}, from {CurrentState.stateName}");
+        Debug.LogWarning($"Transition {transitionName} not found for customer {gameObject.name}, from {CurrentState.StateName}");
     }
 }
 
@@ -115,9 +115,12 @@ public abstract class State : MonoBehaviour
     protected FSM fSM;
 
     /// <summary>
-    /// The stateName attribute is the name of the state.
+    /// The StateName attribute is the name of the state.
     /// </summary>
-    public string stateName;
+    /// <value>
+    /// The name of the state.
+    /// </value>
+    public string StateName {get; protected set; }
 
     /// <summary>
     /// The Enter method is called when the state is entered, to handle its initial actions.
