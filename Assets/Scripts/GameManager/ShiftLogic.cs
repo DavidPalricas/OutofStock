@@ -90,7 +90,9 @@ public class ShiftLogic : MonoBehaviour
         day = PlayerPrefs.GetString("CurrentDay", "Mon");
 
         startHour = (int) PlayerPrefs.GetFloat("StartHour", 0);
-
+        
+        // Unpauses the game if it is pause
+        Time.timeScale = 1;
         SetGameTime();
     }
 

@@ -54,9 +54,10 @@ public class PauseMenu : MonoBehaviour
     /// <summary>
     /// The PauseResume method is responsible for pausing or resuming the game, and activating or deactivating the cursor visibility and lock state.
     /// </summary>
-    private void PauseResume()
-    {
-
+    
+    // Note : This method is public because is called from a button in the UI Pause Menu.
+    public void PauseResume()
+    { 
         isPaused = !isPaused;
         pauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The CustomersSpawn class is responsible for spawning the customers in the market, simulating the customers entering the market.
@@ -83,8 +84,10 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     // to notify when the customer exits the market.
     /// </remarks>
     private void SpawnCustomer()
-    {         
-        GameObject customer =  Instantiate(GetTypeOfCustomer(), GetCustomerPos(), Quaternion.identity);
+    {   
+        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefab;
+
+        GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 

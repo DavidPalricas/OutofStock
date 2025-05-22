@@ -1,4 +1,6 @@
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The Item class is responsible for representing an item in the supermarket.
@@ -37,7 +39,10 @@ public class Item : MonoBehaviour, IEventDispatcher
     {
         rB = GetComponent<Rigidbody>();
 
-        Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>(), true);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>(), true);
+        }
     }
 
     /// <summary>

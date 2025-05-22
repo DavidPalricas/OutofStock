@@ -8737,6 +8737,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277188524}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1282864963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+  m_PrefabInstance: {fileID: 443416009}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa2d77f1157df84b807d9a90fbf3a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1285194953
 GameObject:
   m_ObjectHideFlags: 0
@@ -13927,7 +13938,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2095276405}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1282864963}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: PauseResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2095276405
 MonoBehaviour:
   m_ObjectHideFlags: 0
