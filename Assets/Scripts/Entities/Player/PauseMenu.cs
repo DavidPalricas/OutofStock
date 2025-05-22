@@ -1,37 +1,59 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The PauseMenu class is responsible for managing the player activing or deactivating the pause menu.
+/// </summary>
 public class PauseMenu : MonoBehaviour
 {
-
-    private bool isPaused = false;
-
+    /// <summary>
+    /// The pauseActionReference attribute is used to reference the pause action from the InputActionAsset.
+    /// </summary>
     [SerializeField]
     private InputActionReference pauseActionReference;
 
+    /// <summary>
+    /// The pauseMenu attribute is used to reference the pause menu GameObject.
+    /// </summary>
     [SerializeField]
     private GameObject pauseMenu;
 
+    /// <summary>
+    /// The isPaused atribute is used to check if the game is paused or not.
+    /// </summary>
+    private bool isPaused = false;
+
+    /// <summary>
+    /// The firstPersonController attribute is used to reference the FirstPersonController (Player Controller) component.
+    /// </summary>
     private FirstPersonController firstPersonController;
 
+
+    /// <summary>
+    ///The Awake Method is called when the script instance is being loaded (Unity callback).
+    ///In this method the firstPersonController atributed is initialized.
+    /// </summary>
     private void Awake()
     {
         firstPersonController = GetComponent<FirstPersonController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// The Update method is called once per frame (Unity callback).
+    /// In this method the pauseActionReference is checked to see if it was triggered and if so, the PauseResume method is called, to handle the 
+    /// ã
+    /// </summary>
+    private void Update()
     {
-
         if (pauseActionReference.action.triggered)
         {
-
             PauseResume();
-
         }
-        
     }
 
+    /// <summary>
+    /// The PauseResume method is responsible for pausing or resuming the game, and activating or deactivating the cursor visibility and lock state.
+    /// </summary>
     private void PauseResume()
     {
 
@@ -39,6 +61,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
         HandlingInput(isPaused);
+
+        Cursor.visible = isPaused;
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     /// <summary>
