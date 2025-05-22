@@ -6790,7 +6790,7 @@ MonoBehaviour:
   dayText: {fileID: 4883508059226127671}
   timeText: {fileID: 4883508059226127670}
   timeSlider: {fileID: 1174281294}
-  timeSliderSpeed: 0
+  timeSliderSpeed: 5
 --- !u!1 &1044878106
 GameObject:
   m_ObjectHideFlags: 0

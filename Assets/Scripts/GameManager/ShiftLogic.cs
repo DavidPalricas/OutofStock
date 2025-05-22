@@ -80,8 +80,8 @@ public class ShiftLogic : MonoBehaviour
     };
 
     /// <summary>
-    /// The Awake method is called when the script instance is being loaded. (Unity Callback)
-    /// In this method, the game time properties are initillizaized and the game time is set (SetGameTime method).
+    /// The Start method is called on the frame when a script is enabled just before any of the Update methods are called the first time (Unity Callback).
+    /// This method initializes the game time and sets the initial day and time in the game.
     /// </summary>
     private void Start()
     {   
@@ -96,7 +96,7 @@ public class ShiftLogic : MonoBehaviour
 
     /// <summary>
     /// The Update method is called every frame. (Unity Callback)
-    /// In this method, the game time UI is updated every game minute.
+    /// In this method, the game time UI is updated every 10  game minutes.
     /// </summary>
     private void Update()
     {
@@ -105,7 +105,12 @@ public class ShiftLogic : MonoBehaviour
         {
             currentGameMinutes++;
             timer += gameMinuteInSecondsIRL;
-            UpdateTimeUI();
+
+            // Checks if 10 game minutes have passed
+            if (currentGameMinutes % 10 == 0)
+            {
+                UpdateTimeUI();
+            }
         }
     }
 
@@ -157,7 +162,6 @@ public class ShiftLogic : MonoBehaviour
         int shiftDuration = (int)PlayerPrefs.GetFloat("ShiftDuration");
 
         float targetSliderValue = (float) workTime / shiftDuration ;
-
 
         if (timeSlider.value != targetSliderValue)
         {
