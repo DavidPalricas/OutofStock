@@ -5361,7 +5361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3103284366580412112, guid: c4d9b01b56dc00e45abf2d73c8034a1e, type: 3}
       propertyPath: maxCustomersInMarket
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3103284366580412112, guid: c4d9b01b56dc00e45abf2d73c8034a1e, type: 3}
       propertyPath: paymentAreasTransform

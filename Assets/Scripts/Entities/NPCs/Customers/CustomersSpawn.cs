@@ -95,6 +95,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     {
         float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
         float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
+
         float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
 
         customersSpawnProbs = new()
@@ -121,7 +122,6 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </remarks>
     private void SpawnCustomer()
     {   
-
         GameObject customerStreotype = GetTypeOfCustomer();
 
         // To avoid a bug that for some reason returns null the method above

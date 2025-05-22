@@ -16,7 +16,7 @@ public class NPCMovement : MonoBehaviour
     /// <summary>
     /// The destinationoffset attribute represents a offset from the NPC destination 
     /// </summary>
-    private const float DESTINATION_OFFSET = 0.5f;
+    private const float DESTINATION_OFFSET = 1.5f;
 
     /// <summary>
     /// The currentTargetPos attribute represents the current target position of the NPC

@@ -1,28 +1,22 @@
 using UnityEngine;
-
 /// <summary>
 ///  The Pay class is responsible for handling the payment state of the customer.
 ///  This state is exclusively for the Normal Customer Stereotype.
 /// </summary>
 public class Pay : CustomerBaseState
-{   
+{
     /// <summary>
     /// The minimumTimeToPay and maximumTimeToPay attributes are the time that the customer will take to pay for the product.
     /// </summary>
-    [SerializeField] 
+    [SerializeField]
     private float minTimeToPay, maxTimeToPay;
-
     /// <summary>
     /// The timer attribute is used to store the time when the customer started paying for the product.
     /// </summary>
     private float timer;
-
-
     private PaymentLines paymentLines;
-
-
     private bool isPaying = false;
-
+    private bool isInPaymentLine = false;
     private Vector3 paymentAreaPos;
 
     /// <summary>
@@ -33,16 +27,14 @@ public class Pay : CustomerBaseState
     {
         base.Awake();
         StateName = GetType().Name;
-
         paymentLines = GameObject.FindGameObjectWithTag("PaymentLines").GetComponent<PaymentLines>();
     }
-
 
     private void Start()
     {
         paymentAreaPos = customerMovement.AreasPos["Payment"];
     }
-    
+
     /// <summary>
     /// The Enter method is called when the state is entered.
     /// It calls the base class Enter method and sets the customer destination to the payment area.
@@ -50,8 +42,9 @@ public class Pay : CustomerBaseState
     public override void Enter()
     {
         base.Enter();
-        customerMovement.SetDestination(customerMovement.AreasPos["Payment"]);
-
+        // Não definimos destino logo aqui, primeiro verificamos a fila
+        isPaying = false;
+        isInPaymentLine = false;
         timer = 0f;
     }
 
@@ -71,33 +64,43 @@ public class Pay : CustomerBaseState
     {
         base.Execute();
 
+        // Verifica se foi atacado
         if (customerMovement.WasAttacked)
         {
             fSM.ChangeState("Attacked");
-
             return;
         }
 
-        if (!isPaying && !paymentLines.IsLineEmpty(paymentAreaPos))
+        // Se ainda não entrou na fila
+        if (!isInPaymentLine)
         {
-            fSM.ChangeState("WaitToPay");
+            // Verifica se a fila não está vazia, se não estiver, muda para o estado de espera
+            if (!paymentLines.IsLineEmpty(paymentAreaPos))
+            {
+                fSM.ChangeState("WaitToPay");
+                return;
+            }
 
-            return;
+            // Se a fila estiver vazia, adiciona-se à fila e marca como na fila
+            paymentLines.AddCustomerToLine(gameObject, paymentAreaPos);
+            isInPaymentLine = true;
+            // Não precisamos definir destino, AddCustomerToLine já faz isso
         }
 
-        if (customerMovement.DestinationReached)
-        {    
-            if (timer == 0f)
-            {
-                paymentLines.AddCustomerToLine(gameObject, paymentAreaPos);
-                isPaying = true;
-                timer = Time.time + Utils.RandomFloat(minTimeToPay, maxTimeToPay);
-            }
-            else if (Time.time >= timer)
-            {
-                paymentLines.CustomerPaid(paymentAreaPos);
-                fSM.ChangeState("ProductPaid");
-            }
+        // Verifica se é o cliente da frente e pode pagar
+        if (!isPaying && paymentLines.ReadyToPay(gameObject, paymentAreaPos) && customerMovement.DestinationReached)
+        {
+            // Inicia o pagamento
+            isPaying = true;
+            timer = Time.time + Utils.RandomFloat(minTimeToPay, maxTimeToPay);
+            Debug.Log($"Cliente {gameObject.name} iniciando pagamento. Tempo estimado: {timer - Time.time:F1}s");
+        }
+
+        // Se está pagando e o tempo de pagamento acabou
+        if (isPaying && Time.time >= timer)
+        {
+            paymentLines.CustomerPaid(paymentAreaPos);
+            fSM.ChangeState("ProductPaid");
         }
     }
 
@@ -108,7 +111,9 @@ public class Pay : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
-
         isPaying = false;
+
+        // Se o cliente saiu do estado sem pagar (foi para WaitToPay por exemplo)
+        // não precisamos remover da fila, pois ele continuará nela
     }
 }
