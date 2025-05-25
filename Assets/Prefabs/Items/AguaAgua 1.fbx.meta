@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5701c47c37dfd764082ff791380d877d
+guid: 19ad01ee975e63f4995ba62b203daf94
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Plastico
-    second: {fileID: 2100000, guid: 381a613ffc583894490afd9625741189, type: 2}
+    second: {fileID: 2100000, guid: c3a19cc4ad69af04ba2e43a27689d663, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tampa
-    second: {fileID: 2100000, guid: cf55573e227392c4cb825d8826eb983a, type: 2}
+    second: {fileID: 2100000, guid: b45e30cfe7531f542b7c4342a73eb5d4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
