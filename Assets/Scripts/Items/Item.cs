@@ -23,6 +23,9 @@ public class Item : MonoBehaviour
     /// </value>
     public bool Grabbed { get; private set; } = false;
 
+    private Vector3 originalPos;
+
+    private bool positionChange = false;
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the rigidbody component is initialized.
@@ -30,6 +33,18 @@ public class Item : MonoBehaviour
     protected virtual void Awake()
     {
         rB = GetComponent<Rigidbody>();
+        originalPos = transform.position;
+
+    }
+
+    private void Update()
+    {
+        if (originalPos != transform.position)
+        {
+            positionChange = true;
+            rB.isKinematic = false;
+
+        } 
     }
 
     /// <summary>
@@ -48,6 +63,12 @@ public class Item : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Item");
             thrown = false;
+        }
+
+        if (positionChange)
+        {
+            rB.isKinematic = true;
+            positionChange = false;
         }
     }
 
