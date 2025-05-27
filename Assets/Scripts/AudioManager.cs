@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip taskDoneSFX, paymentSFX;
 
     [Header("---------- Audio Clips Game -------------")]
-    public AudioClip customerAttackedSFX, thiefAlertSFX, karenComplainingSFX, karenDeafeatSFX;
+    public AudioClip customerAttackedSFX, thiefAlertSFX, karenDeafeatSFX;
+
+    public List<AudioClip> karenComplainingSFX;
 
     // private float musicPauseTime = 0f;
 
@@ -25,20 +28,18 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Método para tocar o efeito sonoro
+    // Mï¿½todo para tocar o efeito sonoro
     public void PlaySFX(AudioClip clip)
     {
-        /*  Attack Sounds
-        if (clip == playerAttack || clip == spiderAttack || clip == skeletonAttack || clip == bossAttack)
+        if (clip == customerAttackedSFX)
         {
             SFXSource.pitch = Utils.RandomFloat(1.0f, 1.5f);
         }
-        */
-
+        
         SFXSource.PlayOneShot(clip);
     }
 
-    // Método para tocar a música (se necessário)
+    // Mï¿½todo para tocar a mï¿½sica (se necessï¿½rio)
     public void PlayMusic(AudioClip clip)
     {
         musicSource.clip = clip;
@@ -51,13 +52,13 @@ public class AudioManager : MonoBehaviour
     {
         if (musicSource.isPlaying && musicSource.clip == clip)
         {
-            musicPauseTime = musicSource.time;
+            //musicPauseTime = musicSource.time;
             musicSource.Pause();
         }
         else if (!musicSource.isPlaying && musicSource.clip == clip)
         {
             musicSource.clip = clip;
-            musicPauseTime = 0f;
+            //musicPauseTime = 0f;
             musicSource.Play();
         }
     }

@@ -67,7 +67,8 @@ public class Pay : CustomerBaseState
                 timer = Time.time + Utils.RandomFloat(minTimeToPay, maxTimeToPay);
             }
             else if (Time.time >= timer)
-            {
+            {   
+                Utils.PlaySoundEffect(Utils.SoundEffects.PAY);
                 fSM.ChangeState("ProductPaid");
             }
         }

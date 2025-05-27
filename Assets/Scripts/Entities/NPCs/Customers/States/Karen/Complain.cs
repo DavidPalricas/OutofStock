@@ -118,7 +118,7 @@ public class Complain : CustomerBaseState
     /// </remarks>
     private void Complaining()
     {   
-        Debug.Log("Complaining to player");
+        Utils.PlaySoundEffect(Utils.SoundEffects.KAREN_COMPLAINNING);
         complainingCounter++;
     }
 }
