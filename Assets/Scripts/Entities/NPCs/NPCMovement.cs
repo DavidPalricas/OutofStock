@@ -32,7 +32,7 @@ public class NPCMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (IsAgentEnabled() && !agent.isStopped && agent.remainingDistance <= DESTINATION_OFFSET)
+        if (IsAgentEnabled()  && !agent.pathPending &&  !agent.isStopped && agent.remainingDistance <= DESTINATION_OFFSET)
         {
             agent.isStopped = true;
             DestinationReached = true;

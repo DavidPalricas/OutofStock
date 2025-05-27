@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -13,6 +14,18 @@ public class WinConditions : MonoBehaviour, IEventListener
     private int customersHitted = 0, tasksCompleted = 0, maxCustomersHitted, tasksToComplete;
 
     /// <summary>
+    /// The customerHittedTextsUI attribute is used to store a reference to the TextMeshProUGUI component that displays the number of customers hitted in the UI.
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI customerHittedTextsUI;
+
+    /// <summary>
+    /// The customerHittedPanel attribute is used to store a reference to the GameObject that displays the number of customers hitted in the UI.
+    /// </summary>
+    [SerializeField]
+    private GameObject customerHittedPanel;
+
+    /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the maxCustomersHitted and tasksToComplete attributes are initialized with the values stored in PlayerPrefs.
     /// </summary>
@@ -20,6 +33,8 @@ public class WinConditions : MonoBehaviour, IEventListener
     {
         maxCustomersHitted = PlayerPrefs.GetInt("CustomersToSend");
         tasksToComplete = PlayerPrefs.GetInt("NumberOfTasks");
+
+        customerHittedTextsUI.text = $"0 / {maxCustomersHitted}";
     }
 
     /// <summary>
@@ -35,9 +50,24 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// The CustomerHitted method is called when the "CustomerHitted" event is dispatched 
     /// and increments the customersHitted attribute.
     /// </summary>
+    /// <remarks>
+    /// This method also updates the number of customers hitted in the UI and checks if the player has reached the maximum number of customers hitted.
+    /// If the customer hitted reached the maximum number of customers hitted, it waits 3 seconds and hides the UI element, after that doesn't update the UI anymore.
+    /// </remarks>
     private void CustomerHitted()
-    {
+    {   
+        if(customersHitted >= maxCustomersHitted)
+        {
+            return;
+        }
+
         customersHitted++;
+        customerHittedTextsUI.text = $"{customersHitted} / {maxCustomersHitted}";
+
+        if (customersHitted == maxCustomersHitted)
+        {
+            StartCoroutine(Utils.WaitAndExecute(3f, () =>  customerHittedPanel.SetActive(false)));
+        }
     }
 
     /// <summary>

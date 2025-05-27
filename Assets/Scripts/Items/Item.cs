@@ -1,10 +1,18 @@
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The Item class is responsible for representing an item in the supermarket.
+/// And implements the IEventDispatcher interface to dispatch the event when a thrown product hits a customer (customer attacked event).
 /// </summary>
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IEventDispatcher
 {
+    /// <summary>
+    /// The customerHitted attribute is used to store the customer that was hit by the product.
+    /// </summary>
+    private GameObject customerHitted = null;
+
     /// <summary>
     /// The rb property is responsible for storing a reference to the rigidbody component of the item.
     /// </summary>
@@ -30,9 +38,15 @@ public class Item : MonoBehaviour
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the rigidbody component is initialized.
     /// </summary>
-    protected virtual void Awake()
+    private void Awake()
     {
         rB = GetComponent<Rigidbody>();
+
+
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>(), true);
+        }
         originalPos = transform.position;
 
     }
@@ -55,12 +69,26 @@ public class Item : MonoBehaviour
     /// to be rendered by the main camera instead of the camera that renders 
     /// the product grabbed by the player.
     /// After that, the wasThrown flag is set to false.
+    /// 
+    /// This method also checks if the item is thrown and collided with a customer, 
+    /// If these conditions are met the attack event is triggered (called in the DispatchEvents method).
     /// </remarks>
     /// <param name="collision">The collision.</param>
-    protected virtual void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (thrown)
-        {
+        {   
+            Debug.Log("Item collided with: " + collision.gameObject.tag);
+            if (collision.gameObject.CompareTag("Customer"))
+            {
+                // Checks if product collided with the customer or its extra collider that is used to block entities collisions
+                customerHitted = collision.gameObject.GetComponent<CustomerMovement>() != null ? collision.gameObject : collision.gameObject.transform.parent.gameObject;
+
+                DispatchEvents();
+
+                return;
+            }
+
             gameObject.layer = LayerMask.NameToLayer("Item");
             thrown = false;
         }
@@ -82,7 +110,7 @@ public class Item : MonoBehaviour
     /// and instead renders it through a dedicated camera. This ensures the prodcut appears in front of
     /// any objects between the player and the item, solving rendering issues like z-fighting or clipping.
     /// </remarks>
-    public void WasGrabbed()
+    public virtual void WasGrabbed()
     {
         GetComponent<Collider>().isTrigger = true;
 
@@ -118,5 +146,14 @@ public class Item : MonoBehaviour
         rB.AddForce(playerFowardDir * THROWFORCE, ForceMode.Impulse);
 
         thrown = true;
+    }
+
+    /// <summary>
+    /// The DispatchEvents method is used to dispatch one or more events.
+    /// It notifies the event manager when a product is thrown and hits a customer.
+    /// </summary>
+    public void DispatchEvents()
+    {
+        EventManager.GetInstance().OnCustomerAttacked(customerHitted);
     }
 }
