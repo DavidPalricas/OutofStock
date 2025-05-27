@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The CustomersSpawn class is responsible for spawning the customers in the market, simulating the customers entering the market.
@@ -83,8 +84,10 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     // to notify when the customer exits the market.
     /// </remarks>
     private void SpawnCustomer()
-    {         
-        GameObject customer =  Instantiate(GetTypeOfCustomer(), GetCustomerPos(), Quaternion.identity);
+    {   
+        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefab;
+
+        GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
@@ -128,14 +131,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     {
         float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
         float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
-        float normalCustomerSpawnProb = 1 - (karenSpawnProb + annoyinKidSpawnProb);
+        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
 
-        // The probs of the other customers are wrong the sum of the spawn probabilities is greater than 1
-        if (normalCustomerSpawnProb < 0f)
-        {
-            Debug.LogError("The sum of customer stereotype spawn probabilities exceeds 1.");
-            return null;
-        }
 
         List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
         {
