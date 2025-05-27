@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: -3590394059531417332, guid: 9b2d649f11f169641a3c7a805ef2e695, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 38f4590414f5a144eaa1db5f80c3f643, type: 2}
+      objectReference: {fileID: 2100000, guid: 78d318b3d5c16bf4687e8c840a91968a, type: 2}
     - target: {fileID: -2741657916699689275, guid: 9b2d649f11f169641a3c7a805ef2e695, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9b2d649f11f169641a3c7a805ef2e695, type: 3}
       propertyPath: m_Name
-      value: CervejaVidro
+      value: VidroCervejaPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9b2d649f11f169641a3c7a805ef2e695, type: 3}
       propertyPath: m_Layer

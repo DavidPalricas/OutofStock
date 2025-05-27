@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2195756051031050012
+--- !u!114 &-5731179655825156565
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: liquid
+  m_Name: Verde
   m_Shader: {fileID: -6465566751694194690, guid: ea88035e78969704c9ed4926acf17492, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -56,8 +56,7 @@ Material:
     - _WobbleZ: 0
     - _fill: 0
     m_Colors:
-    - _Cor: {r: 0, g: 0.16191228, b: 0.8301887, a: 0}
-    - _CorLiquido: {r: 0.02038604, g: 0.20154555, b: 0.86436826, a: 0}
-    - _CorSuperficie: {r: 0, g: 0.19607843, b: 0.78431374, a: 0}
+    - _CorLiquido: {r: 0.58081067, g: 0.6509434, b: 0.033775367, a: 0}
+    - _CorSuperficie: {r: 0.64339256, g: 0.6886792, b: 0.0032484946, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
