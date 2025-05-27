@@ -25,6 +25,8 @@ public class Knocked : CustomerBaseState
     public override void Enter()
     {
         base.Enter();
+        
+        Utils.PlaySoundEffect(Utils.SoundEffects.CUSTOMER_ATTACKED);
 
         GetComponent<KnockEntity>().Knock(gameObject, customerMovement.GetComponent<Rigidbody>(), transform.position);
     }

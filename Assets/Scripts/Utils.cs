@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 /// that can be used in different parts of this game.
 /// </summary>
 public static class Utils
-{
+{   
     /// <summary>
     /// The GetRandomSeed method is responsible for generating a random seed to be set in a random generator.
     /// The seed is generated based on the current OS time in milliseconds.
@@ -20,13 +20,20 @@ public static class Utils
         return Environment.TickCount;
     }
 
+
+    public enum SoundEffects{
+        CUSTOMER_ATTACKED,
+        PAY,
+        KAREN_COMPLAINNING
+    }
+
     /// <summary>
     /// The GetChildren method is responsible for retrieving the children of a game object.
     /// </summary>
     /// <param name="parent">The transform component of the game object whose children are to be retrieved.</param>
     /// <returns>The children of the specified game object.</returns>
     public static GameObject[] GetChildren(Transform parent)
-    {   
+    {
         GameObject[] children = new GameObject[parent.childCount];
 
         for (int i = 0; i < parent.childCount; i++)
@@ -51,7 +58,7 @@ public static class Utils
     /// <param name="max">The maximum integer value of the range specified .</param>
     /// <returns>A random integer between the specified range</returns>
     public static int RandomInt(int min, int max)
-    {   
+    {
         int seed = GetRandomSeed();
 
         UnityEngine.Random.InitState(seed);
@@ -168,11 +175,11 @@ public static class Utils
     /// </summary>
     public static void ExitGame()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                    Application.Quit();
-        #endif
+#else
+        Application.Quit();
+#endif
     }
 
     /// <summary>  
@@ -187,6 +194,36 @@ public static class Utils
         {
             playerInput.actions.LoadBindingOverridesFromJson(rebinds);
             playerInput.actions.Enable();
+        }
+    }
+
+
+    /// <summary>
+    /// The PlaySoundEffect method is resposinble for playing a sound effect in our game
+    /// </summary>
+    /// <param name="clipName">The name of the sounds'effect clip</param>
+    public static void PlaySoundEffect(SoundEffects clipName)
+    {
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
+        switch (clipName)
+        {
+            case SoundEffects.CUSTOMER_ATTACKED:
+                audioManager.PlaySFX(audioManager.customerAttackedSFX);
+                break;
+
+            case SoundEffects.PAY:
+                audioManager.PlaySFX(audioManager.paymentSFX);
+                break;
+
+            case SoundEffects.KAREN_COMPLAINNING:     
+                int randomSFXIndex = RandomInt(0, audioManager.karenComplainingSFX.Count);
+                
+                audioManager.PlaySFX(audioManager.karenComplainingSFX[randomSFXIndex]);
+                break;
+
+            default:
+                break;
         }
     }
 }
