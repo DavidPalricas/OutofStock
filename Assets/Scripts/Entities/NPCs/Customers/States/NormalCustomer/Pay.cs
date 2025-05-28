@@ -24,7 +24,7 @@ public class Pay : CustomerBaseState
     protected override void Awake()
     {
         base.Awake();
-        stateName = GetType().Name;
+        StateName = GetType().Name;
     
     }
 
@@ -67,7 +67,8 @@ public class Pay : CustomerBaseState
                 timer = Time.time + Utils.RandomFloat(minTimeToPay, maxTimeToPay);
             }
             else if (Time.time >= timer)
-            {
+            {   
+                Utils.PlaySoundEffect(Utils.SoundEffects.PAY);
                 fSM.ChangeState("ProductPaid");
             }
         }

@@ -13,7 +13,7 @@ public class Knocked : CustomerBaseState
     protected override void Awake()
     {
         base.Awake();
-        stateName = GetType().Name;
+        StateName = GetType().Name;
 
     }
 
@@ -25,6 +25,8 @@ public class Knocked : CustomerBaseState
     public override void Enter()
     {
         base.Enter();
+        
+        Utils.PlaySoundEffect(Utils.SoundEffects.CUSTOMER_ATTACKED);
 
         GetComponent<KnockEntity>().Knock(gameObject, customerMovement.GetComponent<Rigidbody>(), transform.position);
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +9,11 @@ using UnityEngine;
 /// </summary>
 public class MangerFov : MonoBehaviour
 {
+    /// <summary>
+    /// The strikesCounterUI attribute is used to store a reference to the TextMeshProUGUI component that displays the number of strikes in the UI.
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI strikesCounterUI;
     /// <summary>
     /// The strikes attribute is used to store the number of strikes the player has.
     /// </summary>
@@ -20,9 +26,9 @@ public class MangerFov : MonoBehaviour
     private LayerMask targetsMask, obstructionMask;
 
     /// <summary>
-    /// The VIEWDISTNACE constant is used to determine the maximum number of colliders that can be detected by raycasting
+    /// The VIEWDISTANCE and MAXSTRIKES attributes are used to store the maximum distance the manager can see and the maximum number of strikes the player can have, respectively.
     /// </summary>
-    private const int VIEWDISTANCE = 10;
+    private const int VIEWDISTANCE = 10, MAXSTRIKES = 3;
 
     /// <summary>
     /// The radius atribute is used to store the radius of the field of view of the manager.
@@ -74,13 +80,15 @@ public class MangerFov : MonoBehaviour
       // eventDispatcher = EventDispatcher.GetInstance();
        // eventDispatcher.AddListener("CustomerAttacked", this);
 
-      Player = GameObject.FindGameObjectWithTag("Player");
+       Player = GameObject.FindGameObjectWithTag("Player");
 
-      CustomersSeen = new List<GameObject>();
+       CustomersSeen = new List<GameObject>();
 
-      TargetsSeen = false;
+       TargetsSeen = false;
 
-      StartCoroutine(FovRoutine());
+       strikesCounterUI.text = $"0 / {MAXSTRIKES}";
+
+        StartCoroutine(FovRoutine());
     }
 
     /// <summary>
@@ -206,16 +214,13 @@ public class MangerFov : MonoBehaviour
             strikes++;
             EventManager.GetInstance().LastCustomerAttacked = null;
 
-            const int MAXSTRIKES = 3;
+            strikesCounterUI.text = $"{strikes} / {MAXSTRIKES}";
 
             if (strikes >= MAXSTRIKES)
-            {
-                Debug.Log("You're fired!");
+            {  
+               StartCoroutine(Utils.WaitAndExecute(3f, () => Utils.ExitGame()));
 
-                return;
             }
-
-            Debug.Log("Strike N� " + strikes);
         }
     }
 }

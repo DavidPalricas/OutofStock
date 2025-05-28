@@ -40,7 +40,7 @@ public class Complain : CustomerBaseState
     protected override void Awake()
     {
         base.Awake();
-        stateName = GetType().Name;
+        StateName = GetType().Name;
     }
 
     /// <summary>
@@ -118,7 +118,7 @@ public class Complain : CustomerBaseState
     /// </remarks>
     private void Complaining()
     {   
-        Debug.Log("Complaining to player");
+        Utils.PlaySoundEffect(Utils.SoundEffects.KAREN_COMPLAINNING);
         complainingCounter++;
     }
 }
