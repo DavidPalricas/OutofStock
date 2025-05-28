@@ -31,9 +31,6 @@ public class Item : MonoBehaviour, IEventDispatcher
     /// </value>
     public bool Grabbed { get; private set; } = false;
 
-    private Vector3 originalPos;
-
-    private bool positionChange = false;
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the rigidbody component is initialized.
@@ -42,23 +39,10 @@ public class Item : MonoBehaviour, IEventDispatcher
     {
         rB = GetComponent<Rigidbody>();
 
-
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>(), true);
         }
-        originalPos = transform.position;
-
-    }
-
-    private void Update()
-    {
-        if (originalPos != transform.position)
-        {
-            positionChange = true;
-            rB.isKinematic = false;
-
-        } 
     }
 
     /// <summary>
@@ -77,7 +61,7 @@ public class Item : MonoBehaviour, IEventDispatcher
     private void OnCollisionEnter(Collision collision)
     {
         if (thrown)
-        {   
+        {
             Debug.Log("Item collided with: " + collision.gameObject.tag);
             if (collision.gameObject.CompareTag("Customer"))
             {
@@ -91,12 +75,6 @@ public class Item : MonoBehaviour, IEventDispatcher
 
             gameObject.layer = LayerMask.NameToLayer("Item");
             thrown = false;
-        }
-
-        if (positionChange)
-        {
-            rB.isKinematic = true;
-            positionChange = false;
         }
     }
 
