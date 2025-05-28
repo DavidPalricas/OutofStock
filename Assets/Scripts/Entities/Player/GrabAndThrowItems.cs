@@ -80,7 +80,7 @@ public class GrabAndThrowItems : MonoBehaviour
     {
         Ray ray = Utils.CastRayFromUI(crosshair);
 
-        const float RAYCASTDISTANCE = 3f;
+        const float RAYCASTDISTANCE = 1f;
         LayerMask itemLayer = LayerMask.GetMask("Item");
 
         if (Physics.Raycast(ray, out RaycastHit playerRaycast, RAYCASTDISTANCE, itemLayer) )
