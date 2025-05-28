@@ -23,15 +23,6 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// </value>
     public GameObject TargetItem { get; set; }
 
-
-    /// <summary>
-    /// The WasAttacked attribute  is a flag that indicates whether the customer was attacked or not.
-    /// </summary>
-    /// <value>
-    ///   <c>true</c> if [was attacked]; otherwise, <c>false</c>.
-    /// </value>
-    public bool WasAttacked { get; set; } = false;
-
     /// <summary>
     /// The AreasPos attribute represents the positions of the areas in which 
     ///  the customer will move depending on its current state.
@@ -71,16 +62,6 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
         }
 
         base.SetAgentDestination(destination);
-    }
-
-    /// <summary>
-    /// The EnableOrDisableAgent method is responsible for enabling or disabling the agent.
-    /// </summary>
-    /// <param name="enable">A flag that indicates whether to enable the agent (<c>true</c>) or disable it (<c>false</c>).</param>
-    public void EnableOrDisanableAgent(bool enable)
-    {
-        agent.enabled = enable;
-
     }
 
     /// <summary>

@@ -13,11 +13,6 @@ public class KnockEntity : MonoBehaviour
     private readonly float fallingAnimDuration = 0.5f;
 
     /// <summary>
-    /// The standUpAnimDuration attribute is the duration of the stand up animation.
-    /// </summary>
-    private readonly float standUpAnimDuration = 0.8f;
-
-    /// <summary>
     /// The timeOnGround attribute is the time that the entity will stay on the ground before standing up.
     /// </summary>
     private readonly float timeOnGround = 1.5f;
@@ -31,6 +26,11 @@ public class KnockEntity : MonoBehaviour
     /// The fallRotationSpeed attribute is the speed of the rotation when the entity falls.
     /// </summary>
     private readonly float fallRotationSpeed = 360f;
+
+    /// <summary>
+    /// The standUpAnimDuration attribute is the duration of the stand up animation.
+    /// </summary>
+    private float standUpAnimDuration = 2f;
 
     /// <summary>
     /// The originalScale attribute is the original scale of the entity before the knock animation.
@@ -121,6 +121,12 @@ public class KnockEntity : MonoBehaviour
 
         float elapsedTime = 0f;
 
+
+        if (entity.CompareTag("Player"))
+        {
+            standUpAnimDuration = standUpAnimDuration / 2f;
+        }
+
         while (elapsedTime < standUpAnimDuration)
         {
             // Calculate normalized time (0 to 1)
@@ -162,19 +168,28 @@ public class KnockEntity : MonoBehaviour
         rb.isKinematic = false;
 
         if (entity.CompareTag("Player"))
-        {   
+        {
             entity.GetComponent<PlayerInput>().enabled = true;
             entity.GetComponent<FirstPersonController>().enabled = true;
         }
-
-        if (entity.CompareTag("Customer"))
+        else if (entity.CompareTag("Customer"))
         {
-            entity.GetComponent<CustomerMovement>().EnableOrDisanableAgent(true);
+            entity.GetComponent<NPCMovement>().EnableOrDisableAgent(true);
 
             /* Changes the state of the customer to "StandUp" after is standing up animation to change for the next state
                If the customer is a Karen it will change to the Attack Player state, otherwise it will change to the Go Home state.
             */
             entity.GetComponent<FSM>().ChangeState("StandUp");
+        }
+        else if (entity.CompareTag("Manager"))
+        {
+            entity.GetComponent<NPCMovement>().EnableOrDisableAgent(true);
+
+            bool isPatrolling = entity.GetComponent<ManagerMovement>().IsPatrolling;
+
+            string transitionName = isPatrolling ? "ContinuePatrolling" : "ContinueGoingToOffice";
+
+            entity.GetComponent<FSM>().ChangeState(transitionName);
         }
     }
 
@@ -188,10 +203,10 @@ public class KnockEntity : MonoBehaviour
     {
         originalScale = entity.transform.localScale;
 
-        if (entity.CompareTag("Customer"))
+        if (entity.CompareTag("Customer") || entity.CompareTag("Manager"))
         {
             // Disabeles the navmesh agent of the customer to prevent it from moving
-            entity.GetComponent<CustomerMovement>().EnableOrDisanableAgent(false);
+            entity.GetComponent<NPCMovement>().EnableOrDisableAgent(false);
         }
 
         // Make rigidbody kinematic to control movement through animation, to avoid physics interference

@@ -1,20 +1,18 @@
 using UnityEngine;
 
 /// <summary>
-/// The Knocked class is responsible for handling the knocked state of the customer.
+/// The KnockedState class is responsible for handling the knocked state of the NPCs (customers and Manager).
 /// This state is implemented for all customer stereotypes.
 /// </summary>
-public class Knocked : CustomerBaseState
+public class KnockedState : State
 {
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
-    /// It calls the base class Awake method and sets the stateName to the name of the current class.
+    //  It gets the name of the current class and sets it to the StateName property.
     /// </summary>
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         StateName = GetType().Name;
-
     }
 
     /// <summary>
@@ -25,10 +23,19 @@ public class Knocked : CustomerBaseState
     public override void Enter()
     {
         base.Enter();
-        
+
+        if (gameObject.CompareTag("Manager"))
+        {
+            GetComponent<StrikesSystem>().DispatchStrike(true);
+        }else if(gameObject.CompareTag("Customer") && gameObject.name.Contains("Karen"))
+        {   
+            // To increase the Karen's attacked numbers she must be attacked more than one time to leave the market
+            GetComponent<KarenMovement>().Attacked();
+        }
+
         Utils.PlaySoundEffect(Utils.SoundEffects.CUSTOMER_ATTACKED);
 
-        GetComponent<KnockEntity>().Knock(gameObject, customerMovement.GetComponent<Rigidbody>(), transform.position);
+        GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
     }
 
     /// <summary>
@@ -47,7 +54,8 @@ public class Knocked : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
-
-        customerMovement.WasAttacked = false;
+   
+        GetComponent<NPCMovement>().WasAttacked = false;
+        
     }
 }

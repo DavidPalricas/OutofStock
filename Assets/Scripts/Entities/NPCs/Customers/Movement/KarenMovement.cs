@@ -13,6 +13,12 @@ public class KarenMovement : CustomerMovement
     private float tresholdToResetChase, playerInRange;
 
     /// <summary>
+    /// The maxAttacks attribute is the maximum number of attacks that the Karen can handle.
+    /// </summary>
+    [SerializeField]
+    private int maxAttacks;
+
+    /// <summary>
     /// The oldPlayerPos attribute is used to store the previous position of the player.
     /// </summary>
     private Vector3 oldPlayerPos = Vector3.zero;
@@ -21,6 +27,19 @@ public class KarenMovement : CustomerMovement
     /// The playerTransform attribute is used to store the transform of the player.
     /// </summary>
     private Transform playerTransform;
+
+    /// <summary>
+    /// The attacksTaken attribute is used to keep track of the number of attacks that the Karen has taken.
+    /// </summary>
+    private int attacksTaken = 0;
+
+    /// <summary>
+    /// The AttackedToManyTimes property indicates whether the Karen has been attacked too many times.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if [attacked to many times]; otherwise, <c>false</c>.
+    /// </value>
+    public bool AttackedToManyTimes { get; private set; } = false;
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
@@ -85,5 +104,15 @@ public class KarenMovement : CustomerMovement
     public bool PlayerInRange()
     {
         return Vector3.Distance(playerTransform.position, transform.position) < playerInRange;
+    }
+
+    public void Attacked()
+    {
+        attacksTaken++;
+
+        if (attacksTaken >= maxAttacks)
+        {
+            AttackedToManyTimes = true;
+        }
     }
 }

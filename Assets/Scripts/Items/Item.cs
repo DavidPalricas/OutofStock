@@ -54,23 +54,35 @@ public class Item : MonoBehaviour, IEventDispatcher
     /// the product grabbed by the player.
     /// After that, the wasThrown flag is set to false.
     /// 
-    /// This method also checks if the item is thrown and collided with a customer, 
+    /// This method also checks if the item is thrown and collided with a customer. 
     /// If these conditions are met the attack event is triggered (called in the DispatchEvents method).
+    /// 
+    /// It also checks if the item collided with a manager, in which case the manager dispatch a strike to the player.
     /// </remarks>
     /// <param name="collision">The collision.</param>
     private void OnCollisionEnter(Collision collision)
     {
         if (thrown)
         {
-            Debug.Log("Item collided with: " + collision.gameObject.tag);
             if (collision.gameObject.CompareTag("Customer"))
             {
                 // Checks if product collided with the customer or its extra collider that is used to block entities collisions
                 customerHitted = collision.gameObject.GetComponent<CustomerMovement>() != null ? collision.gameObject : collision.gameObject.transform.parent.gameObject;
 
                 DispatchEvents();
+            }else if (collision.gameObject.CompareTag("Manager"))
+            {   
+                GameObject manager = collision.gameObject;
 
-                return;
+                if (manager.GetComponent<ManagerMovement>() != null)
+                {
+                    manager.GetComponent<ManagerMovement>().WasAttacked = true;
+                }
+                else
+                {   // The item collide with the manager collider to block entities colisions
+                    manager.transform.parent.GetComponent<ManagerMovement>().WasAttacked = true;
+                }
+               
             }
 
             gameObject.layer = LayerMask.NameToLayer("Item");
