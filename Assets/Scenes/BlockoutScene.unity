@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
-  subtaskInput: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  subtaskInput: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crosshair: {fileID: 195682536}
 --- !u!1 &9240106
 GameObject:
@@ -9405,7 +9405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
-  subtaskInput: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  subtaskInput: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crosshair: {fileID: 195682536}
 --- !u!1 &1451397423
 GameObject:
@@ -12211,7 +12211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
-  subtaskInput: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  subtaskInput: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crosshair: {fileID: 195682536}
 --- !u!1 &1819481523
 GameObject:

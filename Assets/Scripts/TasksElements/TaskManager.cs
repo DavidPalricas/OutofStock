@@ -67,7 +67,7 @@ public class TaskManager : MonoBehaviour, IEventListener
     private void Awake()
     {   maxTasks = PlayerPrefs.GetInt("NumberOfTasks");
 
-        addTaskTime = maxTasks / PlayerPrefs.GetFloat("ShiftDurationIRL") * 0.1f;
+        addTaskTime = maxTasks / PlayerPrefs.GetFloat("ShiftDurationIRL") * 0.4f;
 
         timer = Time.time + addTaskTime;
     }
