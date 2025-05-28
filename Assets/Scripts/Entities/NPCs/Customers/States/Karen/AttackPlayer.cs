@@ -6,11 +6,7 @@ using UnityEngine;
 /// </summary>
 public class AttackPlayer : CustomerBaseState
 {
-    /// <summary>
-    /// The maxAttacks attribute is the maximum number of attacks that the Karen can handle.
-    /// </summary>
-    [SerializeField]
-    private int maxAttacks;
+  
 
     /// <summary>
     /// The attackCooldown attribute is the cooldown time between attacks.
@@ -28,10 +24,6 @@ public class AttackPlayer : CustomerBaseState
     /// </summary>
     private float timer;
 
-    /// <summary>
-    /// The attacked attribute is used to count the number of times the Karen has been attacked by the player.
-    /// </summary>
-    private int attacked;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -79,20 +71,13 @@ public class AttackPlayer : CustomerBaseState
     {
         base.Execute();
 
-        if (karenMovement.WasAttacked)
-        {
-            fSM.ChangeState("Attacked");
-            attacked++;
-            return;
-        }
-
         if (!karenMovement.PlayerInRange())
         {
             fSM.ChangeState("PlayerNotInRange");
             return;
         }
 
-        if (attacked >= maxAttacks)
+        if (karenMovement.AttackedToManyTimes)
         {
             fSM.ChangeState("AttackedToManyTimes");
             return;
