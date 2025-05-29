@@ -11,19 +11,19 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// The customersHitted, tasksCompleted, maxCustomersHitted and tasksToComplete attributes are used to store the number of customers hitted,
     /// the number of tasks completed, the maximum number of customers hitted and the number of tasks to complete, respectively.
     /// </summary>
-    private int customersHitted = 0, tasksCompleted = 0, maxCustomersHitted, tasksToComplete;
+    private int customersSent = 0, tasksCompleted = 0, maxCustomersSent, tasksToComplete;
 
     /// <summary>
     /// The customerHittedTextsUI attribute is used to store a reference to the TextMeshProUGUI component that displays the number of customers hitted in the UI.
     /// </summary>
     [SerializeField]
-    private TextMeshProUGUI customerHittedTextsUI;
+    private TextMeshProUGUI customerSentTextsUI;
 
     /// <summary>
     /// The customerHittedPanel attribute is used to store a reference to the GameObject that displays the number of customers hitted in the UI.
     /// </summary>
     [SerializeField]
-    private GameObject customerHittedPanel;
+    private GameObject customerSentPanel;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -31,10 +31,10 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// </summary>
     private void Awake()
     {
-        maxCustomersHitted = PlayerPrefs.GetInt("CustomersToSend");
+        maxCustomersSent = PlayerPrefs.GetInt("CustomersToSend");
         tasksToComplete = PlayerPrefs.GetInt("NumberOfTasks");
 
-        customerHittedTextsUI.text = $"0 / {maxCustomersHitted}";
+        customerSentTextsUI.text = $"0 / {maxCustomersSent}";
     }
 
     /// <summary>
@@ -54,19 +54,19 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// This method also updates the number of customers hitted in the UI and checks if the player has reached the maximum number of customers hitted.
     /// If the customer hitted reached the maximum number of customers hitted, it waits 3 seconds and hides the UI element, after that doesn't update the UI anymore.
     /// </remarks>
-    private void CustomerHitted()
+    private void CustomerSent()
     {   
-        if(customersHitted >= maxCustomersHitted)
+        if(customersSent >= maxCustomersSent)
         {
             return;
         }
 
-        customersHitted++;
-        customerHittedTextsUI.text = $"{customersHitted} / {maxCustomersHitted}";
+        customersSent++;
+        customerSentTextsUI.text = $"{customersSent} / {maxCustomersSent}";
 
-        if (customersHitted == maxCustomersHitted)
+        if (customersSent == maxCustomersSent)
         {
-            StartCoroutine(Utils.WaitAndExecute(3f, () =>  customerHittedPanel.SetActive(false)));
+            StartCoroutine(Utils.WaitAndExecute(3f, () =>  customerSentPanel.SetActive(false)));
         }
     }
 
@@ -87,7 +87,7 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// </returns>
     public bool PlayerWon()
     {
-        return customersHitted >= maxCustomersHitted && tasksCompleted >= tasksToComplete;
+        return customersSent >= maxCustomersSent && tasksCompleted >= tasksToComplete;
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ public class WinConditions : MonoBehaviour, IEventListener
     {
         EventManager eventManager = EventManager.GetInstance();
 
-        eventManager.CustomerAttacked += CustomerHitted;
+        eventManager.CustomerSent += CustomerSent;
         eventManager.TaskCompleted += TaskCompleted;
     }
 }

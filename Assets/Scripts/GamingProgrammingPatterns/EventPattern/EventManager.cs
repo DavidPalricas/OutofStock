@@ -12,17 +12,10 @@ public class EventManager
     private static EventManager instance = null;
 
     /// <summary>
-    /// The CustomerAttacked and TaskCompleted atributes, are events used to notify when a customer is attacked or a task is completed, respectively.
+    /// The CustomerAttacked and TaskCompleted atributes, are events used to notify when a customer is attacked or a task is completed
+    /// and when a customer is sent to his home, respectively.
     /// </summary>
-    public event Action CustomerAttacked, TaskCompleted;
-
-    /// <summary>
-    /// The LastCustomerAttacked attribute is used to store a reference to the last customer that was attacked.
-    /// </summary>
-    /// <value>
-    /// The GameObject of the customer that was attacked.
-    /// </value>
-    public GameObject LastCustomerAttacked { get; set; } = null;
+    public event Action TaskCompleted, CustomerSent;
 
     /// <summary>
     /// The LastTaskCompletedNumber attribute is used to store the number of the last task completed.
@@ -31,6 +24,9 @@ public class EventManager
     ///  The number of the last task completed, or int.MaxValue if there is no task completed yet.
     /// </value>
     public int LastTaskCompletedNumber { get; private set; } = int.MaxValue;
+
+
+    public GameObject LastCustomerAttacked { get; set; } = null;
 
     /// <summary>
     /// The GetInstance method is used to get the instance of the EventManager class.
@@ -43,17 +39,6 @@ public class EventManager
     }
 
     /// <summary>
-    /// The OnCustomerAttacked method is used to invoke the CustomerHitted event and updating the CustomerAttacked attribute.
-    /// </summary>
-    /// <param name="customerAttacked">The attacked customer's game obejct.</param>
-    public void OnCustomerAttacked(GameObject customerAttacked)
-    {   
-        customerAttacked.GetComponent<CustomerMovement>().WasAttacked = true;
-        LastCustomerAttacked = customerAttacked;
-        CustomerAttacked?.Invoke();
-    }
-
-    /// <summary>
     /// The OnTaskCompleted method is used to invoke the TaskCompleted event and updating the LastTaskCompletedNumber attribute.
     /// </summary>
     /// <param name="taskNumber">The task completed number.</param>
@@ -61,5 +46,13 @@ public class EventManager
     {
         LastTaskCompletedNumber = taskNumber;
         TaskCompleted?.Invoke();
+    }
+
+    /// <summary>
+    /// The OnCustomerSent method is used to invoke the CustomerSent event.
+    /// </summary>
+    public void OnCustomerSent()
+    {
+        CustomerSent?.Invoke();
     }
 }

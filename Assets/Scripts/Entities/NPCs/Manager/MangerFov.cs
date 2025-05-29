@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -10,25 +9,15 @@ using UnityEngine;
 public class MangerFov : MonoBehaviour
 {
     /// <summary>
-    /// The strikesCounterUI attribute is used to store a reference to the TextMeshProUGUI component that displays the number of strikes in the UI.
-    /// </summary>
-    [SerializeField]
-    private TextMeshProUGUI strikesCounterUI;
-    /// <summary>
-    /// The strikes attribute is used to store the number of strikes the player has.
-    /// </summary>
-    private int strikes = 0;
-
-    /// <summary>
     /// The targetsMask and obstructionMask attributes are used to store the layers that the manager can see and the layers that can obstruct the view, respectively.
     /// </summary>
     [SerializeField]
     private LayerMask targetsMask, obstructionMask;
 
     /// <summary>
-    /// The VIEWDISTANCE and MAXSTRIKES attributes are used to store the maximum distance the manager can see and the maximum number of strikes the player can have, respectively.
+    /// The VIEWDISTANCE is used to store the maximum distance the manager can see.
     /// </summary>
-    private const int VIEWDISTANCE = 10, MAXSTRIKES = 3;
+    private const int VIEWDISTANCE = 10;
 
     /// <summary>
     /// The radius atribute is used to store the radius of the field of view of the manager.
@@ -85,8 +74,6 @@ public class MangerFov : MonoBehaviour
        CustomersSeen = new List<GameObject>();
 
        TargetsSeen = false;
-
-       strikesCounterUI.text = $"0 / {MAXSTRIKES}";
 
         StartCoroutine(FovRoutine());
     }
@@ -206,21 +193,12 @@ public class MangerFov : MonoBehaviour
     /// If these conditions are met, it increments the strikes attribute and sets the LastCustomerAttacked attribute to null (from the EventManager, to avoid being detected again as hitted).
     /// </remarks>
     private void CheckIfPlayerAttackedCustomer()
-    {   
+    {
         GameObject customerAttacked = EventManager.GetInstance().LastCustomerAttacked;
 
-        if ( customerAttacked != null && CustomersSeen.Contains(customerAttacked))
+        if (customerAttacked != null && CustomersSeen.Contains(customerAttacked))
         {
-            strikes++;
-            EventManager.GetInstance().LastCustomerAttacked = null;
-
-            strikesCounterUI.text = $"{strikes} / {MAXSTRIKES}";
-
-            if (strikes >= MAXSTRIKES)
-            {  
-               StartCoroutine(Utils.WaitAndExecute(3f, () => Utils.ExitGame()));
-
-            }
+            GetComponent<StrikesSystem>().DispatchStrike();
         }
     }
 }

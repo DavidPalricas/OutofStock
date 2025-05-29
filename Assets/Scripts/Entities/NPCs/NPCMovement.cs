@@ -25,7 +25,15 @@ public class NPCMovement : MonoBehaviour
 
     public bool DestinationReached { get; protected set; } = false;
 
-  
+    /// <summary>
+    /// The WasAttacked attribute  is a flag that indicates whether the customer was attacked or not.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if [was attacked]; otherwise, <c>false</c>.
+    /// </value>
+    public bool WasAttacked { get; set; } = false;
+
+
     /// <summary>
     /// The Update method is called every frame (Unity Callback).
     /// In this method, we are checking if the NPC has reached its destination, if so, the ReachDestination method is called.
@@ -52,6 +60,16 @@ public class NPCMovement : MonoBehaviour
             agent.SetDestination(destination);
             agent.isStopped = false;
         }
+    }
+
+    /// <summary>
+    /// The EnableOrDisableAgent method is responsible for enabling or disabling the agent.
+    /// </summary>
+    /// <param name="enable">A flag that indicates whether to enable the agent (<c>true</c>) or disable it (<c>false</c>).</param>
+    public void EnableOrDisableAgent(bool enable)
+    {
+        agent.enabled = enable;
+
     }
 
     /// <summary>
