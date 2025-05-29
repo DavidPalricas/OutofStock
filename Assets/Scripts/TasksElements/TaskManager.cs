@@ -30,6 +30,10 @@ public class TaskManager : MonoBehaviour, IEventListener
     [SerializeField]
     private GameObject fixFuseBox, cleanFloor;
 
+
+    [SerializeField]
+    private Image taskBoxContainerImage;
+
     /// <summary>
     /// The activeTaskToggles property is responsible for storing the active tasks toggles in the game.
     /// </summary>
@@ -91,6 +95,8 @@ public class TaskManager : MonoBehaviour, IEventListener
     {
         if (tasksCompleted < maxTasks && !allTypeOfTasksActivated && Time.time >= timer)
         {
+
+            taskBoxContainerImage.gameObject.SetActive (true);
             GenerateTask();
 
             // Reset the timer for the next task generation
