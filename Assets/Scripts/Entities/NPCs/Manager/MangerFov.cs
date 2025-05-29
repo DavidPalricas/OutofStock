@@ -193,10 +193,10 @@ public class MangerFov : MonoBehaviour
     /// If these conditions are met, it increments the strikes attribute and sets the LastCustomerAttacked attribute to null (from the EventManager, to avoid being detected again as hitted).
     /// </remarks>
     private void CheckIfPlayerAttackedCustomer()
-    {   
+    {
         GameObject customerAttacked = EventManager.GetInstance().LastCustomerAttacked;
 
-        if ( customerAttacked != null && CustomersSeen.Contains(customerAttacked))
+        if (customerAttacked != null && CustomersSeen.Contains(customerAttacked))
         {
             GetComponent<StrikesSystem>().DispatchStrike();
         }

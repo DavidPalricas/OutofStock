@@ -34,16 +34,17 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
         { "MarketExit", Vector3.zero }
     };
 
+
+    public bool SentByThePlayer { get; set; } = false;
+
     /// <summary>
     /// The ExitMarket method is responsible for handling the logic when the customer exits the market.
     /// In this method, the observers are notified and removed, and the customer game object is destroyed.
     /// </summary>
     public void ExitMarket()
     {
-        NotifyObservers();
+        NotifyObservers(gameObject);
         RemoveObservers();
-
-        Destroy(gameObject);
     }
 
     /// <summary>
@@ -78,9 +79,15 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
     public void NotifyObservers(object data = null)
     {
-        foreach (IObserver observer in observers)
+        if (observers == null)
         {
-            observer.OnNotify();
+            return;
+        }
+
+        foreach (IObserver observer in observers)
+        {   
+           
+            observer.OnNotify(data);
         }
     }
 
