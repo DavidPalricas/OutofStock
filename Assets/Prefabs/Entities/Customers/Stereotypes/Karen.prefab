@@ -186,6 +186,7 @@ MonoBehaviour:
   agent: {fileID: 4261712987010149697}
   tresholdToResetChase: 1.5
   playerInRange: 5
+  maxAttacks: 3
 --- !u!114 &9066151018471758210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99b405d81ba4674d821a057b8fe0c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAttacks: 2
   attackCooldown: 10
 --- !u!114 &5797220233918073622
 MonoBehaviour:
@@ -295,7 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fed0539ebf4f14fbc689720638067f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockDownTime: 5
 --- !u!114 &6005602209483936697
 MonoBehaviour:
   m_ObjectHideFlags: 0

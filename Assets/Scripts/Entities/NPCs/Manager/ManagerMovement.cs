@@ -22,11 +22,19 @@ public class ManagerMovement : NPCMovement
     public Vector3 ManagerOffice { get; private set; }
 
     /// <summary>
+    /// The IsPatrolling attribute is a flag that indicates whether the manager is patrolling or not.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if this instance is patrolling; otherwise, <c>false</c>.
+    /// </value>
+    public bool IsPatrolling { get; set; } = false;
+
+    /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// It initializes the wayPoints attribute with the children of the waypointsGroup transform and the ManagerOffice attribute with the transform position.
     /// </summary>
     private void Awake()
-    {   
+    {
         wayPoints = Utils.GetChildren(waypointsGroup);
         ManagerOffice = transform.position;
     }
@@ -35,9 +43,17 @@ public class ManagerMovement : NPCMovement
     /// The ChoosePointToPatrol method is responsible for choosing a random waypoint from the wayPoints array and setting it as the agent's destination.
     /// </summary>
     public void ChoosePointToPatrol()
-    {   
+    {
         int randomWayPoint = Utils.RandomInt(0, wayPoints.Length);
 
-        agent.SetDestination(wayPoints[randomWayPoint].transform.position);
+        SetAgentDestination(wayPoints[randomWayPoint].transform.position);
+    }
+
+    public void StopManager()
+    {
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = true;
+        }
     }
 }
