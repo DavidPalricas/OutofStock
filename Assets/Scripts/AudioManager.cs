@@ -14,9 +14,10 @@ public class AudioManager : MonoBehaviour
     [Header("---------- Audio Clips Game -------------")]
     public AudioClip customerAttackedSFX, thiefAlertSFX, karenDeafeatSFX;
 
-    public List<AudioClip> karenComplainingSFX;
+    [Header("---------- Music -------------")]
+    public AudioClip mainMusic;
 
-    // private float musicPauseTime = 0f;
+    public List<AudioClip> karenComplainingSFX;
 
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
@@ -24,8 +25,30 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        // PlayMusic(ambient);
+        PlayMusic(mainMusic);
         DontDestroyOnLoad(gameObject);
+    }
+
+  
+    // M�todo para tocar a m�sica (se necess�rio)
+    private void PlayMusic(AudioClip clip)
+    {
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.volume = 0.5f;
+        musicSource.Play();
+    }
+
+    public void HandlePlayStopMusic()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Pause();
+        }
+        else if (!musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
     }
 
     // M�todo para tocar o efeito sonoro
@@ -35,31 +58,7 @@ public class AudioManager : MonoBehaviour
         {
             SFXSource.pitch = Utils.RandomFloat(1.0f, 1.5f);
         }
-        
+
         SFXSource.PlayOneShot(clip);
-    }
-
-    // M�todo para tocar a m�sica (se necess�rio)
-    public void PlayMusic(AudioClip clip)
-    {
-        musicSource.clip = clip;
-        musicSource.loop = true;
-        musicSource.volume = 0.5f;
-        musicSource.Play();
-    }
-
-    public void HandlePlayStopMusic(AudioClip clip)
-    {
-        if (musicSource.isPlaying && musicSource.clip == clip)
-        {
-            //musicPauseTime = musicSource.time;
-            musicSource.Pause();
-        }
-        else if (!musicSource.isPlaying && musicSource.clip == clip)
-        {
-            musicSource.clip = clip;
-            //musicPauseTime = 0f;
-            musicSource.Play();
-        }
     }
 }
