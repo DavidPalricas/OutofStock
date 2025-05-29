@@ -65,6 +65,8 @@ public class PauseMenu : MonoBehaviour
 
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+
+        GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().HandlePlayStopMusic();
     }
 
     /// <summary>
