@@ -185,8 +185,6 @@ MonoBehaviour:
   mainMusic: {fileID: 8300000, guid: 7b3b18dc0731b1a419e9c7c14740f349, type: 3}
   karenComplainingSFX:
   - {fileID: 8300000, guid: 3f0f4c555fdd2b946bc3bf19a1377106, type: 3}
-  - {fileID: 8300000, guid: de29e1df17ee76c4982c91e2693081c1, type: 3}
-  - {fileID: 8300000, guid: bd679d2a9928f7d43afe88634822edaa, type: 3}
 --- !u!1 &4826687424878359694
 GameObject:
   m_ObjectHideFlags: 0
