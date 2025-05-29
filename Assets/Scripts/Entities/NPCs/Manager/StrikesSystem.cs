@@ -58,6 +58,7 @@ public class StrikesSystem : MonoBehaviour
             GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
         }
 
+
         strikesCounterUI.text = $"{strikes} / {MAX_STRIKES}";
 
         if (strikes >= MAX_STRIKES)

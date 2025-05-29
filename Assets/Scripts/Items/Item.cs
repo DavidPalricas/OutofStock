@@ -6,13 +6,8 @@ using UnityEngine.SceneManagement;
 /// The Item class is responsible for representing an item in the supermarket.
 /// And implements the IEventDispatcher interface to dispatch the event when a thrown product hits a customer (customer attacked event).
 /// </summary>
-public class Item : MonoBehaviour, IEventDispatcher
+public class Item : MonoBehaviour
 {
-    /// <summary>
-    /// The customerHitted attribute is used to store the customer that was hit by the product.
-    /// </summary>
-    private GameObject customerHitted = null;
-
     /// <summary>
     /// The rb property is responsible for storing a reference to the rigidbody component of the item.
     /// </summary>
@@ -65,12 +60,23 @@ public class Item : MonoBehaviour, IEventDispatcher
         if (thrown)
         {
             if (collision.gameObject.CompareTag("Customer"))
-            {
-                // Checks if product collided with the customer or its extra collider that is used to block entities collisions
-                customerHitted = collision.gameObject.GetComponent<CustomerMovement>() != null ? collision.gameObject : collision.gameObject.transform.parent.gameObject;
+            {   
+                CustomerMovement customerMovement;
+    
+                customerMovement = collision.gameObject.GetComponent<CustomerMovement>() != null ?  collision.gameObject.GetComponent<CustomerMovement>() : collision.gameObject.transform.parent.GetComponent<CustomerMovement>();
 
-                DispatchEvents();
-            }else if (collision.gameObject.CompareTag("Manager"))
+               
+                customerMovement.WasAttacked = true;
+
+                EventManager.GetInstance().LastCustomerAttacked = customerMovement.gameObject;
+
+                if (!customerMovement.name.Contains("Karen")){
+
+                    customerMovement.SentByThePlayer = true;
+                }
+
+            }
+            else if (collision.gameObject.CompareTag("Manager"))
             {   
                 GameObject manager = collision.gameObject;
 
@@ -136,14 +142,5 @@ public class Item : MonoBehaviour, IEventDispatcher
         rB.AddForce(playerFowardDir * THROWFORCE, ForceMode.Impulse);
 
         thrown = true;
-    }
-
-    /// <summary>
-    /// The DispatchEvents method is used to dispatch one or more events.
-    /// It notifies the event manager when a product is thrown and hits a customer.
-    /// </summary>
-    public void DispatchEvents()
-    {
-        EventManager.GetInstance().OnCustomerAttacked(customerHitted);
     }
 }

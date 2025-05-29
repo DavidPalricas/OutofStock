@@ -79,13 +79,14 @@ public class AttackPlayer : CustomerBaseState
 
         if (karenMovement.AttackedToManyTimes)
         {
+            Attack();
+            karenMovement.SentByThePlayer = true;
             fSM.ChangeState("AttackedToManyTimes");
             return;
         }
 
         if (Time.time >= timer)
         {
-            Attack();
             timer = Time.time + attackCooldown;
         }
     }

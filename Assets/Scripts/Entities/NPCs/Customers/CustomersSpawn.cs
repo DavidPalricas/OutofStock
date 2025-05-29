@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 /// The CustomersSpawn class is responsible for spawning the customers in the market, simulating the customers entering the market.
 /// It implements the IObserver interface to be notified when a customer (subject) leaves the market
 /// </summary>
-public class CustomersSpawn : MonoBehaviour, IObserver
+public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
 {
     /// <summary>
     /// The customerPrefab attribute represents the customer prefab.
@@ -183,9 +183,16 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// The CustomerExitMarket method is responsible for removing a customer from the market.
     /// By decrementing the customersSpawned attribute, it triggers in the Update method to spawn a new customer.
     /// </summary>
-    private void CustomerExitMarket()
+    private void CustomerExitMarket(GameObject customerSent)
     {
         customersSpawned--;
+
+        if (customerSent.GetComponent<CustomerMovement>().SentByThePlayer)
+        {
+            DispatchEvents();
+        }
+
+        Destroy(customerSent);
     }
 
     /// <summary>
@@ -194,8 +201,16 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </summary>
     /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
     public void OnNotify(object data = null)
-    {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket()));
+    {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket(data as GameObject)));
         
+    }
+
+    /// <summary>
+    /// The DispatchEvent method is responsible for dispatching the event when a customer exits the market.
+    /// </summary>
+    public void DispatchEvents()
+    {
+        EventManager.GetInstance().OnCustomerSent();
     }
 }
 

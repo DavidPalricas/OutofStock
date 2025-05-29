@@ -54,8 +54,7 @@ public class KnockedState : State
     public override void Exit()
     {
         base.Exit();
-   
+
         GetComponent<NPCMovement>().WasAttacked = false;
-        
     }
 }
