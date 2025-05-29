@@ -96,7 +96,7 @@ public class TaskManager : MonoBehaviour, IEventListener
         if (tasksCompleted < maxTasks && !allTypeOfTasksActivated && Time.time >= timer)
         {
 
-            taskBoxContainerImage.gameObject.SetActive (true);
+            taskBoxContainerImage.enabled = true;
             GenerateTask();
 
             // Reset the timer for the next task generation
@@ -150,7 +150,7 @@ public class TaskManager : MonoBehaviour, IEventListener
     }
 
     /// <summary>
-    /// ´tHE GetRandomTaskNumber method is responsible for generating a random task number based on the available tasks.
+    /// ï¿½tHE GetRandomTaskNumber method is responsible for generating a random task number based on the available tasks.
     /// </summary>
     /// <remarks>
     /// It reads the probabilities of each task from PlayerPrefs and generates a random number.

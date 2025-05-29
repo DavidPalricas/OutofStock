@@ -16,18 +16,6 @@ public class ShiftLogic : MonoBehaviour
     private TextMeshProUGUI dayText, timeText;
 
     /// <summary>
-    /// The timeSlider attribute is used to store the slider component that displays the time progress in the game.
-    /// </summary>
-    [SerializeField]
-    private Slider timeSlider;
-
-    /// <summary>
-    /// The timeSliderSpeed attribute is used to store the speed of the time slider.
-    /// </summary>
-    [SerializeField]
-    private float timeSliderSpeed;
-
-    /// <summary>
     /// The following attributes are used to store the game time properties.
     ///
     /// The gameMinuteInSecondsIRL attribute stores the duration of a game minute in seconds in real life.
@@ -35,7 +23,7 @@ public class ShiftLogic : MonoBehaviour
     /// The currentGameMinutes attribute stores the current game time in minutes.
     /// And the timer attribute stores the time when the last game minute was updated.
     /// </summary>
-    private float gameMinuteInSecondsIRL, gameHourInSecondsIRL, currentGameMinutes, timer;
+    private float gameMinuteInSecondsIRL, currentGameMinutes, timer;
 
     /// <summary>
     /// The day attribute stores the current week day in the game.
@@ -130,8 +118,6 @@ public class ShiftLogic : MonoBehaviour
 
         gameMinuteInSecondsIRL = gameMinuteDuration * 60;
 
-        gameHourInSecondsIRL = gameMinuteDuration * 3600;
-
         dayText.text = day;
 
         string[] time = daytime[startHour].Split(' ');
@@ -164,12 +150,6 @@ public class ShiftLogic : MonoBehaviour
         int shiftDuration = (int)PlayerPrefs.GetFloat("ShiftDuration");
 
         float targetSliderValue = (float) workTime / shiftDuration ;
-
-        if (timeSlider.value != targetSliderValue)
-        {
-            // Smoothly update the time slider value by using a lerp function
-            timeSlider.value = Mathf.Lerp(timeSlider.value, targetSliderValue, timeSliderSpeed * Time.deltaTime);
-        }
 
         if (workTime == shiftDuration)
         {
