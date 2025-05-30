@@ -26,8 +26,8 @@ Will (character) keep both the store and their sanity intact, or will they be sw
 ## Default Controls
 ### KeyBoard
  |Keys         | Move Right| Move Left| Move Up| Move Down|    Throw Item        | Interact   | Sprint     |      Jump         |Pause/Unpause Game|
- |:-----------:| :--------:| :-------:|:------:|:--------:|:--------------------:|:----------:|:----------:|:-------------:----|:----------------:|
- |WASD Keys    |     `D`   |    `A`   |  `W`   |   `S`    |                      |            |            |                   |                  |
+ |:-----------:| :--------:| :-------:|:------:|:--------:|:--------------------:|:----------:|:----------:|:-----------------:|:----------------:|
+ | WASD Keys   |     `D`   |    `A`   |  `W`   |   `S`    |                      |            |            |                   |                  |
  | Arrow Keys  |  `Right`  |  `Left`  |  `Up`  |  `Down`  |                      |            |            |                   |                  |
  | Other Keys  |           |          |        |          |  `Mouse Left Button` |    `E`     | `L Shift`  |    `SpaceBar`     |  `Escape`        | 
 
