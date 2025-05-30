@@ -295,7 +295,7 @@ public class GameConfig : MonoBehaviour
             return GetNextWeekDay(PlayerPrefs.GetString("CurrentDay"));
         }
    
-         return "Mon";
+         return "MON";
     }
 
     /// <summary>
@@ -310,7 +310,7 @@ public class GameConfig : MonoBehaviour
     /// <returns></returns>
     private string GetNextWeekDay(string previousDay)
     {
-        string[] weekDays = { "Mon", "Tue", "Wed", "Thu", "Fri" };
+        string[] weekDays = { "MON", "TUE", "WED", "THU", "FRI" };
 
         int currentIndex = System.Array.IndexOf(weekDays, previousDay);
 

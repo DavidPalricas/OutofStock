@@ -420,7 +420,7 @@ MonoBehaviour:
   maxLookAngle: 50
   lockCursor: 1
   crosshair: 1
-  crosshairImage: {fileID: 21300000, guid: be4ce60e2c9768c44b9b10b9c5258045, type: 3}
+  crosshairImage: {fileID: 21300000, guid: cf5c7cb3e33b8674c8d23ea8592167e9, type: 3}
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
   enableZoom: 1
   holdToZoom: 1
@@ -445,9 +445,6 @@ MonoBehaviour:
   sprintBarHeightPercent: 0.02
   enableJump: 1
   jumpPower: 3.6
-  enableCrouch: 1
-  holdToCrouch: 1
-  crouchHeight: 0.75
   speedReduction: 0.5
   jumpActionReference: {fileID: 0}
   crouchActionReference: {fileID: 0}
@@ -793,8 +790,8 @@ RectTransform:
   m_GameObject: {fileID: 7264112228334356482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6850312606828791236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -831,9 +828,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cf5c7cb3e33b8674c8d23ea8592167e9, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

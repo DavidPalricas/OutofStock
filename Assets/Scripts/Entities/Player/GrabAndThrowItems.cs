@@ -95,7 +95,7 @@ public class GrabAndThrowItems : MonoBehaviour
 
                 Transform itemTransform = item.transform;
 
-                Quaternion newRotation = Quaternion.Euler(-90, 0, 0);
+                Quaternion newRotation = Quaternion.Euler(0, 0, 0);
 
                 itemTransform.SetPositionAndRotation(itemGrabbedPos.position, newRotation);
 
