@@ -45,13 +45,14 @@ Will (character) keep both the store and their sanity intact, or will they be sw
 A group of Master’s students specializing in Digital Game Development at the University of Aveiro.
 
 ### Meet the Team:  
-| Name       | Role               | GitHub                          | LinkedIn                        | Portfolio                   |  
-|------------|--------------------|---------------------------------|---------------------------------|-----------------------------|  
-| **David Palricas**    | Lead Programmer    | [GitHub](https://github.com/DavidPalricas) | [LinkedIn](https://www.linkedin.com/in/david-palricas/)| [Portfolio](https://davidpalricas.github.io/)                         |  
-| **Hugo Tavares**   | Project Manager and programmer   | [GitHub](https://github.com/simoH3945) | [LinkedIn](https://www.linkedin.com/in/hugo-tavares-b56471302/)| [Portfolio](https://simoh3945.github.io/portfolio/)                       |  
-| **Mariana Cabral**   | Story Teller and 3D Artist   | [GitHub](https://github.com/ma-cabral) | [LinkedIn](https://www.linkedin.com/in/macabral203/)| [Portfolio]() |  
-| **Pedro Soares**    | Lead 3D Artist    | [GitHub](https://github.com/pmcsoares) | [LinkedIn](https://www.linkedin.com/in/pedrosoaress/)| [Portfolio]()                           |  
-| **Salvador Luís**   | Sound Designer and 3D Artist     | [GitHub](https://github.com/kavluxx2) | [LinkedIn](https://www.linkedin.com/in/salvador-lu%C3%ADs-a0a6331b1/)| [Portfolio](https://www.figma.com/proto/tXuIpBWNtXChceaPoJdJvE/Portfolio-%7C-Salvador-Lu%C3%ADs?node-id=9-5&p=f&t=Ejm4MOCnS3uS1LGN-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1) |  
+| Name               | Student ID | Role                           | GitHub                                     | LinkedIn                                                              | Portfolio                                                                                                                                                                                          |
+| ------------------ | ---------- | ------------------------------ | ------------------------------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **David Palricas** | 108780 | Lead Programmer                | [GitHub](https://github.com/DavidPalricas) | [LinkedIn](https://www.linkedin.com/in/david-palricas/)               | [Portfolio](https://davidpalricas.github.io/)                                                                                                                                                      |
+| **Hugo Tavares**   | 107735| Project Manager and programmer | [GitHub](https://github.com/simoH3945)     | [LinkedIn](https://www.linkedin.com/in/hugo-tavares-b56471302/)       | [Portfolio](https://simoh3945.github.io/portfolio/)                                                                                                                                                |
+| **Mariana Cabral** |107455 | Story Teller and 3D Artist     | [GitHub](https://github.com/ma-cabral)     | [LinkedIn](https://www.linkedin.com/in/macabral203/)                  | [Portfolio]()                                                                                                                                                                                      |
+| **Pedro Soares**   | 108952| Lead 3D Artist                 | [GitHub](https://github.com/pmcsoares)     | [LinkedIn](https://www.linkedin.com/in/pedrosoaress/)                 | [Portfolio]()                                                                                                                                                                                      |
+| **Salvador Luís**  | 107908 | Sound Designer and 3D Artist   | [GitHub](https://github.com/kavluxx2)      | [LinkedIn](https://www.linkedin.com/in/salvador-lu%C3%ADs-a0a6331b1/) | [Portfolio](https://www.figma.com/proto/tXuIpBWNtXChceaPoJdJvE/Portfolio-%7C-Salvador-Lu%C3%ADs?node-id=9-5&p=f&t=Ejm4MOCnS3uS1LGN-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1) |
+
 
 
 ## Relevant Links
