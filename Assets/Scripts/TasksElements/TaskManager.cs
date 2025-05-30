@@ -30,6 +30,10 @@ public class TaskManager : MonoBehaviour, IEventListener
     [SerializeField]
     private GameObject fixFuseBox, cleanFloor;
 
+
+    [SerializeField]
+    private Image taskBoxContainerImage;
+
     /// <summary>
     /// The activeTaskToggles property is responsible for storing the active tasks toggles in the game.
     /// </summary>
@@ -91,6 +95,8 @@ public class TaskManager : MonoBehaviour, IEventListener
     {
         if (tasksCompleted < maxTasks && !allTypeOfTasksActivated && Time.time >= timer)
         {
+
+            taskBoxContainerImage.enabled = true;
             GenerateTask();
 
             // Reset the timer for the next task generation
@@ -144,7 +150,7 @@ public class TaskManager : MonoBehaviour, IEventListener
     }
 
     /// <summary>
-    /// ´tHE GetRandomTaskNumber method is responsible for generating a random task number based on the available tasks.
+    /// ï¿½tHE GetRandomTaskNumber method is responsible for generating a random task number based on the available tasks.
     /// </summary>
     /// <remarks>
     /// It reads the probabilities of each task from PlayerPrefs and generates a random number.

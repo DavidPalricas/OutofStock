@@ -26,7 +26,6 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         PlayMusic(mainMusic);
-        DontDestroyOnLoad(gameObject);
     }
 
   
