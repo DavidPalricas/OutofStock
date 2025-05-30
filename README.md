@@ -23,6 +23,14 @@ Will (character) keep both the store and their sanity intact, or will they be sw
 - **Unique Challenges:** Face a variety of eccentric customers and unexpected events.  
 - **Time Pressure:** Survive four intense days before the ultimate test: the weekend sales.
 
+## Default Controls
+### KeyBoard
+ |Keys         | Move Right| Move Left| Move Up| Move Down|    Throw Item        | Interact   | Sprint     |      Jump         |Pause/Unpause Game|
+ |:-----------:| :--------:| :-------:|:------:|:--------:|:--------------------:|:----------:|:----------:|:-------------:----|:----------------:|
+ |WASD Keys    |     `D`   |    `A`   |  `W`   |   `S`    |                      |            |            |                   |                  |
+ | Arrow Keys  |  `Right`  |  `Left`  |  `Up`  |  `Down`  |                      |            |            |                   |                  |
+ | Other Keys  |           |          |        |          |  `Mouse Left Button` |    `E`     | `L Shift`  |    `SpaceBar`     |  `Escape`        | 
+
 
 ## Technologies Used  
 - **Game Engine:** [Unity 6]  
