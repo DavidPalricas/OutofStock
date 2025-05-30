@@ -468,7 +468,8 @@ MonoBehaviour:
   player: {fileID: 2450988668983306783}
   crosshair: {fileID: 5622785972786631996}
   itemGrabbedPos: {fileID: 5763519024140025336}
-  grabOrThrowAction: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  throwAction: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  grabAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &3235266242093297341
 MonoBehaviour:
   m_ObjectHideFlags: 0

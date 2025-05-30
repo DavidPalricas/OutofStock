@@ -162,13 +162,14 @@ public class ShiftLogic : MonoBehaviour
     /// For now, it just reloads the current scene for testing the days progression.
     /// </summary>
     private void NextDay()
-    {   
+    {   /*
         if (GetComponent<WinConditions>().PlayerWon())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
             return;
         }
+        */
 
         // Go to the Main Menu
         SceneManager.LoadScene(0);

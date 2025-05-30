@@ -28,7 +28,7 @@ public class GrabAndThrowItems : MonoBehaviour
     /// The grabOrThrowAction attribute is the reference to the grab or throw action.
     /// </summary>
     [SerializeField]
-    private InputActionReference grabOrThrowAction;
+    private InputActionReference throwAction, grabAction;
 
     /// <summary>
     /// The itemGrabbed attribute is a flag that indicates if the player is holding an item.
@@ -41,27 +41,18 @@ public class GrabAndThrowItems : MonoBehaviour
     /// If this action is pressed, the GrabOrThrowItem method is called to check if the player will grab or throw an item.
     private void Update()
     {
-        if (grabOrThrowAction.action.triggered)
+        if (grabAction.action.IsPressed() && !itemGrabbed)
         {
-           GrabOrThrowItem();
-        }
-    }
+             GrabItem();
 
-    /// <summary>
-    /// The GrabOrThrowItem Method is responsible for grabbing or throwing an item.
-    /// In this method, we check if the player is holding an item.
-    /// If the player is holding an item, the ThrowItem method is called otherwise the GrabItem method is called.
-    /// </summary>
-    private void GrabOrThrowItem()
-    {
-        if (itemGrabbed)
-        {
+             return;
+        }
+
+        if (throwAction.action.triggered &&  itemGrabbed){
+
             ThrowItem();
 
-            return;
         }
-
-        GrabItem();
     }
 
     /// <summary>

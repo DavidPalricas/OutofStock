@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// /// TheStrikesSystem class is responsible for handling the strikes that the manager can set to the player.
@@ -84,7 +85,7 @@ public class StrikesSystem : MonoBehaviour
       
         if (strikes >= MAX_STRIKES)
         {   // Waits 3 seconds before exiting the game
-            StartCoroutine(Utils.WaitAndExecute(3f, () => Utils.ExitGame()));
+            StartCoroutine(Utils.WaitAndExecute(3f, () => SceneManager.LoadScene(0)));
         }
     }
 }

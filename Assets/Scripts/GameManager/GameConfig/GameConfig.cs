@@ -40,6 +40,8 @@ public class GameConfig : MonoBehaviour
     [SerializeField]
     private float customerBecameThiefProb;
 
+    private readonly bool isAlpha = true;
+
     /// <summary>
     /// The days property stores a list of configurations for each day in the game.
     /// These configurations are made in the Unity editor.
@@ -290,7 +292,7 @@ public class GameConfig : MonoBehaviour
     /// <returns></returns>
     private string GetCurrentWeekDay()
     {   
-        if (PlayerPrefs.HasKey("CurrentDay"))
+        if (!isAlpha && PlayerPrefs.HasKey("CurrentDay"))
         {   
             return GetNextWeekDay(PlayerPrefs.GetString("CurrentDay"));
         }

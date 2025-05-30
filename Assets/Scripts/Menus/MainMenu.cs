@@ -13,6 +13,13 @@ public class MainMenu : MonoBehaviour
     //// Variavel que vai verificar qual a cena atual, DEVE EXISTIR NOS SCRIPTS DE CANVAS DAS CENAS QUE NECESSITAM DE DAR FADE IN/OUT
     //private int currentSceneIndex;
 
+
+
+    private void Awake(){
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     /// <summary>
     /// The PlayGame method is responsible for loading the first level of the game.
     /// </summary>
