@@ -64,6 +64,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6463864832794317757, guid: 2783cab7dc172fe40a36f2e9959527b4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6463864832794317757, guid: 2783cab7dc172fe40a36f2e9959527b4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 27c359b736e6c7b4b8c1b18f93d163c8, type: 2}
+    - target: {fileID: -270081102499205594, guid: 2783cab7dc172fe40a36f2e9959527b4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -270081102499205594, guid: 2783cab7dc172fe40a36f2e9959527b4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 27c359b736e6c7b4b8c1b18f93d163c8, type: 2}
     - target: {fileID: 919132149155446097, guid: 2783cab7dc172fe40a36f2e9959527b4, type: 3}
       propertyPath: m_Name
       value: LataCervejaBPrefab
