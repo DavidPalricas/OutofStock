@@ -63,6 +63,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = isPaused ? 0 : 1;
         HandlingInput(isPaused);
 
+        Utils.IsGamePaused = isPaused;
+
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
 
