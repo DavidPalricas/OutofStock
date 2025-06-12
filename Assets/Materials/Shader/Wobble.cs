@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wobble : MonoBehaviour
@@ -19,12 +17,22 @@ public class Wobble : MonoBehaviour
     float pulse;
     float time = 0.5f;
     
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
         rend = GetComponent<Renderer>();
     }
+
+
     private void Update()
+    {
+        if (!Utils.IsGamePaused)
+        {
+            WoobleFluid();
+        }
+    }
+
+
+    private void WoobleFluid()
     {
         time += Time.deltaTime;
         // decrease wobble over time
@@ -44,7 +52,6 @@ public class Wobble : MonoBehaviour
         velocity = (lastPos - transform.position) / Time.deltaTime;
         angularVelocity = transform.rotation.eulerAngles - lastRot;
 
-
         // add clamped velocity to wobble
         wobbleAmountToAddX += Mathf.Clamp((velocity.x + (angularVelocity.z * 0.2f)) * MaxWobble, -MaxWobble, MaxWobble);
         wobbleAmountToAddZ += Mathf.Clamp((velocity.z + (angularVelocity.x * 0.2f)) * MaxWobble, -MaxWobble, MaxWobble);
@@ -53,7 +60,4 @@ public class Wobble : MonoBehaviour
         lastPos = transform.position;
         lastRot = transform.rotation.eulerAngles;
     }
-
-
-
 }

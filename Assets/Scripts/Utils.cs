@@ -9,7 +9,15 @@ using UnityEngine.InputSystem;
 /// that can be used in different parts of this game.
 /// </summary>
 public static class Utils
-{   
+{
+    /// <summary>
+    /// The IsGamePaused property is used to determine if the game is currently paused or not.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if the is game paused; otherwise, <c>false</c>.
+    /// </value>
+    public static bool IsGamePaused { get; set; } = false;
+
     /// <summary>
     /// The GetRandomSeed method is responsible for generating a random seed to be set in a random generator.
     /// The seed is generated based on the current OS time in milliseconds.
