@@ -6,8 +6,6 @@ using UnityEngine;
 /// </summary>
 public class AttackPlayer : CustomerBaseState
 {
-  
-
     /// <summary>
     /// The attackCooldown attribute is the cooldown time between attacks.
     /// </summary>
@@ -86,7 +84,8 @@ public class AttackPlayer : CustomerBaseState
         }
 
         if (Time.time >= timer)
-        {
+        {   
+            Attack();
             timer = Time.time + attackCooldown;
         }
     }

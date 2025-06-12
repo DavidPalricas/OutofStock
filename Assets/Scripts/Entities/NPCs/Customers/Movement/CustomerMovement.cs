@@ -56,7 +56,7 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     {
         if (AreasPos["Product"] == Vector3.zero)
         {
-            agent.SetDestination(AreasPos["MarketExit"]);
+           Destroy(gameObject);
 
             Debug.LogWarning("The item " + TargetItem.name + "does not have a pickItem Area");
             return;

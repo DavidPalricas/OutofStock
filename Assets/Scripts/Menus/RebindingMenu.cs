@@ -20,7 +20,7 @@ public class RebindingMenu : MonoBehaviour
     /// The attackButton, interactButton, pauseButton, 
     /// </summary>
     [SerializeField]
-    private GameObject attackButton, interactButton, crouchButton, jumpButton, sprintButton, grabThrowButton;
+    private GameObject attackButton, interactButton, crouchButton, jumpButton, sprintButton, throwButton;
 
     /// <summary>
     /// The defaultButtonImageColor property is responsible for storing the default color of the button image.
@@ -133,7 +133,7 @@ public class RebindingMenu : MonoBehaviour
             _ when button == crouchButton => playerInput.actions["Crouch"],
             _ when button == jumpButton => playerInput.actions["Jump"],
             _ when button == sprintButton => playerInput.actions["Sprint"],
-            _ when button == grabThrowButton => playerInput.actions["GrabOrThrowItem"],
+            _ when button == throwButton => playerInput.actions["Throw"],
             _ => null
         };
     }
@@ -225,7 +225,7 @@ public class RebindingMenu : MonoBehaviour
             { crouchButton, "Crouch" },
             { jumpButton, "Jump" },
             { sprintButton, "Sprint" },
-            { grabThrowButton, "GrabOrThrowItem" }
+            { throwButton, "Throw" }
         };
 
         foreach (KeyValuePair<GameObject, string> action in actions)

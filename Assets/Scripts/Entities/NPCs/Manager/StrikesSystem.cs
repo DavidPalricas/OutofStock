@@ -1,16 +1,14 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// /// TheStrikesSystem class is responsible for handling the strikes that the manager can set to the player.
 /// </summary>
 public class StrikesSystem : MonoBehaviour
 {
-    /// <summary>
-    /// The strikesCounterUI attribute is used to store a reference to the TextMeshProUGUI component that displays the number of strikes in the UI.
-    /// </summary>
     [SerializeField]
-    private TextMeshProUGUI strikesCounterUI;
+    private Image strike1Image, strike2Image, strike3Image;
 
     /// <summary>
     /// The strikes attribute is used to store the number of strikes the player has.
@@ -21,14 +19,6 @@ public class StrikesSystem : MonoBehaviour
     /// The MAXSTRIKES attribute IS used to store  the maximum number of strikes the player can have, respectively.
     /// </summary>
     private const int MAX_STRIKES = 3;
-
-    /// <summary>
-    /// The Awake method is called when the script instance is being loaded (Unity Callback).
-    /// </summary>
-    private void Awake()
-    {
-        strikesCounterUI.text = $"0 / {MAX_STRIKES}";
-    }
 
     /// <summary>
     /// the DispatchStrike method is used to dispatch a strike to the player when the manager is attacked or when the player attacks a customer in the manager's field of view.
@@ -58,12 +48,44 @@ public class StrikesSystem : MonoBehaviour
             GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
         }
 
+        Color imageColor;
 
-        strikesCounterUI.text = $"{strikes} / {MAX_STRIKES}";
+        switch (strikes)
+        {
+            case 1 :
+                imageColor = strike1Image.color;
 
+                imageColor.a = 1f;
+
+                strike1Image.color = imageColor;
+
+                break;
+
+            case 2:
+                imageColor = strike2Image.color;
+
+                imageColor.a = 1f;
+
+                strike2Image.color = imageColor;
+
+                break;
+
+            case 3 :
+                imageColor = strike3Image.color;
+
+                imageColor.a = 1f;
+
+                strike3Image.color= imageColor;
+
+                break;
+            default:
+                break;
+        }
+
+      
         if (strikes >= MAX_STRIKES)
         {   // Waits 3 seconds before exiting the game
-            StartCoroutine(Utils.WaitAndExecute(3f, () => Utils.ExitGame()));
+            StartCoroutine(Utils.WaitAndExecute(3f, () => SceneManager.LoadScene(0)));
         }
     }
 }
