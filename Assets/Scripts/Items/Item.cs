@@ -137,7 +137,7 @@ public class Item : MonoBehaviour
 
         rB.isKinematic = false;
 
-        const float THROWFORCE = 20f;
+        const float THROWFORCE = 9.5f;
 
         rB.AddForce(playerFowardDir * THROWFORCE, ForceMode.Impulse);
 
