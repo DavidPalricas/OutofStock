@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 7
 --- !u!136 &2955450109840892492
 CapsuleCollider:
   m_ObjectHideFlags: 0

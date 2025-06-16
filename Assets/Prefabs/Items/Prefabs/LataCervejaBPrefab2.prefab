@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2783cab7dc172fe40a36f2e9959527b4, type: 3}
       propertyPath: m_Name
-      value: LataCervejaBPrefab
+      value: LataCervejaBPrefab2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2783cab7dc172fe40a36f2e9959527b4, type: 3}
       propertyPath: m_Layer
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 7
 --- !u!136 &2955450109840892492
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,11 +34,6 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
     private int customersSpawned = 0;
 
     /// <summary>
-    /// The MarketProductsList attribute represents the products in the market.
-    /// </summary>
-    private List<GameObject> MarketProductsList = new ();
-
-    /// <summary>
     /// The paymentAreas attribute represents the payment areas in the market.
     /// </summary>
     private GameObject[] paymentAreas;
@@ -48,12 +44,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
     /// </summary>
     private void Awake()
     {
-        // Because the are items that are not market products (like the broom to clean the floor).
-        MarketProductsList = GameObject.FindGameObjectsWithTag("Item")
-           .Where(item => item.GetComponent<MarketProduct>() != null)
-           .ToList();
-
-        paymentAreas = Utils.GetChildren(paymentAreasTransform);
+      paymentAreas = Utils.GetChildren(paymentAreasTransform);
     }
 
     /// <summary>
@@ -65,7 +56,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
     /// </remarks>
     private void Update()
     {
-        if (MarketProductsList.Count > 0 && customersSpawned < maxCustomersInMarket)
+        if (customersSpawned < maxCustomersInMarket)
         {
             SpawnCustomer();
         }
@@ -91,17 +82,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
-        GameObject targetProduct = MarketProductsList[Utils.RandomInt(0, MarketProductsList.Count)];
-
-        MarketProductsList.Remove(targetProduct);
-
-        customerMovement.TargetItem = targetProduct;
-
-        targetProduct.GetComponent<MarketProduct>().AddObservers(new IObserver[] { customerMovement });
-
-        Transform pickItemArea = targetProduct.GetComponent<MarketProduct>().pickProductArea;
-
-        customerMovement.AreasPos["Product"] = pickItemArea == null ? Vector3.zero : pickItemArea.position;
+        customerMovement.SetTargetProduct();
         customerMovement.AreasPos["MarketExit"] = transform.position;
         customerMovement.AreasPos["Payment"] = paymentAreas[Utils.RandomInt(0, paymentAreas.Length)].transform.position;
 
@@ -111,6 +92,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
 
         customersSpawned++;
     }
+
+ 
 
     /// <summary>
     /// The GetTypeOfCustomer method is responsible for getting a random customer prefab based on the spawn probabilities.

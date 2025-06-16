@@ -25,7 +25,6 @@ public class EventManager
     /// </value>
     public int LastTaskCompletedNumber { get; private set; } = int.MaxValue;
 
-
     public GameObject LastCustomerAttacked { get; set; } = null;
 
     /// <summary>
