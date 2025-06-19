@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 2
 --- !u!54 &4321259074334754168
 Rigidbody:
   m_ObjectHideFlags: 0
