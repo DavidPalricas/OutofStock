@@ -1,64 +1,72 @@
-
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 using System.Collections.Generic;
+
+
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("---------- Audio Source ----------")]
-    [SerializeField]
-    private AudioSource musicSource, SFXSource;
 
-    [Header("---------- Audio Clips Game -------------")]
-    public AudioClip taskDoneSFX, paymentSFX;
-
-    [Header("---------- Audio Clips Game -------------")]
-    public AudioClip customerAttackedSFX, thiefAlertSFX, karenDeafeatSFX;
-
-    [Header("---------- Music -------------")]
+public AudioClip taskDoneSFX, paymentSFX;
+public AudioClip thiefAlertSFX, karenDeafeatSFX;
+public List<AudioClip> karenComplainingSFX;
     public AudioClip mainMusic;
 
-    public List<AudioClip> karenComplainingSFX;
 
-    /// <summary>
-    /// The Awake method is called when the script instance is being loaded (Unity Callback).
-    /// For now it sets to not be destroyed on load.
-    /// </summary>
-    private void Awake()
+
+    [EventRef]
+    public EventReference customerAttackedEvent;
+
+public void PlayCustomerAttackedSFX(Vector3 position)
+{
+    RuntimeManager.PlayOneShot(customerAttackedEvent, position);
+}
+
+
+    public void PlaySFX(AudioClip clip)
     {
-        PlayMusic(mainMusic);
-        DontDestroyOnLoad(gameObject);
+        Debug.LogWarning("PlaySFX called, but AudioClip-based playback is deprecated. Switch to FMOD events.");
     }
 
-  
-    // M�todo para tocar a m�sica (se necess�rio)
-    private void PlayMusic(AudioClip clip)
+
+    [Header("---------- FMOD Events ----------")]
+    [EventRef]
+    public EventReference punchHitEvent; // This is your test sound (e.g. punch)
+
+    [Header("---------- Music ----------")]
+    [EventRef]
+    public EventReference mainMusicEvent;
+
+    private EventInstance musicInstance;
+
+    private void Awake()
     {
-        musicSource.clip = clip;
-        musicSource.loop = true;
-        musicSource.volume = 0.5f;
-        musicSource.Play();
+        // Play background music on load
+        musicInstance = RuntimeManager.CreateInstance(mainMusicEvent);
+        musicInstance.start();
+        musicInstance.release(); // Let FMOD manage the memory cleanup
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void HandlePlayStopMusic()
     {
-        if (musicSource.isPlaying)
+        PLAYBACK_STATE playbackState;
+        musicInstance.getPlaybackState(out playbackState);
+
+        if (playbackState == PLAYBACK_STATE.PLAYING)
         {
-            musicSource.Pause();
+            musicInstance.setPaused(true);
         }
-        else if (!musicSource.isPlaying)
+        else
         {
-            musicSource.Play();
+            musicInstance.setPaused(false);
         }
     }
 
-    // M�todo para tocar o efeito sonoro
-    public void PlaySFX(AudioClip clip)
+    public void PlayPunchHitSFX(Vector3 position)
     {
-        if (clip == customerAttackedSFX)
-        {
-            SFXSource.pitch = Utils.RandomFloat(1.0f, 1.5f);
-        }
-
-        SFXSource.PlayOneShot(clip);
+        RuntimeManager.PlayOneShot(punchHitEvent, position);
     }
 }

@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 3060188495569654751}
   - component: {fileID: 4640132893034691290}
   - component: {fileID: 746390465478879443}
+  - component: {fileID: 8905930083029435177}
   m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -255,6 +256,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &8905930083029435177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193291210311313408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &2450988668983306783
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,9 +460,6 @@ MonoBehaviour:
   sprintBarHeightPercent: 0.02
   enableJump: 1
   jumpPower: 3.6
-  enableCrouch: 1
-  holdToCrouch: 1
-  crouchHeight: 0.75
   speedReduction: 0.5
   jumpActionReference: {fileID: 0}
   crouchActionReference: {fileID: 0}

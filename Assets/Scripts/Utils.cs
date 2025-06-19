@@ -209,7 +209,7 @@ public static class Utils
         switch (clipName)
         {
             case SoundEffects.CUSTOMER_ATTACKED:
-                audioManager.PlaySFX(audioManager.customerAttackedSFX);
+                audioManager.PlayCustomerAttackedSFX(audioManager.transform.position);
                 break;
 
             case SoundEffects.PAY:
