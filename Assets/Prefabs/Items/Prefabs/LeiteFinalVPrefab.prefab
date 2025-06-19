@@ -69,9 +69,17 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -3612005282396813535, guid: be9405bd724368d41b543d1785e52a3a, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3612005282396813535, guid: be9405bd724368d41b543d1785e52a3a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a72d08bb1dadce64d9fcdf0ea49122f7, type: 2}
+    - target: {fileID: -3612005282396813535, guid: be9405bd724368d41b543d1785e52a3a, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 27c359b736e6c7b4b8c1b18f93d163c8, type: 2}
     - target: {fileID: 919132149155446097, guid: be9405bd724368d41b543d1785e52a3a, type: 3}
       propertyPath: m_Name
       value: LeiteFinalVPrefab
@@ -88,6 +96,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6760683036282780363, guid: be9405bd724368d41b543d1785e52a3a, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760683036282780363, guid: be9405bd724368d41b543d1785e52a3a, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 27c359b736e6c7b4b8c1b18f93d163c8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
