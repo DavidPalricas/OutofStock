@@ -22,6 +22,8 @@ public class MarketProduct : Item
         WATER,
     }
 
+    public GameObject shelf;
+
     /// <summary>
     /// The pickProductArea attribute is the area where the custumers can pick up the product.
     /// </summary>
@@ -44,5 +46,7 @@ public class MarketProduct : Item
         base.WasGrabbed();
 
         MarketStock.GetInstance().RemoveProduct(gameObject);
+
+        shelf.GetComponent<Shelf>().ProductRemoved();
     }
 }
