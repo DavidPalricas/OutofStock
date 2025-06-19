@@ -5446,6 +5446,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1518372816978788098, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: jumpPower
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518372816978788098, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: enableZoom
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518372816978788098, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: jumpActionReference
       value: 
       objectReference: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -5500,6 +5508,10 @@ PrefabInstance:
     - target: {fileID: 5753820143375783207, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247758564204338669, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: pauseMenu
