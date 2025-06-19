@@ -78,6 +78,15 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
+            if (!MarketStock.GetInstance().IsProductAvaible(customerMovement.TargetProduct.gameObject))
+            {
+                if(MarketStock.GetInstance().IsOutOfStock(customerMovement.TargetProduct.type))
+                {
+                    fSM.ChangeState("ProductNotFound");
+                    return;
+                }
+            }
+
             // Initialize the timer to pick a product
             if (timer == 0f)
             {
@@ -126,6 +135,11 @@ public class Shopping : CustomerBaseState
         {
             annoyingKid.HoldsProduct = true;
         }
+
+        GameObject product = customerMovement.TargetProduct.gameObject;
+
+        MarketStock.GetInstance().RemoveProduct(product);
+        Destroy(product);
 
         fSM.ChangeState("ProductPicked");
     }
