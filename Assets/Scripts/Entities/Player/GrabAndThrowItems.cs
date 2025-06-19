@@ -28,7 +28,7 @@ public class GrabAndThrowItems : MonoBehaviour
     /// The grabOrThrowAction attribute is the reference to the grab or throw action.
     /// </summary>
     [SerializeField]
-    private InputActionReference grabOrThrowAction;
+    private InputActionReference throwAction, grabAction;
 
     /// <summary>
     /// The itemGrabbed attribute is a flag that indicates if the player is holding an item.
@@ -41,27 +41,18 @@ public class GrabAndThrowItems : MonoBehaviour
     /// If this action is pressed, the GrabOrThrowItem method is called to check if the player will grab or throw an item.
     private void Update()
     {
-        if (grabOrThrowAction.action.triggered)
+        if (grabAction.action.IsPressed() && !itemGrabbed)
         {
-           GrabOrThrowItem();
-        }
-    }
+             GrabItem();
 
-    /// <summary>
-    /// The GrabOrThrowItem Method is responsible for grabbing or throwing an item.
-    /// In this method, we check if the player is holding an item.
-    /// If the player is holding an item, the ThrowItem method is called otherwise the GrabItem method is called.
-    /// </summary>
-    private void GrabOrThrowItem()
-    {
-        if (itemGrabbed)
-        {
+             return;
+        }
+
+        if (throwAction.action.triggered &&  itemGrabbed){
+
             ThrowItem();
 
-            return;
         }
-
-        GrabItem();
     }
 
     /// <summary>
@@ -95,7 +86,7 @@ public class GrabAndThrowItems : MonoBehaviour
 
                 Transform itemTransform = item.transform;
 
-                Quaternion newRotation = Quaternion.Euler(-90, 0, 0);
+                Quaternion newRotation = Quaternion.Euler(0, 0, 0);
 
                 itemTransform.SetPositionAndRotation(itemGrabbedPos.position, newRotation);
 
@@ -114,8 +105,9 @@ public class GrabAndThrowItems : MonoBehaviour
     /// 1. Retrieving the held item (child of itemGrabbedPos)
     /// 2. Preventing clipping by calling the StopClipping method
     /// 3. Detaching the item from the player by setting its parent to null
-    /// 4. The item's throw logic is triggered by calling the WasThrown method
-    /// 5. Resetting the itemGrabbed flag
+    /// 4. Positioning the item at the crosshair trajectory origin plus a slight offset, to the item being thrown in front of the player
+    /// 5. The item's throw logic is triggered by calling the WasThrown method
+    /// 6. Resetting the itemGrabbed flag
     /// 
     /// The throw force is set to a constant value of 20f and uses ForceMode.Impulse for
     /// immediate application of the force.
@@ -123,17 +115,14 @@ public class GrabAndThrowItems : MonoBehaviour
     private void ThrowItem()
     {
         GameObject itemToThrow = itemGrabbedPos.GetChild(0).gameObject;
-
         StopClipping(itemToThrow);
-
         itemToThrow.transform.SetParent(null);
 
-        Item item = itemToThrow.GetComponent<Item>();
+        Ray crosshairRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        item.WasThrown(player.transform.forward);
-
+        itemToThrow.GetComponent<Item>().WasThrown(crosshairRay.direction);       
         itemGrabbed = false;
-    }
+     }
 
     /// <summary>
     /// Prevents object clipping by repositioning the item before throwing.
