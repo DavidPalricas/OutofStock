@@ -75,13 +75,19 @@ public class ShiftLogic : MonoBehaviour
     {   
         timer = Time.time;
 
-        day = PlayerPrefs.GetString("CurrentDay", "Mon");
+        day = PlayerPrefs.GetString("CurrentDay", "MON");
 
         startHour = (int) PlayerPrefs.GetFloat("StartHour", 0);
         
         // Unpauses the game if it is pause
         Time.timeScale = 1;
         SetGameTime();
+
+        // Starts the tutorial dialogue in the first level
+        if (day == "MON")
+        {   
+            GetComponent<DialogueSystem>().StartDialogue(DialogueSystem.DialogueType.TUTORIAL);
+        }
     }
 
     /// <summary>

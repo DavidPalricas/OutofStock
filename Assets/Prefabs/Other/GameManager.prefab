@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 1622017229548695560}
   - component: {fileID: 8514093232553443937}
   - component: {fileID: -1411920706285211902}
+  - component: {fileID: 1076767603636382202}
+  - component: {fileID: 5339897775003523703}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,8 +51,8 @@ MonoBehaviour:
   fileName: gameconfig
   shiftDurationIRL: 1
   shiftDuration: 1
-  lunchBreakTime: 0
-  startHour: 0
+  lunchBreakTime: 1
+  startHour: 1
   customerBecameThiefProb: 0
   days:
   - karenSpawnProb: 0.2
@@ -110,6 +112,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04461c244d93354da86921bf1ff715f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerSentTextsUI: {fileID: 0}
+  customerSentPanel: {fileID: 0}
+--- !u!114 &1076767603636382202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747278327246381498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28cecea3fe9b619419d625c986bf9b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueJsonFile: {fileID: 4900000, guid: 179984ee8a6614645b7f41d244672dd1, type: 3}
+  skipDialogue: {fileID: -855008544819195820, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  dialogueBox: {fileID: 0}
+  dialogueText: {fileID: 0}
+--- !u!114 &5339897775003523703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747278327246381498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d00ae0e8f94aa41b5fcf4c0abf09e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayText: {fileID: 0}
+  timeText: {fileID: 0}
 --- !u!1001 &2216572002558071238
 PrefabInstance:
   m_ObjectHideFlags: 0
