@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 
 /// <summary>
@@ -55,9 +54,9 @@ public class DialogueSystem : MonoBehaviour
     private bool isDialogueActive;
 
     /// <summary>
-    /// The dialoguesLines attribute is a dictionary that stores the lines of dialogue for the current dialogue.
+    /// The dialoguesLines attribute is a list that stores the lines of dialogue for the current dialogue.
     /// </summary>
-    private Dictionary<string, string> dialoguesLines;
+    private List<string> dialoguesLines;
 
     /// <summary>
     /// The firstPersonController attribute is used to reference the FirstPersonController (Player Controller) component.
@@ -93,16 +92,16 @@ public class DialogueSystem : MonoBehaviour
     /// </summary>
     private void SkipDialogue()
     {
-        dialoguesLines.Remove(dialoguesLines.Keys.First());
+        dialoguesLines.RemoveAt(0);  
 
         if (dialoguesLines.Count == 0)
-        {   
+        {
             EndDialogue();
             return;
         }
 
-        // Shows the next line of dialogue
-        dialogueText.text = dialoguesLines.First().Value;
+        // Shows the next line of dialogue  
+        dialogueText.text = dialoguesLines[0]; 
     }
 
     /// <summary>
@@ -147,10 +146,10 @@ public class DialogueSystem : MonoBehaviour
     {
         currentDialogueType = GetDialogueType(type);
 
-        dialoguesLines = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(dialogueJsonFile.text)[currentDialogueType];
+        dialoguesLines = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(dialogueJsonFile.text)[currentDialogueType];
 
         dialogueBox.SetActive(true);
-        dialogueText.text = dialoguesLines.First().Value;
+        dialogueText.text = dialoguesLines[0];
         isDialogueActive = true;
 
         if (currentDialogueType == "tutorial")
