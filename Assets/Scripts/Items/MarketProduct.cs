@@ -22,17 +22,17 @@ public class MarketProduct : Item
         WATER,
     }
 
-    public GameObject shelf;
+    public GameObject Shelf { get; set; }
 
     /// <summary>
     /// The pickProductArea attribute is the area where the custumers can pick up the product.
     /// </summary>
-    public Transform pickProductArea;
+    public Transform PickProductArea { get; set; }
 
     /// <summary>
     /// The type attribute is used to define the type of product this MarketProduct represents.
     /// </summary>
-    public ProductType type;
+    public ProductType Type { get; set; }
 
     /// <summary>
     /// The WasGrabbed method is responsible for handling the logic when the item is grabbed by the player.
@@ -45,8 +45,13 @@ public class MarketProduct : Item
     {
         base.WasGrabbed();
 
-        MarketStock.GetInstance().RemoveProduct(gameObject);
+        EntityHasProduct();
+    }
 
-        shelf.GetComponent<Shelf>().ProductRemoved();
+
+    public void EntityHasProduct()
+    {
+        MarketStock.GetInstance().RemoveProduct(gameObject);
+        Shelf.GetComponent<Shelf>().ProductRemoved();
     }
 }

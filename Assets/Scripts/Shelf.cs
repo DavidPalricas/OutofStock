@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour, ISubject
 {
-    private IObserver[] observers;
+
 
     [SerializeField]
-    private Transform productsPlaceHolderArea;
+    private Transform productsPlaceHolderArea, pickAreas;
 
     [SerializeField]
     private GameObject waterBottle1, waterBottle2, beerCan, beerBottle;
 
+
+    private IObserver[] observers;
+
+    private GameObject[] pickProduct;
+
     public GameObject[] ProductsPlaceHolder { get; private set; }
 
     public GameObject[] ShelfProducts { get; private set; }
+
+
     public int MaxProducts { get; private set; }
 
     public int CurrentProducts { get; set; }
@@ -24,11 +31,16 @@ public class Shelf : MonoBehaviour, ISubject
     private void Awake()
     {
         MaxProducts = GameObject.FindGameObjectsWithTag("Item")
-           .Count(item => item.TryGetComponent(out MarketProduct product) && product.shelf == gameObject);
-        
+           .Count(item =>
+           {
+               MarketProduct product;
+               return item.TryGetComponent(out product) && product.Shelf == gameObject;
+           });
+
         CurrentProducts = MaxProducts;
 
         ProductsPlaceHolder = Utils.GetChildren(productsPlaceHolderArea);
+        pickProduct = Utils.GetChildren(pickAreas);
 
         IObserver taskManager = GameObject.FindGameObjectWithTag("TaskManager").GetComponent<TaskManager>();
 
@@ -84,7 +96,9 @@ public class Shelf : MonoBehaviour, ISubject
 
             MarketProduct marketProduct = product.GetComponent<MarketProduct>();
 
-            marketProduct.shelf = gameObject;
+
+            marketProduct.Shelf = gameObject;
+            SetProductPickArea(marketProduct);
 
             CurrentProducts++;
         }
@@ -124,5 +138,13 @@ public class Shelf : MonoBehaviour, ISubject
         {
             observer.OnNotify(data);
         }
+    }
+
+
+    public void SetProductPickArea(MarketProduct product)
+    {
+        product.PickProductArea = pickProduct
+                   .OrderBy(p => Vector3.Distance(p.transform.position, product.transform.position))
+                   .FirstOrDefault()?.transform;
     }
 }

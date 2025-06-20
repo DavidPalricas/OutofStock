@@ -2639,6 +2639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productsPlaceHolderArea: {fileID: 1135581938594182373}
+  pickAreas: {fileID: 1111517280488567625}
   waterBottle1: {fileID: 614960601861997406, guid: 71793902bdb94cb46acc7fe5d36167bd, type: 3}
   waterBottle2: {fileID: 614960601861997406, guid: c59f30660016b49409ea5b4f811750a2, type: 3}
   beerCan: {fileID: 6378853230990196886, guid: b0df3eaadc218ba42aab8e3dc7e3f1d6, type: 3}

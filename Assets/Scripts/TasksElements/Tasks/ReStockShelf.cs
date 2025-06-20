@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,9 +61,9 @@ public class ReStockShelf : Task
 
 
         MarketProduct marketProduct = product.GetComponent<MarketProduct>();
-        marketProduct.shelf = gameObject;
+        marketProduct.Shelf = gameObject;
+        shelf.SetProductPickArea(marketProduct);
 
-        
         StartCoroutine(Utils.WaitAndExecute(0.5f, () => productCollider.enabled = true));
         ProductsToRestock--;
         shelf.CurrentProducts++;
