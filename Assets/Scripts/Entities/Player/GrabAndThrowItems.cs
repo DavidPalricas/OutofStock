@@ -72,9 +72,8 @@ public class GrabAndThrowItems : MonoBehaviour
         Ray ray = Utils.CastRayFromUI(crosshair);
 
         const float RAYCASTDISTANCE = 1.8f;
-        LayerMask itemLayer = LayerMask.GetMask("Item");
 
-        if (Physics.Raycast(ray, out RaycastHit playerRaycast, RAYCASTDISTANCE, itemLayer) )
+        if (Physics.Raycast(ray, out RaycastHit playerRaycast, RAYCASTDISTANCE, LayerMask.GetMask("Item")))
         {   
             if (playerRaycast.collider.CompareTag("Item"))
             {

@@ -267,6 +267,9 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
         Text toggleText = newToggle.GetComponentInChildren<Text>();
         toggleText.text = "Restock " + shelf.name;
 
+
+        shelf.GetComponent<ReStockShelf>().enabled = true;
+
         int taskNumber = 2;
         ActivateTask(taskNumber);
         activeTaskToggles.Add(taskNumber, newToggle);
