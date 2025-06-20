@@ -36,7 +36,6 @@ public class ReStockShelf : Task
     {
         if (interactAction.action.IsPressed())
         {
-            Debug.Log("Boas");
             Restock();
         }
     }
@@ -44,28 +43,11 @@ public class ReStockShelf : Task
 
     private void Restock()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject placeHolder = GameObject.FindGameObjectWithTag("Player").GetComponent<GrabAndThrowItems>().ProductToPlace(productsPlaceHolder);
 
-        Ray ray = new(player.transform.position, player.transform.forward);
-
-        const float RAYCASTDISTANCE = 1.8f;
-
-        if (Physics.Raycast(ray, out RaycastHit hit, RAYCASTDISTANCE, LayerMask.GetMask("Item")))
+        if (placeHolder != null)
         {
-            Debug.Log("Hit: " + hit.collider.gameObject.name);
-            if (!hit.collider.gameObject.name.Contains("PlaceHolder"))
-            {
-                return;
-            }
-
-            foreach (GameObject productPlaceHolder in productsPlaceHolder)
-            {
-                if (hit.collider.gameObject == productPlaceHolder)
-                {
-                    PlaceProduct(productPlaceHolder);
-                    return;
-                }
-            }
+            PlaceProduct(placeHolder);
         }
     }
 
@@ -95,8 +77,6 @@ public class ReStockShelf : Task
             {
                 item.SetActive(false);
             }
-
-
 
             TaskCompleted();
         }
