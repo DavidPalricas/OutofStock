@@ -26,15 +26,15 @@ public class DayConfig
     /// in one day.
     /// The customersToSend property defines the number of customers that the player must send (by attacking them)
     /// to his uncle's market in one day.
+    /// The minProductsInShelfs and maxProductsInShelfs properties define the minimum and maximum number of products in the shelfes.
     /// </summary>
-    public int numberOfTasks, customersToSend;
+    public int numberOfTasks, customersToSend, minProductsInShelfs, maxProductsInShelfs;
 
     /// <summary>
-    /// The cleanFloorProb, fixFuseBoxProb and fixToiletProb properties define the probabilities of
-    /// a task being assigned to the player, these tasks are respectively cleaning the floor,
-    /// fixing a fuse box and fixing a toilet.
+    /// The cleanFloorProb, fixFuseBoxProbproperties define the probabilities of
+    /// a task being assigned to the player, these tasks are respectively cleaning the floor.
     /// </summary>
     [Range(0, 1)]
-    public float cleanFloorProb, fixFuseBoxProb, fixToiletProb;
+    public float cleanFloorProb, fixFuseBoxProb;
 }
 

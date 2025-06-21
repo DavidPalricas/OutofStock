@@ -21,10 +21,10 @@ public class DayData
     /// <summary>
     /// The numberOfTasks property stores the number of tasks that can be assigned to the player and
     /// the customersToSend property stores the number of customers that the player must send(by attacking them) to his uncle
-    /// market.
-    /// in one day.
+    /// market in one day.
+    /// The minProductsInShelfs and maxProductsInShelfs properties define the minimum and maximum number of products in the shelves, respectively.
     /// </summary>
-    public int numberOfTasks, customersToSend;
+    public int numberOfTasks, customersToSend, minProductsInShelfs, maxProductsInShelfs;
 
     /// <summary>
     /// The tasksProbs property stores the probabilities of a task being assigned to the player

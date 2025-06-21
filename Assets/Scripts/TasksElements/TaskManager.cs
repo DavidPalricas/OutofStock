@@ -8,7 +8,7 @@ using System.Linq;
 /// The TaskManager class is responsible for generating tasks, show their names and status in the UI.
 /// It implements the IObserver interface to be notified when a task is completed.
 /// </summary>
-public class TaskManager : MonoBehaviour, IEventListener
+public class TaskManager : MonoBehaviour, IEventListener, IObserver
 {
     /// <summary>
     /// The taskTogglePrefab property stores a reference to the prefab of the task toggle.
@@ -40,9 +40,9 @@ public class TaskManager : MonoBehaviour, IEventListener
     private readonly Dictionary<int, Toggle> activeTaskToggles = new ();
 
     /// <summary>
-    /// The tasksTypes property is responsible for storing the types of tasks in the game.
+    /// The randomTasksTypes property is responsible for storing the types of tasks in the game.
     /// </summary>
-    private readonly Dictionary<int, string> tasksTypes = new()
+    private readonly Dictionary<int, string> randomTasksTypes = new()
     {   { 0, "Fix Fuse Box" },
         { 1, "Clean Floor" }
     };
@@ -97,7 +97,7 @@ public class TaskManager : MonoBehaviour, IEventListener
         {
 
             taskBoxContainerImage.enabled = true;
-            GenerateTask();
+            GenerateRandomTask();
 
             // Reset the timer for the next task generation
             timer = Time.time + addTaskTime;
@@ -116,11 +116,11 @@ public class TaskManager : MonoBehaviour, IEventListener
     ///     5. After that the ActivateTask method is called to activate the task and adds the new toggle to the game.
     ///     6. Finally, it checks if all types of tasks are activated and sets the allTypeOfTasksActivated flag accordingly. 
     /// </remarks>
-    private void GenerateTask()
+    private void GenerateRandomTask()
     {
         var availableTasks = new List<int>();
 
-        foreach (int taskId in tasksTypes.Keys)
+        foreach (int taskId in randomTasksTypes.Keys)
         {
             if (!activeTaskToggles.ContainsKey(taskId))
             {
@@ -140,13 +140,13 @@ public class TaskManager : MonoBehaviour, IEventListener
 
         Text toggleText = newToggle.GetComponentInChildren<Text>();
 
-        toggleText.text = tasksTypes[taskNumber];
+        toggleText.text = randomTasksTypes[taskNumber];
         
         ActivateTask(taskNumber);
     
         activeTaskToggles.Add(taskNumber, newToggle);
 
-        allTypeOfTasksActivated = activeTaskToggles.Count == tasksTypes.Count;
+        allTypeOfTasksActivated = activeTaskToggles.Count == randomTasksTypes.Count;
     }
 
     /// <summary>
@@ -257,11 +257,45 @@ public class TaskManager : MonoBehaviour, IEventListener
     }
 
     /// <summary>
+    /// The ActivateRestockTask method is responsible for activating a restock shelf task.
+    /// </summary>
+    /// <remarks>
+    /// It starts for creating a new toggle for this task, the activates the ReStockShelf component of the shelf game object,
+    /// to start the tasks and sets this toggle to active tasks to show it in the UI.
+    /// </remarks>
+    /// <param name="shelf">The shelf that needs to restock.</param>
+    private void ActivateRestockTask(GameObject shelf)
+    {
+        Toggle newToggle = Instantiate(taskTogglePrefab, taskContainerTransform);
+        Text toggleText = newToggle.GetComponentInChildren<Text>();
+;
+        ReStockShelf reStockShelf = shelf.GetComponent<ReStockShelf>();
+        reStockShelf.enabled = true;
+
+        int taskNumber = reStockShelf.Number;
+
+        // The number of the restock shelf task is the number of the task minus 1, because this task number starts at 2
+        toggleText.text = "Restock Shelf " + (reStockShelf.Number - 1);
+
+        ActivateTask(taskNumber);
+        activeTaskToggles.Add(taskNumber, newToggle);
+    }
+
+    /// <summary>
     /// The ListenToEvents method is used to listen to one or more events.
     /// It subscribes to the "TaskCompleted" event from the EventManager.
     /// </summary>
     public void ListenToEvents()
     {
         EventManager.GetInstance().TaskCompleted += TaskCompleted;
+    }
+
+    /// <summary>
+    /// The OnNotify method (IObserver method)  is responsible for updating the observer, when a subject notifies it. (Shelf)
+    /// </summary>
+    /// <param name="data">Any argument to be sent to the observer, in this case the shelf game object.</param>
+    public void OnNotify(object data)
+    {
+        ActivateRestockTask(data as GameObject);
     }
 }

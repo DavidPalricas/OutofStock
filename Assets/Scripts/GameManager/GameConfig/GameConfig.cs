@@ -150,10 +150,11 @@ public class GameConfig : MonoBehaviour
 
             dayData.numberOfTasks = day.numberOfTasks;
             dayData.customersToSend = day.customersToSend;
+            dayData.minProductsInShelfs = day.minProductsInShelfs;
+            dayData.maxProductsInShelfs = day.maxProductsInShelfs;
 
             dayData.tasksProbs.Add("CleanFloor", day.cleanFloorProb);
             dayData.tasksProbs.Add("FixFuseBox", day.fixFuseBoxProb);
-            dayData.tasksProbs.Add("FixToilet", day.fixToiletProb);
 
             string weekDay = GetWeekDay(i);
 
@@ -259,7 +260,8 @@ public class GameConfig : MonoBehaviour
             PlayerPrefs.SetInt("CustomersToSend", dayData.customersToSend);
             PlayerPrefs.SetFloat("CleanFloorProb", dayData.tasksProbs["CleanFloor"]);
             PlayerPrefs.SetFloat("FixFuseBoxProb", dayData.tasksProbs["FixFuseBox"]);
-            PlayerPrefs.SetFloat("FixToiletProb", dayData.tasksProbs["FixToilet"]);
+            PlayerPrefs.SetInt("MinProductsInShelfs", dayData.minProductsInShelfs);
+            PlayerPrefs.SetInt("MaxProductsInShelfs", dayData.maxProductsInShelfs);
 
             PlayerPrefs.Save();
         }

@@ -25,20 +25,20 @@ public class MarketStock
            .Where(item => item.GetComponent<MarketProduct>() != null)
            .ToArray();
 
-        tunas = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.TUNA).ToList();
-        milks = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.MILK).ToList();
-        oranges = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.ORANGE).ToList();
-        redApples = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.RED_APPLE).ToList();
-        greenApples = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.GREEN_APPLE).ToList();
-        redWines = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.RED_WINE).ToList();
-        whiteWines = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.WHITE_WINE).ToList();
-        beers = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.BEER).ToList();
-        waters = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.WATER).ToList();
+        tunas = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.TUNA).ToList();
+        milks = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.MILK).ToList();
+        oranges = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.ORANGE).ToList();
+        redApples = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.RED_APPLE).ToList();
+        greenApples = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.GREEN_APPLE).ToList();
+        redWines = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.RED_WINE).ToList();
+        whiteWines = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.WHITE_WINE).ToList();
+        beers = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.BEER).ToList();
+        waters = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.WATER).ToList();
     }
 
     public void RemoveProduct(GameObject product)
     {
-        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().type;
+        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().Type;
 
         switch (type)
         {
@@ -87,7 +87,7 @@ public class MarketStock
 
     public bool IsProductAvaible(GameObject product)
     {
-        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().type;
+        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().Type;
 
         return type switch
         {
