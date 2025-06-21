@@ -77,7 +77,7 @@ public class Shelf : MonoBehaviour, ISubject
     private void Awake()
     {   
         MaxProducts = Utils.RandomInt(PlayerPrefs.GetInt("MinProductsInShelfs"), PlayerPrefs.GetInt("MaxProductsInShelfs")); 
-        CurrentProducts = MaxProducts;
+        CurrentProducts = 0;
 
         ProductsPlaceHolder = Utils.GetChildren(productsPlaceHolderGroup);
         pickAreas = Utils.GetChildren(pickAreasGroup);

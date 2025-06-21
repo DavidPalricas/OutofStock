@@ -256,21 +256,27 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
         StartCoroutine(HandleTaskCompletion(EventManager.GetInstance().LastTaskCompletedNumber));
     }
 
+    /// <summary>
+    /// The ActivateRestockTask method is responsible for activating a restock shelf task.
+    /// </summary>
+    /// <remarks>
+    /// It starts for creating a new toggle for this task, the activates the ReStockShelf component of the shelf game object,
+    /// to start the tasks and sets this toggle to active tasks to show it in the UI.
+    /// </remarks>
+    /// <param name="shelf">The shelf that needs to restock.</param>
     private void ActivateRestockTask(GameObject shelf)
     {
-        if (activeTaskToggles.Count >= maxTasks)
-        {
-            return;
-        }
-
         Toggle newToggle = Instantiate(taskTogglePrefab, taskContainerTransform);
         Text toggleText = newToggle.GetComponentInChildren<Text>();
-        toggleText.text = "Restock " + shelf.name;
+;
+        ReStockShelf reStockShelf = shelf.GetComponent<ReStockShelf>();
+        reStockShelf.enabled = true;
 
+        int taskNumber = reStockShelf.Number;
 
-        shelf.GetComponent<ReStockShelf>().enabled = true;
+        // The number of the restock shelf task is the number of the task minus 1, because this task number starts at 2
+        toggleText.text = "Restock Shelf " + (reStockShelf.Number - 1);
 
-        int taskNumber = 2;
         ActivateTask(taskNumber);
         activeTaskToggles.Add(taskNumber, newToggle);
     }
@@ -284,7 +290,10 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
         EventManager.GetInstance().TaskCompleted += TaskCompleted;
     }
 
-
+    /// <summary>
+    /// The OnNotify method (IObserver method)  is responsible for updating the observer, when a subject notifies it. (Shelf)
+    /// </summary>
+    /// <param name="data">Any argument to be sent to the observer, in this case the shelf game object.</param>
     public void OnNotify(object data)
     {
         ActivateRestockTask(data as GameObject);
