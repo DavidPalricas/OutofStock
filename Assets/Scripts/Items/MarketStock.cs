@@ -2,22 +2,63 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-public class MarketStock
-{   
-    private static MarketStock instance = null;
+public class MarketStock : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject tunaCan1, tunaCan2, tunaCan3, tunaCan4;
 
-    public List<GameObject> tunas, milks, oranges, redApples, greenApples, redWines, whiteWines, beers, waters;
+    [SerializeField]
+    private GameObject milk1, milk2;
 
-    private MarketStock()
+    /*
+    [SerializeField]
+    private GameObject orange;
+    
+    [SerializeField]
+    private GameObject redApple, greenApple;
+  
+    [SerializeField]
+    private GameObject wine1, wine2;
+    */
+
+    [SerializeField]
+    private GameObject beerBottle1, beerBottle2;
+
+    [SerializeField]
+    private GameObject beerCan1, beerCan2;
+
+    /*
+    [SerializeField]
+    private GameObject water1, water2;
+    */
+
+    [SerializeField]
+    private GameObject toiletPaper1, toiletPaper2;
+
+    [SerializeField]
+    private GameObject handSoap1, handSoap2;
+
+    [SerializeField]
+    private GameObject cleaningSpray1, cleaningSpray2;
+
+    public List<GameObject> Tunas { get; private set; }
+
+    public List<GameObject> Milks { get; private set; }
+
+
+    // private List<GameObject> oranges, redApples, greenApples, bananas, lemons, watermelons;
+
+    public List<GameObject> BeerBottles { get; private set; }
+    public List<GameObject> BeerCans { get; private set; }
+
+    public List<GameObject> ToiletPapers { get; private set; }
+    public List<GameObject>  HandSoaps { get; private set; } 
+    public List<GameObject> CleaningSprays { get; private set; }
+
+    private void Start()
     {
         SetStock();
     }
-
-    public static MarketStock GetInstance()
-    {
-        return instance ??= new MarketStock();
-    }
-
 
     private void SetStock()
     {
@@ -25,31 +66,103 @@ public class MarketStock
            .Where(item => item.GetComponent<MarketProduct>() != null)
            .ToArray();
 
-        tunas = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.TUNA).ToList();
-        milks = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.MILK).ToList();
+        Tunas = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.TUNA_CAN).ToList();
+        Milks = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.MILK).ToList();
+        Debug.Log("Milk: " + Milks.Count);
+
+        /*
         oranges = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.ORANGE).ToList();
         redApples = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.RED_APPLE).ToList();
         greenApples = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.GREEN_APPLE).ToList();
-        redWines = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.RED_WINE).ToList();
-        whiteWines = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.WHITE_WINE).ToList();
-        beers = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.BEER).ToList();
-        waters = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.WATER).ToList();
+        */
+
+        // wines = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.WINE).ToList();
+        BeerBottles = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.BEER_BOTTLE).ToList();
+        BeerCans = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.BEER_CAN).ToList();
+        // waters = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.WATER).ToList();
+
+        ToiletPapers = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.TOILET_PAPER).ToList();
+        Debug.Log("Toilet Papers: " + ToiletPapers.Count);
+        HandSoaps = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.HAND_SOAP).ToList();
+        CleaningSprays = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.CLEANING_SPRAY).ToList();
+    }
+
+
+    /// <summary>
+    /// The GetProductVariants method gets the variants of the products based on the product type.
+    /// </summary>
+    /// <param name="productsType">Type of the products.</param>
+    /// <returns>An array containing the product variants</returns>
+    public GameObject[] GetProductVariants(MarketProduct.ProductType productsType)
+    {
+        switch (productsType)
+        {
+            case MarketProduct.ProductType.TUNA_CAN:
+                return new GameObject[] { tunaCan1, tunaCan2, tunaCan3, tunaCan4 };
+
+            case MarketProduct.ProductType.MILK:
+                return new GameObject[] { milk1, milk2 };
+               
+            /*
+            case MarketProduct.ProductType.ORANGE:
+                ShelfProducts = new GameObject[] { orange };
+                return;
+
+            case MarketProduct.ProductType.RED_APPLE:
+                ShelfProducts = new GameObject[] { redApple};
+                return;
+
+            case MarketProduct.ProductType.GREEN_APPLE:
+                ShelfProducts = new GameObject[] { greenApple };
+                return;
+          
+            case MarketProduct.ProductType.WINE:
+                ShelfProducts = new GameObject[] { wine1, wine2 };
+                return;
+
+             */
+
+            case MarketProduct.ProductType.BEER_BOTTLE:
+                return new GameObject[] { beerBottle1, beerBottle2 };
+        
+            case MarketProduct.ProductType.BEER_CAN:
+                return new GameObject[] { beerCan1, beerCan2 };
+            /*
+            case MarketProduct.ProductType.WATER:
+                ShelfProducts = new GameObject[] { water1, water2 };
+                return;
+            */
+
+            case MarketProduct.ProductType.TOILET_PAPER:
+                return new GameObject[] { toiletPaper1, toiletPaper2 };
+
+            case MarketProduct.ProductType.HAND_SOAP:
+                return new GameObject[] { handSoap1, handSoap2 };
+
+            case MarketProduct.ProductType.CLEANING_SPRAY:
+                return new GameObject[] { cleaningSpray1, cleaningSpray2 };
+
+            default:
+                Debug.LogError("Unknown product type: " + productsType);
+                return null;
+        }
     }
 
     public void RemoveProduct(GameObject product)
     {
-        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().Type;
+        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().type;
 
         switch (type)
         {
-            case MarketProduct.ProductType.TUNA:
-                tunas.Remove(product);
+            case MarketProduct.ProductType.TUNA_CAN:
+                Tunas.Remove(product);
                 return;
 
             case MarketProduct.ProductType.MILK:
-                milks.Remove(product);
+                Milks.Remove(product);
                 return;
-
+            
+            /*
             case MarketProduct.ProductType.ORANGE:
                 oranges.Remove(product);
                 return;
@@ -59,23 +172,38 @@ public class MarketStock
                 return;
 
             case MarketProduct.ProductType.GREEN_APPLE:
-                greenApples.Remove(product);
+                redApples.Remove(product);
                 return;
 
-            case MarketProduct.ProductType.RED_WINE:
-                redWines.Remove(product);
+            case MarketProduct.ProductType.WINE:
+                wines.Remove(product);
+                return;
+            */
+
+            case MarketProduct.ProductType.BEER_BOTTLE:
+                BeerBottles.Remove(product);
                 return;
 
-            case MarketProduct.ProductType.WHITE_WINE:
-                whiteWines.Remove(product);
+            case MarketProduct.ProductType.BEER_CAN:
+                BeerCans.Remove(product);
                 return;
 
-            case MarketProduct.ProductType.BEER:
-                beers.Remove(product);
-                return;
-
+            /*
             case MarketProduct.ProductType.WATER:
                 waters.Remove(product);
+                return;
+            */
+
+            case MarketProduct.ProductType.TOILET_PAPER:
+                ToiletPapers.Remove(product);
+                return;
+
+            case MarketProduct.ProductType.HAND_SOAP:
+                HandSoaps.Remove(product);
+                return;
+
+            case MarketProduct.ProductType.CLEANING_SPRAY:
+                CleaningSprays.Remove(product);
                 return;
 
             default:
@@ -87,19 +215,26 @@ public class MarketStock
 
     public bool IsProductAvaible(GameObject product)
     {
-        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().Type;
+        MarketProduct.ProductType type = product.GetComponent<MarketProduct>().type;
 
         return type switch
         {
-            MarketProduct.ProductType.TUNA => tunas.Contains(product),
-            MarketProduct.ProductType.MILK => milks.Contains(product),
+            MarketProduct.ProductType.TUNA_CAN => Tunas.Contains(product),
+            MarketProduct.ProductType.MILK => Milks.Contains(product),
+            /*
             MarketProduct.ProductType.ORANGE => oranges.Contains(product),
             MarketProduct.ProductType.RED_APPLE => redApples.Contains(product),
             MarketProduct.ProductType.GREEN_APPLE => greenApples.Contains(product),
-            MarketProduct.ProductType.RED_WINE => redWines.Contains(product),
-            MarketProduct.ProductType.WHITE_WINE => whiteWines.Contains(product),
-            MarketProduct.ProductType.BEER => beers.Contains(product),
-            MarketProduct.ProductType.WATER => waters.Contains(product),
+            */
+
+            // MarketProduct.ProductType.WINE => wines.Contains(product),
+            MarketProduct.ProductType.BEER_BOTTLE => BeerBottles.Contains(product),
+            MarketProduct.ProductType.BEER_CAN => BeerCans.Contains(product),
+            // MarketProduct.ProductType.WATER => waters.Contains(product),
+
+            MarketProduct.ProductType.TOILET_PAPER => ToiletPapers.Contains(product),
+            MarketProduct.ProductType.HAND_SOAP => HandSoaps.Contains(product),
+            MarketProduct.ProductType.CLEANING_SPRAY => CleaningSprays.Contains(product),
             _ => false
         };
     }
@@ -108,15 +243,16 @@ public class MarketStock
     {
         return type switch
         {
-            MarketProduct.ProductType.TUNA => tunas.Count == 0,
-            MarketProduct.ProductType.MILK => milks.Count == 0,
+            MarketProduct.ProductType.TUNA_CAN => Tunas.Count == 0,
+            MarketProduct.ProductType.MILK => Milks.Count == 0,
+            /*
             MarketProduct.ProductType.ORANGE => oranges.Count == 0,
             MarketProduct.ProductType.RED_APPLE => redApples.Count == 0,
-            MarketProduct.ProductType.GREEN_APPLE => greenApples.Count == 0,
-            MarketProduct.ProductType.RED_WINE => redWines.Count == 0,
-            MarketProduct.ProductType.WHITE_WINE => whiteWines.Count == 0,
-            MarketProduct.ProductType.BEER => beers.Count == 0,
-            MarketProduct.ProductType.WATER => waters.Count == 0,
+             MarketProduct.ProductType.GREEN_APPLE => greenApples.Count == 0,
+            MarketProduct.ProductType.WINE => wines.Count == 0,
+            */
+            MarketProduct.ProductType.BEER_BOTTLE => BeerBottles.Count == 0,
+            // MarketProduct.ProductType.WATER => waters.Count == 0,
             _ => false
         };
     }

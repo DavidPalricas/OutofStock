@@ -109,18 +109,14 @@ public class ReStockShelf : Task
     {   
         GameObject productVariant = shelfProducts[Utils.RandomInt(0, shelfProducts.Length)];
 
-        GameObject product = Instantiate(productVariant, placeHolder.transform.position, Quaternion.identity);
+        productVariant.transform.position = Vector3.zero; // Reset the position of the product variant to avoid any offset issues.
 
-        Collider productCollider = product.GetComponent<Collider>();
-        productCollider.enabled = false;
+        GameObject product = Instantiate(productVariant, placeHolder.transform.position, Quaternion.identity);
 
         // Initialize the product atributes.
         MarketProduct marketProduct = product.GetComponent<MarketProduct>();
         marketProduct.Shelf = gameObject;
         shelf.SetProductPickArea(marketProduct);
-
-        // Enables the product collider after a short delay to allow the product, to avoid the player grabbing it immediately after placing it.
-        StartCoroutine(Utils.WaitAndExecute(0.5f, () => productCollider.enabled = true));
 
         ProductsToRestock--;
         shelf.CurrentProducts++;

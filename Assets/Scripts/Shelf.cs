@@ -14,11 +14,42 @@ public class Shelf : MonoBehaviour, ISubject
     [SerializeField]
     private Transform productsPlaceHolderGroup, pickAreasGroup;
 
-    /// <summary>
-    /// The water bottle1, water bottle2, beer can, and beer bottle attributes are used to store the different variants of products that can be placed on the shelf.
-    /// </summary>
     [SerializeField]
-    private GameObject waterBottle1, waterBottle2, beerCan, beerBottle;
+    private GameObject tunaCan1, tunaCan2, tunaCan3, tunaCan4;
+
+    [SerializeField]
+    private GameObject milk1, milk2;
+
+    /*
+    [SerializeField]
+    private GameObject orange;
+    
+    [SerializeField]
+    private GameObject redApple, greenApple;
+  
+    [SerializeField]
+    private GameObject wine1, wine2;
+    */
+
+    [SerializeField]
+    private GameObject beerBottle1, beerBottle2;
+
+    [SerializeField]
+    private GameObject beerCan1, beerCan2;
+
+    /*
+    [SerializeField]
+    private GameObject water1, water2;
+    */
+
+    [SerializeField]
+    private GameObject toiletPaper1, toiletPaper2;
+
+    [SerializeField]
+    private GameObject handSoap1, handSoap2;
+
+    [SerializeField]
+    private GameObject cleaningSpray1, cleaningSpray2;
 
     /// <summary>
     /// The observers atribute stores the observers of the shelf (TaskManager). 
@@ -104,20 +135,10 @@ public class Shelf : MonoBehaviour, ISubject
     /// </remarks>
     private void AddProducts()
     {
-        switch (productsType)
-        {
-            case MarketProduct.ProductType.WATER:
-                ShelfProducts = new GameObject[] { waterBottle1, waterBottle2 };
-                break;
 
-            case MarketProduct.ProductType.BEER:
-                ShelfProducts = new GameObject[] { beerCan, beerBottle };
-                break;
-
-            default:
-                ShelfProducts = new GameObject[] { waterBottle1, waterBottle2, beerCan, beerBottle };
-                break;
-        }
+         ShelfProducts = GameObject.FindGameObjectWithTag("MarketStock")
+            .GetComponent<MarketStock>()
+            .GetProductVariants(productsType);
 
         // This HashSet is used to ensure that we do not use the same place holder more than once.
         HashSet<int> usedPlaceHolders = new();
@@ -133,13 +154,12 @@ public class Shelf : MonoBehaviour, ISubject
             }
 
             GameObject placeHolder = ProductsPlaceHolder[randomIndex];
-
             GameObject productVariant = ShelfProducts[Utils.RandomInt(0, ShelfProducts.Length)];
 
+            productVariant.transform.localPosition = Vector3.zero; // Reset the position of the product variant to avoid any offset issues.
             GameObject product = Instantiate(productVariant, placeHolder.transform.position, Quaternion.identity);
 
             MarketProduct marketProduct = product.GetComponent<MarketProduct>();
-
 
             marketProduct.Shelf = gameObject;
             SetProductPickArea(marketProduct);
