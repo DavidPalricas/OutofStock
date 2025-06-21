@@ -180,8 +180,14 @@ public class GrabAndThrowItems : MonoBehaviour
         }
     }
 
-
-
+    /// <summary>
+    /// The ProductToPlace method is responsible for determining which product placeholder the player is aiming at.
+    /// </summary>
+    /// <remarks>
+    /// This method works by casting a ray from the player's crosshair position and checking if it hits a product placeholder.
+    /// </remarks>
+    /// <param name="productsPlaceHolder">The products place holder.</param>
+    /// <returns>The products place holder that the player is aiming or null if is aiming to none</returns>
     public GameObject ProductToPlace(GameObject[] productsPlaceHolder)
     {
         Ray ray = Utils.CastRayFromUI(crosshair);
