@@ -172,7 +172,7 @@ MonoBehaviour:
   handSoap2: {fileID: 4589846140568347347, guid: 2e3adbae2f399c347b74d0a9f5eaf68a, type: 3}
   cleaningSpray1: {fileID: 5946778080260592072, guid: 5cb1235df8ccdd24aa9068c2ad31e83d, type: 3}
   cleaningSpray2: {fileID: 5946778080260592072, guid: 66aaba33b9943234c9a6f00668eebbac, type: 3}
-  productsType: 0
+  productsType: 3
 --- !u!114 &6426021594158394284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4764,7 +4764,7 @@ MonoBehaviour:
   handSoap2: {fileID: 4589846140568347347, guid: 2e3adbae2f399c347b74d0a9f5eaf68a, type: 3}
   cleaningSpray1: {fileID: 5946778080260592072, guid: 5cb1235df8ccdd24aa9068c2ad31e83d, type: 3}
   cleaningSpray2: {fileID: 5946778080260592072, guid: 66aaba33b9943234c9a6f00668eebbac, type: 3}
-  productsType: 0
+  productsType: 3
 --- !u!114 &1270370171745200243
 MonoBehaviour:
   m_ObjectHideFlags: 0
