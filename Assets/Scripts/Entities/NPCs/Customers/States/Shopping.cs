@@ -78,9 +78,9 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
-            if (!MarketStock.GetInstance().IsProductAvaible(customerMovement.TargetProduct.gameObject))
+            if (!GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsProductAvaible(customerMovement.TargetProduct.gameObject))
             {
-                if(MarketStock.GetInstance().IsOutOfStock(customerMovement.TargetProduct.Type))
+                if( GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsOutOfStock(customerMovement.TargetProduct.type))
                 {
                     fSM.ChangeState("ProductNotFound");
                     return;
