@@ -6,7 +6,7 @@ using UnityEngine;
 /// It inherits from the NPCMovement class the basics of the NPC movement and implements the ISubject and IObserver interfaces.
 /// It is a subject to the customers spawn and an observer to the item he is looking for.
 /// </summary>
-public class CustomerMovement : NPCMovement, ISubject, IObserver
+public class CustomerMovement : NPCMovement, ISubject
 {
     /// <summary>
     /// The observers attribute stores the observers of the customer.
@@ -21,7 +21,7 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
     /// <value>
     /// The target item of the customer.
     /// </value>
-    public GameObject TargetItem { get; set; }
+    public MarketProduct TargetProduct { get; private set; }
 
     /// <summary>
     /// The AreasPos attribute represents the positions of the areas in which 
@@ -58,7 +58,7 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
         {
            Destroy(gameObject);
 
-            Debug.LogWarning("The item " + TargetItem.name + "does not have a pickItem Area");
+            Debug.LogWarning("The item " + TargetProduct.name + "does not have a pickItem Area");
             return;
         }
 
@@ -100,14 +100,83 @@ public class CustomerMovement : NPCMovement, ISubject, IObserver
         this.observers = observers;
     }
 
-    /// <summary>
-    /// The OnNotify (IObserver method) method is responsible for updating the observer (this game object), when a subject notifies it.
-    /// The customer state is changed to GO_HOME and the agent destination is set to the market exit area.
-    /// Because the player picked the item that the customer was looking for, so he exits the market.
-    /// </summary>
-    /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
-    public void OnNotify(object data = null)
+    
+    public void SetTargetProduct()
     {
-       
-    }
+        MarketProduct.ProductType[] productTypes = (MarketProduct.ProductType[])System.Enum.GetValues(typeof(MarketProduct.ProductType));
+
+        MarketProduct.ProductType productType = productTypes[Utils.RandomInt(0, productTypes.Length)];
+
+        MarketStock marketStock = MarketStock.GetInstance();
+
+        if (marketStock.IsOutOfStock(productType))
+        {
+            Debug.LogWarning("The product " + productType + " is out of stock. Customer will exit the market.");
+            ExitMarket();
+            return;
+        }
+
+        switch (productType)
+        {
+            case MarketProduct.ProductType.TUNA:
+                Debug.Log("Customer Wants Tuna");
+                TargetProduct = marketStock.tunas[Utils.RandomInt(0, marketStock.tunas.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.MILK:
+                Debug.Log("Customer Wants Milk");
+                TargetProduct = marketStock.milks[Utils.RandomInt(0, marketStock.milks.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.ORANGE:
+                Debug.Log("Customer Wants Orange");
+                TargetProduct = marketStock.oranges[Utils.RandomInt(0, marketStock.oranges.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.RED_APPLE:
+                Debug.Log("Customer Wants Red Apple");
+                TargetProduct = marketStock.redApples[Utils.RandomInt(0, marketStock.redApples.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.GREEN_APPLE:
+                Debug.Log("Customer Wants Green Apple");
+                TargetProduct = marketStock.greenApples[Utils.RandomInt(0, marketStock.greenApples.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.RED_WINE:
+                Debug.Log("Customer Wants Red Wine");
+                TargetProduct = marketStock.redWines[Utils.RandomInt(0, marketStock.redWines.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.WHITE_WINE:
+                Debug.Log("Customer Wants White Wine");
+                TargetProduct = marketStock.whiteWines[Utils.RandomInt(0, marketStock.whiteWines.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.BEER:
+                Debug.Log("Customer Wants Beer");
+                TargetProduct = marketStock.beers[Utils.RandomInt(0, marketStock.beers.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            case MarketProduct.ProductType.WATER:
+                Debug.Log("Customer Wants Water");
+                TargetProduct = marketStock.waters[Utils.RandomInt(0, marketStock.waters.Count)].GetComponent<MarketProduct>();
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                return;
+
+            default:
+                Debug.LogError("Invalid product type selected: " + productType);
+                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                TargetProduct = null;
+                return;
+        }
+      }
 }

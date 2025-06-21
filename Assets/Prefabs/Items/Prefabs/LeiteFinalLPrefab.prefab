@@ -216,3 +216,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 1
