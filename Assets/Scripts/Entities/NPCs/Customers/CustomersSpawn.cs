@@ -86,7 +86,6 @@ public class CustomersSpawn : MonoBehaviour, IObserver
 
         if (marketStock.IsOutOfStock(productType))
         {   
-            Debug.Log("Customers Spawned " + customersSpawned);
             return;
         }
 

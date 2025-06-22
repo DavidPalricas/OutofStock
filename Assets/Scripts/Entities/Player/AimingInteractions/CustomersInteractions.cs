@@ -27,19 +27,18 @@ public class CustomersInteractions : AimingAction
 
             customerSanity.ShowSanityBar();
 
-            CheckIfPlayerIsTryingtoSteal(customer, customerSanity);
+            CheckIfPlayerIsTryingtoSteal(customer);
         }
     }
 
 
-    private void CheckIfPlayerIsTryingtoSteal(GameObject customer, CustomerSanity customerSanity )
+    private void CheckIfPlayerIsTryingtoSteal(GameObject customer)
     {
        if (customer.name.Contains("BackPack") && interactAction.action.IsPressed())
         {
             Transform customerTransform = customer.transform;
 
             ItemsInteractions itemsInteractions = GetComponent<ItemsInteractions>();
-
 
             if (!itemsInteractions.ItemGrabbed && customer.transform.childCount != 0)
             {

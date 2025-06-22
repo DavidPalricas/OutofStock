@@ -8,15 +8,6 @@ using UnityEngine.InputSystem;
 public class ReStockShelf : Task
 {
     /// <summary>
-    /// The taskNumber atribute is used to store the number of restock shelf tasks.
-    /// </summary>
-    /// <remarks>
-    /// It starts at number 2 because the number 0 and 1 are reserved for other tasks (clean the floor and fix fuse box),
-    /// which are randomly assigned to the player during the game by the TaskManager.
-    /// </remarks>
-    private static int restockTaskNumber = 2;
-
-    /// <summary>
     /// The interactAction atribute is a reference to the input action that allows the player to restock the shelf's products.
     /// </summary>
     [SerializeField]
@@ -48,16 +39,6 @@ public class ReStockShelf : Task
     public int ProductsToRestock {get; set; }
 
     /// <summary>
-    /// The Awake method is called when the script instance is being loaded. (Unity's Callback)
-    /// It initializes the task number for this restock shelf task by incrementing the static restockTaskNumber variable.
-    /// </summary>
-    private void Awake()
-    {
-        Number = restockTaskNumber;
-        restockTaskNumber++;
-    }
-
-    /// <summary>
     /// The OnEnable method is called when the script is enabled. (Unity's Callback)
     /// This method intianilizes some atrivutes of this class and enables the place holders for the products on the shelf.
     /// </summary>
@@ -67,6 +48,7 @@ public class ReStockShelf : Task
         ProductsToRestock = shelf.MaxProducts;
         productsPlaceHolder = shelf.ProductsPlaceHolder;
         shelfProducts = shelf.ShelfProducts;
+        Number = 2;
 
         foreach (GameObject placeHolder in productsPlaceHolder)
         {

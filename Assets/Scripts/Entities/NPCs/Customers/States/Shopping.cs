@@ -78,7 +78,10 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
-            CheckIfProductIsUnvaible();
+            if (IsProductIsUnvaible())
+            {
+                return;
+            };
   
             // Initialize the timer to pick a product
             if (timer == 0f)
@@ -100,13 +103,16 @@ public class Shopping : CustomerBaseState
     {
         base.Exit();
 
-        MarketProduct product = customerMovement.TargetProduct;
+        if (!gameObject.name.Contains("Karen"))
+        {
+            MarketProduct product = customerMovement.TargetProduct;
 
-        product.EntityHasProduct();
+            product.EntityHasProduct();
 
-
-        product.transform.SetParent(customerMovement.backPack);
-        product.gameObject.SetActive(false);
+            product.transform.SetParent(customerMovement.backPack);
+            product.gameObject.SetActive(false);
+        }
+        
     }
 
     /// <summary>
@@ -141,17 +147,18 @@ public class Shopping : CustomerBaseState
     }
 
 
-    private void CheckIfProductIsUnvaible()
+    private bool IsProductIsUnvaible()
     {
         MarketStock marketStock = GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>();
 
         MarketProduct product = customerMovement.TargetProduct;
 
         if (!marketStock.IsProductAvaible(product.gameObject)){
+
             if (marketStock.IsOutOfStock(product.type))
             {
                 fSM.ChangeState("ProductNotFound");
-                return;
+                return true;
             }
 
             Debug.Log("Find a new Product");
@@ -159,7 +166,13 @@ public class Shopping : CustomerBaseState
             customerMovement.SetTargetProduct(product.type);
 
             customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+
+            return true;
         }
+
+        Debug.Log("Product is available");
+
+        return false;
     }
 
     /// <summary>

@@ -184,6 +184,7 @@ public class MarketStock : MonoBehaviour
 
             case MarketProduct.ProductType.BEER_CAN:
                 BeerCans.Remove(product);
+                Debug.Log("Beer can removed from stock: " + product.name);
                 return;
 
             /*

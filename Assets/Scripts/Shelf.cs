@@ -98,7 +98,6 @@ public class Shelf : MonoBehaviour, ISubject
     /// </remarks>
     private void AddProducts()
     {
-
          ShelfProducts = GameObject.FindGameObjectWithTag("MarketStock")
             .GetComponent<MarketStock>()
             .GetProductVariants(productsType);
@@ -155,11 +154,15 @@ public class Shelf : MonoBehaviour, ISubject
 
             Dictionary <GameObject, GameObject> restockedProducts = restockShelf.RestockedProducts;
 
-            GameObject placeHolder = restockedProducts[product];
-            restockedProducts.Remove(product);
+            // The product can be already removed from the shelf.
+            if (restockedProducts.ContainsKey(product))
+            {
+                GameObject placeHolder = restockedProducts[product];
+                restockedProducts.Remove(product);
 
-            // Activates the product place holder
-            StartCoroutine(Utils.WaitAndExecute(0.2f, () => placeHolder.SetActive(true)));            
+                // Activates the product place holder
+                StartCoroutine(Utils.WaitAndExecute(0.2f, () => placeHolder.SetActive(true)));
+            }
         }
 
         if (CurrentProducts <= 0 && !restockShelf.enabled)

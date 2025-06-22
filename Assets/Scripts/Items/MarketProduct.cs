@@ -59,6 +59,7 @@ public class MarketProduct : Item
         base.WasGrabbed();
 
         EntityHasProduct();
+        Debug.Log($"Product {name} was grabbed by the player.");
     }
 
 
