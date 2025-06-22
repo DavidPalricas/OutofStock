@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,6 +36,8 @@ public class ReStockShelf : Task
     /// The shelfProducts atribute stores the different variants of products that can be placed on the shelf.
     /// </summary>
     private GameObject[] shelfProducts;
+
+    public Dictionary<GameObject, GameObject> RestockedProducts { get; set;} = new ();
 
     /// <summary>
     /// The ProductsToRestock property is used to store the number of products that need to be restocked on the shelf.
@@ -92,7 +95,7 @@ public class ReStockShelf : Task
         GameObject placeHolder = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemsInteractions>().ProductToPlace(productsPlaceHolder);
 
         if (placeHolder != null)
-        {
+        {   
             PlaceProduct(placeHolder);
         }
     }
@@ -118,10 +121,16 @@ public class ReStockShelf : Task
         marketProduct.Shelf = gameObject;
         shelf.SetProductPickArea(marketProduct);
 
+        StartCoroutine(Utils.WaitAndExecute(0.2f, () => marketProduct.canBePicked = true));
+
+        GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().AddProduct(marketProduct);
+
         ProductsToRestock--;
         shelf.CurrentProducts++;
 
         placeHolder.SetActive(false);
+
+        RestockedProducts.Add(product, placeHolder);
 
         if (ProductsToRestock <= 0)
         {

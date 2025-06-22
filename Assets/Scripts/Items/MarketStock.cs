@@ -251,8 +251,64 @@ public class MarketStock : MonoBehaviour
             */
             MarketProduct.ProductType.BEER_BOTTLE => BeerBottles.Count == 0,
             // MarketProduct.ProductType.WATER => waters.Count == 0,
+
+            MarketProduct.ProductType.BEER_CAN => BeerCans.Count == 0,
+
+            MarketProduct.ProductType.TOILET_PAPER => ToiletPapers.Count == 0,
+            MarketProduct.ProductType.HAND_SOAP => HandSoaps.Count == 0,
+            MarketProduct.ProductType.CLEANING_SPRAY => CleaningSprays.Count == 0,
             _ => false
         };
     }
-}
+
+
+    public void AddProduct(MarketProduct product)
+    {
+        MarketProduct.ProductType type = product.type;
+        switch (type)
+        {
+            case MarketProduct.ProductType.TUNA_CAN:
+                Tunas.Add(product.gameObject);
+                break;
+            case MarketProduct.ProductType.MILK:
+                Milks.Add(product.gameObject);
+                break;
+            /*
+            case MarketProduct.ProductType.ORANGE:
+                oranges.Add(product.gameObject);
+                break;
+            case MarketProduct.ProductType.RED_APPLE:
+                redApples.Add(product.gameObject);
+                break;
+            case MarketProduct.ProductType.GREEN_APPLE:
+                greenApples.Add(product.gameObject);
+                break;
+            */
+            // case MarketProduct.ProductType.WINE:
+            //     wines.Add(product.gameObject);
+            //     break;
+            case MarketProduct.ProductType.BEER_BOTTLE:
+                BeerBottles.Add(product.gameObject);
+                break;
+            case MarketProduct.ProductType.BEER_CAN:
+                BeerCans.Add(product.gameObject);
+                break;
+            // case MarketProduct.ProductType.WATER:
+            //     waters.Add(product.gameObject);
+            //     break;
+            case MarketProduct.ProductType.TOILET_PAPER:
+                ToiletPapers.Add(product.gameObject);
+                break;
+            case MarketProduct.ProductType.HAND_SOAP:
+                HandSoaps.Add(product.gameObject);
+                break;
+            case MarketProduct.ProductType.CLEANING_SPRAY:
+                CleaningSprays.Add(product.gameObject);
+                break;
+            default:
+                Debug.LogError("Unknown product type: " + type);
+                break;
+        }
+    }
+    }
 

@@ -78,17 +78,8 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
-            /*
-            if (!GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsProductAvaible(customerMovement.TargetProduct.gameObject))
-            {
-                if( GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsOutOfStock(customerMovement.TargetProduct.type))
-                {
-                    fSM.ChangeState("ProductNotFound");
-                    return;
-                }
-            }
-            */
-
+            CheckIfProductIsUnvaible();
+  
             // Initialize the timer to pick a product
             if (timer == 0f)
             {
@@ -108,6 +99,14 @@ public class Shopping : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
+
+        MarketProduct product = customerMovement.TargetProduct;
+
+        product.EntityHasProduct();
+
+
+        product.transform.SetParent(customerMovement.backPack);
+        product.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -138,11 +137,29 @@ public class Shopping : CustomerBaseState
             annoyingKid.HoldsProduct = true;
         }
 
+        fSM.ChangeState("ProductPicked");
+    }
+
+
+    private void CheckIfProductIsUnvaible()
+    {
+        MarketStock marketStock = GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>();
+
         MarketProduct product = customerMovement.TargetProduct;
 
-        product.EntityHasProduct();
+        if (!marketStock.IsProductAvaible(product.gameObject)){
+            if (marketStock.IsOutOfStock(product.type))
+            {
+                fSM.ChangeState("ProductNotFound");
+                return;
+            }
 
-        fSM.ChangeState("ProductPicked");
+            Debug.Log("Find a new Product");
+
+            customerMovement.SetTargetProduct(product.type);
+
+            customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+        }
     }
 
     /// <summary>

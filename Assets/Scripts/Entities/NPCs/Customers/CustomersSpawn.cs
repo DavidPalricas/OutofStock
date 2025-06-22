@@ -74,21 +74,25 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     // to notify when the customer exits the market.
     /// </remarks>
     private void SpawnCustomer()
-    {   
-        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefab;
-
-        GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
+    {
 
         MarketProduct.ProductType[] productTypes = (MarketProduct.ProductType[])System.Enum.GetValues(typeof(MarketProduct.ProductType));
 
-        MarketProduct.ProductType productType = productTypes[Utils.RandomInt(0, productTypes.Length)];
 
         MarketStock marketStock = GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>();
 
+
+        MarketProduct.ProductType productType = productTypes[Utils.RandomInt(0, productTypes.Length)];
+
         if (marketStock.IsOutOfStock(productType))
-        {
+        {   
+            Debug.Log("Customers Spawned " + customersSpawned);
             return;
         }
+
+        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefab;
+
+        GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 

@@ -44,6 +44,9 @@ public class MarketProduct : Item
     /// </summary>
     public ProductType type;
 
+
+    public bool canBePicked = false;
+
     /// <summary>
     /// The WasGrabbed method is responsible for handling the logic when the item is grabbed by the player.
     /// It overrides the base class method to set the grabbed flag to true and notify the observers.
@@ -62,6 +65,6 @@ public class MarketProduct : Item
     public void EntityHasProduct()
     {
         GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().RemoveProduct(gameObject);
-        Shelf.GetComponent<Shelf>().ProductRemoved();
+        Shelf.GetComponent<Shelf>().ProductRemoved(gameObject);
     }
 }

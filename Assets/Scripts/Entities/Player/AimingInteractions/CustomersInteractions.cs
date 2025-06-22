@@ -1,10 +1,18 @@
 using UnityEngine;
 
 public class CustomersInteractions : AimingAction
-{
+{   
+    private int frameCounter = 0;
+
     private void Update()
     {
-        CheckIfisAimingAtACustomer();   
+        if (frameCounter >= 10)
+        {
+            CheckIfisAimingAtACustomer();
+            frameCounter = 0;
+        }
+
+        frameCounter++;
     }
 
     public void CheckIfisAimingAtACustomer()
@@ -18,6 +26,27 @@ public class CustomersInteractions : AimingAction
             CustomerSanity customerSanity = customer.GetComponent<CustomerSanity>() != null ? customer.GetComponent<CustomerSanity>() : customer.transform.parent.GetComponent<CustomerSanity>();
 
             customerSanity.ShowSanityBar();
+
+            CheckIfPlayerIsTryingtoSteal(customer, customerSanity);
+        }
+    }
+
+
+    private void CheckIfPlayerIsTryingtoSteal(GameObject customer, CustomerSanity customerSanity )
+    {
+       if (customer.name.Contains("BackPack") && interactAction.action.IsPressed())
+        {
+            Transform customerTransform = customer.transform;
+
+            ItemsInteractions itemsInteractions = GetComponent<ItemsInteractions>();
+
+
+            if (!itemsInteractions.ItemGrabbed && customer.transform.childCount != 0)
+            {
+                GameObject product = customerTransform.GetChild(0).gameObject;
+
+                itemsInteractions.HoldItem(product);
+            }
         }
     }
 }
