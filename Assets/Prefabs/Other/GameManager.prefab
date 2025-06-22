@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8514093232553443937}
   - component: {fileID: -1411920706285211902}
   - component: {fileID: 1076767603636382202}
-  - component: {fileID: 5339897775003523703}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -61,45 +60,50 @@ MonoBehaviour:
     managerPatrolTime: 20
     numberOfTasks: 20
     customersToSend: 0
+    minProductsInShelfs: 0
+    maxProductsInShelfs: 0
     cleanFloorProb: 0.5
     fixFuseBoxProb: 0.3
-    fixToiletProb: 0
   - karenSpawnProb: 0
     annoyingKidSpawnProb: 0
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
     customersToSend: 0
+    minProductsInShelfs: 0
+    maxProductsInShelfs: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
-    fixToiletProb: 0
   - karenSpawnProb: 0
     annoyingKidSpawnProb: 0
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
     customersToSend: 0
+    minProductsInShelfs: 0
+    maxProductsInShelfs: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
-    fixToiletProb: 0
   - karenSpawnProb: 0
     annoyingKidSpawnProb: 0
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
     customersToSend: 0
+    minProductsInShelfs: 0
+    maxProductsInShelfs: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
-    fixToiletProb: 0
   - karenSpawnProb: 0
     annoyingKidSpawnProb: 0
     managerOfficeTime: 0
     managerPatrolTime: 0
     numberOfTasks: 0
     customersToSend: 0
+    minProductsInShelfs: 0
+    maxProductsInShelfs: 0
     cleanFloorProb: 0
     fixFuseBoxProb: 0
-    fixToiletProb: 0
 --- !u!114 &-1411920706285211902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,20 +134,6 @@ MonoBehaviour:
   skipDialogue: {fileID: -855008544819195820, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   dialogueBox: {fileID: 0}
   dialogueText: {fileID: 0}
---- !u!114 &5339897775003523703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747278327246381498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d00ae0e8f94aa41b5fcf4c0abf09e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dayText: {fileID: 0}
-  timeText: {fileID: 0}
 --- !u!1001 &2216572002558071238
 PrefabInstance:
   m_ObjectHideFlags: 0
