@@ -89,7 +89,7 @@ public class ReStockShelf : Task
     /// </summary>
     private void Restock()
     {
-        GameObject placeHolder = GameObject.FindGameObjectWithTag("Player").GetComponent<GrabAndThrowItems>().ProductToPlace(productsPlaceHolder);
+        GameObject placeHolder = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemsInteractions>().ProductToPlace(productsPlaceHolder);
 
         if (placeHolder != null)
         {

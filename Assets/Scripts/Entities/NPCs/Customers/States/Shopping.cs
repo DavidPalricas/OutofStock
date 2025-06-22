@@ -78,6 +78,7 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
+            /*
             if (!GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsProductAvaible(customerMovement.TargetProduct.gameObject))
             {
                 if( GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsOutOfStock(customerMovement.TargetProduct.type))
@@ -86,6 +87,7 @@ public class Shopping : CustomerBaseState
                     return;
                 }
             }
+            */
 
             // Initialize the timer to pick a product
             if (timer == 0f)
@@ -139,8 +141,6 @@ public class Shopping : CustomerBaseState
         MarketProduct product = customerMovement.TargetProduct;
 
         product.EntityHasProduct();
-
-        Destroy(product);
 
         fSM.ChangeState("ProductPicked");
     }

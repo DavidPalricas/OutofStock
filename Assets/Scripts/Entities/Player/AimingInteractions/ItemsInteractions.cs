@@ -4,18 +4,13 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// The GrabAndThrowItems class is responsible for grabbing and throwing items.
 /// </summary>
-public class GrabAndThrowItems : MonoBehaviour
+public class ItemsInteractions : AimingAction
 {
     /// <summary>
     /// The player attribute is the player GameObject.
     /// </summary>
     [SerializeField]
     private GameObject player;
-
-    /// <summary>
-    /// The crosshair attribute is the crosshair RectTransform.
-    /// </summary>
-    public RectTransform crosshair;
 
     /// <summary>
     /// The itemGrabbedPos attribute is the position where the item grabbed will be placed.
@@ -34,8 +29,7 @@ public class GrabAndThrowItems : MonoBehaviour
     /// </summary>
     private bool itemGrabbed = false;
 
-    private const float RAYCASTDISTANCE = 2f;
-
+ 
     /// <summary>
     /// The Update Method is called once per frame (Unity Callback).
     /// In this method, we check if the player pressed the grab or throw action.
@@ -52,7 +46,6 @@ public class GrabAndThrowItems : MonoBehaviour
         if (throwAction.action.triggered &&  itemGrabbed){
 
             ThrowItem();
-
         }
     }
 
@@ -121,6 +114,8 @@ public class GrabAndThrowItems : MonoBehaviour
         itemToThrow.GetComponent<Item>().WasThrown(crosshairRay.direction);       
         itemGrabbed = false;
      }
+
+
 
     /// <summary>
     /// Prevents object clipping by repositioning the item before throwing.

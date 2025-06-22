@@ -80,7 +80,7 @@ public class Running : CustomerBaseState
     {
         base.Execute();
 
-        if (annoyingKidMovement.WasAttacked)
+        if (customerSanity.CurrentSanity != customerSanity.maxSanity)
         {
             fSM.ChangeState("Attacked");
             return;

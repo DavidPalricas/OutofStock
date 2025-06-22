@@ -61,20 +61,18 @@ public class Item : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Customer"))
             {   
-                CustomerMovement customerMovement;
-    
-                customerMovement = collision.gameObject.GetComponent<CustomerMovement>() != null ?  collision.gameObject.GetComponent<CustomerMovement>() : collision.gameObject.transform.parent.GetComponent<CustomerMovement>();
 
-               
+                GameObject customer = collision.gameObject;
+
+                CustomerMovement customerMovement;
+
+                CustomerSanity customerSanity = customer.GetComponent<CustomerSanity>() != null ? customer.GetComponent<CustomerSanity>() : customer.transform.parent.GetComponent<CustomerSanity>();
+                customerSanity.DecreasedSanity();
+
+                customerMovement = customer.GetComponent<CustomerMovement>() != null ?  customer.GetComponent<CustomerMovement>() : customer.transform.parent.GetComponent<CustomerMovement>();
                 customerMovement.WasAttacked = true;
 
                 EventManager.GetInstance().LastCustomerAttacked = customerMovement.gameObject;
-
-                if (!customerMovement.name.Contains("Karen")){
-
-                    customerMovement.SentByThePlayer = true;
-                }
-
             }
             else if (collision.gameObject.CompareTag("Manager"))
             {   

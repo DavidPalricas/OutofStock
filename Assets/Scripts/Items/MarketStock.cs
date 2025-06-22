@@ -68,8 +68,7 @@ public class MarketStock : MonoBehaviour
 
         Tunas = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.TUNA_CAN).ToList();
         Milks = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.MILK).ToList();
-        Debug.Log("Milk: " + Milks.Count);
-
+   
         /*
         oranges = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.ORANGE).ToList();
         redApples = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.RED_APPLE).ToList();
@@ -82,7 +81,6 @@ public class MarketStock : MonoBehaviour
         // waters = marketProducts.Where(item => item.GetComponent<MarketProduct>().Type == MarketProduct.ProductType.WATER).ToList();
 
         ToiletPapers = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.TOILET_PAPER).ToList();
-        Debug.Log("Toilet Papers: " + ToiletPapers.Count);
         HandSoaps = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.HAND_SOAP).ToList();
         CleaningSprays = marketProducts.Where(item => item.GetComponent<MarketProduct>().type == MarketProduct.ProductType.CLEANING_SPRAY).ToList();
     }

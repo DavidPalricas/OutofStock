@@ -75,10 +75,9 @@ public class AttackPlayer : CustomerBaseState
             return;
         }
 
-        if (karenMovement.AttackedToManyTimes)
+        if (customerSanity.CurrentSanity <= 0)
         {
             Attack();
-            karenMovement.SentByThePlayer = true;
             fSM.ChangeState("AttackedToManyTimes");
             return;
         }

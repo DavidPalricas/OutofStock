@@ -14,43 +14,6 @@ public class Shelf : MonoBehaviour, ISubject
     [SerializeField]
     private Transform productsPlaceHolderGroup, pickAreasGroup;
 
-    [SerializeField]
-    private GameObject tunaCan1, tunaCan2, tunaCan3, tunaCan4;
-
-    [SerializeField]
-    private GameObject milk1, milk2;
-
-    /*
-    [SerializeField]
-    private GameObject orange;
-    
-    [SerializeField]
-    private GameObject redApple, greenApple;
-  
-    [SerializeField]
-    private GameObject wine1, wine2;
-    */
-
-    [SerializeField]
-    private GameObject beerBottle1, beerBottle2;
-
-    [SerializeField]
-    private GameObject beerCan1, beerCan2;
-
-    /*
-    [SerializeField]
-    private GameObject water1, water2;
-    */
-
-    [SerializeField]
-    private GameObject toiletPaper1, toiletPaper2;
-
-    [SerializeField]
-    private GameObject handSoap1, handSoap2;
-
-    [SerializeField]
-    private GameObject cleaningSpray1, cleaningSpray2;
-
     /// <summary>
     /// The observers atribute stores the observers of the shelf (TaskManager). 
     /// </summary>
@@ -180,12 +143,15 @@ public class Shelf : MonoBehaviour, ISubject
     {
         CurrentProducts--;
 
-        if (GetComponent<ReStockShelf>().enabled)
+
+        ReStockShelf restockShelf = GetComponent<ReStockShelf>();
+
+        if (restockShelf.enabled)
         {
-            GetComponent<ReStockShelf>().ProductsToRestock++;
+            restockShelf.ProductsToRestock++;
         }
 
-        if (CurrentProducts <= 0)
+        if (CurrentProducts <= 0 && !restockShelf.enabled)
         {
             StartCoroutine(Utils.WaitAndExecute(5f, () => NotifyObservers(gameObject)));      
         }
