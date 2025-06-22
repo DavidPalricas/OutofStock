@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 /// The CustomersSpawn class is responsible for spawning the customers in the market, simulating the customers entering the market.
 /// It implements the IObserver interface to be notified when a customer (subject) leaves the market
 /// </summary>
-public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
+public class CustomersSpawn : MonoBehaviour, IObserver
 {
     /// <summary>
     /// The customerPrefab attribute represents the customer prefab.
@@ -79,9 +79,20 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
 
         GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
 
+        MarketProduct.ProductType[] productTypes = (MarketProduct.ProductType[])System.Enum.GetValues(typeof(MarketProduct.ProductType));
+
+        MarketProduct.ProductType productType = productTypes[Utils.RandomInt(0, productTypes.Length)];
+
+        MarketStock marketStock = GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>();
+
+        if (marketStock.IsOutOfStock(productType))
+        {
+            return;
+        }
+
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
-        customerMovement.SetTargetProduct();
+        customerMovement.SetTargetProduct(productType);
         customerMovement.AreasPos["MarketExit"] = transform.position;
         customerMovement.AreasPos["Payment"] = paymentAreas[Utils.RandomInt(0, paymentAreas.Length)].transform.position;
 
@@ -89,10 +100,10 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
 
         customerMovement.enabled = true;
 
+        customer.GetComponent<FSM>().enabled = true;
+
         customersSpawned++;
     }
-
- 
 
     /// <summary>
     /// The GetTypeOfCustomer method is responsible for getting a random customer prefab based on the spawn probabilities.
@@ -168,12 +179,6 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
     private void CustomerExitMarket(GameObject customerSent)
     {
         customersSpawned--;
-
-        if (customerSent.GetComponent<CustomerMovement>().SentByThePlayer)
-        {
-            DispatchEvents();
-        }
-
         Destroy(customerSent);
     }
 
@@ -185,14 +190,6 @@ public class CustomersSpawn : MonoBehaviour, IObserver, IEventDispatcher
     public void OnNotify(object data = null)
     {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket(data as GameObject)));
         
-    }
-
-    /// <summary>
-    /// The DispatchEvent method is responsible for dispatching the event when a customer exits the market.
-    /// </summary>
-    public void DispatchEvents()
-    {
-        EventManager.GetInstance().OnCustomerSent();
     }
 }
 
