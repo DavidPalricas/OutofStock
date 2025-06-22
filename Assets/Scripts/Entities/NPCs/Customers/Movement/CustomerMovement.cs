@@ -34,9 +34,6 @@ public class CustomerMovement : NPCMovement, ISubject
         { "MarketExit", Vector3.zero }
     };
 
-
-    public bool SentByThePlayer { get; set; } = false;
-
     /// <summary>
     /// The ExitMarket method is responsible for handling the logic when the customer exits the market.
     /// In this method, the observers are notified and removed, and the customer game object is destroyed.
@@ -54,14 +51,6 @@ public class CustomerMovement : NPCMovement, ISubject
     /// </summary>
     public override void SetAgentDestination(Vector3 destination)
     {
-        if (AreasPos["Product"] == Vector3.zero)
-        {
-           Destroy(gameObject);
-
-            Debug.LogWarning("The item " + TargetProduct.name + "does not have a pickItem Area");
-            return;
-        }
-
         base.SetAgentDestination(destination);
     }
 
@@ -101,31 +90,18 @@ public class CustomerMovement : NPCMovement, ISubject
     }
 
     
-    public void SetTargetProduct()
+    public void SetTargetProduct(MarketProduct.ProductType productType)
     {
-        MarketProduct.ProductType[] productTypes = (MarketProduct.ProductType[])System.Enum.GetValues(typeof(MarketProduct.ProductType));
-
-        MarketProduct.ProductType productType = productTypes[Utils.RandomInt(0, productTypes.Length)];
-
         MarketStock marketStock =  GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>();
-
-        if (marketStock.IsOutOfStock(productType))
-        {
-            Debug.LogWarning("The product " + productType + " is out of stock. Customer will exit the market.");
-            ExitMarket();
-            return;
-        }
 
         switch (productType)
         {
             case MarketProduct.ProductType.TUNA_CAN:
-                Debug.Log("Customer Wants Tuna");
                 TargetProduct = marketStock.Tunas[Utils.RandomInt(0, marketStock.Tunas.Count)].GetComponent<MarketProduct>();
                 AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.MILK:
-                Debug.Log("Customer Wants Milk");
                 TargetProduct = marketStock.Milks[Utils.RandomInt(0, marketStock.Milks.Count)].GetComponent<MarketProduct>();
                 AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
                 return;
@@ -151,13 +127,11 @@ public class CustomerMovement : NPCMovement, ISubject
             */
 
             case MarketProduct.ProductType.BEER_BOTTLE:
-                Debug.Log("Customer Wants Beer");
                 TargetProduct = marketStock.BeerBottles[Utils.RandomInt(0, marketStock.BeerBottles.Count)].GetComponent<MarketProduct>();
                 AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.BEER_CAN:
-                Debug.Log("Customer Wants Beer Can");
                 TargetProduct = marketStock.BeerCans[Utils.RandomInt(0, marketStock.BeerCans.Count)].GetComponent<MarketProduct>();
                 AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
                 return;
@@ -171,19 +145,16 @@ public class CustomerMovement : NPCMovement, ISubject
             */
 
             case MarketProduct.ProductType.TOILET_PAPER:
-                Debug.Log("Customer Wants Toilet Paper");
                 TargetProduct = marketStock.ToiletPapers[Utils.RandomInt(0, marketStock.ToiletPapers.Count)].GetComponent<MarketProduct>();
                 AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.HAND_SOAP:
-                Debug.Log("Customer Wants Hand Soap");
                 TargetProduct = marketStock.HandSoaps[Utils.RandomInt(0, marketStock.HandSoaps.Count)].GetComponent<MarketProduct>();
                 AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.CLEANING_SPRAY:
-                Debug.Log("Customer Wants Cleaning Spray");
                 TargetProduct = marketStock.CleaningSprays[Utils.RandomInt(0, marketStock.CleaningSprays.Count)].GetComponent<MarketProduct>();
                 AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
                 return;

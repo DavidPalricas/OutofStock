@@ -35,7 +35,6 @@ public class Steal : CustomerBaseState
     public override void Enter()
     {
         base.Enter();
-
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
     }
 

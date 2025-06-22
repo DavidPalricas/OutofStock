@@ -23,8 +23,6 @@ public class NPCMovement : MonoBehaviour
     /// </summary>
     protected Vector3 currentTargetPos;
 
-    public bool DestinationReached { get; protected set; } = false;
-
     /// <summary>
     /// The WasAttacked attribute  is a flag that indicates whether the customer was attacked or not.
     /// </summary>
@@ -33,6 +31,13 @@ public class NPCMovement : MonoBehaviour
     /// </value>
     public bool WasAttacked { get; set; } = false;
 
+    /// <summary>
+    /// The DestinationReached property is a flag that indicates whether the NPC has reached its destination or not.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if [destination reached]; otherwise, <c>false</c>.
+    /// </value>
+    public bool DestinationReached { get; protected set; } = false;
 
     /// <summary>
     /// The Update method is called every frame (Unity Callback).

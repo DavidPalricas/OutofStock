@@ -27,10 +27,6 @@ public class KnockedState : State
         if (gameObject.CompareTag("Manager"))
         {
             GetComponent<StrikesSystem>().DispatchStrike(true);
-        }else if(gameObject.CompareTag("Customer") && gameObject.name.Contains("Karen"))
-        {   
-            // To increase the Karen's attacked numbers she must be attacked more than one time to leave the market
-            GetComponent<KarenMovement>().Attacked();
         }
 
         Utils.PlaySoundEffect(Utils.SoundEffects.CUSTOMER_ATTACKED);
@@ -54,7 +50,6 @@ public class KnockedState : State
     public override void Exit()
     {
         base.Exit();
-
         GetComponent<NPCMovement>().WasAttacked = false;
     }
 }
