@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,15 +7,6 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class ReStockShelf : Task
 {
-    /// <summary>
-    /// The taskNumber atribute is used to store the number of restock shelf tasks.
-    /// </summary>
-    /// <remarks>
-    /// It starts at number 2 because the number 0 and 1 are reserved for other tasks (clean the floor and fix fuse box),
-    /// which are randomly assigned to the player during the game by the TaskManager.
-    /// </remarks>
-    private static int restockTaskNumber = 2;
-
     /// <summary>
     /// The interactAction atribute is a reference to the input action that allows the player to restock the shelf's products.
     /// </summary>
@@ -36,6 +28,8 @@ public class ReStockShelf : Task
     /// </summary>
     private GameObject[] shelfProducts;
 
+    public Dictionary<GameObject, GameObject> RestockedProducts { get; set;} = new ();
+
     /// <summary>
     /// The ProductsToRestock property is used to store the number of products that need to be restocked on the shelf.
     /// </summary>
@@ -43,16 +37,6 @@ public class ReStockShelf : Task
     /// The number of products to restock on the shelf.
     /// </value>
     public int ProductsToRestock {get; set; }
-
-    /// <summary>
-    /// The Awake method is called when the script instance is being loaded. (Unity's Callback)
-    /// It initializes the task number for this restock shelf task by incrementing the static restockTaskNumber variable.
-    /// </summary>
-    private void Awake()
-    {
-        Number = restockTaskNumber;
-        restockTaskNumber++;
-    }
 
     /// <summary>
     /// The OnEnable method is called when the script is enabled. (Unity's Callback)
@@ -64,6 +48,7 @@ public class ReStockShelf : Task
         ProductsToRestock = shelf.MaxProducts;
         productsPlaceHolder = shelf.ProductsPlaceHolder;
         shelfProducts = shelf.ShelfProducts;
+        Number = 2;
 
         foreach (GameObject placeHolder in productsPlaceHolder)
         {
@@ -92,7 +77,7 @@ public class ReStockShelf : Task
         GameObject placeHolder = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemsInteractions>().ProductToPlace(productsPlaceHolder);
 
         if (placeHolder != null)
-        {
+        {   
             PlaceProduct(placeHolder);
         }
     }
@@ -118,10 +103,16 @@ public class ReStockShelf : Task
         marketProduct.Shelf = gameObject;
         shelf.SetProductPickArea(marketProduct);
 
+        StartCoroutine(Utils.WaitAndExecute(0.2f, () => marketProduct.canBePicked = true));
+
+        GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().AddProduct(marketProduct);
+
         ProductsToRestock--;
         shelf.CurrentProducts++;
 
         placeHolder.SetActive(false);
+
+        RestockedProducts.Add(product, placeHolder);
 
         if (ProductsToRestock <= 0)
         {

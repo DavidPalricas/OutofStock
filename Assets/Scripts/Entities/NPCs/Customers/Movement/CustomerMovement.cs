@@ -15,6 +15,8 @@ public class CustomerMovement : NPCMovement, ISubject
     /// </summary>
     private IObserver[] observers;
 
+    public Transform backPack;
+
     /// <summary>
     /// The TargetItem attribute represents the target item of the customer.
     /// </summary>

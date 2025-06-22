@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AimingAction : MonoBehaviour
 {
@@ -10,6 +11,6 @@ public class AimingAction : MonoBehaviour
     /// </summary>
     public RectTransform crosshair;
 
-
- 
+    [SerializeField]
+    protected InputActionReference interactAction;
 }
