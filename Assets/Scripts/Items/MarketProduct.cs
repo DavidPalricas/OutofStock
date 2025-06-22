@@ -11,21 +11,33 @@ public class MarketProduct : Item
     /// </summary>
     public enum ProductType
     {
-        TUNA,
+        TUNA_CAN,
         MILK,
+        /*
         ORANGE,
         RED_APPLE,
         GREEN_APPLE,
-        RED_WINE,
-        WHITE_WINE,
-        BEER,
-        WATER,
+        BANANA,
+        LEMON
+        WATERMELON,
+        WINE,
+        */
+        BEER_BOTTLE,
+        BEER_CAN,
+        // WATER,
+        // WHISKYEY,
+        // VODKA,
+        TOILET_PAPER,
+        HAND_SOAP,
+        CLEANING_SPRAY,
     }
+
+    public GameObject Shelf { get; set; }
 
     /// <summary>
     /// The pickProductArea attribute is the area where the custumers can pick up the product.
     /// </summary>
-    public Transform pickProductArea;
+    public Transform PickProductArea { get; set; }
 
     /// <summary>
     /// The type attribute is used to define the type of product this MarketProduct represents.
@@ -43,6 +55,13 @@ public class MarketProduct : Item
     {
         base.WasGrabbed();
 
-        MarketStock.GetInstance().RemoveProduct(gameObject);
+        EntityHasProduct();
+    }
+
+
+    public void EntityHasProduct()
+    {
+         GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().RemoveProduct(gameObject);
+        Shelf.GetComponent<Shelf>().ProductRemoved();
     }
 }

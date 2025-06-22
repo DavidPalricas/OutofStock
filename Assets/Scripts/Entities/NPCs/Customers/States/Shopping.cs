@@ -78,9 +78,9 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
-            if (!MarketStock.GetInstance().IsProductAvaible(customerMovement.TargetProduct.gameObject))
+            if (!GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsProductAvaible(customerMovement.TargetProduct.gameObject))
             {
-                if(MarketStock.GetInstance().IsOutOfStock(customerMovement.TargetProduct.type))
+                if( GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().IsOutOfStock(customerMovement.TargetProduct.type))
                 {
                     fSM.ChangeState("ProductNotFound");
                     return;
@@ -136,9 +136,10 @@ public class Shopping : CustomerBaseState
             annoyingKid.HoldsProduct = true;
         }
 
-        GameObject product = customerMovement.TargetProduct.gameObject;
+        MarketProduct product = customerMovement.TargetProduct;
 
-        MarketStock.GetInstance().RemoveProduct(product);
+        product.EntityHasProduct();
+
         Destroy(product);
 
         fSM.ChangeState("ProductPicked");

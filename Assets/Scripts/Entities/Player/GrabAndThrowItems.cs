@@ -15,8 +15,7 @@ public class GrabAndThrowItems : MonoBehaviour
     /// <summary>
     /// The crosshair attribute is the crosshair RectTransform.
     /// </summary>
-    [SerializeField]
-    private RectTransform crosshair;
+    public RectTransform crosshair;
 
     /// <summary>
     /// The itemGrabbedPos attribute is the position where the item grabbed will be placed.
@@ -34,6 +33,8 @@ public class GrabAndThrowItems : MonoBehaviour
     /// The itemGrabbed attribute is a flag that indicates if the player is holding an item.
     /// </summary>
     private bool itemGrabbed = false;
+
+    private const float RAYCASTDISTANCE = 2f;
 
     /// <summary>
     /// The Update Method is called once per frame (Unity Callback).
@@ -71,10 +72,7 @@ public class GrabAndThrowItems : MonoBehaviour
     {
         Ray ray = Utils.CastRayFromUI(crosshair);
 
-        const float RAYCASTDISTANCE = 1.8f;
-        LayerMask itemLayer = LayerMask.GetMask("Item");
-
-        if (Physics.Raycast(ray, out RaycastHit playerRaycast, RAYCASTDISTANCE, itemLayer) )
+        if (Physics.Raycast(ray, out RaycastHit playerRaycast, RAYCASTDISTANCE, LayerMask.GetMask("Item")))
         {   
             if (playerRaycast.collider.CompareTag("Item"))
             {
@@ -180,5 +178,36 @@ public class GrabAndThrowItems : MonoBehaviour
                 itemToThrow.transform.position = transform.position + transform.TransformDirection(Vector3.up) * 1.5f;
             }
         }
+    }
+
+    /// <summary>
+    /// The ProductToPlace method is responsible for determining which product placeholder the player is aiming at.
+    /// </summary>
+    /// <remarks>
+    /// This method works by casting a ray from the player's crosshair position and checking if it hits a product placeholder.
+    /// </remarks>
+    /// <param name="productsPlaceHolder">The products place holder.</param>
+    /// <returns>The products place holder that the player is aiming or null if is aiming to none</returns>
+    public GameObject ProductToPlace(GameObject[] productsPlaceHolder)
+    {
+        Ray ray = Utils.CastRayFromUI(crosshair);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, RAYCASTDISTANCE, LayerMask.GetMask("Item")))
+        {
+            if (!hit.collider.gameObject.name.Contains("PlaceHolder"))
+            {
+                return null;
+            }
+
+            foreach (GameObject productPlaceHolder in productsPlaceHolder)
+            {
+                if (hit.collider.gameObject == productPlaceHolder)
+                {
+                    return productPlaceHolder;
+                }
+            }
+        }
+
+        return null;
     }
 }
