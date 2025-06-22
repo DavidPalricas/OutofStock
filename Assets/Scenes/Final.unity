@@ -1057,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2026767637800669730, guid: c4d9b01b56dc00e45abf2d73c8034a1e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3103284366580412112, guid: c4d9b01b56dc00e45abf2d73c8034a1e, type: 3}
       propertyPath: paymentAreasTransform
@@ -2104,6 +2104,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
+--- !u!1 &964280269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7654435850902272899, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+  m_PrefabInstance: {fileID: 1736435170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &984616191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8430991929578629701, guid: d37ac8cbff64ac942932ae60c5a6f4d6, type: 3}
@@ -2494,6 +2499,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d37ac8cbff64ac942932ae60c5a6f4d6, type: 3}
+--- !u!114 &1213654258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 694573346265953925, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+  m_PrefabInstance: {fileID: 1736435170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1216220919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5984,6 +6000,14 @@ PrefabInstance:
       propertyPath: customerSentTextsUI
       value: 
       objectReference: {fileID: 1736435175}
+    - target: {fileID: 1076767603636382202, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 964280269}
+    - target: {fileID: 1076767603636382202, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 1213654258}
     - target: {fileID: 1622017229548695560, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
