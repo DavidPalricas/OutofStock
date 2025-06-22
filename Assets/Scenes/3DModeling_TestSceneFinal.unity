@@ -8919,6 +8919,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7707442195260582438, guid: a73c01a38113235418a9d8b78a906374, type: 3}
   m_PrefabInstance: {fileID: 742326083}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &766170974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 694573346265953925, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+  m_PrefabInstance: {fileID: 1736435170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &770418680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13531,6 +13542,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153452088}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1154885261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7654435850902272899, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+  m_PrefabInstance: {fileID: 1736435170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1156691437
 GameObject:
   m_ObjectHideFlags: 0
@@ -19492,6 +19508,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 694573346265953925, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5074018e0d0854d4d940072cb4657a1d, type: 2}
+    - target: {fileID: 694573346265953925, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5746836349847950174, guid: 5074018e0d0854d4d940072cb4657a1d, type: 2}
+    - target: {fileID: 694573346265953925, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 910329998295947280, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
       propertyPath: cleanFloor
       value: 
@@ -24349,6 +24377,14 @@ PrefabInstance:
       propertyPath: customerSentTextsUI
       value: 
       objectReference: {fileID: 1736435175}
+    - target: {fileID: 1076767603636382202, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 1154885261}
+    - target: {fileID: 1076767603636382202, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 766170974}
     - target: {fileID: 1622017229548695560, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8435284
@@ -24429,7 +24465,8 @@ PrefabInstance:
       propertyPath: days.Array.data[0].customersToSend
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5339897775003523703, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8509843097290198017, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
     m_AddedGameObjects: []
@@ -25584,6 +25621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!33 &6857299195915885101
 MeshFilter:
   m_ObjectHideFlags: 0
