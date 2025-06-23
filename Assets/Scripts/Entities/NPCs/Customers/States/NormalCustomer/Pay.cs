@@ -68,7 +68,7 @@ public class Pay : CustomerBaseState
             }
             else if (Time.time >= timer)
             {   
-                Utils.PlaySoundEffect(Utils.SoundEffects.PAY);
+                FindFirstObjectByType<AudioManager>().PlayPaymentSFX(transform.position);
 
                 if (customerMovement.backPack.childCount == 0)
                 {
@@ -79,6 +79,7 @@ public class Pay : CustomerBaseState
                 }
 
                 Destroy(customerMovement.backPack.GetChild(0).gameObject);
+                
                 fSM.ChangeState("ProductPaid");
             }
         }

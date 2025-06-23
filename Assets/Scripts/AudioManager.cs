@@ -1,63 +1,88 @@
-
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 using System.Collections.Generic;
+
+
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("---------- Audio Source ----------")]
-    [SerializeField]
-    private AudioSource musicSource, SFXSource;
 
-    [Header("---------- Audio Clips Game -------------")]
-    public AudioClip taskDoneSFX, paymentSFX;
+    public AudioClip taskDoneSFX;
+    public AudioClip thiefAlertSFX, karenDeafeatSFX;
 
-    [Header("---------- Audio Clips Game -------------")]
-    public AudioClip customerAttackedSFX, thiefAlertSFX, karenDeafeatSFX;
 
-    [Header("---------- Music -------------")]
-    public AudioClip mainMusic;
 
-    public List<AudioClip> karenComplainingSFX;
 
-    /// <summary>
-    /// The Awake method is called when the script instance is being loaded (Unity Callback).
-    /// For now it sets to not be destroyed on load.
-    /// </summary>
+    [Header("---------- Snapshots ----------")]
+
+    public EventReference pauseSnapshot;
+
+
+    [Header("---------- Events ----------")]
+
+    public EventReference customerAttackedEvent; //customer is hit with item
+    public EventReference paymentSFXEvent; //customer pays before leaving
+    public EventReference KarenComplaintEvent; //Karen complaints
+
+
+
+    [Header("---------- Music ----------")]
+
+    public EventReference mainMusicEvent;
+
+    private EventInstance musicInstance;
+
     private void Awake()
     {
-        PlayMusic(mainMusic);
+        // Play background music on load
+        musicInstance = RuntimeManager.CreateInstance(mainMusicEvent);
+        musicInstance.start();
+        // No release — keep it around
+
+        DontDestroyOnLoad(gameObject);
     }
 
-  
-    // M�todo para tocar a m�sica (se necess�rio)
-    private void PlayMusic(AudioClip clip)
+        public void PlaySFX(AudioClip clip)
     {
-        musicSource.clip = clip;
-        musicSource.loop = true;
-        musicSource.volume = 0.5f;
-        musicSource.Play();
+        Debug.LogWarning("PlaySFX called, but AudioClip-based playback is deprecated. Switch to FMOD events.");
     }
 
-    public void HandlePlayStopMusic()
+
+    private EventInstance pauseSnapshotInstance;
+
+    public void ActivatePauseSnapshot()
     {
-        if (musicSource.isPlaying)
-        {
-            musicSource.Pause();
-        }
-        else if (!musicSource.isPlaying)
-        {
-            musicSource.Play();
-        }
+        pauseSnapshotInstance = RuntimeManager.CreateInstance(pauseSnapshot);
+        pauseSnapshotInstance.start();
     }
 
-    // M�todo para tocar o efeito sonoro
-    public void PlaySFX(AudioClip clip)
+    public void DeactivatePauseSnapshot()
     {
-        if (clip == customerAttackedSFX)
-        {
-            SFXSource.pitch = Utils.RandomFloat(1.0f, 1.5f);
-        }
-
-        SFXSource.PlayOneShot(clip);
+        pauseSnapshotInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        pauseSnapshotInstance.release();
     }
+
+
+    public void PlayCustomerAttackedSFX(Vector3 position)
+    {
+        RuntimeManager.PlayOneShot(customerAttackedEvent, position);
+        Debug.DrawRay(position, Vector3.up * 2f, Color.red, 2f);
+    }
+
+
+
+    public void PlayPaymentSFX(Vector3 position)
+    {
+        RuntimeManager.PlayOneShot(paymentSFXEvent, position);
+    }
+    
+
+    public void PlayKarenComplaint(Vector3 position)
+{
+    RuntimeManager.PlayOneShot(KarenComplaintEvent, position);
+}
+
+
+
 }

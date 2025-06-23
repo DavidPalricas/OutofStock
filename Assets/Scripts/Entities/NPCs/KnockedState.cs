@@ -21,18 +21,19 @@ public class KnockedState : State
     /// Inside this method after knocing out the customer and it stand up, its state will change to the AttackPlayer state if the customer is a Karen, otherwise it will change to the GoHome state.
     /// </summary>
     public override void Enter()
+{
+    base.Enter();
+
+    if (gameObject.CompareTag("Manager"))
     {
-        base.Enter();
-
-        if (gameObject.CompareTag("Manager"))
-        {
-            GetComponent<StrikesSystem>().DispatchStrike(true);
-        }
-
-        Utils.PlaySoundEffect(Utils.SoundEffects.CUSTOMER_ATTACKED);
-
-        GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
+        GetComponent<StrikesSystem>().DispatchStrike(true);
     }
+   
+    FindFirstObjectByType<AudioManager>().PlayCustomerAttackedSFX(transform.position);
+        
+    GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
+}
+
 
     /// <summary>
     /// The Enter method is called when the state is entered.

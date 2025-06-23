@@ -20,7 +20,7 @@ public class RebindingMenu : MonoBehaviour
     /// The attackButton, interactButton, pauseButton, 
     /// </summary>
     [SerializeField]
-    private GameObject attackButton, interactButton, crouchButton, jumpButton, sprintButton, throwButton;
+    private GameObject interactButton, jumpButton, sprintButton, throwButton;
 
     /// <summary>
     /// The defaultButtonImageColor property is responsible for storing the default color of the button image.
@@ -128,9 +128,7 @@ public class RebindingMenu : MonoBehaviour
     {
         return button switch
         {
-            _ when button == attackButton => playerInput.actions["Attack"],
             _ when button == interactButton => playerInput.actions["Interact"],
-            _ when button == crouchButton => playerInput.actions["Crouch"],
             _ when button == jumpButton => playerInput.actions["Jump"],
             _ when button == sprintButton => playerInput.actions["Sprint"],
             _ when button == throwButton => playerInput.actions["Throw"],
@@ -220,9 +218,7 @@ public class RebindingMenu : MonoBehaviour
 
         Dictionary<GameObject, string> actions = new()
         {
-            {attackButton, "Attack" },
             { interactButton, "Interact" },
-            { crouchButton, "Crouch" },
             { jumpButton, "Jump" },
             { sprintButton, "Sprint" },
             { throwButton, "Throw" }
