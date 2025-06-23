@@ -329,6 +329,22 @@ MonoBehaviour:
   subtaskIconPrefab: {fileID: 7495247175069548268, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
   subtaskInput: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   crosshair: {fileID: 195682536}
+--- !u!1 &9104161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6630933101441115266, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+  m_PrefabInstance: {fileID: 1736435170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9104162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7865587142367984701, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+  m_PrefabInstance: {fileID: 1736435170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &48432424 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
@@ -2054,7 +2070,7 @@ PrefabInstance:
     - target: {fileID: 3177668736034986803, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: strikesCounterUI
       value: 
-      objectReference: {fileID: 1394908674}
+      objectReference: {fileID: 0}
     - target: {fileID: 4261712987010149697, guid: 3571e0d52adf65f49800c5b9bd0030f5, type: 3}
       propertyPath: avoidancePriority
       value: 40
@@ -2138,6 +2154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayText: {fileID: 1736435173}
   timeText: {fileID: 1736435172}
+  winScreen: {fileID: 9104161}
+  loseScreen: {fileID: 1736435171}
 --- !u!1 &1044878106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,17 +3188,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351430143}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1394908674 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7405919918641846642, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
-  m_PrefabInstance: {fileID: 1736435170}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1407138457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,6 +4511,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+--- !u!1 &1736435171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4656310314704538840, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
+  m_PrefabInstance: {fileID: 1736435170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1736435172 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7065311878398990841, guid: 970649e81f49ffa4590cc54f0834ad13, type: 3}
@@ -6151,6 +6163,10 @@ PrefabInstance:
       propertyPath: customerSentPanel
       value: 
       objectReference: {fileID: 1736435176}
+    - target: {fileID: -1411920706285211902, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
+      propertyPath: customersToSentUI
+      value: 
+      objectReference: {fileID: 9104162}
     - target: {fileID: -1411920706285211902, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
       propertyPath: customerSentTextsUI
       value: 

@@ -28,9 +28,6 @@ public static class Utils
         return Environment.TickCount;
     }
 
-
-
-
     /// <summary>
     /// The GetChildren method is responsible for retrieving the children of a game object.
     /// </summary>
@@ -200,6 +197,4 @@ public static class Utils
             playerInput.actions.Enable();
         }
     }
-
-
 }

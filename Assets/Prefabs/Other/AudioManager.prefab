@@ -175,16 +175,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cdc1d8d07f901449f8c8b2cb8a65a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 3336303368498357055}
-  SFXSource: {fileID: 7721394399719029587}
   taskDoneSFX: {fileID: 0}
-  paymentSFX: {fileID: 8300000, guid: c53cbec6c7709a34da9d58909d8e2f78, type: 3}
-  customerAttackedSFX: {fileID: 8300000, guid: fb4794ae07e38854f887b229395ee955, type: 3}
   thiefAlertSFX: {fileID: 0}
   karenDeafeatSFX: {fileID: 0}
-  mainMusic: {fileID: 8300000, guid: 7b3b18dc0731b1a419e9c7c14740f349, type: 3}
-  karenComplainingSFX:
-  - {fileID: 8300000, guid: 3f0f4c555fdd2b946bc3bf19a1377106, type: 3}
+  pauseSnapshot:
+    Guid:
+      Data1: 1559108679
+      Data2: 1152956637
+      Data3: -1246549848
+      Data4: 1694604841
+    Path: snapshot:/PauseSnapshot
+  customerAttackedEvent:
+    Guid:
+      Data1: -804749894
+      Data2: 1235008725
+      Data3: -678870096
+      Data4: 1049738695
+    Path: event:/NPCs/CustomerHit
+  paymentSFXEvent:
+    Guid:
+      Data1: 1509549544
+      Data2: 1340568617
+      Data3: 1826597762
+      Data4: -1099040100
+    Path: event:/NPCs/NPC_Pay
+  KarenComplaintEvent:
+    Guid:
+      Data1: -1686053449
+      Data2: 1089469772
+      Data3: 63215508
+      Data4: 1017973816
+    Path: event:/Interactables/Button
+  mainMusicEvent:
+    Guid:
+      Data1: 1149368326
+      Data2: 1216367197
+      Data3: -1035697022
+      Data4: 395364433
+    Path: event:/Music/Level 2
 --- !u!1 &4826687424878359694
 GameObject:
   m_ObjectHideFlags: 0
