@@ -68,10 +68,7 @@ public class Pay : CustomerBaseState
             }
             else if (Time.time >= timer)
             {   
-
                 FindFirstObjectByType<AudioManager>().PlayPaymentSFX(transform.position);
-
-             
 
                 if (customerMovement.backPack.childCount == 0)
                 {

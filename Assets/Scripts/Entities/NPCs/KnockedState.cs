@@ -28,17 +28,8 @@ public class KnockedState : State
     {
         GetComponent<StrikesSystem>().DispatchStrike(true);
     }
-    else if (gameObject.CompareTag("Customer") && gameObject.name.Contains("Karen"))
-    {
-        GetComponent<KarenMovement>().Attacked();
-    }
-
+   
     FindFirstObjectByType<AudioManager>().PlayCustomerAttackedSFX(transform.position);
-
-        if (gameObject.CompareTag("Manager"))
-        {
-            GetComponent<StrikesSystem>().DispatchStrike(true);
-        }
         
     GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
 }
