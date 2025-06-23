@@ -78,15 +78,11 @@ public class Shopping : CustomerBaseState
                 return;
             }
 
-            if (!MarketStock.GetInstance().IsProductAvaible(customerMovement.TargetProduct.gameObject))
+            if (IsProductIsUnvaible())
             {
-                if(MarketStock.GetInstance().IsOutOfStock(customerMovement.TargetProduct.type))
-                {
-                    fSM.ChangeState("ProductNotFound");
-                    return;
-                }
-            }
-
+                return;
+            };
+  
             // Initialize the timer to pick a product
             if (timer == 0f)
             {
@@ -106,6 +102,17 @@ public class Shopping : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
+
+        if (!gameObject.name.Contains("Karen"))
+        {
+            MarketProduct product = customerMovement.TargetProduct;
+
+            product.EntityHasProduct();
+
+            product.transform.SetParent(customerMovement.backPack);
+            product.gameObject.SetActive(false);
+        }
+        
     }
 
     /// <summary>
@@ -136,12 +143,36 @@ public class Shopping : CustomerBaseState
             annoyingKid.HoldsProduct = true;
         }
 
-        GameObject product = customerMovement.TargetProduct.gameObject;
-
-        MarketStock.GetInstance().RemoveProduct(product);
-        Destroy(product);
-
         fSM.ChangeState("ProductPicked");
+    }
+
+
+    private bool IsProductIsUnvaible()
+    {
+        MarketStock marketStock = GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>();
+
+        MarketProduct product = customerMovement.TargetProduct;
+
+        if (!marketStock.IsProductAvaible(product.gameObject)){
+
+            if (marketStock.IsOutOfStock(product.type))
+            {
+                fSM.ChangeState("ProductNotFound");
+                return true;
+            }
+
+            Debug.Log("Find a new Product");
+
+            customerMovement.SetTargetProduct(product.type);
+
+            customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+
+            return true;
+        }
+
+        Debug.Log("Product is available");
+
+        return false;
     }
 
     /// <summary>

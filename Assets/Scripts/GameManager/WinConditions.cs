@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The WindConditions class is responsible for checking if the player has won its shift in the game.
@@ -17,7 +18,7 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// The customerHittedTextsUI attribute is used to store a reference to the TextMeshProUGUI component that displays the number of customers hitted in the UI.
     /// </summary>
     [SerializeField]
-    private TextMeshProUGUI customerSentTextsUI;
+    private TextMeshProUGUI customerSentTextsUI, customersToSentUI;
 
     /// <summary>
     /// The customerHittedPanel attribute is used to store a reference to the GameObject that displays the number of customers hitted in the UI.
@@ -34,7 +35,8 @@ public class WinConditions : MonoBehaviour, IEventListener
         maxCustomersSent = PlayerPrefs.GetInt("CustomersToSend");
         tasksToComplete = PlayerPrefs.GetInt("NumberOfTasks");
 
-        customerSentTextsUI.text = $"0 / {maxCustomersSent}";
+        customerSentTextsUI.text = $"0";
+        customersToSentUI.text = $"{maxCustomersSent}";
     }
 
     /// <summary>
@@ -62,7 +64,7 @@ public class WinConditions : MonoBehaviour, IEventListener
         }
 
         customersSent++;
-        customerSentTextsUI.text = $"{customersSent} / {maxCustomersSent}";
+        customerSentTextsUI.text = customersSent.ToString();
 
         if (customersSent == maxCustomersSent)
         {
