@@ -9,6 +9,8 @@ TagManager:
   - GameManager
   - AudioManager
   - Manager
+  - TaskManager
+  - MarketStock
   layers:
   - Default
   - TransparentFX

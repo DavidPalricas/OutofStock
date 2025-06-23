@@ -33,9 +33,13 @@ public class KnockedState : State
         GetComponent<KarenMovement>().Attacked();
     }
 
-    // 🎯 Correctly play FMOD SFX at this customer’s position
     FindFirstObjectByType<AudioManager>().PlayCustomerAttackedSFX(transform.position);
 
+        if (gameObject.CompareTag("Manager"))
+        {
+            GetComponent<StrikesSystem>().DispatchStrike(true);
+        }
+        
     GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
 }
 
@@ -56,7 +60,6 @@ public class KnockedState : State
     public override void Exit()
     {
         base.Exit();
-
         GetComponent<NPCMovement>().WasAttacked = false;
     }
 }

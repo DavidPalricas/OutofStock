@@ -80,7 +80,15 @@ public class Running : CustomerBaseState
     {
         base.Execute();
 
-        if (annoyingKidMovement.WasAttacked)
+        if (holdsProduct && annoyingKidMovement.backPack.childCount == 0)
+        {
+            customerSanity.DecreasedSanity();
+
+            fSM.ChangeState("WasRobbed");
+            return;
+        }
+
+        if (customerSanity.CurrentSanity != customerSanity.maxSanity)
         {
             fSM.ChangeState("Attacked");
             return;
@@ -99,7 +107,7 @@ public class Running : CustomerBaseState
        }
         
         if (annoyingKidMovement.DestinationReached)
-        {
+        {   
             annoyingKidMovement.Run();
         }
     }
