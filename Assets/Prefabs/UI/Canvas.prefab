@@ -2617,12 +2617,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 3235266242093297341, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
-  attackButton: {fileID: 8254948620613720240}
   interactButton: {fileID: 1485569113126502480}
-  crouchButton: {fileID: 0}
   jumpButton: {fileID: 3943770152314827152}
   sprintButton: {fileID: 3457654618785014454}
-  throwButton: {fileID: 0}
+  throwButton: {fileID: 8254948620613720240}
 --- !u!1 &2014349134040355826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4134,8 +4132,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7603449715413044268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.9948105}
+  m_AnchorMax: {x: 1, y: 0.99999994}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5442,7 +5440,7 @@ RectTransform:
   m_Father: {fileID: 114202787669417821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5625,7 +5623,19 @@ MonoBehaviour:
   m_Value: 90
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9097772926375093692}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ChangeFOV
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4093063295835128776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6479,6 +6489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 192166644738184650}
+  - component: {fileID: 9097772926375093692}
   m_Layer: 5
   m_Name: SettingsScreen
   m_TagString: Untagged
@@ -6507,6 +6518,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9097772926375093692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451065168335836399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b79c8fc863e91343810463159a57568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 2436713807363680984}
+  sensitivitySlider: {fileID: 7330678606958781385}
+  fovSlider: {fileID: 8239586004154637570}
 --- !u!1 &4602336699283469005
 GameObject:
   m_ObjectHideFlags: 0
@@ -6991,7 +7017,19 @@ MonoBehaviour:
   m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9097772926375093692}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ChangeSensitivity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4985792563901623180
 GameObject:
   m_ObjectHideFlags: 0
@@ -8618,7 +8656,7 @@ RectTransform:
   m_Father: {fileID: 5970907353682456434}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.44444445, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10327,8 +10365,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1696729659398702647}
   m_HandleRect: {fileID: 2144036173546112562}
   m_Direction: 2
-  m_Value: 0.99999994
-  m_Size: 0.005189413
+  m_Value: 1
+  m_Size: 0.0051894137
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11686,7 +11724,19 @@ MonoBehaviour:
   m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9097772926375093692}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: ChangeVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7991402375704796999
 GameObject:
   m_ObjectHideFlags: 0
@@ -12012,7 +12062,7 @@ RectTransform:
   m_Father: {fileID: 2687571505975690489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
