@@ -29,11 +29,7 @@ public static class Utils
     }
 
 
-    public enum SoundEffects{
-        CUSTOMER_ATTACKED,
-        PAY,
-        KAREN_COMPLAINNING
-    }
+
 
     /// <summary>
     /// The GetChildren method is responsible for retrieving the children of a game object.
@@ -206,32 +202,4 @@ public static class Utils
     }
 
 
-    /// <summary>
-    /// The PlaySoundEffect method is resposinble for playing a sound effect in our game
-    /// </summary>
-    /// <param name="clipName">The name of the sounds'effect clip</param>
-    public static void PlaySoundEffect(SoundEffects clipName)
-    {
-        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-
-        switch (clipName)
-        {
-            case SoundEffects.CUSTOMER_ATTACKED:
-                audioManager.PlayCustomerAttackedSFX(audioManager.transform.position);
-                break;
-
-            case SoundEffects.PAY:
-                audioManager.PlaySFX(audioManager.paymentSFX);
-                break;
-
-            case SoundEffects.KAREN_COMPLAINNING:     
-                int randomSFXIndex = RandomInt(0, audioManager.karenComplainingSFX.Count);
-                
-                audioManager.PlaySFX(audioManager.karenComplainingSFX[randomSFXIndex]);
-                break;
-
-            default:
-                break;
-        }
-    }
 }

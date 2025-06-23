@@ -320,7 +320,7 @@ MonoBehaviour:
   sourceProjectPath: ../../FMOD Studio/out_of_stock/OutOfStock/OutOfStock.fspro
   sourceBankPath: ../../FMOD Studio/out_of_stock/OutOfStock/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -357,7 +357,7 @@ MonoBehaviour:
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131625
-  HideSetupWizard: 0
+  HideSetupWizard: 1
   LastEventReferenceScanVersion: 131625
   Platforms:
   - {fileID: -4362284060979486126}

@@ -68,7 +68,7 @@ public class Pay : CustomerBaseState
             }
             else if (Time.time >= timer)
             {   
-                Utils.PlaySoundEffect(Utils.SoundEffects.PAY);
+                FindFirstObjectByType<AudioManager>().PlayPaymentSFX(transform.position);
                 fSM.ChangeState("ProductPaid");
             }
         }

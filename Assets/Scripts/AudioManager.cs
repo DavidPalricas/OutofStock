@@ -8,34 +8,27 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour
 {
 
-public AudioClip taskDoneSFX, paymentSFX;
-public AudioClip thiefAlertSFX, karenDeafeatSFX;
-public List<AudioClip> karenComplainingSFX;
-    public AudioClip mainMusic;
+    public AudioClip taskDoneSFX;
+    public AudioClip thiefAlertSFX, karenDeafeatSFX;
 
 
 
-    [EventRef]
-    public EventReference customerAttackedEvent;
 
-public void PlayCustomerAttackedSFX(Vector3 position)
-{
-    RuntimeManager.PlayOneShot(customerAttackedEvent, position);
-}
+    [Header("---------- Snapshots ----------")]
+
+    public EventReference pauseSnapshot;
 
 
-    public void PlaySFX(AudioClip clip)
-    {
-        Debug.LogWarning("PlaySFX called, but AudioClip-based playback is deprecated. Switch to FMOD events.");
-    }
+    [Header("---------- Events ----------")]
+
+    public EventReference customerAttackedEvent; //customer is hit with item
+    public EventReference paymentSFXEvent; //customer pays before leaving
+    public EventReference KarenComplaintEvent; //Karen complaints
 
 
-    [Header("---------- FMOD Events ----------")]
-    [EventRef]
-    public EventReference punchHitEvent; // This is your test sound (e.g. punch)
 
     [Header("---------- Music ----------")]
-    [EventRef]
+
     public EventReference mainMusicEvent;
 
     private EventInstance musicInstance;
@@ -45,28 +38,51 @@ public void PlayCustomerAttackedSFX(Vector3 position)
         // Play background music on load
         musicInstance = RuntimeManager.CreateInstance(mainMusicEvent);
         musicInstance.start();
-        musicInstance.release(); // Let FMOD manage the memory cleanup
+        // No release — keep it around
 
         DontDestroyOnLoad(gameObject);
     }
 
-    public void HandlePlayStopMusic()
+        public void PlaySFX(AudioClip clip)
     {
-        PLAYBACK_STATE playbackState;
-        musicInstance.getPlaybackState(out playbackState);
-
-        if (playbackState == PLAYBACK_STATE.PLAYING)
-        {
-            musicInstance.setPaused(true);
-        }
-        else
-        {
-            musicInstance.setPaused(false);
-        }
+        Debug.LogWarning("PlaySFX called, but AudioClip-based playback is deprecated. Switch to FMOD events.");
     }
 
-    public void PlayPunchHitSFX(Vector3 position)
+
+    private EventInstance pauseSnapshotInstance;
+
+    public void ActivatePauseSnapshot()
     {
-        RuntimeManager.PlayOneShot(punchHitEvent, position);
+        pauseSnapshotInstance = RuntimeManager.CreateInstance(pauseSnapshot);
+        pauseSnapshotInstance.start();
     }
+
+    public void DeactivatePauseSnapshot()
+    {
+        pauseSnapshotInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        pauseSnapshotInstance.release();
+    }
+
+
+    public void PlayCustomerAttackedSFX(Vector3 position)
+    {
+        RuntimeManager.PlayOneShot(customerAttackedEvent, position);
+        Debug.DrawRay(position, Vector3.up * 2f, Color.red, 2f);
+    }
+
+
+
+    public void PlayPaymentSFX(Vector3 position)
+    {
+        RuntimeManager.PlayOneShot(paymentSFXEvent, position);
+    }
+    
+
+    public void PlayKarenComplaint(Vector3 position)
+{
+    RuntimeManager.PlayOneShot(KarenComplaintEvent, position);
+}
+
+
+
 }
