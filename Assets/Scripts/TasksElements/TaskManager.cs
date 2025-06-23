@@ -47,6 +47,9 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
         { 1, "Clean Floor" }
     };
 
+
+    private int restockShelfTasks = 0;
+
     /// <summary>
     /// The allTypeOfTasksActivated property is a flag which indicates if all types of tasks are activated.
     /// </summary>
@@ -232,17 +235,36 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
     {
         if (activeTaskToggles.TryGetValue(taskNumber, out Toggle toggle))
         {
+            if (taskNumber == 2 && restockShelfTasks > 1)
+            {
+                restockShelfTasks--;
+                string message = restockShelfTasks == 1 ? "Restock Shelf" : "Restock Shelf (" + restockShelfTasks + ")";
+
+                toggle.GetComponentInChildren<Text>().text = message;
+
+                activeTaskToggles[taskNumber] = toggle;
+
+                yield break;
+            }
+
+
+            if (taskNumber == 2)
+            {
+               restockShelfTasks--;
+
+                Debug.Log("Restock Shelf task completed. Remaining tasks: " + restockShelfTasks);
+            }
+            
             toggle.isOn = true;
 
             yield return new WaitForSeconds(3f);
 
+
             activeTaskToggles.Remove(taskNumber);
             allTypeOfTasksActivated = false;
             toggle.isOn = false;
-            Destroy(toggle.gameObject);
+            Destroy(toggle.gameObject);  
         }
-
-        allTypeOfTasksActivated = false;
 
         tasksCompleted++;
         timer = Time.time + addTaskTime;
@@ -266,19 +288,28 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
     /// <param name="shelf">The shelf that needs to restock.</param>
     private void ActivateRestockTask(GameObject shelf)
     {
-        Toggle newToggle = Instantiate(taskTogglePrefab, taskContainerTransform);
-        Text toggleText = newToggle.GetComponentInChildren<Text>();
-;
         ReStockShelf reStockShelf = shelf.GetComponent<ReStockShelf>();
         reStockShelf.enabled = true;
 
-        int taskNumber = reStockShelf.Number;
+        if (restockShelfTasks > 0)
+        {
+            Toggle toggle = activeTaskToggles[reStockShelf.Number];
 
-        // The number of the restock shelf task is the number of the task minus 1, because this task number starts at 2
-        toggleText.text = "Restock Shelf " + (reStockShelf.Number - 1);
+            restockShelfTasks++;
 
-        ActivateTask(taskNumber);
-        activeTaskToggles.Add(taskNumber, newToggle);
+            toggle.GetComponentInChildren<Text>().text = "Restock Shelf (" + restockShelfTasks + ")";
+
+            activeTaskToggles[reStockShelf.Number] = toggle;
+
+            return;
+        }
+
+        Toggle newToggle = Instantiate(taskTogglePrefab, taskContainerTransform);
+        newToggle.GetComponentInChildren<Text>().text =  "Restock Shelf";
+
+        activeTaskToggles.Add(reStockShelf.Number, newToggle);
+
+        restockShelfTasks++;
     }
 
     /// <summary>

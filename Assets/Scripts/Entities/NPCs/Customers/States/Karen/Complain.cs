@@ -94,11 +94,6 @@ public class Complain : CustomerBaseState
             return;
         }
 
-        if (Time.time >= timer)
-        {
-            Complaining();
-            timer = Time.time + complainingCooldown;
-        }
     }
 
     /// <summary>
@@ -116,9 +111,10 @@ public class Complain : CustomerBaseState
     /// <remarks>
     /// The logic of this method is not implemented yet.
     /// </remarks>
-    private void Complaining()
+    public void ComplaintSFX(Vector3 position)
     {   
-        Utils.PlaySoundEffect(Utils.SoundEffects.KAREN_COMPLAINNING);
-        complainingCounter++;
+        FindFirstObjectByType<AudioManager>().PlayKarenComplaint(transform.position);
+
+
     }
 }

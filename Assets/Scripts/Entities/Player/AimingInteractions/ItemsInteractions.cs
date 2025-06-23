@@ -7,43 +7,38 @@ using UnityEngine.InputSystem;
 public class ItemsInteractions : AimingAction
 {
     /// <summary>
-    /// The player attribute is the player GameObject.
-    /// </summary>
-    [SerializeField]
-    private GameObject player;
-
-    /// <summary>
     /// The itemGrabbedPos attribute is the position where the item grabbed will be placed.
     /// </summary>
     [SerializeField]
     private Transform itemGrabbedPos;
 
+
     /// <summary>
     /// The grabOrThrowAction attribute is the reference to the grab or throw action.
     /// </summary>
     [SerializeField]
-    private InputActionReference throwAction, grabAction;
+    private InputActionReference throwAction;
 
     /// <summary>
     /// The itemGrabbed attribute is a flag that indicates if the player is holding an item.
     /// </summary>
-    private bool itemGrabbed = false;
+    public bool ItemGrabbed { get; private set; } =  false;
 
- 
+
     /// <summary>
     /// The Update Method is called once per frame (Unity Callback).
     /// In this method, we check if the player pressed the grab or throw action.
     /// If this action is pressed, the GrabOrThrowItem method is called to check if the player will grab or throw an item.
     private void Update()
     {
-        if (grabAction.action.IsPressed() && !itemGrabbed)
+        if (interactAction.action.IsPressed() && !ItemGrabbed)
         {
              GrabItem();
 
              return;
         }
 
-        if (throwAction.action.triggered &&  itemGrabbed){
+        if (throwAction.action.triggered &&  ItemGrabbed){
 
             ThrowItem();
         }
@@ -71,19 +66,10 @@ public class ItemsInteractions : AimingAction
             {
                 GameObject item = playerRaycast.collider.gameObject;
 
-                Item itemLogic = playerRaycast.collider.GetComponent<Item>();
-
-                itemLogic.WasGrabbed();
-
-                Transform itemTransform = item.transform;
-
-                Quaternion newRotation = Quaternion.Euler(0, 0, 0);
-
-                itemTransform.SetPositionAndRotation(itemGrabbedPos.position, newRotation);
-
-                itemTransform.SetParent(itemGrabbedPos);
-          
-                itemGrabbed = true;
+                if (item.GetComponent<MarketProduct>() == null || item.GetComponent<MarketProduct>().canBePicked)
+                {
+                    HoldItem(item);
+                }
             }
         }
     }
@@ -112,7 +98,7 @@ public class ItemsInteractions : AimingAction
         Ray crosshairRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
         itemToThrow.GetComponent<Item>().WasThrown(crosshairRay.direction);       
-        itemGrabbed = false;
+        ItemGrabbed = false;
      }
 
 
@@ -173,6 +159,25 @@ public class ItemsInteractions : AimingAction
                 itemToThrow.transform.position = transform.position + transform.TransformDirection(Vector3.up) * 1.5f;
             }
         }
+    }
+
+
+    public void HoldItem(GameObject item)
+    {   
+        item.SetActive(true);
+        Item itemLogic = item.GetComponent<Item>();
+
+        itemLogic.WasGrabbed();
+
+        Transform itemTransform = item.transform;
+
+        Quaternion newRotation = Quaternion.Euler(0, 0, 0);
+
+        itemTransform.SetPositionAndRotation(itemGrabbedPos.position, newRotation);
+
+        itemTransform.SetParent(itemGrabbedPos);
+
+        ItemGrabbed = true;
     }
 
     /// <summary>

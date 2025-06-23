@@ -98,7 +98,6 @@ public class Shelf : MonoBehaviour, ISubject
     /// </remarks>
     private void AddProducts()
     {
-
          ShelfProducts = GameObject.FindGameObjectWithTag("MarketStock")
             .GetComponent<MarketStock>()
             .GetProductVariants(productsType);
@@ -125,6 +124,10 @@ public class Shelf : MonoBehaviour, ISubject
             MarketProduct marketProduct = product.GetComponent<MarketProduct>();
 
             marketProduct.Shelf = gameObject;
+            marketProduct.type = productsType;
+            marketProduct.canBePicked = true;
+
+
             SetProductPickArea(marketProduct);
 
             CurrentProducts++;
@@ -139,21 +142,32 @@ public class Shelf : MonoBehaviour, ISubject
     ///  increases the number of products to restock.
     ///  If the current number of products on the shelf is less than or equal to zero, it notifies the observers (TaskManager) to start the restock task after a delay of 5 seconds.
     /// </remarks>
-    public void ProductRemoved()
+    public void ProductRemoved(GameObject product)
     {
         CurrentProducts--;
-
 
         ReStockShelf restockShelf = GetComponent<ReStockShelf>();
 
         if (restockShelf.enabled)
         {
             restockShelf.ProductsToRestock++;
+
+            Dictionary <GameObject, GameObject> restockedProducts = restockShelf.RestockedProducts;
+
+            // The product can be already removed from the shelf.
+            if (restockedProducts.ContainsKey(product))
+            {
+                GameObject placeHolder = restockedProducts[product];
+                restockedProducts.Remove(product);
+
+                // Activates the product place holder
+                StartCoroutine(Utils.WaitAndExecute(0.2f, () => placeHolder.SetActive(true)));
+            }
         }
 
         if (CurrentProducts <= 0 && !restockShelf.enabled)
         {
-            StartCoroutine(Utils.WaitAndExecute(5f, () => NotifyObservers(gameObject)));      
+            StartCoroutine(Utils.WaitAndExecute(3f, () => NotifyObservers(gameObject)));      
         }
     }
 

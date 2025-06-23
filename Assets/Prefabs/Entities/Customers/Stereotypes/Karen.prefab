@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4261712987010149697}
+  backPack: {fileID: 0}
   tresholdToResetChase: 1.5
   playerInRange: 2.5
 --- !u!114 &9066151018471758210

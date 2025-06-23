@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using FMOD.Studio;
+
 
 /// <summary>
 /// The PauseMenu class is responsible for managing the player activing or deactivating the pause menu.
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
+
+
     /// <summary>
     /// The pauseActionReference attribute is used to reference the pause action from the InputActionAsset.
     /// </summary>
@@ -41,7 +46,7 @@ public class PauseMenu : MonoBehaviour
     /// <summary>
     /// The Update method is called once per frame (Unity callback).
     /// In this method the pauseActionReference is checked to see if it was triggered and if so, the PauseResume method is called, to handle the 
-    /// ã
+    /// ï¿½
     /// </summary>
     private void Update()
     {
@@ -54,11 +59,16 @@ public class PauseMenu : MonoBehaviour
     /// <summary>
     /// The PauseResume method is responsible for pausing or resuming the game, and activating or deactivating the cursor visibility and lock state.
     /// </summary>
-    
+
     // Note : This method is public because is called from a button in the UI Pause Menu.
+
+
+
+
     public void PauseResume()
-    { 
+    {
         isPaused = !isPaused;
+
         pauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
         HandlingInput(isPaused);
@@ -68,8 +78,24 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
 
-        GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().HandlePlayStopMusic();
+        AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
+        if (isPaused)
+        {
+            audioManager.ActivatePauseSnapshot();
+        }
+        else
+        {
+            audioManager.DeactivatePauseSnapshot();
+        }
+
+
     }
+
+
+
+
+
 
     /// <summary>
     /// The HandlingInput method is responsible for handling the input.
@@ -80,4 +106,6 @@ public class PauseMenu : MonoBehaviour
     {
         firstPersonController.enabled = !isPaused;
     }
+    
+    
 }

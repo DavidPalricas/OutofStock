@@ -25,11 +25,11 @@ Transform:
   m_GameObject: {fileID: 931699441282514554}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: -0.29999995, z: 0.7}
+  m_LocalPosition: {x: 0.4, y: -0.3, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3993277500402518246}
+  m_Father: {fileID: 3595617856839897970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1627154167022489338
 GameObject:
@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 3060188495569654751}
   - component: {fileID: 4640132893034691290}
   - component: {fileID: 746390465478879443}
+  - component: {fileID: 8905930083029435177}
   m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -149,7 +150,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6850312606828791236}
-  - {fileID: 5763519024140025336}
   m_Father: {fileID: 3595617856839897970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3060188495569654751
@@ -235,7 +235,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -256,6 +256,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &8905930083029435177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193291210311313408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &2450988668983306783
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,12 +433,12 @@ MonoBehaviour:
   invertCamera: 0
   cameraCanMove: 1
   mouseSensitivity: 2
-  maxLookAngle: 90
+  maxLookAngle: 50
   lockCursor: 1
   crosshair: 1
-  crosshairImage: {fileID: 21300000, guid: cf5c7cb3e33b8674c8d23ea8592167e9, type: 3}
+  crosshairImage: {fileID: 21300000, guid: be4ce60e2c9768c44b9b10b9c5258045, type: 3}
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
-  enableZoom: 0
+  enableZoom: 1
   holdToZoom: 1
   zoomKey: 324
   zoomFOV: 60
@@ -446,11 +460,11 @@ MonoBehaviour:
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
   enableJump: 1
-  jumpPower: 3.5
+  jumpPower: 3.6
   speedReduction: 0.5
-  jumpActionReference: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  crouchActionReference: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  sprintActionReference: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  jumpActionReference: {fileID: 0}
+  crouchActionReference: {fileID: 0}
+  sprintActionReference: {fileID: 0}
   enableHeadBob: 1
   joint: {fileID: 3595617856839897970}
   bobSpeed: 10
@@ -483,8 +497,7 @@ MonoBehaviour:
   crosshair: {fileID: 5622785972786631996}
   player: {fileID: 2450988668983306783}
   itemGrabbedPos: {fileID: 5763519024140025336}
-  throwAction: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  grabAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  grabOrThrowAction: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &3235266242093297341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,6 +714,7 @@ Transform:
   m_Children:
   - {fileID: 3993277500402518246}
   - {fileID: 3025801297146743875}
+  - {fileID: 5763519024140025336}
   m_Father: {fileID: 5753820143375783207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5213942304108047463
@@ -805,8 +819,8 @@ RectTransform:
   m_GameObject: {fileID: 7264112228334356482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6850312606828791236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -843,9 +857,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf5c7cb3e33b8674c8d23ea8592167e9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

@@ -36,6 +36,7 @@ public class Pay : CustomerBaseState
     {
         base.Enter();
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Payment"]);
+        Debug.Log("Customer is paying for the product.");
     }
 
     /// <summary>
@@ -54,21 +55,34 @@ public class Pay : CustomerBaseState
     {
         base.Execute();
 
-
         if (customerMovement.WasAttacked)
         {
             fSM.ChangeState("Attacked");
         }
 
         if (customerMovement.DestinationReached)
-        {    
+        {         
             if (timer == 0f)
             {
                 timer = Time.time + Utils.RandomFloat(minTimeToPay, maxTimeToPay);
             }
             else if (Time.time >= timer)
             {   
-                Utils.PlaySoundEffect(Utils.SoundEffects.PAY);
+
+                FindFirstObjectByType<AudioManager>().PlayPaymentSFX(transform.position);
+
+             
+
+                if (customerMovement.backPack.childCount == 0)
+                {
+                    customerSanity.DecreasedSanity();
+                    fSM.ChangeState("WasRobbed");
+
+                    return;
+                }
+
+                Destroy(customerMovement.backPack.GetChild(0).gameObject);
+                
                 fSM.ChangeState("ProductPaid");
             }
         }
