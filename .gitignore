@@ -77,4 +77,8 @@ crashlytics-build.properties
 Assets/Scenes/TestScenes/
 Assets/Scenes/TestScenes.meta
 
+# FMOD 
+Assets/Plugins/FMOD/Cache/
+fmod_editor.log
+
 .vscode/
