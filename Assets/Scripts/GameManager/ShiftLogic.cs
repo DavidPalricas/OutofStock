@@ -15,6 +15,10 @@ public class ShiftLogic : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dayText, timeText;
 
+
+    [SerializeField]
+    private GameObject winScreen, loseScreen;
+
     /// <summary>
     /// The following attributes are used to store the game time properties.
     ///
@@ -159,7 +163,7 @@ public class ShiftLogic : MonoBehaviour
 
         if (workTime == shiftDuration)
         {
-            NextDay();
+            ShiftEnd();
         }
     }
 
@@ -167,17 +171,23 @@ public class ShiftLogic : MonoBehaviour
     /// The NextDay method is responsible for advancing to the next day of the game.
     /// For now, it just reloads the current scene for testing the days progression.
     /// </summary>
-    private void NextDay()
-    {   /*
+    private void ShiftEnd()
+    {
+        Time.timeScale = 0;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        // Check if the player won or lost and activate the appropriate screen  
         if (GetComponent<WinConditions>().PlayerWon())
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        {   
+            winScreen.transform.parent.gameObject.SetActive(true);
+            winScreen.SetActive(true);
 
             return;
         }
-        */
 
-        // Go to the Main Menu
-        SceneManager.LoadScene(0);
+        loseScreen.transform.parent.gameObject.SetActive(true);
+        loseScreen.SetActive(true);
     }
 }
