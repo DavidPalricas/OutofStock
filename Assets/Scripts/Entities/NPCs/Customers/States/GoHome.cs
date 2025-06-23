@@ -42,6 +42,8 @@ public class GoHome : CustomerBaseState
     {
         base.Execute();
 
+        animator.SetFloat("Speed", customerMovement.agent.velocity.magnitude);
+
         if (customerMovement.WasAttacked)
         {
             fSM.ChangeState("Attacked");

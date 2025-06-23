@@ -11,7 +11,7 @@ public class NPCMovement : MonoBehaviour
     /// The agent attribute represents the NavMeshAgent component.
     /// </summary>
     [SerializeField]
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     /// <summary>
     /// The destinationoffset attribute represents a offset from the NPC destination 
@@ -44,7 +44,7 @@ public class NPCMovement : MonoBehaviour
     /// In this method, we are checking if the NPC has reached its destination, if so, the ReachDestination method is called.
     /// </summary>
     private void Update()
-    {
+    {   
         if (IsAgentEnabled()  && !agent.pathPending &&  !agent.isStopped && agent.remainingDistance <= DESTINATION_OFFSET)
         {
             agent.isStopped = true;

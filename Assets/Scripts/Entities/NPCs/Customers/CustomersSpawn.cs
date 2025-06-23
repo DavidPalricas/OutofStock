@@ -127,8 +127,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     {
         float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
         float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
-        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
 
+        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
 
         List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
         {
@@ -170,7 +170,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         float randomX = Utils.RandomFloat(minX, maxX);
         float randomZ = Utils.RandomFloat(minZ, maxZ);
 
-        const float CUSTOMERPOSY = 3f;
+        const float CUSTOMERPOSY = 1.8f;
 
         return new Vector3(randomX, CUSTOMERPOSY, randomZ);
     }

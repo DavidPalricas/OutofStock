@@ -114,6 +114,8 @@ public abstract class State : MonoBehaviour
     /// </summary>
     protected FSM fSM;
 
+    protected Animator animator;
+
     /// <summary>
     /// The StateName attribute is the name of the state.
     /// </summary>

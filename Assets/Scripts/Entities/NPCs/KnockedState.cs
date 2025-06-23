@@ -13,6 +13,7 @@ public class KnockedState : State
     private void Awake()
     {
         StateName = GetType().Name;
+        animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -32,6 +33,8 @@ public class KnockedState : State
     FindFirstObjectByType<AudioManager>().PlayCustomerAttackedSFX(transform.position);
         
     GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
+
+    animator.SetTrigger("Hit");
 }
 
 
@@ -50,6 +53,7 @@ public class KnockedState : State
     /// </summary>
     public override void Exit()
     {
+        animator.SetTrigger("standUp");
         base.Exit();
         GetComponent<NPCMovement>().WasAttacked = false;
     }

@@ -63,6 +63,9 @@ public class Shopping : CustomerBaseState
     {
         base.Execute();
 
+
+        animator.SetFloat("Speed", customerMovement.agent.velocity.magnitude);
+
         if (customerMovement.WasAttacked)
         {
             fSM.ChangeState("Attacked");
@@ -87,9 +90,10 @@ public class Shopping : CustomerBaseState
             if (timer == 0f)
             {
                 timer = Time.time + Utils.RandomFloat(minTimeToPickProduct, maxTimeToPickProduct);
+                animator.SetTrigger("pickUpItem");
             }
             else if (Time.time >= timer)
-            {
+            {   
                 PickProduct();
             }
         }
@@ -103,7 +107,9 @@ public class Shopping : CustomerBaseState
     {
         base.Exit();
 
-        if (!gameObject.name.Contains("Karen"))
+        animator.SetTrigger("stopRunning");
+
+        if (gameObject.name.Contains("NormalCustomer"))
         {
             MarketProduct product = customerMovement.TargetProduct;
 
