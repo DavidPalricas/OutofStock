@@ -3395,6 +3395,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
+    - target: {fileID: 4330717708257930824, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: grabAction
+      value: 
+      objectReference: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 4330717708257930824, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: throwAction
+      value: 
+      objectReference: {fileID: 3104859457392272134, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 5753820143375783207, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3439,11 +3447,55 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 131514071}
-    m_RemovedComponents: []
+    - target: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: pauseSnapshot.Path
+      value: snapshot:/PauseSnapshot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data1
+      value: 1559108679
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data2
+      value: 1152956637
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data3
+      value: -1246549848
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645137658315436086, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data4
+      value: 1694604841
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2193291210311313408, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 443416011}
   m_SourcePrefab: {fileID: 100100000, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+--- !u!1 &443416010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2193291210311313408, guid: c6eaf84a13510414a8a3a5276cc95fa1, type: 3}
+  m_PrefabInstance: {fileID: 443416009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &443416011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443416010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &445129543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6789,8 +6841,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayText: {fileID: 4883508059226127671}
   timeText: {fileID: 4883508059226127670}
-  timeSlider: {fileID: 1174281294}
-  timeSliderSpeed: 5
 --- !u!1 &1044878106
 GameObject:
   m_ObjectHideFlags: 0
@@ -13410,6 +13460,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3163684293249272144, guid: d720ff24e2b7670408c792dc885b98a6, type: 3}
   m_PrefabInstance: {fileID: 7345036591281763842}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2056500215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8314461812678172738, guid: d720ff24e2b7670408c792dc885b98a6, type: 3}
+  m_PrefabInstance: {fileID: 7345036591281763842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2067630420
 GameObject:
   m_ObjectHideFlags: 0
@@ -25161,7 +25222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8514093232553443937, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
       propertyPath: days.Array.data[0].karenSpawnProb
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8514093232553443937, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
       propertyPath: days.Array.data[0].customersToSend
@@ -25169,7 +25230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8514093232553443937, guid: d03ecdbadb4b7ce4cbefb03fb8f03570, type: 3}
       propertyPath: days.Array.data[0].annoyingKidSpawnProb
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -26447,6 +26508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!65 &1694515770304147260
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28302,6 +28364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &1903511257953279249
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32237,6 +32300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &2394112675676650804
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32704,6 +32768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!54 &2468815444418175208
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33290,6 +33355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!54 &2529938223915092517
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33968,6 +34034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &2576255053198472229
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37488,6 +37555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!65 &3078241145891249124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40203,6 +40271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &3398766728604822908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40728,6 +40797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &3484623471324414697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41131,6 +41201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &3518541819538461592
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -42057,6 +42128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &3603025121258913379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42569,6 +42641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &3682925489238981357
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42731,6 +42804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!23 &3684781926384209895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43571,6 +43645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!54 &3798267446929053414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -44097,6 +44172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!65 &3863145579445553414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44285,6 +44361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &3878164755633422174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -44727,6 +44804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!4 &3931090934216509634
 Transform:
   m_ObjectHideFlags: 0
@@ -45376,6 +45454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!4 &4006207288443881699
 Transform:
   m_ObjectHideFlags: 0
@@ -45687,6 +45766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &4052697717271795747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45856,6 +45936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!4 &4055706437866183771
 Transform:
   m_ObjectHideFlags: 0
@@ -46069,6 +46150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &4089883281139209472
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -46457,6 +46539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!23 &4142816514918036301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46669,6 +46752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!4 &4158676633985809905
 Transform:
   m_ObjectHideFlags: 0
@@ -46850,6 +46934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!1 &4178064077361330175
 GameObject:
   m_ObjectHideFlags: 0
@@ -46913,6 +46998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!54 &4183262418392312926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -47104,6 +47190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!23 &4202354716663457606
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47312,6 +47399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!54 &4223810773996846307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -48026,6 +48114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!54 &4297496764910495935
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -48132,6 +48221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!65 &4303713959882401943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48379,6 +48469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!65 &4310192123854218085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48715,6 +48806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!4 &4346292750708659963
 Transform:
   m_ObjectHideFlags: 0
@@ -48791,6 +48883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!4 &4347061367152290301
 Transform:
   m_ObjectHideFlags: 0
@@ -49574,6 +49667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!23 &4464018611163638995
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49676,6 +49770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!54 &4474372402254005201
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -49779,6 +49874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!54 &4478109587743921604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -49893,12 +49989,144 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: SFXSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: musicSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: pauseSnapshot.Path
+      value: snapshot:/PauseSnapshot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: punchHitEvent.Path
+      value: event:/Interactables/Teddy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
       propertyPath: karenComplainingSFX
       value: 
       objectReference: {fileID: 8300000, guid: bd679d2a9928f7d43afe88634822edaa, type: 3}
     - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: mainMusicEvent.Path
+      value: event:/Music/Level 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: paymentSFXEvent.Path
+      value: event:/NPCs/NPC_Pay
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: KarenComplaintEvent.Path
+      value: event:/Interactables/Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data1
+      value: 1559108679
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data2
+      value: 1152956637
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data3
+      value: -1246549848
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: pauseSnapshot.Guid.Data4
+      value: 1694604841
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: punchHitEvent.Guid.Data1
+      value: 224608274
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: punchHitEvent.Guid.Data2
+      value: 1172690000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: punchHitEvent.Guid.Data3
+      value: 428165248
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: punchHitEvent.Guid.Data4
+      value: 1799377049
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: mainMusicEvent.Guid.Data1
+      value: 1149368326
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: mainMusicEvent.Guid.Data2
+      value: 1216367197
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: mainMusicEvent.Guid.Data3
+      value: -1035697022
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: mainMusicEvent.Guid.Data4
+      value: 395364433
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: customerAttackedEvent.Path
+      value: event:/NPCs/CustomerHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: paymentSFXEvent.Guid.Data1
+      value: 1509549544
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: paymentSFXEvent.Guid.Data2
+      value: 1340568617
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: paymentSFXEvent.Guid.Data3
+      value: 1826597762
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: paymentSFXEvent.Guid.Data4
+      value: -1099040100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: KarenComplaintEvent.Guid.Data1
+      value: -1686053449
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: KarenComplaintEvent.Guid.Data2
+      value: 1089469772
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: KarenComplaintEvent.Guid.Data3
+      value: 63215508
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: KarenComplaintEvent.Guid.Data4
+      value: 1017973816
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
       propertyPath: karenComplainingSFX.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: customerAttackedEvent.Guid.Data1
+      value: -804749894
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: customerAttackedEvent.Guid.Data2
+      value: 1235008725
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: customerAttackedEvent.Guid.Data3
+      value: -678870096
+      objectReference: {fileID: 0}
+    - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
+      propertyPath: customerAttackedEvent.Guid.Data4
+      value: 1049738695
       objectReference: {fileID: 0}
     - target: {fileID: 3514530197145868172, guid: a97fef473977321418d30d150d50dd28, type: 3}
       propertyPath: 'karenComplainingSFX.Array.data[0]'
@@ -49957,7 +50185,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4220462764529662381, guid: a97fef473977321418d30d150d50dd28, type: 3}
+    - {fileID: 4826687424878359694, guid: a97fef473977321418d30d150d50dd28, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a97fef473977321418d30d150d50dd28, type: 3}
@@ -50072,6 +50302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!23 &4501496047703556241
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50217,6 +50448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!4 &4520551659499449775
 Transform:
   m_ObjectHideFlags: 0
@@ -50365,6 +50597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!65 &4529626140705842860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50442,6 +50675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &4532955332802879672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50971,6 +51205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!65 &4597524699124314656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51405,6 +51640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!1 &4653740150823700230
 GameObject:
   m_ObjectHideFlags: 0
@@ -51604,6 +51840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!54 &4664880725423461352
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -51865,6 +52102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!65 &4684462786486048113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51985,6 +52223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!54 &4693016957783086029
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52115,6 +52354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &4707442043087219647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52191,6 +52431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &4708409022319164435
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53315,6 +53556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!33 &4850679485859786077
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -53407,6 +53649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!4 &4860205587611356810
 Transform:
   m_ObjectHideFlags: 0
@@ -53525,6 +53768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!65 &4863146526967076704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53824,6 +54068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &4878042366128811367
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -53906,6 +54151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!65 &4880336008467160782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54593,6 +54839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!1 &4921071257864733268
 GameObject:
   m_ObjectHideFlags: 0
@@ -55074,6 +55321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!4 &4957350761085357249
 Transform:
   m_ObjectHideFlags: 0
@@ -55218,6 +55466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &4970256935112296045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55318,6 +55567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &4978810392440448235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55505,6 +55755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!1 &4990712445599613919
 GameObject:
   m_ObjectHideFlags: 0
@@ -55746,6 +55997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!23 &5019265396050219786
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56066,6 +56318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!65 &5044349707087898683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56479,6 +56732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &5098827350300999445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56610,6 +56864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!54 &5117197534469195716
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -56924,6 +57179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!23 &5138032839605204636
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57083,6 +57339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!33 &5139622218332635775
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -57292,6 +57549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!4 &5158915965057641604
 Transform:
   m_ObjectHideFlags: 0
@@ -57406,6 +57664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &5178987846570438309
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -57475,6 +57734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &5191699764511620937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57629,6 +57889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!4 &5194177829325447323
 Transform:
   m_ObjectHideFlags: 0
@@ -57893,6 +58154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!54 &5214656190133498955
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -58219,6 +58481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!4 &5250425752349033410
 Transform:
   m_ObjectHideFlags: 0
@@ -58295,6 +58558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!1 &5259527074347440017
 GameObject:
   m_ObjectHideFlags: 0
@@ -58423,6 +58687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &5273698455145187315
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -58815,6 +59080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &5342452033774730534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59130,6 +59396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!23 &5384051225650483862
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59196,6 +59463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!54 &5388939309812176264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -59325,6 +59593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &5396127907469312880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59535,6 +59804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &5402820872243675307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -59826,6 +60096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!54 &5453823171617555118
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -60037,6 +60308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &5467446360197179076
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -60561,6 +60833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &5525220560874449886
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -60638,6 +60911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!65 &5531727575529032377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60982,6 +61256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!54 &5568366611691095828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -61104,6 +61379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &5575627653226707981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61188,6 +61464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!54 &5577386670410815040
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -61336,6 +61613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!4 &5581012208429560969
 Transform:
   m_ObjectHideFlags: 0
@@ -61427,6 +61705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &5586004626043032116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -61778,6 +62057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &5603520556523407447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62238,6 +62518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!54 &5645319668383209805
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -62341,6 +62622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!54 &5647082392511220157
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -62607,6 +62889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!33 &5670454439466029396
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -63199,6 +63482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!23 &5718393411823619042
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63538,6 +63822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!4 &5741385159692932287
 Transform:
   m_ObjectHideFlags: 0
@@ -63659,6 +63944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!1 &5746173461003820715
 GameObject:
   m_ObjectHideFlags: 0
@@ -63787,6 +64073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!33 &5757431378732977110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -63865,6 +64152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!65 &5773894621849207179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64055,6 +64343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!4 &5780692575869276429
 Transform:
   m_ObjectHideFlags: 0
@@ -64287,6 +64576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!1 &5800868569342908801
 GameObject:
   m_ObjectHideFlags: 0
@@ -64321,6 +64611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!65 &5800868569342908803
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64550,6 +64841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!23 &5818956861020233329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64653,6 +64945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &5820996654684735565
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64775,6 +65068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!65 &5830349997618785984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65251,6 +65545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!65 &5859537308289415838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65375,6 +65670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!33 &5866918070188622195
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -65531,6 +65827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &5880693651534991602
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -65649,6 +65946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!1 &5889719869440181692
 GameObject:
   m_ObjectHideFlags: 0
@@ -65791,6 +66089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!4 &5897259929358237880
 Transform:
   m_ObjectHideFlags: 0
@@ -65893,6 +66192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &5901257350318783760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66017,6 +66317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!23 &5903667219913857633
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66168,6 +66469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &5919117344691798948
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66250,6 +66552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!54 &5921056902322726905
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -66404,6 +66707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!4 &5940160810475585545
 Transform:
   m_ObjectHideFlags: 0
@@ -66480,6 +66784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!23 &5942017723758173244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66559,6 +66864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!65 &5942631797488713622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66641,6 +66947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &5942631918359065719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -66820,6 +67127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &5957054010145302981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67448,6 +67756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &6017038750523369581
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67550,6 +67859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!54 &6019814197712073769
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -67769,6 +68079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!65 &6036006694912907360
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68009,6 +68320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!33 &6049522950033207424
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -68030,6 +68342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &6049522950033207426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68243,6 +68556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &6076471274065250799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68413,6 +68727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!1 &6084793783280050545
 GameObject:
   m_ObjectHideFlags: 0
@@ -68539,6 +68854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!23 &6102866375131028151
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68690,6 +69006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!23 &6105361933154852213
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68829,6 +69146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &6112588866745824106
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69266,6 +69584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &6181306030783050931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69400,6 +69719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!54 &6196189898960737345
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -69532,6 +69852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!54 &6212853593104716537
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -69719,6 +70040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!23 &6236858225020210164
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69919,6 +70241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!65 &6246884653401221913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70212,6 +70535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!23 &6273410737448207783
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70401,6 +70725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!65 &6287066410635412538
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70515,6 +70840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &6289833372778061153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70709,6 +71035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &6310893101464524121
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71163,6 +71490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!54 &6350659205983336002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -71245,6 +71573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!54 &6352848548536775570
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -71393,6 +71722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!23 &6357011416984460461
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71459,6 +71789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!54 &6357972548881374281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -71655,6 +71986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!65 &6364483070955402134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71862,6 +72194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &6380881090775943950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71954,6 +72287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!65 &6389496694725885718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72190,6 +72524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!4 &6408882063381582431
 Transform:
   m_ObjectHideFlags: 0
@@ -72234,6 +72569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &6417549444375909409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72438,6 +72774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &6428064395304928890
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72592,6 +72929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!4 &6429737480348711292
 Transform:
   m_ObjectHideFlags: 0
@@ -72689,6 +73027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!33 &6433096048526504307
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -72740,6 +73079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &6437166493048513036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -72962,6 +73302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!23 &6464721921361160399
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73068,6 +73409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!33 &6465524923773508035
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -73165,6 +73507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &6470234722695699588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73278,6 +73621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!65 &6487706495978817822
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73408,6 +73752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!4 &6496086973972556166
 Transform:
   m_ObjectHideFlags: 0
@@ -73566,6 +73911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!4 &6511198189787921338
 Transform:
   m_ObjectHideFlags: 0
@@ -73602,6 +73948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &6513853675826115388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73801,6 +74148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!1 &6522505009854369157
 GameObject:
   m_ObjectHideFlags: 0
@@ -73925,6 +74273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!23 &6526813981458341311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74051,6 +74400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!65 &6544537916608342780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74148,6 +74498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &6549858266959061465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -74317,6 +74668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &6555848718174537959
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74619,6 +74971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &6586466285729832361
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74780,6 +75133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!54 &6593432476915565463
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -74937,6 +75291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &6601507547312731672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75095,6 +75450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!65 &6611865708537018818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75270,6 +75626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!23 &6623627672998209556
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75376,6 +75733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!4 &6624589073130505272
 Transform:
   m_ObjectHideFlags: 0
@@ -75462,6 +75820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &6634093316688322285
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75567,6 +75926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!65 &6642532049399374877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75705,6 +76065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!33 &6654540136659553898
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -75770,6 +76131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!54 &6662675549034641921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75924,6 +76286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!4 &6666534367216210953
 Transform:
   m_ObjectHideFlags: 0
@@ -75952,6 +76315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &6666534367216210955
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76087,6 +76451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!65 &6667311664514705995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76295,6 +76660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!65 &6689921240811773352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76437,6 +76803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &6690409744515813415
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76545,6 +76912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &6695125414694472257
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76781,6 +77149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &6717878838151359461
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77015,6 +77384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!65 &6741201663426442640
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77163,6 +77533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!65 &6744847479632395508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77412,6 +77783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!1 &6783047761159355003
 GameObject:
   m_ObjectHideFlags: 0
@@ -78021,6 +78393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!65 &6837274447981545183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78151,6 +78524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!4 &6841326733039101551
 Transform:
   m_ObjectHideFlags: 0
@@ -78295,6 +78669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!23 &6861519005021839494
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78437,6 +78812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &6865821383997967358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78513,6 +78889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &6866044794475622816
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -78610,6 +78987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &6867108706558152505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78922,6 +79300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!4 &6891706162148764288
 Transform:
   m_ObjectHideFlags: 0
@@ -78973,6 +79352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &6897898159733744166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79103,6 +79483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!1 &6900415754093462978
 GameObject:
   m_ObjectHideFlags: 0
@@ -79185,6 +79566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!33 &6903561694653155142
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -79251,6 +79633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!54 &6904162526718395259
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79407,6 +79790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!54 &6906969305221074159
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79462,6 +79846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!54 &6909686580923891788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79586,6 +79971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!4 &6910109885562788944
 Transform:
   m_ObjectHideFlags: 0
@@ -79734,6 +80120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &6918933979796390948
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79866,6 +80253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!33 &6925377162277044642
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -79895,6 +80283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &6926308409692355569
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80022,6 +80411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!65 &6941615054263312438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80104,6 +80494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!65 &6942043371479146654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80240,6 +80631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &6946961460475714519
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80373,6 +80765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!54 &6956646624617737772
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80465,6 +80858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!65 &6966662944205732485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80602,6 +80996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!65 &6972631760406856612
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80732,6 +81127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!1 &6980245148951963521
 GameObject:
   m_ObjectHideFlags: 0
@@ -80835,6 +81231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!23 &6990084463117129705
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80986,6 +81383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!23 &7007156267575640784
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81104,6 +81502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!54 &7011406320837725008
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -81273,6 +81672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!4 &7015802514220181410
 Transform:
   m_ObjectHideFlags: 0
@@ -81370,6 +81770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!4 &7016262066901778058
 Transform:
   m_ObjectHideFlags: 0
@@ -81463,6 +81864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!65 &7021174251651518059
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81617,6 +82019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!33 &7031361205843680332
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -81719,6 +82122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &7047395831868418454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81840,6 +82244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!65 &7052431938631756985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81997,6 +82402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!54 &7060862862381501110
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82100,6 +82506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!33 &7063735261970369632
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -82142,6 +82549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!54 &7071844556347726249
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82240,6 +82648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!54 &7077558651591274909
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82370,6 +82779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!54 &7085292649319737223
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82439,6 +82849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!65 &7086654038754510235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82581,6 +82992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &7091520241421083676
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82791,6 +83203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &7121533386418647859
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82887,6 +83300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!4 &7123459078298294619
 Transform:
   m_ObjectHideFlags: 0
@@ -83050,6 +83464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!54 &7134182392260939794
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -83153,6 +83568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &7134576773782376597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -83331,6 +83747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!33 &7143659009207270996
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83352,6 +83769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!65 &7143659009207270998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -83476,6 +83894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!33 &7149874872956894323
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83560,6 +83979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!23 &7170235696906293185
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83674,6 +84094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!23 &7171600751721182096
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83780,6 +84201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!1 &7173131937321147192
 GameObject:
   m_ObjectHideFlags: 0
@@ -83814,6 +84236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!65 &7173131937321147194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -84069,6 +84492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!54 &7197590870027359537
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -84333,6 +84757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!4 &7216417638985363385
 Transform:
   m_ObjectHideFlags: 0
@@ -84382,6 +84807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!54 &7217300725177649526
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -84509,6 +84935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!65 &7221412952248163738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -84663,6 +85090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!1 &7226303095056576980
 GameObject:
   m_ObjectHideFlags: 0
@@ -84895,6 +85323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!33 &7236907427820976124
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84964,6 +85393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!1 &7238418511576857938
 GameObject:
   m_ObjectHideFlags: 0
@@ -85006,6 +85436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &7240405057701763734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85075,6 +85506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &7242334193167462292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85302,6 +85734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &7260939105803577836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85471,6 +85904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!33 &7263297628195849130
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85641,6 +86075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &7274212715432852879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85963,6 +86398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &7309256389793691234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86069,6 +86505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!65 &7309351925343498401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86172,6 +86609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!54 &7313955691255303508
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -86299,6 +86737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!65 &7321615563777525336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86405,6 +86844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!54 &7327385531300593016
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -86487,6 +86927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &7328035930148324493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86664,6 +87105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!4 &7334580654226679444
 Transform:
   m_ObjectHideFlags: 0
@@ -86740,6 +87182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!23 &7337515314275413539
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86843,6 +87286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!65 &7338599524544025021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86964,6 +87408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!54 &7343367380299449261
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87133,6 +87578,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1245166939}
     - target: {fileID: 1536277192303905031, guid: d720ff24e2b7670408c792dc885b98a6, type: 3}
+      propertyPath: taskBoxContainerImage
+      value: 
+      objectReference: {fileID: 2056500215}
+    - target: {fileID: 1536277192303905031, guid: d720ff24e2b7670408c792dc885b98a6, type: 3}
       propertyPath: taskContainerTransform
       value: 
       objectReference: {fileID: 2056500213}
@@ -87210,6 +87659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &7358636488293616074
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87417,6 +87867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!23 &7368708515412737207
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87523,6 +87974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!33 &7369485463509233698
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -87666,6 +88118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!23 &7382718919857386407
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87875,6 +88328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!54 &7396895725583041245
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88005,6 +88459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!23 &7406460059511275473
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88138,6 +88593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!65 &7416127815880205495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88207,6 +88663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!54 &7416848920824237075
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88358,6 +88815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!1 &7434717837446788864
 GameObject:
   m_ObjectHideFlags: 0
@@ -88440,6 +88898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!33 &7436928358414897881
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -88461,6 +88920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &7436928358414897883
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88564,6 +89024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!65 &7440296549148743843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88694,6 +89155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!1 &7447147532943840094
 GameObject:
   m_ObjectHideFlags: 0
@@ -89131,6 +89593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!23 &7486617688173212698
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -89370,6 +89833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!1 &7492515607582498201
 GameObject:
   m_ObjectHideFlags: 0
@@ -89495,6 +89959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!1 &7496079009459735899
 GameObject:
   m_ObjectHideFlags: 0
@@ -89574,6 +90039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!65 &7496951401744116406
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89691,6 +90157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!4 &7501560089878108003
 Transform:
   m_ObjectHideFlags: 0
@@ -89767,6 +90234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!1 &7507716244844433047
 GameObject:
   m_ObjectHideFlags: 0
@@ -89930,6 +90398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &7509529524851047416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90307,6 +90776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &7521591101209094213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90355,6 +90825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!65 &7522440711739936372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90461,6 +90932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &7532216361325405211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90676,6 +91148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!23 &7551565507189982569
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90734,6 +91207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!65 &7551565507189982571
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90851,6 +91325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!1 &7553461297268741712
 GameObject:
   m_ObjectHideFlags: 0
@@ -90885,6 +91360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!54 &7553461297268741714
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -91009,6 +91485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!1 &7556632776740574963
 GameObject:
   m_ObjectHideFlags: 0
@@ -91125,6 +91602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!4 &7562205918931583744
 Transform:
   m_ObjectHideFlags: 0
@@ -91246,6 +91724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!4 &7571528160717975542
 Transform:
   m_ObjectHideFlags: 0
@@ -91295,6 +91774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!54 &7574977775685539684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -91379,6 +91859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &7580094975467327608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91485,6 +91966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!65 &7583602508495650741
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91659,6 +92141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!54 &7598205749493301879
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -91789,6 +92272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!23 &7602088679712912968
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91940,6 +92424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!54 &7606528014187762436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -92024,6 +92509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!54 &7613731291917885945
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -92109,6 +92595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!54 &7623915092143666859
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -92239,6 +92726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!1 &7629298079652296259
 GameObject:
   m_ObjectHideFlags: 0
@@ -92321,6 +92809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!23 &7632517376433452584
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92445,6 +92934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &7644389739003390650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92514,6 +93004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!65 &7645778349259596013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92683,6 +93174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!54 &7661258437222105963
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -92800,6 +93292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!33 &7672168909162583008
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -92869,6 +93362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!4 &7677874148179252948
 Transform:
   m_ObjectHideFlags: 0
@@ -93013,6 +93507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!33 &7683892802785253917
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -93093,6 +93588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &7691888407810493992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93290,6 +93786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!4 &7712419717287792921
 Transform:
   m_ObjectHideFlags: 0
@@ -93381,6 +93878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!4 &7715502622901653415
 Transform:
   m_ObjectHideFlags: 0
@@ -93409,6 +93907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &7715502622901653417
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -93499,6 +93998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!65 &7725006576531111605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93620,6 +94120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!54 &7732910765201611244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -93704,6 +94205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!54 &7735650742397624966
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -93780,6 +94282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!65 &7736496603316803021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93894,6 +94397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!54 &7740262999535501015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -94018,6 +94522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!33 &7746709913239732501
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -94144,6 +94649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!23 &7759233411922146833
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94223,6 +94729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &7759233411922146836
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -94332,6 +94839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!4 &7760869419454587240
 Transform:
   m_ObjectHideFlags: 0
@@ -94368,6 +94876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!54 &7760955186212279508
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -94450,6 +94959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &7762187330815548451
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94548,6 +95058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!65 &7780777226475440929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94678,6 +95189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!4 &7791443520660564936
 Transform:
   m_ObjectHideFlags: 0
@@ -94751,6 +95263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!65 &7804526646184603920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94929,6 +95442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!1 &7820969618928879284
 GameObject:
   m_ObjectHideFlags: 0
@@ -95079,6 +95593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!23 &7832402330361405427
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95206,6 +95721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!1 &7841212198925060689
 GameObject:
   m_ObjectHideFlags: 0
@@ -95288,6 +95804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!4 &7842494646782746236
 Transform:
   m_ObjectHideFlags: 0
@@ -95316,6 +95833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!65 &7842494646782746238
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95407,6 +95925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &7845519066948837110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95579,6 +96098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!65 &7851260536532156006
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95788,6 +96308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!65 &7864272208469427980
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95917,6 +96438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &7885602805866367337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95993,6 +96515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &7891260077226860940
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96120,6 +96643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &7895992691379100419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96277,6 +96801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!1 &7906104107687638468
 GameObject:
   m_ObjectHideFlags: 0
@@ -96332,6 +96857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!65 &7911073228787696626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96422,6 +96948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &7917789429951658498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96594,6 +97121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!4 &7921255830333031375
 Transform:
   m_ObjectHideFlags: 0
@@ -96688,6 +97216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!54 &7926391071600550057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96749,6 +97278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!65 &7929078654478637069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96863,6 +97393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!54 &7930859943675672509
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96999,6 +97530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &7933346696890608914
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97153,6 +97685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!23 &7936547318185564640
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97211,6 +97744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &7936547318185564642
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97287,6 +97821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &7943439847667011621
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97411,6 +97946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!4 &7954378909043482804
 Transform:
   m_ObjectHideFlags: 0
@@ -97447,6 +97983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &7955698619602309237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97609,6 +98146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!33 &7960942602478695622
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97678,6 +98216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!23 &7963091755404967856
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97784,6 +98323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!33 &7964143207123163229
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97901,6 +98441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!1 &7970667908124678638
 GameObject:
   m_ObjectHideFlags: 0
@@ -97956,6 +98497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!54 &7970667908124678641
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98060,6 +98602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!1 &7984520486424070792
 GameObject:
   m_ObjectHideFlags: 0
@@ -98142,6 +98685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!33 &7984848040364127965
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98163,6 +98707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!54 &7984848040364127967
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98269,6 +98814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!65 &7986168457335590582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98375,6 +98921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!65 &7988901920271309162
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98489,6 +99036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!65 &7995137308986920638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98647,6 +99195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &8000492385768434857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98723,6 +99272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!65 &8001653088764685715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98799,6 +99349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &8007195000555411805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98997,6 +99548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!1 &8014611496760880406
 GameObject:
   m_ObjectHideFlags: 0
@@ -99079,6 +99631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!23 &8015436787863624508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -99182,6 +99735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &8016556149031891204
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99336,6 +99890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!33 &8016681510353964155
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -99501,6 +100056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!65 &8032533018745100970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99655,6 +100211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!1 &8034414428831089958
 GameObject:
   m_ObjectHideFlags: 0
@@ -99733,6 +100290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &8036111103296248727
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99863,6 +100421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!4 &8037378791920316318
 Transform:
   m_ObjectHideFlags: 0
@@ -99912,6 +100471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!54 &8039300406793724542
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99981,6 +100541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!65 &8040319861744979042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100057,6 +100618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!54 &8040994008141938464
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -100126,6 +100688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!54 &8041011286888161268
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -100250,6 +100813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!4 &8047922389028598004
 Transform:
   m_ObjectHideFlags: 0
@@ -100371,6 +100935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!1 &8053030061109682653
 GameObject:
   m_ObjectHideFlags: 0
@@ -100494,6 +101059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &8056184927395927106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -100618,6 +101184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!33 &8060446725971605541
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -100639,6 +101206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &8060446725971605543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100721,6 +101289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!65 &8060623736211595416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100838,6 +101407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!23 &8067822447119819334
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100896,6 +101466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!65 &8067822447119819336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100972,6 +101543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &8072653952003635096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -101078,6 +101650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!54 &8092599604453645664
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -101229,6 +101802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!65 &8104968107194864753
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -101438,6 +102012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &8119760143632003484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -101520,6 +102095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &8121075574166157956
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -101617,6 +102193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!54 &8126531613580047236
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -101750,6 +102327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!23 &8135263065721786681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101856,6 +102434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!4 &8135788763952727761
 Transform:
   m_ObjectHideFlags: 0
@@ -101884,6 +102463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!65 &8135788763952727763
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -102005,6 +102585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &8142038377180088675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -102228,6 +102809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &8149292736601783915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102331,6 +102913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!33 &8159611462995268134
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -102415,6 +102998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!33 &8166285435919782093
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -102502,6 +103086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &8168432306802111715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102608,6 +103193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &8169181626641188100
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102708,6 +103294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!65 &8178412998043568199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -102862,6 +103449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!4 &8193348741664044800
 Transform:
   m_ObjectHideFlags: 0
@@ -102991,6 +103579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!33 &8204842363813269401
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103060,6 +103649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!4 &8204946047759009122
 Transform:
   m_ObjectHideFlags: 0
@@ -103136,6 +103726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!4 &8206736549103047433
 Transform:
   m_ObjectHideFlags: 0
@@ -103278,6 +103869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!4 &8214884242402033567
 Transform:
   m_ObjectHideFlags: 0
@@ -103354,6 +103946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!4 &8215447686330847258
 Transform:
   m_ObjectHideFlags: 0
@@ -103430,6 +104023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!4 &8224885510379634298
 Transform:
   m_ObjectHideFlags: 0
@@ -103466,6 +104060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!65 &8230924985639522857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -103583,6 +104178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!33 &8234514294872718091
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103652,6 +104248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!1 &8237883891056034262
 GameObject:
   m_ObjectHideFlags: 0
@@ -103694,6 +104291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!65 &8240847821295354196
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -103770,6 +104368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!54 &8244773082224169506
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103839,6 +104438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!54 &8244779191913061812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103933,6 +104533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &8246913129909296874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104102,6 +104703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!23 &8250854256075298450
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104160,6 +104762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &8250854256075298452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104420,6 +105023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!65 &8260312378327637810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104597,6 +105201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!33 &8267954859410468705
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -104626,6 +105231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &8272382601317992415
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104708,6 +105314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!65 &8273593116211108909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104814,6 +105421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!65 &8281944303355295692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104896,6 +105504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &8282526905018420659
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105046,6 +105655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!54 &8284948362801781969
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105155,6 +105765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!33 &8285492168080650995
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105252,6 +105863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &8297732501524921809
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105334,6 +105946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &8297955238874782486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105451,6 +106064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!33 &8298911952557116770
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105565,6 +106179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!33 &8308464035282255124
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105705,6 +106320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!1 &8315140065775760123
 GameObject:
   m_ObjectHideFlags: 0
@@ -105760,6 +106376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &8315140065775760126
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105845,6 +106462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!65 &8315623197977077817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105951,6 +106569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!65 &8315874786979051153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -106143,6 +106762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!4 &8331225928368311803
 Transform:
   m_ObjectHideFlags: 0
@@ -106240,6 +106860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!23 &8331565021340312337
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -106367,6 +106988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!33 &8341960337612362666
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -106396,6 +107018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!65 &8342250573465937049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -106550,6 +107173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!1 &8343551280820559627
 GameObject:
   m_ObjectHideFlags: 0
@@ -106647,6 +107271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!54 &8345639624767136846
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106777,6 +107402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!65 &8347764766846188839
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -106883,6 +107509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!54 &8348589241844280603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106965,6 +107592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &8352140693252698588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107159,6 +107787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &8360375439841401121
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107307,6 +107936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!1 &8366708342811930788
 GameObject:
   m_ObjectHideFlags: 0
@@ -107401,6 +108031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!33 &8371453874576643320
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107422,6 +108053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!65 &8371453874576643322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107528,6 +108160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!65 &8374889885088684255
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107649,6 +108282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!65 &8377596986385274706
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107755,6 +108389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!65 &8378989842702987524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107824,6 +108459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!54 &8379628563887517181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107915,6 +108551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &8381493093608938539
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108045,6 +108682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!4 &8393480214769518367
 Transform:
   m_ObjectHideFlags: 0
@@ -108139,6 +108777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &8395259535258901679
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108209,6 +108848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!54 &8404181219222400049
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108334,6 +108974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!33 &8411455887350815359
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -108363,6 +109004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!54 &8416002415833415196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108432,6 +109074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!54 &8416151923312939241
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108530,6 +109173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!54 &8416972583984034888
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108606,6 +109250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &8423177741482826841
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108661,6 +109306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!65 &8423349197727003249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108737,6 +109383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &8424898916292011102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108813,6 +109460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &8458226318007379716
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108890,6 +109538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &8462105599281115681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108966,6 +109615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!54 &8465764727113414588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109083,6 +109733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!23 &8469495193372914093
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109189,6 +109840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!1 &8469501518870725771
 GameObject:
   m_ObjectHideFlags: 0
@@ -109283,6 +109935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!4 &8473780132140837088
 Transform:
   m_ObjectHideFlags: 0
@@ -109359,6 +110012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!4 &8473801538936628783
 Transform:
   m_ObjectHideFlags: 0
@@ -109387,6 +110041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!54 &8473801538936628785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109493,6 +110148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &8474640078350748344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109647,6 +110303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!33 &8478504697698470802
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -109746,6 +110403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!23 &8483695038023017163
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109825,6 +110483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &8483695038023017166
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109880,6 +110539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!54 &8484468401218418600
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109997,6 +110657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!33 &8486465295998466426
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -110018,6 +110679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!65 &8486465295998466428
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110172,6 +110834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!23 &8491568570989746821
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110230,6 +110893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &8491568570989746823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110320,6 +110984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!65 &8502417571731873959
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110402,6 +111067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &8502450598031604870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110532,6 +111198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!4 &8527628462268167232
 Transform:
   m_ObjectHideFlags: 0
@@ -110568,6 +111235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!65 &8539984847466303047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110760,6 +111428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!4 &8546890482684871526
 Transform:
   m_ObjectHideFlags: 0
@@ -110788,6 +111457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!65 &8546890482684871528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110894,6 +111564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!65 &8560013809760688402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110976,6 +111647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!65 &8561298878108770014
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111045,6 +111717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!65 &8561787834006765072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111151,6 +111824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &8564353590706127609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111268,6 +111942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!33 &8568574267864025158
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -111337,6 +112012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!33 &8570262356131907455
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -111358,6 +112034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &8570262356131907457
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111527,6 +112204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!33 &8599174349256657257
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -111548,6 +112226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!54 &8599174349256657259
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111617,6 +112296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!65 &8599961183430988587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111686,6 +112366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!54 &8603875216051637844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111959,6 +112640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &8628421999410561790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112043,6 +112725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!54 &8636146462668760546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112125,6 +112808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &8637370503012145925
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112242,6 +112926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!33 &8641140379596353412
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -112263,6 +112948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!54 &8641140379596353414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112366,6 +113052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &8641300336518365931
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112475,6 +113162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!33 &8642697982908190966
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -112496,6 +113184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!65 &8642697982908190968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112613,6 +113302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!33 &8650199252249417055
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -112727,6 +113417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!1 &8656951260590671962
 GameObject:
   m_ObjectHideFlags: 0
@@ -112761,6 +113452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!54 &8656951260590671964
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112891,6 +113583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!1 &8661795574660388342
 GameObject:
   m_ObjectHideFlags: 0
@@ -112943,6 +113636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!65 &8662478428958881515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113067,6 +113761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!1 &8672116660043600969
 GameObject:
   m_ObjectHideFlags: 0
@@ -113119,6 +113814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!54 &8673572254195724997
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113248,6 +113944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!54 &8683444513326736990
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113317,6 +114014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &8688839509236463423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113393,6 +114091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &8689444576634313063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113510,6 +114209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!4 &8691450781824376949
 Transform:
   m_ObjectHideFlags: 0
@@ -113538,6 +114238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!65 &8691450781824376951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113644,6 +114345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &8693464340077010811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113720,6 +114422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!65 &8694497836773547973
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -113850,6 +114553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!4 &8696738358728225625
 Transform:
   m_ObjectHideFlags: 0
@@ -113971,6 +114675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!23 &8702409710276024070
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114029,6 +114734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &8702409710276024072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114135,6 +114841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!65 &8704919500309957371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114289,6 +114996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573548270}
+  type: 0
 --- !u!23 &8706252380474449484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114453,6 +115161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!1 &8714165148393753170
 GameObject:
   m_ObjectHideFlags: 0
@@ -114487,6 +115196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!65 &8714165148393753172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114611,6 +115321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!1 &8715011571842926074
 GameObject:
   m_ObjectHideFlags: 0
@@ -114687,6 +115398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &8715610730230742162
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114769,6 +115481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!65 &8717340582609047758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114851,6 +115564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!54 &8718392792367752382
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114968,6 +115682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1491902220}
+  type: 0
 --- !u!23 &8720198552999377530
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115074,6 +115789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!33 &8722624980117714464
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115116,6 +115832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &8722624980117714467
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115201,6 +115918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!65 &8724713933502916619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115304,6 +116022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!54 &8727673883043719023
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115436,6 +116155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1745430042}
+  type: 0
 --- !u!54 &8745936238129524110
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115690,6 +116410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 9240107}
+  type: 0
 --- !u!23 &8757403751937950765
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115748,6 +116469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!65 &8757403751937950767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115902,6 +116624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!33 &8758079376912084582
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115923,6 +116646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &8758079376912084584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115999,6 +116723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!65 &8759325901794928666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116105,6 +116830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!65 &8761449778123663175
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116222,6 +116948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!23 &8767968286774927915
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116280,6 +117007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!65 &8767968286774927917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116386,6 +117114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!54 &8770621692872826718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116462,6 +117191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!54 &8771559366700245940
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116583,6 +117313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!54 &8779242294026064837
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116652,6 +117383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 861684298}
+  type: 0
 --- !u!54 &8784986969980218081
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116821,6 +117553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!33 &8789299331780432246
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -116842,6 +117575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &8789299331780432248
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117011,6 +117745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!4 &8801921793832740693
 Transform:
   m_ObjectHideFlags: 0
@@ -117060,6 +117795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 17471226}
+  type: 0
 --- !u!54 &8802814157725697431
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117142,6 +117878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1857625002}
+  type: 0
 --- !u!65 &8803219397094014415
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117218,6 +117955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!65 &8808142644290457188
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117348,6 +118086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1277188525}
+  type: 0
 --- !u!33 &8813636975427005137
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117432,6 +118171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &8815217398617632375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117529,6 +118269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &8826606122765283810
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117662,6 +118403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!1 &8836715693394451957
 GameObject:
   m_ObjectHideFlags: 0
@@ -117744,6 +118486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!23 &8842451503173960858
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117802,6 +118545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!65 &8842451503173960860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117884,6 +118628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!65 &8845239038418502987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117960,6 +118705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!65 &8849069077661850520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118098,6 +118844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!33 &8855648701412423353
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -118167,6 +118914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!23 &8855767920973278611
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118309,6 +119057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!23 &8861806498458035384
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118415,6 +119164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 958685089}
+  type: 0
 --- !u!33 &8862036673484633244
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -118436,6 +119186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!54 &8862036673484633246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -118608,6 +119359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &8875924601210454233
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118705,6 +119457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!65 &8880293735991905331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118822,6 +119575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!23 &8888197478633425384
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118895,6 +119649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!65 &8894091240408458151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119027,6 +119782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!1 &8907154907265327498
 GameObject:
   m_ObjectHideFlags: 0
@@ -119073,6 +119829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!65 &8907308536144820511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119142,6 +119899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!54 &8908268171202436786
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119272,6 +120030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!23 &8909598091542194291
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119330,6 +120089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!54 &8909598091542194293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119447,6 +120207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!33 &8912629531891627566
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -119489,6 +120250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &8912629531891627569
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119593,6 +120355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 232232462}
+  type: 0
 --- !u!4 &8918499265843059295
 Transform:
   m_ObjectHideFlags: 0
@@ -119621,6 +120384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!65 &8918499265843059297
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119742,6 +120506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!54 &8925360833713930328
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119949,6 +120714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!33 &8945447272297666954
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -120066,6 +120832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!33 &8953626957034414554
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -120135,6 +120902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!33 &8956470342871772799
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -120204,6 +120972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!4 &8960936532156304732
 Transform:
   m_ObjectHideFlags: 0
@@ -120338,6 +121107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 22927850}
+  type: 0
 --- !u!65 &8966807708744828164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -120428,6 +121198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &8971962728866495254
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120524,6 +121295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 551979023}
+  type: 0
 --- !u!33 &8973170747634482974
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -120611,6 +121383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &8973676236502319104
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120717,6 +121490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &8973694700643223189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120778,6 +121552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1191619877}
+  type: 0
 --- !u!54 &8978382054728367430
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120932,6 +121707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 160118088}
+  type: 0
 --- !u!1 &8982921720890455608
 GameObject:
   m_ObjectHideFlags: 0
@@ -121014,6 +121790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!33 &8983142500956137895
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -121035,6 +121812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1628950850}
+  type: 0
 --- !u!65 &8983142500956137897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121132,6 +121910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &8986008632193139765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121228,6 +122007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!23 &8993846128328743007
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121307,6 +122087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1319297554}
+  type: 0
 --- !u!54 &8996094871259651981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121431,6 +122212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 164375336}
+  type: 0
 --- !u!1 &9001116109987691531
 GameObject:
   m_ObjectHideFlags: 0
@@ -121543,6 +122325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!65 &9012237048463606438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121619,6 +122402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &9028620357601352388
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121701,6 +122485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!65 &9031474751999401617
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121825,6 +122610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!4 &9038143349051349351
 Transform:
   m_ObjectHideFlags: 0
@@ -121901,6 +122687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 474274964}
+  type: 0
 --- !u!23 &9041324681093777995
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122062,6 +122849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &9042634850099297400
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122171,6 +122959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!1 &9048615606609935750
 GameObject:
   m_ObjectHideFlags: 0
@@ -122253,6 +123042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!33 &9050674641328370504
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122367,6 +123157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!1 &9057647972363436525
 GameObject:
   m_ObjectHideFlags: 0
@@ -122422,6 +123213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &9057647972363436528
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122483,6 +123275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!65 &9062625286045487167
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122628,6 +123421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 96726197}
+  type: 0
 --- !u!23 &9065250837038082783
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122734,6 +123528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!4 &9066466418336327118
 Transform:
   m_ObjectHideFlags: 0
@@ -122777,6 +123572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!65 &9068708685108480412
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122907,6 +123703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!4 &9074587962904534366
 Transform:
   m_ObjectHideFlags: 0
@@ -122935,6 +123732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!65 &9074587962904534368
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123011,6 +123809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!65 &9075420524333061944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123117,6 +123916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!65 &9079890802952601224
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123194,6 +123994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 0}
+  type: 0
 --- !u!54 &9085136856713588346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123311,6 +124112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!1 &9088177127402122661
 GameObject:
   m_ObjectHideFlags: 0
@@ -123434,6 +124236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!54 &9091374302184256932
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123503,6 +124306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 405611531}
+  type: 0
 --- !u!54 &9092843958439826380
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123585,6 +124389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 2067630421}
+  type: 0
 --- !u!54 &9099817861123620154
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123661,6 +124466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1927296875}
+  type: 0
 --- !u!65 &9101075153963505419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123778,6 +124584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!33 &9102885139994353581
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -123799,6 +124606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!65 &9102885139994353583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123875,6 +124683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!65 &9104602565322076217
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123996,6 +124805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1605649898}
+  type: 0
 --- !u!54 &9111030315528173397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124150,6 +124960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 573293851}
+  type: 0
 --- !u!33 &9116366448276866922
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -124219,6 +125030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!33 &9118066936911604392
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -124288,6 +125100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 913151262}
+  type: 0
 --- !u!33 &9121951011390865201
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -124357,6 +125170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 780539687}
+  type: 0
 --- !u!1 &9128116859649802972
 GameObject:
   m_ObjectHideFlags: 0
@@ -124439,6 +125253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1904883713}
+  type: 0
 --- !u!1 &9130120030230392069
 GameObject:
   m_ObjectHideFlags: 0
@@ -124473,6 +125288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!54 &9130120030230392071
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124597,6 +125413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!1 &9133964465617742901
 GameObject:
   m_ObjectHideFlags: 0
@@ -124679,6 +125496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 544253902}
+  type: 0
 --- !u!23 &9139284304111477968
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124737,6 +125555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 752810482}
+  type: 0
 --- !u!54 &9139284304111477970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124819,6 +125638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1759566912}
+  type: 0
 --- !u!65 &9140891888599825480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124950,6 +125770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 769322209}
+  type: 0
 --- !u!65 &9152134234576098828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125019,6 +125840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1138699799}
+  type: 0
 --- !u!54 &9159685984392636906
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125116,6 +125938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &9161859740314502649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125249,6 +126072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1867510047}
+  type: 0
 --- !u!23 &9167774582579923558
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125355,6 +126179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1222912391}
+  type: 0
 --- !u!1 &9172040527689694894
 GameObject:
   m_ObjectHideFlags: 0
@@ -125437,6 +126262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 256360123}
+  type: 0
 --- !u!1 &9179802903452796271
 GameObject:
   m_ObjectHideFlags: 0
@@ -125561,6 +126387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!33 &9187911485777284375
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -125582,6 +126409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1905118977}
+  type: 0
 --- !u!65 &9187911485777284377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125658,6 +126486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1768227408}
+  type: 0
 --- !u!65 &9189758491198407066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125812,6 +126641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 133445729}
+  type: 0
 --- !u!23 &9197832359227014570
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125870,6 +126700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!54 &9197832359227014572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125976,6 +126807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1153452089}
+  type: 0
 --- !u!54 &9205170115396784564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126073,6 +126905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 26790016}
+  type: 0
 --- !u!54 &9208005716331395597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126219,6 +127052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 909934868}
+  type: 0
 --- !u!33 &9216564091150585484
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -126298,6 +127132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 289295512}
+  type: 0
 --- !u!54 &9219751992740540055
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126374,6 +127209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickProductArea: {fileID: 1130847463}
+  type: 0
 --- !u!65 &9223083804802026296
 BoxCollider:
   m_ObjectHideFlags: 0
