@@ -65,11 +65,6 @@ public class WinConditions : MonoBehaviour, IEventListener
 
         customersSent++;
         customerSentTextsUI.text = customersSent.ToString();
-
-        if (customersSent == maxCustomersSent)
-        {
-            StartCoroutine(Utils.WaitAndExecute(3f, () =>  customerSentPanel.SetActive(false)));
-        }
     }
 
     /// <summary>
