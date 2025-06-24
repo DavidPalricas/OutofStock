@@ -13,7 +13,14 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// The customerPrefab attribute represents the customer prefab.
     /// </summary>
     [SerializeField]
-    private GameObject normalCustomerPrefab, annoyingKidPrefab, karenPrefab, thiefPrefab;
+    private GameObject annoyingKidPrefab, karenPrefab, thiefPrefab;
+
+
+    [SerializeField]
+    private GameObject boyPrefab1, boyPrefab2, boyPrefab3, boyPrefab4, boyPrefab5, boyPrefab6;
+
+    [SerializeField]
+    private GameObject girlPrefab1, girlPrefab2, girlPreba3, girlPrefab4;
 
     /// <summary>
     /// The maximumCustomersInMarket attribute represents the maximum number of customers in the market.
@@ -37,6 +44,9 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </summary>
     private GameObject[] paymentAreas;
 
+
+    private GameObject[] normalCustomerPrefabs;
+
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the items are added to the targetItemsList by calling the AddItems method.
@@ -44,6 +54,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     private void Awake()
     {
       paymentAreas = Utils.GetChildren(paymentAreasTransform);
+      normalCustomerPrefabs = new GameObject[] { boyPrefab1, boyPrefab2, boyPrefab3, boyPrefab4, boyPrefab5, boyPrefab6,
+                              girlPrefab1, girlPrefab2, girlPreba3, girlPrefab4};
     }
 
     /// <summary>
@@ -89,7 +101,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
             return;
         }
 
-        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefab;
+        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefabs[Utils.RandomInt(0, normalCustomerPrefabs.Length)];
 
         GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
 
@@ -136,7 +148,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
            new KeyValuePair<GameObject, float>(karenPrefab, karenSpawnProb),
            new KeyValuePair<GameObject, float>(annoyingKidPrefab, annoyinKidSpawnProb),
            new KeyValuePair<GameObject, float>(thiefPrefab, thiefSpawnProb),
-           new KeyValuePair<GameObject, float>(normalCustomerPrefab, normalCustomerSpawnProb),
+           new KeyValuePair<GameObject, float>(normalCustomerPrefabs[Utils.RandomInt(0, normalCustomerPrefabs.Length)], normalCustomerSpawnProb),
         };
 
         customersSpawnProbs.OrderBy(customersSpawnProb => customersSpawnProb.Value);

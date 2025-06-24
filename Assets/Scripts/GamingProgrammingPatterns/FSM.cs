@@ -137,7 +137,7 @@ public abstract class State : MonoBehaviour
     /// It is overriden by its child classes to handle its specific actions.
     /// </summary>
     public virtual void Execute() { 
-      Debug.Log($"Executing {StateName} State");
+     // Debug.Log($"Executing {StateName} State");
     }
 
     /// <summary>
