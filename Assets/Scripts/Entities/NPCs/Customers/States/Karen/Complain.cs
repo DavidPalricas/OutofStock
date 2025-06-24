@@ -8,18 +8,9 @@ using UnityEngine;
 public class Complain : CustomerBaseState
 {
     /// <summary>
-    /// The maxComplaining attribute is the maximum number of times that the Karen can complain before she gets angry and attacks the player.
-    /// </summary>
-    [SerializeField]
-    private int maxComplaining;
-
-    /// <summary>
     /// The karenMovement attribute is a reference to the KarenMovement component.
     /// </summary>
     private KarenMovement karenMovement;
-
-
-    private int complainingCounter = 0;
 
     private float timer, complainingCooldown;
 

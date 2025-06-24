@@ -47,6 +47,11 @@ public class KnockedState : State
 
         timer = Time.time + knockAnimationTime + standUpAnimationTime;
 
+        if (gameObject.CompareTag("Manager"))
+        {
+            timer += animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "complain").length;
+        }
+
         var customerMovement = GetComponent<CustomerMovement>();
         if (customerMovement != null && customerMovement.backPack != null)
         {
@@ -64,7 +69,18 @@ public class KnockedState : State
         base.Execute();
 
         if (Time.time >= timer)
-        {
+        {   
+            if (gameObject.CompareTag("Manager"))
+            {
+                ManagerMovement movement = GetComponent<ManagerMovement>();
+
+                string transitionName = movement.IsPatrolling ? "ContinuePatrolling" : "ContinueGoingToOffice";
+
+                GetComponent<FSM>().ChangeState(transitionName);
+
+                return;
+            }
+
             GetComponent<FSM>().ChangeState("StandUp");
         }
     }

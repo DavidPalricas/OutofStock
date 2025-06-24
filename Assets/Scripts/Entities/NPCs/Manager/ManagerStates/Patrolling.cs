@@ -29,6 +29,8 @@ public class Patrolling : ManagerState
         movement.IsPatrolling = true;
 
         movement.ChoosePointToPatrol();
+
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>
@@ -54,7 +56,7 @@ public class Patrolling : ManagerState
         }
 
         if (movement.DestinationReached)
-        {   
+        {
             StayOnPoint("GoToOffice");
         }
     }

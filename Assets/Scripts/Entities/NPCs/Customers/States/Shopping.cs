@@ -96,7 +96,7 @@ public class Shopping : CustomerBaseState
     {
         base.Exit();
 
-        if (gameObject.name.Contains("NormalCustomer"))
+        if (!gameObject.name.Contains("Karen"))
         {
             MarketProduct product = customerMovement.TargetProduct;
 
@@ -144,8 +144,6 @@ public class Shopping : CustomerBaseState
 
             return true;
         }
-
-        Debug.Log("Product is available");
 
         return false;
     }
