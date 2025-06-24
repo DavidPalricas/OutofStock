@@ -75,9 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51b6fffec5d044a8653b2d46706512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shelf: {fileID: 0}
-  pickProductArea: {fileID: 0}
   type: 0
+  canBePicked: 0
 --- !u!136 &-7833995908822455817
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -252,7 +251,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6699446615349125189, guid: c62345cb361a6c147b521705a935b954, type: 3}
+  - {fileID: 2100000, guid: 099b43f95e76c5e428656a194772465c, type: 2}
   - {fileID: 2100000, guid: 27c359b736e6c7b4b8c1b18f93d163c8, type: 2}
   - {fileID: -2813467912831258332, guid: c62345cb361a6c147b521705a935b954, type: 3}
   - {fileID: 2100000, guid: 27c359b736e6c7b4b8c1b18f93d163c8, type: 2}
