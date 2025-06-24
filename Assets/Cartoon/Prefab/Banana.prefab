@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  canBePicked: 0
 --- !u!54 &2822074328899442326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -222,6 +223,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a5a6f429bacff7c418a9477d2adccd6e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ac33c54e44e25db4aaa432d5824b60bd, type: 2}
     - target: {fileID: -7511558181221131132, guid: a5a6f429bacff7c418a9477d2adccd6e, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
