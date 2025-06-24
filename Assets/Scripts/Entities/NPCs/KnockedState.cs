@@ -20,7 +20,7 @@ public class KnockedState : State
     /// It calls the base class Enter method and calls the Knock method from the KnockEntity component to knock the customer down.
     /// Inside this method after knocing out the customer and it stand up, its state will change to the AttackPlayer state if the customer is a Karen, otherwise it will change to the GoHome state.
     /// </summary>
-    public override void Enter()
+public override void Enter()
 {
     base.Enter();
 
@@ -28,10 +28,17 @@ public class KnockedState : State
     {
         GetComponent<StrikesSystem>().DispatchStrike(true);
     }
-   
-    FindFirstObjectByType<AudioManager>().PlayCustomerAttackedSFX(transform.position);
-        
+
+    // Commented out because this method requires a parameter we don't have here,
+    // and it's already handled below more appropriately.
+    // FindFirstObjectByType<AudioManager>().PlayImpactSFX(transform.position);
+
     GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
+
+
+
+    // Optionally call it here if you know which item knocked the NPC:
+    // PlayImpactSound(item);
 }
 
 

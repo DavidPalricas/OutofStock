@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMODUnity;
+
 
 /// <summary>
 /// The GrabAndThrowItems class is responsible for grabbing and throwing items.
@@ -97,8 +99,12 @@ public class ItemsInteractions : AimingAction
 
         Ray crosshairRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        itemToThrow.GetComponent<Item>().WasThrown(crosshairRay.direction);       
+        itemToThrow.GetComponent<Item>().WasThrown(crosshairRay.direction);
         ItemGrabbed = false;
+        
+        //throw sound
+        FindFirstObjectByType<AudioManager>()?.PlayThrowSound(itemToThrow.transform.position);
+
      }
 
 

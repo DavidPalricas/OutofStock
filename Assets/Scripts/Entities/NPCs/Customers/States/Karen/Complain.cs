@@ -48,18 +48,27 @@ public class Complain : CustomerBaseState
     /// It calls the base class Enter method and sets the timer to the current time plus the complainingCooldown and sets
     /// the karenMovement reference to its associated attribute.
     /// </summary>
-    public override void Enter()
+    private AudioManager audioManager;
+
+public override void Enter()
+{
+    base.Enter();
+    timer = Time.time + complainingCooldown;
+
+    if (customerMovement is KarenMovement movement)
     {
-        base.Enter();
-        
-        timer = Time.time + complainingCooldown;
-
-
-        if (customerMovement is KarenMovement movement)
-        {
-            karenMovement = movement;
-        }
+        karenMovement = movement;
     }
+
+    audioManager = FindFirstObjectByType<AudioManager>();
+}
+
+    public void ComplaintSFX(Vector3 position)
+    {
+        audioManager?.PlayKarenComplaint(position);
+        Debug.DrawRay(position, Vector3.up * 2f, Color.red, 2f);
+}
+
 
     /// <summary>
     /// The Execute method is called when the state is executed, to perform the actions of the state.
@@ -75,26 +84,36 @@ public class Complain : CustomerBaseState
     /// If none of these conditions are met, the Karen will complain to the player, if the cooldown time has passed.
     /// </remarks>
     public override void Execute()
+{
+    base.Execute();
+
+    if (!karenMovement.PlayerInRange())
     {
-       if (!karenMovement.PlayerInRange())
-        {
-            fSM.ChangeState("PlayerNotInRange");
-            return;
-        }
-
-        if (complainingCounter >= maxComplaining)
-        {
-            fSM.ChangeState("ComplainedToMuch");
-            return;
-        }
-
-        if (karenMovement.WasAttacked)
-        {
-            fSM.ChangeState("Attacked");
-            return;
-        }
-
+        fSM.ChangeState("PlayerNotInRange");
+        return;
     }
+
+    if (complainingCounter >= maxComplaining)
+    {
+        fSM.ChangeState("ComplainedToMuch");
+        return;
+    }
+
+    if (karenMovement.WasAttacked)
+    {
+        fSM.ChangeState("Attacked");
+        return;
+    }
+
+    // Time to complain again?
+    if (Time.time >= timer)
+    {
+        ComplaintSFX(transform.position);  // Play sound
+        complainingCounter++;
+        timer = Time.time + complainingCooldown;  // reset cooldown
+    }
+}
+
 
     /// <summary>
     /// The Exit method is called when the state is exited, to handle its final actions.
@@ -111,10 +130,5 @@ public class Complain : CustomerBaseState
     /// <remarks>
     /// The logic of this method is not implemented yet.
     /// </remarks>
-    public void ComplaintSFX(Vector3 position)
-    {   
-        FindFirstObjectByType<AudioManager>().PlayKarenComplaint(transform.position);
 
-
-    }
 }

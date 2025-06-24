@@ -41,9 +41,12 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the items are added to the targetItemsList by calling the AddItems method.
     /// </summary>
+    /// 
+    private AudioManager audioManager;
     private void Awake()
     {
-      paymentAreas = Utils.GetChildren(paymentAreasTransform);
+        paymentAreas = Utils.GetChildren(paymentAreasTransform);
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
 
     /// <summary>
@@ -92,6 +95,10 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefab;
 
         GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
+
+
+        //AUDIO HERE
+        audioManager?.PlayChimeSound(customer.transform.position);
 
         CustomerMovement customerMovement = customer.GetComponent<CustomerMovement>();
 
