@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// The InteractSubtask class is responsible for representing a subtask that requires the player to interact with an object.
@@ -11,6 +12,13 @@ public class InteractSubtask : Subtask
     /// </summary>
     [SerializeField]
     private InputActionReference subtaskInput;
+
+
+    [SerializeField]
+    private GameObject sliderContainer;
+
+    [SerializeField]
+    private Slider slider;
 
     /// <summary>
     /// The crosshair property is responsible for storing a reference to the player's crosshair UI element.
@@ -48,8 +56,9 @@ public class InteractSubtask : Subtask
     /// </summary>
     private void OnEnable()
     {
-        subTaskTime = Utils.RandomFloat(1f, 5f);
+        subTaskTime = 5f;
         currentSubtaskTime = 0f;
+        slider.value = 0f;
     }
 
     /// <summary>
@@ -63,6 +72,7 @@ public class InteractSubtask : Subtask
     {
         if (IsPlayerDoingSubtask())
         {
+            sliderContainer.SetActive(true);
             UpdateSubTaskProgress();
         }
         else
@@ -70,8 +80,14 @@ public class InteractSubtask : Subtask
             if (CanBeReseted)
             {
                 currentSubtaskTime = 0f;
+                slider.value = 0f;
             }
+
+            Debug.Log("Player is not doing the subtask");
+
+            sliderContainer.SetActive(false);
         }
+     
     }
 
     /// <summary>
@@ -93,7 +109,7 @@ public class InteractSubtask : Subtask
 
         Ray ray = Utils.CastRayFromUI(crosshair);
 
-        const float RAYCASTDISTANCE = 3f;
+        const float RAYCASTDISTANCE = 2f;
 
         return Physics.Raycast(ray, out RaycastHit hit, RAYCASTDISTANCE, LayerMask.GetMask("Default")) && hit.collider.gameObject == gameObject;
     }
@@ -110,11 +126,16 @@ public class InteractSubtask : Subtask
     {
         currentSubtaskTime += Time.deltaTime;
 
-        Debug.Log("SubTask Progress: " + (currentSubtaskTime / subTaskTime) * 100 + "%");
+        // Because the slider value is between 0 and 10;
+        slider.value = slider.value = Mathf.Round((currentSubtaskTime / subTaskTime) * 10f);
+
+        Debug.Log($"Current Subtask Time: {currentSubtaskTime / subTaskTime}");
 
         if (currentSubtaskTime >= subTaskTime)
         {
             SubtaskCompleted();
+
+            sliderContainer.SetActive(false);
 
             // Checks if the game object can be desactivated, if it is the case the game object is desactivated.
             if (CanBeVanish)
