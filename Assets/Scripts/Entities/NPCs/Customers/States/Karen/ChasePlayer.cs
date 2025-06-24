@@ -31,6 +31,9 @@ public class ChasePlayer : CustomerBaseState
         {
             karenMovement = movement;
         }
+
+        animator.SetBool("isAngry", true);
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>
@@ -49,7 +52,7 @@ public class ChasePlayer : CustomerBaseState
     {
         base.Execute();
 
-        if(karenMovement.WasAttacked)
+        if (karenMovement.WasAttacked)
         {
             fSM.ChangeState("Attacked");
             return;

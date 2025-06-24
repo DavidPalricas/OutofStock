@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// The CustomerBaseState class is responsible for representig the base state of a customer state.
 /// </summary>
@@ -22,5 +24,6 @@ public class CustomerBaseState : State
         fSM = GetComponent<FSM>();
         customerMovement = GetComponent<CustomerMovement>();
         customerSanity = GetComponent<CustomerSanity>();
+        animator = GetComponent<Animator>();
     }
 }

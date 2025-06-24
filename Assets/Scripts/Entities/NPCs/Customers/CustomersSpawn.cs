@@ -13,7 +13,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// The customerPrefab attribute represents the customer prefab.
     /// </summary>
     [SerializeField]
-    private GameObject normalCustomerPrefab, annoyingKidPrefab, karenPrefab;
+    private GameObject normalCustomerPrefab, annoyingKidPrefab, karenPrefab, thiefPrefab;
 
     /// <summary>
     /// The maximumCustomersInMarket attribute represents the maximum number of customers in the market.
@@ -127,13 +127,15 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     {
         float karenSpawnProb = PlayerPrefs.GetFloat("KarenSpawnProb");
         float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
-        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
+        float thiefSpawnProb = PlayerPrefs.GetFloat("ThiefSpawnProb");
 
+        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
 
         List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
         {
            new KeyValuePair<GameObject, float>(karenPrefab, karenSpawnProb),
            new KeyValuePair<GameObject, float>(annoyingKidPrefab, annoyinKidSpawnProb),
+           new KeyValuePair<GameObject, float>(thiefPrefab, thiefSpawnProb),
            new KeyValuePair<GameObject, float>(normalCustomerPrefab, normalCustomerSpawnProb),
         };
 
@@ -170,7 +172,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         float randomX = Utils.RandomFloat(minX, maxX);
         float randomZ = Utils.RandomFloat(minZ, maxZ);
 
-        const float CUSTOMERPOSY = 3f;
+        const float CUSTOMERPOSY = 1.8f;
 
         return new Vector3(randomX, CUSTOMERPOSY, randomZ);
     }

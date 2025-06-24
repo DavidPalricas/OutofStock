@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -7,15 +8,9 @@ using UnityEngine;
 public class Shopping : CustomerBaseState
 {
     /// <summary>
-    /// The minimumTimeToPickProduct and maximumTimeToPickProduct attributes are used to determine the time that the customer will take to pick a product.
-    /// </summary>
-    [SerializeField]
-    private float minTimeToPickProduct, maxTimeToPickProduct;
-
-    /// <summary>
     /// The timer attribute is used to store the time when the customer started picking a product.
     /// </summary>
-    private float timer;
+    private float timer, pickProductTime;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -26,6 +21,7 @@ public class Shopping : CustomerBaseState
         base.Awake();
         StateName = GetType().Name;
         timer = 0f;
+        pickProductTime = animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "pickupobject").length;
     }
 
     /// <summary>
@@ -37,13 +33,9 @@ public class Shopping : CustomerBaseState
     {
         base.Enter();
 
-        if (NormalCustomer() && BecamesThief())
-        {
-            fSM.ChangeState("BecameThief");
-            return;
-        }
-
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>
@@ -70,7 +62,7 @@ public class Shopping : CustomerBaseState
         }
 
         if (customerMovement.DestinationReached)
-        {   
+        {
             if (customerMovement is KarenMovement)
             {
                fSM.ChangeState("ProductFound");
@@ -86,10 +78,11 @@ public class Shopping : CustomerBaseState
             // Initialize the timer to pick a product
             if (timer == 0f)
             {
-                timer = Time.time + Utils.RandomFloat(minTimeToPickProduct, maxTimeToPickProduct);
+                timer = Time.time + pickProductTime;
+                animator.SetTrigger("pickUpItem");
             }
             else if (Time.time >= timer)
-            {
+            {   
                 PickProduct();
             }
         }
@@ -103,7 +96,7 @@ public class Shopping : CustomerBaseState
     {
         base.Exit();
 
-        if (!gameObject.name.Contains("Karen"))
+        if (gameObject.name.Contains("NormalCustomer"))
         {
             MarketProduct product = customerMovement.TargetProduct;
 
@@ -112,24 +105,6 @@ public class Shopping : CustomerBaseState
             product.transform.SetParent(customerMovement.backPack);
             product.gameObject.SetActive(false);
         }
-        
-    }
-
-    /// <summary>
-    /// The BecamesThief method is responsible for checking if a Normal Customer becomes a thief.
-    /// It generates a random value between 0 and 1 and compares it with the probability of becoming a thief,
-    /// if the random value is less than the probability, it returns true, otherwise it returns false.
-    /// </summary>
-    /// <returns>
-    ///  <c>true</c> if the customer becames a theif; otherwise, <c>false</c>.
-    /// </returns>
-    private bool BecamesThief()
-    {
-        float randomValue = Utils.RandomFloat(0f, 1f);
-
-        float probBecamingThief = PlayerPrefs.GetFloat("CustomerBecameThiefProb");
-
-        return randomValue < probBecamingThief;
     }
 
     /// <summary>
@@ -173,17 +148,5 @@ public class Shopping : CustomerBaseState
         Debug.Log("Product is available");
 
         return false;
-    }
-
-    /// <summary>
-    /// The NormalCustomer method is responsible for checking if the customer is a normal customer.
-    /// To do this, it checks if the name of the customer contains the string "NormalCustomer".
-    /// </summary>
-    /// <returns>
-    ///  <c>true</c> if the customer is a Normal Customer; otherwise, <c>false</c>.
-    /// </returns>
-    private bool NormalCustomer()
-    {
-       return name.Contains("NormalCustomer");
     }
 }
