@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// The Running class is responsible for handling the running state of the annoying kid in the market.
@@ -80,6 +81,9 @@ public class Running : CustomerBaseState
     {
         base.Execute();
 
+        float velocity = customerMovement.agent.velocity.magnitude; 
+        animator.SetFloat("Speed", velocity);
+
         if (holdsProduct && annoyingKidMovement.backPack.childCount == 0)
         {
             customerSanity.DecreasedSanity();
@@ -89,7 +93,7 @@ public class Running : CustomerBaseState
         }
 
         if (customerSanity.CurrentSanity != customerSanity.maxSanity)
-        {
+        {   Debug.Log($"Annoying Kid {gameObject.name} is attacked, changing state to Attacked");
             fSM.ChangeState("Attacked");
             return;
         }
@@ -104,8 +108,8 @@ public class Running : CustomerBaseState
 
          // The time is reset if the kid decides not to grab a product.
          timer = Time.time + timeToDecideToGrabAProduct;
-       }
-        
+        }
+
         if (annoyingKidMovement.DestinationReached)
         {   
             annoyingKidMovement.Run();

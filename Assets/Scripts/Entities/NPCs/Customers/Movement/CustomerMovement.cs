@@ -52,7 +52,7 @@ public class CustomerMovement : NPCMovement, ISubject
     /// This method overrides the <see cref="NPCMovement.SetAgentDestination"/> method from the <see cref="NPCMovement"/> class.
     /// </summary>
     public override void SetAgentDestination(Vector3 destination)
-    {
+    {   
         base.SetAgentDestination(destination);
     }
 

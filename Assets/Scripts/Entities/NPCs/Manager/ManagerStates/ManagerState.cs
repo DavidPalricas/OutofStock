@@ -23,6 +23,7 @@ public class ManagerState : State
     {
         movement = GetComponent<ManagerMovement>();
         fSM = GetComponent<FSM>();
+        animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -33,8 +34,9 @@ public class ManagerState : State
         if (timer == 0f)
         {
             timer = Time.time + timetoWait;
+            animator.SetFloat("Speed", 0f);
         }
-        else if (timer <= Time.time + timetoWait)
+        else if (timer <= Time.time)
         {
             fSM.ChangeState(transitionName);
         }

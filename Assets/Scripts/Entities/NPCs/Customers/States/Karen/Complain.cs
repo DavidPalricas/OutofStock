@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -7,31 +8,11 @@ using UnityEngine;
 public class Complain : CustomerBaseState
 {
     /// <summary>
-    /// The maxComplaining attribute is the maximum number of times that the Karen can complain before she gets angry and attacks the player.
-    /// </summary>
-    [SerializeField]
-    private int maxComplaining;
-
-    /// <summary>
-    /// The complainingCooldown attribute is the time that the Karen will take to complain again.
-    /// </summary>
-    [SerializeField]
-    private float complainingCooldown;
-
-    /// <summary>
     /// The karenMovement attribute is a reference to the KarenMovement component.
     /// </summary>
     private KarenMovement karenMovement;
 
-    /// <summary>
-    /// The complainingCounter attribute is used to count the number of times that the Karen has complained.
-    /// </summary>
-    private int complainingCounter = 0;
-
-    /// <summary>
-    /// The timer attribute is used to count the time that the Karen will take to complain again.
-    /// </summary>
-    private float timer;
+    private float timer, complainingCooldown;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -41,6 +22,21 @@ public class Complain : CustomerBaseState
     {
         base.Awake();
         StateName = GetType().Name;
+
+
+        RuntimeAnimatorController controller = animator.runtimeAnimatorController;
+
+        if (controller != null)
+        {
+            AnimationClip[] clips = controller.animationClips;
+
+            foreach (AnimationClip clip in clips)
+            {
+                Debug.Log("Animation Clip: " + clip.name);
+            }
+        }
+
+        complainingCooldown = animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "complain").length;
     }
 
     /// <summary>
@@ -58,6 +54,10 @@ public override void Enter()
     if (customerMovement is KarenMovement movement)
     {
         karenMovement = movement;
+     
+        animator.SetBool("isComplain", true);
+        animator.SetFloat("Speed", 0f);
+
     }
 
     audioManager = FindFirstObjectByType<AudioManager>();
@@ -85,24 +85,23 @@ public override void Enter()
     /// </remarks>
     public override void Execute()
 {
-    base.Execute();
+        if (!karenMovement.PlayerInRange())
+        {
+            fSM.ChangeState("PlayerNotInRange");
+            return;
+        }
 
-    if (!karenMovement.PlayerInRange())
-    {
-        fSM.ChangeState("PlayerNotInRange");
-        return;
-    }
+        if (karenMovement.WasAttacked)
+        {
+            fSM.ChangeState("Attacked");
+            return;
+        }
 
-    if (complainingCounter >= maxComplaining)
-    {
-        fSM.ChangeState("ComplainedToMuch");
-        return;
-    }
-
-    if (karenMovement.WasAttacked)
-    {
-        fSM.ChangeState("Attacked");
-        return;
+        if (Time.time >= timer)
+        {
+            fSM.ChangeState("ComplainedToMuch");
+            return;
+        }
     }
 
     // Time to complain again?
@@ -122,6 +121,7 @@ public override void Enter()
     public override void Exit()
     {
         base.Exit();
+        animator.SetBool("isComplain", false);
     }
 
     /// <summary>
@@ -130,5 +130,8 @@ public override void Enter()
     /// <remarks>
     /// The logic of this method is not implemented yet.
     /// </remarks>
-
+    public void ComplaintSFX()
+    {   
+        FindFirstObjectByType<AudioManager>().PlayKarenComplaint(transform.position);
+    }
 }

@@ -36,6 +36,8 @@ public class ChasePlayer : CustomerBaseState
         }
 
         audioManager = FindFirstObjectByType<AudioManager>();
+        animator.SetBool("isAngry", true);
+        animator.SetFloat("Speed", 1f);
     }
 
 
