@@ -6,6 +6,9 @@ using UnityEngine;
 /// </summary>
 public class AttackPlayer : CustomerBaseState
 {
+
+    private AudioManager audioManager;
+
     /// <summary>
     /// The attackCooldown attribute is the cooldown time between attacks.
     /// </summary>
@@ -49,6 +52,8 @@ public class AttackPlayer : CustomerBaseState
         {
             karenMovement = movement;
         }
+
+        audioManager = FindFirstObjectByType<AudioManager>();
 
         animator.SetFloat("Speed", 0f);
     }
@@ -107,9 +112,14 @@ public class AttackPlayer : CustomerBaseState
     /// It calls the Knock method from the KnockEntity component to knock the player down (the player proprieties are passed as parameters of the method).
     /// </summary>
     private void Attack()
-    {        
+    {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         GetComponent<KnockEntity>().Knock(player, player.GetComponent<Rigidbody>(), player.transform.position);
+
+        if (audioManager != null)
+        {
+            audioManager.PlayPlayerKnockedOut(player.transform.position);
+    }
     }
 }

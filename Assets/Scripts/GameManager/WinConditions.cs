@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class WinConditions : MonoBehaviour, IEventListener
 {
+
+    private AudioManager audioManager;
+
+
     /// <summary>
     /// The customersHitted, tasksCompleted, maxCustomersHitted and tasksToComplete attributes are used to store the number of customers hitted,
     /// the number of tasks completed, the maximum number of customers hitted and the number of tasks to complete, respectively.
@@ -32,6 +36,8 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// </summary>
     private void Awake()
     {
+        audioManager = FindFirstObjectByType<AudioManager>();
+
         maxCustomersSent = PlayerPrefs.GetInt("CustomersToSend");
         tasksToComplete = PlayerPrefs.GetInt("NumberOfTasks");
 
@@ -44,8 +50,8 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// In this method, the ListenToEvents method is called to subscribe to the events of the EventManager.
     /// </summary>
     private void Start()
-    {   
-      ListenToEvents();
+    {
+        ListenToEvents();
     }
 
     /// <summary>
@@ -57,8 +63,8 @@ public class WinConditions : MonoBehaviour, IEventListener
     /// If the customer hitted reached the maximum number of customers hitted, it waits 3 seconds and hides the UI element, after that doesn't update the UI anymore.
     /// </remarks>
     private void CustomerSent()
-    {   
-        if(customersSent >= maxCustomersSent)
+    {
+        if (customersSent >= maxCustomersSent)
         {
             return;
         }
@@ -73,6 +79,10 @@ public class WinConditions : MonoBehaviour, IEventListener
     private void TaskCompleted()
     {
         tasksCompleted++;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        audioManager.PlayTaskComplete(player.transform.position);
+
     }
 
     /// <summary>
@@ -83,9 +93,17 @@ public class WinConditions : MonoBehaviour, IEventListener
     ///  <c>true</c> if the player won; otherwise, <c>false</c>.
     /// </returns>
     public bool PlayerWon()
+{
+    bool hasWon = customersSent >= maxCustomersSent && tasksCompleted >= tasksToComplete;
+
+    if (hasWon)
     {
-        return customersSent >= maxCustomersSent && tasksCompleted >= tasksToComplete;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        audioManager.PlayWin(player.transform.position);
     }
+
+    return hasWon;
+}
 
     /// <summary>
     /// The ListenToEvents method is used to listen to one or more events.

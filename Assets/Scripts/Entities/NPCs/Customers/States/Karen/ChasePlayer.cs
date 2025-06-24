@@ -2,12 +2,15 @@
 /// The ChasePlayer class is responsible for handling the chase player state of the Karen in the market.
 /// This state is exclusively for the Karen Customer Stereotype.
 /// </summary>
+
+
 public class ChasePlayer : CustomerBaseState
 {
     /// <summary>
     /// The karenMovement attribute is a reference to the KarenMovement component.
     /// </summary>
     private KarenMovement karenMovement;
+    private AudioManager audioManager;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -32,9 +35,11 @@ public class ChasePlayer : CustomerBaseState
             karenMovement = movement;
         }
 
+        audioManager = FindFirstObjectByType<AudioManager>();
         animator.SetBool("isAngry", true);
         animator.SetFloat("Speed", 1f);
     }
+
 
     /// <summary>
     /// The Execute method is called when the state is executed, to perform the actions of the state.
@@ -76,5 +81,12 @@ public class ChasePlayer : CustomerBaseState
         base.Exit();
 
         karenMovement.StopChasingPlayer();
+
+        // Optional: only play if transitioning to Knocked/Defeated state
+        if (karenMovement.WasAttacked && audioManager != null)
+        {
+            audioManager.PlayKarenDefeated(transform.position);
+        }
     }
+
 }
