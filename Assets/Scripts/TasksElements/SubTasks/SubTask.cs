@@ -27,11 +27,9 @@ public class Subtask : MonoBehaviour, ISubject
     /// </summary>
     public void MoveIconToSubtask()
     {
-        Vector3 subTaskPos = gameObject.transform.position;
-
         const float ICON_DISTANCE = 1.5f;
 
-        Vector3 subTaskIconPos = subTaskPos + transform.forward * ICON_DISTANCE;
+        Vector3 subTaskIconPos = gameObject.transform.position + new Vector3(0f, ICON_DISTANCE, 0f);
 
         subtaskIcon = Instantiate(subtaskIconPrefab, subTaskIconPos, Quaternion.identity);
     }
