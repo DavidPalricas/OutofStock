@@ -44,9 +44,6 @@ public class StrikesSystem : MonoBehaviour
             EventManager.GetInstance().LastCustomerAttacked = null;
         }
 
-
-        GetComponent<Animator>().SetTrigger("startComplaining");
-
         Color imageColor;
 
         switch (strikes)

@@ -13,7 +13,6 @@ public class InteractSubtask : Subtask
     [SerializeField]
     private InputActionReference subtaskInput;
 
-
     [SerializeField]
     private GameObject sliderContainer;
 
@@ -32,6 +31,9 @@ public class InteractSubtask : Subtask
     /// </summary>
     private float subTaskTime, currentSubtaskTime;
 
+
+    private bool started = false;   
+
     /// <summary>
     /// The CanBeVanish property is responsible for storing a value that indicates whether the subtask game object 
     /// can be desactivated when the subtask is completed.
@@ -49,6 +51,9 @@ public class InteractSubtask : Subtask
     ///   <c>true</c> if this instance can be reseted; otherwise, <c>false</c>.
     /// </value>
     public bool CanBeReseted { get; set; } = false;
+
+
+    
 
     /// <summary>
     /// The OnEnable method is called when the script is enabled. (Unity Callback).
@@ -72,7 +77,6 @@ public class InteractSubtask : Subtask
     {
         if (IsPlayerDoingSubtask())
         {
-            sliderContainer.SetActive(true);
             UpdateSubTaskProgress();
         }
         else
@@ -85,9 +89,12 @@ public class InteractSubtask : Subtask
 
             Debug.Log("Player is not doing the subtask");
 
-            sliderContainer.SetActive(false);
-        }
-     
+            if (started)
+            {
+                sliderContainer.SetActive(false);
+                started = false;
+            }
+        }    
     }
 
     /// <summary>
@@ -124,6 +131,8 @@ public class InteractSubtask : Subtask
     /// </remarks>
     private void UpdateSubTaskProgress()
     {
+        started = true;
+        sliderContainer.SetActive(true);
         currentSubtaskTime += Time.deltaTime;
 
         // Because the slider value is between 0 and 10;
@@ -140,7 +149,13 @@ public class InteractSubtask : Subtask
             // Checks if the game object can be desactivated, if it is the case the game object is desactivated.
             if (CanBeVanish)
             {
+
+                subTaskTime = 5f;
+                currentSubtaskTime = 0f;
+                slider.value = 0f;
+
                 gameObject.SetActive(false);
+                return;
             }
 
             enabled = false;

@@ -27,7 +27,7 @@ public class Subtask : MonoBehaviour, ISubject
     /// </summary>
     public void MoveIconToSubtask()
     {
-        const float ICON_DISTANCE = 1.5f;
+        const float ICON_DISTANCE = 2f;
 
         Vector3 subTaskIconPos = gameObject.transform.position + new Vector3(0f, ICON_DISTANCE, 0f);
 

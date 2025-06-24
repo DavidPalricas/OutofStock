@@ -100,12 +100,12 @@ public class CustomerMovement : NPCMovement, ISubject
         {
             case MarketProduct.ProductType.TUNA_CAN:
                 TargetProduct = marketStock.Tunas[Utils.RandomInt(0, marketStock.Tunas.Count)].GetComponent<MarketProduct>();
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.MILK:
                 TargetProduct = marketStock.Milks[Utils.RandomInt(0, marketStock.Milks.Count)].GetComponent<MarketProduct>();
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 return;
 
             /*
@@ -130,12 +130,12 @@ public class CustomerMovement : NPCMovement, ISubject
 
             case MarketProduct.ProductType.BEER_BOTTLE:
                 TargetProduct = marketStock.BeerBottles[Utils.RandomInt(0, marketStock.BeerBottles.Count)].GetComponent<MarketProduct>();
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.BEER_CAN:
                 TargetProduct = marketStock.BeerCans[Utils.RandomInt(0, marketStock.BeerCans.Count)].GetComponent<MarketProduct>();
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 return;
 
             /*
@@ -148,22 +148,22 @@ public class CustomerMovement : NPCMovement, ISubject
 
             case MarketProduct.ProductType.TOILET_PAPER:
                 TargetProduct = marketStock.ToiletPapers[Utils.RandomInt(0, marketStock.ToiletPapers.Count)].GetComponent<MarketProduct>();
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.HAND_SOAP:
                 TargetProduct = marketStock.HandSoaps[Utils.RandomInt(0, marketStock.HandSoaps.Count)].GetComponent<MarketProduct>();
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 return;
 
             case MarketProduct.ProductType.CLEANING_SPRAY:
                 TargetProduct = marketStock.CleaningSprays[Utils.RandomInt(0, marketStock.CleaningSprays.Count)].GetComponent<MarketProduct>();
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 return;
 
             default:
                 Debug.LogError("Invalid product type selected: " + productType);
-                AreasPos["Product"] = TargetProduct.PickProductArea == null ? Vector3.zero : TargetProduct.PickProductArea.position;
+                AreasPos["Product"] = TargetProduct.pickProductArea == null ? Vector3.zero : TargetProduct.pickProductArea.position;
                 TargetProduct = null;
                 return;
         }
