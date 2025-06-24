@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51b6fffec5d044a8653b2d46706512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  canBePicked: 0
+  type: 6
+  canBePicked: 1
 --- !u!136 &7067870348455150339
 CapsuleCollider:
   m_ObjectHideFlags: 0

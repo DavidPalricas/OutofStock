@@ -22,16 +22,26 @@ public class Subtask : MonoBehaviour, ISubject
     /// </summary>
     private GameObject subtaskIcon = null;
 
+    private Transform cameraTransform;
+
     /// <summary>
     /// The MoveIconToSubtask method is responsible for instanting a subtask icon in front of the subtask game object.
     /// </summary>
     public void MoveIconToSubtask()
     {
-        const float ICON_DISTANCE = 1.5f;
+        const float ICON_DISTANCE = 2f;
 
-        Vector3 subTaskIconPos = gameObject.transform.position + new Vector3(0f, ICON_DISTANCE, 0f);
+        Vector3 subTaskIconPos = gameObject.transform.position + new Vector3(0f, ICON_DISTANCE, -0.5f);
 
         subtaskIcon = Instantiate(subtaskIconPrefab, subTaskIconPos, Quaternion.identity);
+
+        cameraTransform = Camera.main.transform;
+    }
+
+
+    private void LateUpdate()
+    {
+        subtaskIcon.transform.LookAt(subtaskIcon.transform.position + cameraTransform.forward);
     }
 
     /// <summary>

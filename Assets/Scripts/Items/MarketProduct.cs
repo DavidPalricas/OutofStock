@@ -13,23 +13,28 @@ public class MarketProduct : Item
     {
         TUNA_CAN,
         MILK,
-        /*
+        CHPS,
+        CEREALS,
+        YOUGOURT,
+        
+        PINNEAPPLE,
         ORANGE,
         RED_APPLE,
         GREEN_APPLE,
+        LEMON,
         BANANA,
-        LEMON
-        WATERMELON,
-        WINE,
-        */
+ 
         BEER_BOTTLE,
         BEER_CAN,
-        // WATER,
-        // WHISKYEY,
-        // VODKA,
+        WATER,
+        WHISKYEY,
+        WINE,
+
         TOILET_PAPER,
         HAND_SOAP,
         CLEANING_SPRAY,
+        HANDS_CREAM,
+        TOOTHPASTE,
     }
 
     public GameObject Shelf { get; set; }
@@ -37,7 +42,7 @@ public class MarketProduct : Item
     /// <summary>
     /// The pickProductArea attribute is the area where the custumers can pick up the product.
     /// </summary>
-    public Transform PickProductArea { get; set; }
+    public Transform pickProductArea;
 
     /// <summary>
     /// The type attribute is used to define the type of product this MarketProduct represents.

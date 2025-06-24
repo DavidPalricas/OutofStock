@@ -27,6 +27,9 @@ public class CleanFloor : Task
     // </remarks>
     private bool broomSubTaskDone= false;
 
+
+    private int cleanSites = 0;
+
     /// <summary>
     /// The OnEnable method is called when the script is enabled. (Unity Callback).
     /// In this method, we add the subtasks to the task , enable the grab broom subtask and initialize its properties.
@@ -60,7 +63,7 @@ public class CleanFloor : Task
             broomSubTaskDone = true;
         }
 
-        if (completedSubtasks == subtasks.Length)
+        if (completedSubtasks == cleanSites + 1)
         {
             TaskCompleted();
             enabled = false;
@@ -91,8 +94,13 @@ public class CleanFloor : Task
     /// </summary>
     private void ActivateCleanSitesSubTasks()
     {
-        foreach (GameObject cleanSite in subtasks.Skip(1))
+        // - 1 to ignore the bloom subtask
+        cleanSites = Utils.RandomInt(1, subtasks.Length - 1);
+
+        for  (int i = 1; i <= cleanSites; i++)
         {   
+            GameObject cleanSite = subtasks[i];
+
             cleanSite.SetActive(true);
 
             InteractSubtask subTask = cleanSite.GetComponent<InteractSubtask>();
@@ -101,5 +109,6 @@ public class CleanFloor : Task
             subTask.MoveIconToSubtask();
             subTask.CanBeVanish = true;
         }
+
     }
 }
