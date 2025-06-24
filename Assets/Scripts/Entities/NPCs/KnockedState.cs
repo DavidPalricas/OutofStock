@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// The KnockedState class is responsible for handling the knocked state of the NPCs (customers and Manager).
@@ -10,10 +12,21 @@ public class KnockedState : State
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
     //  It gets the name of the current class and sets it to the StateName property.
     /// </summary>
+
+    private float timer  = 0f, standUpAnimationTime, knockAnimationTime;
+
+
+    private bool isStandingUp = false;  
     private void Awake()
     {
         StateName = GetType().Name;
         animator = GetComponent<Animator>();
+
+
+        List<AnimationClip> clips = animator.runtimeAnimatorController.animationClips.ToList();
+
+        standUpAnimationTime = clips.Find(x => x.name.ToLower() == "gettingup").length;
+        knockAnimationTime = clips.Find(x => x.name.ToLower().Contains("fallingdown")).length;
     }
 
     /// <summary>
@@ -22,20 +35,22 @@ public class KnockedState : State
     /// Inside this method after knocing out the customer and it stand up, its state will change to the AttackPlayer state if the customer is a Karen, otherwise it will change to the GoHome state.
     /// </summary>
     public override void Enter()
-{
-    base.Enter();
-
-    if (gameObject.CompareTag("Manager"))
     {
-        GetComponent<StrikesSystem>().DispatchStrike(true);
-    }
-   
-    FindFirstObjectByType<AudioManager>().PlayCustomerAttackedSFX(transform.position);
-        
-    GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
+        base.Enter();
 
-    animator.SetTrigger("Hit");
-}
+        if (gameObject.CompareTag("Manager"))
+        {
+            GetComponent<StrikesSystem>().DispatchStrike(true);
+        }
+
+        animator.SetTrigger("Hit");
+
+
+        GetComponent<Rigidbody>().isKinematic = true;
+
+        timer = Time.time + knockAnimationTime;
+
+    }
 
 
     /// <summary>
@@ -45,6 +60,20 @@ public class KnockedState : State
     public override void Execute()
     {
         base.Execute();
+
+        if (Time.time >= timer)
+        {
+            if (!isStandingUp)
+            {
+                isStandingUp = true;
+                animator.SetTrigger("standUp");
+
+                timer = Time.time + standUpAnimationTime;
+                return;
+            }
+
+            GetComponent<FSM>().ChangeState("StandUp");
+        }
     }
 
     /// <summary>
@@ -53,8 +82,9 @@ public class KnockedState : State
     /// </summary>
     public override void Exit()
     {
-        animator.SetTrigger("standUp");
         base.Exit();
         GetComponent<NPCMovement>().WasAttacked = false;
+
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 }

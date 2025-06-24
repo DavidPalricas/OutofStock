@@ -23,7 +23,8 @@ public class GoHome : CustomerBaseState
     {
         base.Enter();
 
-        customerMovement.SetAgentDestination(customerMovement.AreasPos["MarketExit"]); 
+        customerMovement.SetAgentDestination(customerMovement.AreasPos["MarketExit"]);
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>
@@ -41,8 +42,6 @@ public class GoHome : CustomerBaseState
     public override void Execute()
     {
         base.Execute();
-
-        animator.SetFloat("Speed", customerMovement.agent.velocity.magnitude);
 
         if (customerMovement.WasAttacked)
         {

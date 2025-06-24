@@ -935,7 +935,6 @@ GameObject:
   - component: {fileID: 3959002535409409592}
   - component: {fileID: 7823015200487833172}
   - component: {fileID: 2557594400346309854}
-  - component: {fileID: 1956677516607206075}
   m_Layer: 6
   m_Name: Girl03
   m_TagString: Customer
@@ -1090,8 +1089,19 @@ MonoBehaviour:
   - {fileID: 2557594400346309854}
   transitions:
   - name: ProductPicked
+<<<<<<< HEAD
     from: {fileID: 2691835720341451105}
     to: {fileID: 3959002535409409592}
+=======
+    from: {fileID: 5445947469925766986, guid: b44f0584e92c171488d9dfc02257dfd2, type: 3}
+    to: {fileID: 0}
+  - name: BecameThief
+    from: {fileID: 0}
+    to: {fileID: 0}
+  - name: ProductStealed
+    from: {fileID: 0}
+    to: {fileID: 0}
+>>>>>>> 8db7909f7dd203abf70d87901a9712a723ce1a8d
   - name: ProductPaid
     from: {fileID: 3959002535409409592}
     to: {fileID: 7823015200487833172}
@@ -1134,8 +1144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbda8a73af0ae6948a7e6c7531c08a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToPickProduct: 3
-  maxTimeToPickProduct: 5
 --- !u!114 &3959002535409409592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,6 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fed0539ebf4f14fbc689720638067f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &1956677516607206075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1508,3 +1517,5 @@ CapsuleCollider:
   m_Height: 0.83114797
   m_Direction: 1
   m_Center: {x: 0.0030326843, y: 0.35057086, z: 0.011888189}
+=======
+>>>>>>> 8db7909f7dd203abf70d87901a9712a723ce1a8d

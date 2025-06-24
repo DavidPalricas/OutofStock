@@ -1132,7 +1132,6 @@ GameObject:
   - component: {fileID: 5058785579290798814}
   - component: {fileID: 3825858112091375625}
   - component: {fileID: 7971859563814046144}
-  - component: {fileID: 2913524114657144634}
   m_Layer: 6
   m_Name: Girl01
   m_TagString: Customer
@@ -1287,8 +1286,19 @@ MonoBehaviour:
   - {fileID: 7971859563814046144}
   transitions:
   - name: ProductPicked
+<<<<<<< HEAD
     from: {fileID: 2329070619287709302}
     to: {fileID: 5058785579290798814}
+=======
+    from: {fileID: 5445947469925766986, guid: b44f0584e92c171488d9dfc02257dfd2, type: 3}
+    to: {fileID: 0}
+  - name: BecameThief
+    from: {fileID: 0}
+    to: {fileID: 0}
+  - name: ProductStealed
+    from: {fileID: 0}
+    to: {fileID: 0}
+>>>>>>> 8db7909f7dd203abf70d87901a9712a723ce1a8d
   - name: ProductPaid
     from: {fileID: 5058785579290798814}
     to: {fileID: 3825858112091375625}
@@ -1331,8 +1341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbda8a73af0ae6948a7e6c7531c08a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToPickProduct: 3
-  maxTimeToPickProduct: 5
 --- !u!114 &5058785579290798814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1371,6 +1379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fed0539ebf4f14fbc689720638067f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &2913524114657144634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,3 +1714,5 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2055182948290651487, guid: 424f3d6ada15c434c9637fec6b95c8f6, type: 3}
   m_PrefabInstance: {fileID: 3648221589850969939}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> 8db7909f7dd203abf70d87901a9712a723ce1a8d

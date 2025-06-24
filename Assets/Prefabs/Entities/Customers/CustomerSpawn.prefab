@@ -124,6 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalCustomerPrefab: {fileID: 2612030879575213846, guid: d4a5c97c6cb639c4dae9d52414fc5d66, type: 3}
   annoyingKidPrefab: {fileID: 3811859617834378359, guid: 8c44910fee7f18741836e24ef0aaba14, type: 3}
-  karenPrefab: {fileID: 2612030879575213846, guid: 5fd719c352fc9c942884bd70e0c8ee94, type: 3}
+  karenPrefab: {fileID: 4484610463837263261, guid: a74a6337dc5f597478ae933700e4b765, type: 3}
   maxCustomersInMarket: 10
   paymentAreasTransform: {fileID: 0}

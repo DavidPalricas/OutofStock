@@ -53,7 +53,6 @@ public class CustomerMovement : NPCMovement, ISubject
     /// </summary>
     public override void SetAgentDestination(Vector3 destination)
     {   
-        Debug.Log($"Setting agent destination to {destination} for customer {gameObject.name}");
         base.SetAgentDestination(destination);
     }
 

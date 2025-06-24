@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -7,15 +8,9 @@ using UnityEngine;
 public class Shopping : CustomerBaseState
 {
     /// <summary>
-    /// The minimumTimeToPickProduct and maximumTimeToPickProduct attributes are used to determine the time that the customer will take to pick a product.
-    /// </summary>
-    [SerializeField]
-    private float minTimeToPickProduct, maxTimeToPickProduct;
-
-    /// <summary>
     /// The timer attribute is used to store the time when the customer started picking a product.
     /// </summary>
-    private float timer;
+    private float timer, pickProductTime;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -26,6 +21,7 @@ public class Shopping : CustomerBaseState
         base.Awake();
         StateName = GetType().Name;
         timer = 0f;
+        pickProductTime = animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "pickupobject").length;
     }
 
     /// <summary>
@@ -44,6 +40,8 @@ public class Shopping : CustomerBaseState
         }
 
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>
@@ -63,9 +61,6 @@ public class Shopping : CustomerBaseState
     {
         base.Execute();
 
-
-        animator.SetFloat("Speed", customerMovement.agent.velocity.magnitude);
-
         if (customerMovement.WasAttacked)
         {
             fSM.ChangeState("Attacked");
@@ -73,7 +68,9 @@ public class Shopping : CustomerBaseState
         }
 
         if (customerMovement.DestinationReached)
-        {   
+        {
+            animator.SetFloat("Speed", 0f);
+
             if (customerMovement is KarenMovement)
             {
                fSM.ChangeState("ProductFound");
@@ -89,7 +86,7 @@ public class Shopping : CustomerBaseState
             // Initialize the timer to pick a product
             if (timer == 0f)
             {
-                timer = Time.time + Utils.RandomFloat(minTimeToPickProduct, maxTimeToPickProduct);
+                timer = Time.time + pickProductTime;
                 animator.SetTrigger("pickUpItem");
             }
             else if (Time.time >= timer)
@@ -107,8 +104,6 @@ public class Shopping : CustomerBaseState
     {
         base.Exit();
 
-        animator.SetTrigger("stopRunning");
-
         if (gameObject.name.Contains("NormalCustomer"))
         {
             MarketProduct product = customerMovement.TargetProduct;
@@ -118,7 +113,6 @@ public class Shopping : CustomerBaseState
             product.transform.SetParent(customerMovement.backPack);
             product.gameObject.SetActive(false);
         }
-        
     }
 
     /// <summary>
@@ -190,6 +184,6 @@ public class Shopping : CustomerBaseState
     /// </returns>
     private bool NormalCustomer()
     {
-       return name.Contains("NormalCustomer");
+       return !name.Contains("Kid") && name.Contains("Karen");
     }
 }
