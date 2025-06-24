@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e1ccbe3ac37254fb0a6c391010fcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subtaskIconPrefab: {fileID: 4298050221882985785, guid: 792f879463c1c8b438faa3cbab199727, type: 3}
+  subtaskIconPrefab: {fileID: 4300559272243397364, guid: ca86d8bc4a7696b4ca4b53035a49f8bb, type: 3}
   subtaskInput: {fileID: 0}
   sliderContainer: {fileID: 0}
   slider: {fileID: 0}
