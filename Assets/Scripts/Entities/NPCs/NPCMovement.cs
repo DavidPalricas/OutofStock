@@ -58,6 +58,8 @@ public class NPCMovement : MonoBehaviour
     /// </summary>
     public virtual void SetAgentDestination(Vector3 destination) {
 
+        agent.enabled = true;
+
         if (agent.isOnNavMesh)
         {
             DestinationReached = false;

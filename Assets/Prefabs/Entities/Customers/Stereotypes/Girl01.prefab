@@ -1133,7 +1133,6 @@ GameObject:
   - component: {fileID: 4337774785420090377}
   - component: {fileID: 3825858112091375625}
   - component: {fileID: 7971859563814046144}
-  - component: {fileID: 2913524114657144634}
   m_Layer: 6
   m_Name: Girl01
   m_TagString: Customer
@@ -1286,7 +1285,7 @@ MonoBehaviour:
   - {fileID: 0}
   transitions:
   - name: ProductPicked
-    from: {fileID: 0}
+    from: {fileID: 5445947469925766986, guid: b44f0584e92c171488d9dfc02257dfd2, type: 3}
     to: {fileID: 0}
   - name: BecameThief
     from: {fileID: 0}
@@ -1336,8 +1335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbda8a73af0ae6948a7e6c7531c08a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToPickProduct: 3
-  maxTimeToPickProduct: 5
 --- !u!114 &5058785579290798814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,17 +1386,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09fed0539ebf4f14fbc689720638067f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2913524114657144634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678824500000918609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebb80ea433de9914faa70c86406a2d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

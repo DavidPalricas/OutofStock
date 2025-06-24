@@ -49,6 +49,8 @@ public class AttackPlayer : CustomerBaseState
         {
             karenMovement = movement;
         }
+
+        animator.SetFloat("Speed", 0f);
     }
 
     /// <summary>
@@ -69,21 +71,23 @@ public class AttackPlayer : CustomerBaseState
     {
         base.Execute();
 
+
+        if (customerSanity.CurrentSanity <= 0)
+        {
+            fSM.ChangeState("AttackedToManyTimes");
+            return;
+        }
+
+
         if (!karenMovement.PlayerInRange())
         {
             fSM.ChangeState("PlayerNotInRange");
             return;
         }
 
-        if (customerSanity.CurrentSanity <= 0)
-        {
-            Attack();
-            fSM.ChangeState("AttackedToManyTimes");
-            return;
-        }
-
         if (Time.time >= timer)
         {   
+            animator.SetTrigger("Attack");
             Attack();
             timer = Time.time + attackCooldown;
         }
