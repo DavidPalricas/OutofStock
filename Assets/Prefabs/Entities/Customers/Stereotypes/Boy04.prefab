@@ -770,7 +770,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &8961537394920513501
 MonoBehaviour:
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b34b396ae723940baacc04550ce79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 3972565912056161122}
   backPack: {fileID: 0}
 --- !u!114 &5389024922640092420
 MonoBehaviour:
@@ -799,36 +799,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6165287243493994253}
+  - {fileID: 857595276404702262}
+  - {fileID: 3055021994110982101}
+  - {fileID: 3951304732837746264}
   transitions:
   - name: ProductPicked
-    from: {fileID: 5445947469925766986, guid: b44f0584e92c171488d9dfc02257dfd2, type: 3}
-    to: {fileID: 0}
-  - name: BecameThief
-    from: {fileID: 0}
-    to: {fileID: 0}
-  - name: ProductStealed
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 6165287243493994253}
+    to: {fileID: 857595276404702262}
   - name: ProductPaid
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 857595276404702262}
+    to: {fileID: 3951304732837746264}
   - name: Attacked
     from: {fileID: 0}
-    to: {fileID: 0}
+    to: {fileID: 3055021994110982101}
   - name: StandUp
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 3055021994110982101}
+    to: {fileID: 3951304732837746264}
   - name: ProductNotFound
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 6165287243493994253}
+    to: {fileID: 3951304732837746264}
   - name: WasRobbed
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 857595276404702262}
+    to: {fileID: 3951304732837746264}
 --- !u!114 &8487337836252319384
 MonoBehaviour:
   m_ObjectHideFlags: 0

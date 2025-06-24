@@ -679,7 +679,6 @@ GameObject:
   - component: {fileID: 2266924776577138598}
   - component: {fileID: 2770160311259487657}
   - component: {fileID: 8729785770537236778}
-  - component: {fileID: 4633063651297854445}
   - component: {fileID: 5719888133100541916}
   - component: {fileID: 4011842208469937480}
   m_Layer: 6
@@ -798,7 +797,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &5907894819375875025
 MonoBehaviour:
@@ -812,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b34b396ae723940baacc04550ce79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 4201220461037992039}
   backPack: {fileID: 0}
 --- !u!114 &7602899289241123477
 MonoBehaviour:
@@ -827,36 +826,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2770160311259487657}
+  - {fileID: 8729785770537236778}
+  - {fileID: 4011842208469937480}
+  - {fileID: 5719888133100541916}
   transitions:
   - name: ProductPicked
-    from: {fileID: 5445947469925766986, guid: b44f0584e92c171488d9dfc02257dfd2, type: 3}
-    to: {fileID: 0}
-  - name: BecameThief
-    from: {fileID: 0}
-    to: {fileID: 0}
-  - name: ProductStealed
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 2770160311259487657}
+    to: {fileID: 8729785770537236778}
   - name: ProductPaid
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 8729785770537236778}
+    to: {fileID: 5719888133100541916}
   - name: Attacked
     from: {fileID: 0}
-    to: {fileID: 0}
+    to: {fileID: 4011842208469937480}
   - name: StandUp
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 4011842208469937480}
+    to: {fileID: 5719888133100541916}
   - name: ProductNotFound
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 2770160311259487657}
+    to: {fileID: 5719888133100541916}
   - name: WasRobbed
-    from: {fileID: 0}
-    to: {fileID: 0}
+    from: {fileID: 8729785770537236778}
+    to: {fileID: 5719888133100541916}
 --- !u!114 &2266924776577138598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,21 +890,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTimeToPay: 3
   maxTimeToPay: 5
---- !u!114 &4633063651297854445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5533690441924331667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4743e5beb106dc348ac4821121a5c012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minTimeToSteal: 1
-  maxTimeToSteal: 3
-  thiefMaterial: {fileID: 2100000, guid: 2458794a4f2699b40b311aabbb4ff8f2, type: 2}
 --- !u!114 &5719888133100541916
 MonoBehaviour:
   m_ObjectHideFlags: 0
