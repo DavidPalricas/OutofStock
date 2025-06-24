@@ -30,6 +30,7 @@ public class Office: ManagerState
         movement.IsPatrolling = false;
 
         movement.SetAgentDestination(movement.ManagerOffice);
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>
@@ -48,6 +49,8 @@ public class Office: ManagerState
     {
         base.Execute();
 
+        Debug.Log("Manager is now going to his office.");
+
         if (movement.WasAttacked)
         {
             fSM.ChangeState("Attacked");
@@ -55,7 +58,7 @@ public class Office: ManagerState
         }
 
         if (movement.DestinationReached)
-        {   
+        {
             StayOnPoint("Patrol");
         }
     }

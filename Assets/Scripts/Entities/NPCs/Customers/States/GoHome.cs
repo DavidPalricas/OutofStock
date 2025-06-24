@@ -23,7 +23,8 @@ public class GoHome : CustomerBaseState
     {
         base.Enter();
 
-        customerMovement.SetAgentDestination(customerMovement.AreasPos["MarketExit"]); 
+        customerMovement.SetAgentDestination(customerMovement.AreasPos["MarketExit"]);
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>

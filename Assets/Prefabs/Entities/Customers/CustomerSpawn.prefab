@@ -122,8 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3acd4b1eba8c045b95af91c699c30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalCustomerPrefab: {fileID: 2612030879575213846, guid: d4a5c97c6cb639c4dae9d52414fc5d66, type: 3}
-  annoyingKidPrefab: {fileID: 2612030879575213846, guid: c62272cdffee66449b2aeb9d42d982c4, type: 3}
-  karenPrefab: {fileID: 2612030879575213846, guid: 5fd719c352fc9c942884bd70e0c8ee94, type: 3}
+  annoyingKidPrefab: {fileID: 3811859617834378359, guid: 8c44910fee7f18741836e24ef0aaba14, type: 3}
+  karenPrefab: {fileID: 4484610463837263261, guid: a74a6337dc5f597478ae933700e4b765, type: 3}
+  thiefPrefab: {fileID: 8664007382962040792, guid: 210422a2d3c57294ba5cd9e4e50fbdd7, type: 3}
+  boyPrefab1: {fileID: 7362712423047463531, guid: b44f0584e92c171488d9dfc02257dfd2, type: 3}
+  boyPrefab2: {fileID: 5955657528956767338, guid: 1fc30e929d28ff3449bbef80fe80886d, type: 3}
+  boyPrefab3: {fileID: 8148972938234079395, guid: a255641a87e15614faaa6b1787c77116, type: 3}
+  boyPrefab4: {fileID: 5533690441924331667, guid: 254822866ac6b3d459dab4e38a0dec0e, type: 3}
+  boyPrefab5: {fileID: 5587312903203242780, guid: a81c342add3b81540840712e6ff7d99e, type: 3}
+  boyPrefab6: {fileID: 7007306524301275456, guid: 2a0ef4554fb0c0d42b8fc2bed8262fbe, type: 3}
+  girlPrefab1: {fileID: 3648215110478335846, guid: bb88e027964ff324cb1514e545a2ec9b, type: 3}
+  girlPrefab2: {fileID: 5192607532637374050, guid: df1156b1210eb1b4aacc0bd65a05e0fa, type: 3}
+  girlPreba3: {fileID: 7947824866020292178, guid: 4864b06405bb59542a587c61f6eee97d, type: 3}
+  girlPrefab4: {fileID: 7692709108680223840, guid: a9dce202f3e148f4f88d532a549231f2, type: 3}
   maxCustomersInMarket: 10
   paymentAreasTransform: {fileID: 0}

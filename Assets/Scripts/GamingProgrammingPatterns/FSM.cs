@@ -114,6 +114,8 @@ public abstract class State : MonoBehaviour
     /// </summary>
     protected FSM fSM;
 
+    protected Animator animator;
+
     /// <summary>
     /// The StateName attribute is the name of the state.
     /// </summary>
@@ -127,7 +129,7 @@ public abstract class State : MonoBehaviour
     /// It is overriden by its child classes to handle its specific actions.
     /// </summary>
     public virtual void Enter() {
-       // Debug.Log($"Entering {stateName} State");
+       // Debug.Log($"Entering {StateName} State");
     }
 
     /// <summary>
@@ -135,7 +137,7 @@ public abstract class State : MonoBehaviour
     /// It is overriden by its child classes to handle its specific actions.
     /// </summary>
     public virtual void Execute() { 
-      // Debug.Log($"Executing {stateName} State");
+     // Debug.Log($"Executing {StateName} State");
     }
 
     /// <summary>
@@ -143,6 +145,6 @@ public abstract class State : MonoBehaviour
     /// It is overriden by its child classes to handle its specific actions.
     /// </summary>
     public virtual void Exit() { 
-       // Debug.Log($"Exiting {stateName} State");
+       // Debug.Log($"Exiting {StateName} State");
     }
 }

@@ -43,10 +43,9 @@ public class StrikesSystem : MonoBehaviour
         {
             EventManager.GetInstance().LastCustomerAttacked = null;
         }
-        else
-        {
-            GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
-        }
+
+
+        GetComponent<Animator>().SetTrigger("startComplaining");
 
         Color imageColor;
 

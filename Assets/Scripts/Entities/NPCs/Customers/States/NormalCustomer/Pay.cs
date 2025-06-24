@@ -36,7 +36,7 @@ public class Pay : CustomerBaseState
     {
         base.Enter();
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Payment"]);
-        Debug.Log("Customer is paying for the product.");
+        animator.SetFloat("Speed", 0f);
     }
 
     /// <summary>
