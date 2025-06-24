@@ -13,7 +13,7 @@ public class DayConfig
     /// a Karen and an annoying kid.
     /// </summary>
     [Range(0, 1)]
-    public float karenSpawnProb, annoyingKidSpawnProb;
+    public float karenSpawnProb, annoyingKidSpawnProb, thiefSpawnProb;
 
     /// <summary>
     /// The managerOfficeTime and managerPatrolTime properties define the time the manager

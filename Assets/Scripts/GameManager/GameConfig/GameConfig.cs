@@ -144,6 +144,7 @@ public class GameConfig : MonoBehaviour
 
             dayData.customersSpawnProbs.Add("Karen", day.karenSpawnProb);
             dayData.customersSpawnProbs.Add("AnnoyingKid", day.annoyingKidSpawnProb);
+            dayData.customersSpawnProbs.Add("Thief", day.thiefSpawnProb);
 
             dayData.managerTimes.Add("OfficeTime", day.managerOfficeTime);
             dayData.managerTimes.Add("PatrolTime", day.managerPatrolTime);
@@ -254,6 +255,7 @@ public class GameConfig : MonoBehaviour
         {
             PlayerPrefs.SetFloat("KarenSpawnProb", dayData.customersSpawnProbs["Karen"]);
             PlayerPrefs.SetFloat("AnnoyingKidSpawnProb", dayData.customersSpawnProbs["AnnoyingKid"]);
+            PlayerPrefs.SetFloat("ThiefSpawnProb", dayData.customersSpawnProbs["Thief"]);
             PlayerPrefs.SetFloat("ManagerOfficeTime", dayData.managerTimes["OfficeTime"]);
             PlayerPrefs.SetFloat("ManagerPatrolTime", dayData.managerTimes["PatrolTime"]);
             PlayerPrefs.SetInt("NumberOfTasks", dayData.numberOfTasks);

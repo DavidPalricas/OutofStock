@@ -33,12 +33,6 @@ public class Shopping : CustomerBaseState
     {
         base.Enter();
 
-        if (NormalCustomer() && BecamesThief())
-        {
-            fSM.ChangeState("BecameThief");
-            return;
-        }
-
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
 
         animator.SetFloat("Speed", 1f);
@@ -69,8 +63,6 @@ public class Shopping : CustomerBaseState
 
         if (customerMovement.DestinationReached)
         {
-            animator.SetFloat("Speed", 0f);
-
             if (customerMovement is KarenMovement)
             {
                fSM.ChangeState("ProductFound");
@@ -116,23 +108,6 @@ public class Shopping : CustomerBaseState
     }
 
     /// <summary>
-    /// The BecamesThief method is responsible for checking if a Normal Customer becomes a thief.
-    /// It generates a random value between 0 and 1 and compares it with the probability of becoming a thief,
-    /// if the random value is less than the probability, it returns true, otherwise it returns false.
-    /// </summary>
-    /// <returns>
-    ///  <c>true</c> if the customer becames a theif; otherwise, <c>false</c>.
-    /// </returns>
-    private bool BecamesThief()
-    {
-        float randomValue = Utils.RandomFloat(0f, 1f);
-
-        float probBecamingThief = PlayerPrefs.GetFloat("CustomerBecameThiefProb");
-
-        return randomValue < probBecamingThief;
-    }
-
-    /// <summary>
     /// The PickProduct method is responsible for handling the remaining actions of the customer when it picks a product and changes its state.
     /// If the customer is an Annoying Kid, it sets the HoldsProduct attribute to true and its state to Running, otherwise it sets the state to Pay (only Normal Customer).
     /// </summary>
@@ -173,17 +148,5 @@ public class Shopping : CustomerBaseState
         Debug.Log("Product is available");
 
         return false;
-    }
-
-    /// <summary>
-    /// The NormalCustomer method is responsible for checking if the customer is a normal customer.
-    /// To do this, it checks if the name of the customer contains the string "NormalCustomer".
-    /// </summary>
-    /// <returns>
-    ///  <c>true</c> if the customer is a Normal Customer; otherwise, <c>false</c>.
-    /// </returns>
-    private bool NormalCustomer()
-    {
-       return !name.Contains("Kid") && name.Contains("Karen");
     }
 }

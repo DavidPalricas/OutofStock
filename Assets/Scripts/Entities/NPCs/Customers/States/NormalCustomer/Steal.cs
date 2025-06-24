@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -6,17 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Steal : CustomerBaseState
 {
-    /// <summary>
-    /// The minimumTimeToSteal and maximumTimeToSteal attributes are the time that the customer will take to steal a product.
-    /// </summary>
-    [SerializeField]
-    private float minTimeToSteal, maxTimeToSteal;
+    private float timer, timeToSteal;
 
-    /// <summary>
-    /// The thiefMaterial attribute is the material that will be used to dress the thief.
-    /// </summary>
-    [SerializeField]
-    private Material thiefMaterial;
 
     /// <summary>
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
@@ -26,6 +18,8 @@ public class Steal : CustomerBaseState
     {
         base.Awake();
         StateName = GetType().Name;
+        timer = 0f;
+        timeToSteal = animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "pickupobject").length;
     }
 
     /// <summary>
@@ -36,6 +30,8 @@ public class Steal : CustomerBaseState
     {
         base.Enter();
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
+
+        animator.SetFloat("Speed", 1f);
     }
 
     /// <summary>
@@ -61,7 +57,15 @@ public class Steal : CustomerBaseState
 
         if (customerMovement.DestinationReached)
         {   
-            StealProduct();
+            if (timer == 0f)
+            {  
+                timer = Time.time + timeToSteal;
+                animator.SetTrigger("pickUpItem");
+            }
+            else if (Time.time >= timer)
+            {
+                fSM.ChangeState("ProductStealed");
+            }
         }
     }
 
@@ -72,28 +76,5 @@ public class Steal : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
-    }
-
-    /// <summary>
-    /// The StealProduct method is responsible for handling the stealing process.
-    /// It changes the thief's clothes and simulates the stealing action by waiting for a random time between minTimeToSteal and maxTimeToSteal.
-    /// After that the state changes to the Go Home state.
-    /// </summary>
-    private void StealProduct()
-    {
-        DressThiefClothes();
-        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(minTimeToSteal, maxTimeToSteal), () => fSM.ChangeState("ProductStealed")));
-    }
-
-    /// <summary>
-    /// The DressThiefClothes method is responsible for changing the material of the thief to the thiefMaterial.
-    /// </summary>
-    /// <remarks>
-    /// For now, it is just changing the material of the thief to the thiefMaterial later can change the model of the thief to a different one.
-    /// </remarks>
-    private void DressThiefClothes()
-    {
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.material = thiefMaterial;
-    }
+    } 
 }
