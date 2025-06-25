@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -21,8 +22,13 @@ public class Shopping : CustomerBaseState
         base.Awake();
         StateName = GetType().Name;
         timer = 0f;
-        pickProductTime = animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "pickupobject").length;
+
+        if (!gameObject.name.Contains("Karen"))
+        {
+            pickProductTime = animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "pickupobject").length;
+        }
     }
+
 
     /// <summary>
     /// The Enter method is called when the state is entered.
@@ -127,6 +133,11 @@ public class Shopping : CustomerBaseState
         MarketStock marketStock = GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>();
 
         MarketProduct product = customerMovement.TargetProduct;
+
+
+        if (product.gameObject.IsDestroyed() || product.gameObject == null) { 
+            return true;
+        }
 
         if (!marketStock.IsProductAvaible(product.gameObject)){
 

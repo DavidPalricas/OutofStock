@@ -207,7 +207,7 @@ public class Shelf : MonoBehaviour, ISubject
     /// <param name="product">The product.</param>
     public void SetProductPickArea(MarketProduct product)
     {
-        product.PickProductArea = pickAreas
+        product.pickProductArea = pickAreas
                    .OrderBy(p => Vector3.Distance(p.transform.position, product.transform.position))
                    .FirstOrDefault()?.transform;
     }
