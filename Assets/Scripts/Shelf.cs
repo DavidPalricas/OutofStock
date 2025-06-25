@@ -76,9 +76,13 @@ public class Shelf : MonoBehaviour, ISubject
         ProductsPlaceHolder = Utils.GetChildren(productsPlaceHolderGroup);
         pickAreas = Utils.GetChildren(pickAreasGroup);
 
-        IObserver taskManager = GameObject.FindGameObjectWithTag("TaskManager").GetComponent<TaskManager>();
 
-        AddObservers(new IObserver[] { taskManager });
+        GameObject taskManager = GameObject.FindGameObjectWithTag("TaskManager");
+
+
+       if (taskManager != null){
+            AddObservers(new IObserver[] { taskManager.GetComponent<TaskManager>()});
+       }
 
         AddProducts();
 
@@ -193,7 +197,11 @@ public class Shelf : MonoBehaviour, ISubject
     /// </summary>
     /// <param name="data">Any argument to be sent to the observer.</param>
     public void NotifyObservers(object data)
-    {
+    {   
+        if (observers == null || observers.Length == 0){
+            return;
+        }
+
         foreach (IObserver observer in observers)
         {
             observer.OnNotify(data);

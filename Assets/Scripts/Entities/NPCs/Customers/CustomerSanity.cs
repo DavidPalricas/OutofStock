@@ -16,6 +16,9 @@ public class CustomerSanity : MonoBehaviour, IEventDispatcher
     private Camera mainCamera;
 
 
+    private bool isOnMainMenu = false;
+
+
     [Range(0, 100)]
     public float maxSanity;
 
@@ -27,7 +30,16 @@ public class CustomerSanity : MonoBehaviour, IEventDispatcher
         CurrentSanity = maxSanity;
         mainCamera = Camera.main;
         sliderContainer.SetActive(false);
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player == null){
+            isOnMainMenu = true;
+
+            return;
+        }
+
+        playerTransform = player.transform;
     }
 
     public void ShowSanityBar()
@@ -43,7 +55,7 @@ public class CustomerSanity : MonoBehaviour, IEventDispatcher
 
     private void Update()
     {
-        if (sliderContainer.activeSelf)
+        if (!isOnMainMenu && sliderContainer.activeSelf)
         {
             sliderContainer.transform.rotation = mainCamera.transform.rotation;
 
