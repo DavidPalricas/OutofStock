@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 661536304965789616}
   - component: {fileID: 6662602659915890228}
   - component: {fileID: 1441753012823755474}
-  - component: {fileID: 6447914014429134125}
+  - component: {fileID: 784240265006843426}
   m_Layer: 8
   m_Name: VinhoV
   m_TagString: Item
@@ -74,10 +74,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51b6fffec5d044a8653b2d46706512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickProductArea: {fileID: 0}
   type: 15
   canBePicked: 0
---- !u!65 &6447914014429134125
-BoxCollider:
+--- !u!136 &784240265006843426
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,9 +95,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.9875847, y: 3.0857534, z: 1.0496602}
-  m_Center: {x: 0.0062076375, y: -0.52143854, z: 1.7132971}
+  serializedVersion: 2
+  m_Radius: 0.507682
+  m_Height: 3.1148634
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.4253699, z: 0.069138594}
 --- !u!1001 &4449562327199235185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,6 +108,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 661536304965789616}
     m_Modifications:
+    - target: {fileID: -8994373609113905470, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8994373609113905470, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35000002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8994373609113905470, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.07999992
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -153,6 +168,30 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0ebf5fc5c57d3c74d81493deaf2944b3, type: 2}
+    - target: {fileID: -6972716855243340085, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6972716855243340085, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35000002
+      objectReference: {fileID: 0}
+    - target: {fileID: -6972716855243340085, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.07999992
+      objectReference: {fileID: 0}
+    - target: {fileID: -5328588538141966923, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5328588538141966923, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35000002
+      objectReference: {fileID: 0}
+    - target: {fileID: -5328588538141966923, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.07999992
+      objectReference: {fileID: 0}
     - target: {fileID: -5295040968421099654, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -192,6 +231,14 @@ PrefabInstance:
     - target: {fileID: 5042102780746837252, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824734127478922219, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824734127478922219, guid: 4711b0f28ac94954f8ff5a885bfe216e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

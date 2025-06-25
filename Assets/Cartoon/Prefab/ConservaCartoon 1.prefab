@@ -54,10 +54,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.33303338
-  m_Height: 0.7209464
+  m_Radius: 0.3330333
+  m_Height: 0.7333749
   m_Direction: 1
-  m_Center: {x: -0.69391406, y: 0.12940273, z: 0.020108351}
+  m_Center: {x: -0.14929204, y: 0.12566757, z: 0.020108351}
 --- !u!54 &5547004635968557520
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51b6fffec5d044a8653b2d46706512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickProductArea: {fileID: 0}
   type: 0
+  canBePicked: 0
 --- !u!1 &1927179513931604392
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 3865387026130374532}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.81, y: 0.018, z: -0.52}
+  m_LocalPosition: {x: -0.27, y: 0.018, z: -0.52}
   m_LocalScale: {x: 2.9411764, y: 2.9411764, z: 2.9411764}
   m_ConstrainProportionsScale: 0
   m_Children:
