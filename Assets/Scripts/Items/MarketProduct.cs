@@ -71,6 +71,12 @@ public class MarketProduct : Item
     public void EntityHasProduct()
     {
         GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().RemoveProduct(gameObject);
+
+        if (Shelf == null)
+        {
+            return;
+        }
+
         Shelf.GetComponent<Shelf>().ProductRemoved(gameObject);
     }
 
