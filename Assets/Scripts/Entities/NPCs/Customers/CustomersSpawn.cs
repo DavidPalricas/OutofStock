@@ -149,7 +149,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         float annoyinKidSpawnProb = PlayerPrefs.GetFloat("AnnoyingKidSpawnProb");
         float thiefSpawnProb = PlayerPrefs.GetFloat("ThiefSpawnProb");
 
-        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb);
+        float normalCustomerSpawnProb = 1f - (karenSpawnProb + annoyinKidSpawnProb + thiefSpawnProb);
 
         List<KeyValuePair<GameObject, float>> customersSpawnProbs = new()
         {
@@ -173,7 +173,7 @@ public class CustomersSpawn : MonoBehaviour, IObserver
             }
         }
 
-        return customersSpawnProbs[^1].Key;
+        return customersSpawnProbs[Utils.RandomInt(0, customersSpawnProbs.Count)].Key;
     }
 
     /// <summary>
