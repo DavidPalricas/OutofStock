@@ -198,11 +198,11 @@ MonoBehaviour:
     Path: event:/NPCs/NPC_Pay
   customerAttackedEvent:
     Guid:
-      Data1: -804749894
-      Data2: 1235008725
-      Data3: -678870096
-      Data4: 1049738695
-    Path: event:/NPCs/CustomerHit
+      Data1: 1882040307
+      Data2: 1236379013
+      Data3: -1068739187
+      Data4: 1577808842
+    Path: event:/NPCs/CustomerHit_Product
   KarenComplaintEvent:
     Guid:
       Data1: 1453064827

@@ -84,12 +84,12 @@ public class MarketProduct : Item
 
     public enum MaterialType
 {
+    M0,
     M1,
     M2,
     M3,
     M4,
-    M5,
-    M6
+    M5
 }
 
 public MaterialType GetMaterialType()
@@ -97,25 +97,32 @@ public MaterialType GetMaterialType()
     switch (type)
     {
         case ProductType.TUNA_CAN:
-            return MaterialType.M1;
-
-        case ProductType.BEER_BOTTLE:
-        case ProductType.BEER_CAN:
-        //case ProductType.WINE: // if re-enabled
-                return MaterialType.M2;
-
-        case ProductType.MILK:
-            return MaterialType.M3;
-
-        case ProductType.TOILET_PAPER:
-            return MaterialType.M4;
+        case ProductType.CEREALS:
+        case ProductType.CHPS:
+            return MaterialType.M0;
 
         case ProductType.HAND_SOAP:
         case ProductType.CLEANING_SPRAY:
-            return MaterialType.M5;
+        case ProductType.BEER_CAN:
+                return MaterialType.M1;
+            
+        case ProductType.MILK:
+        case ProductType.WATER:
+        case ProductType.HANDS_CREAM:
+            return MaterialType.M2;
+
+        case ProductType.TOILET_PAPER:
+        case ProductType.YOUGOURT:
+        case ProductType.TOOTHPASTE:
+            return MaterialType.M3;
+
+        case ProductType.BEER_BOTTLE:
+        case ProductType.WHISKYEY:
+        case ProductType.WINE:
+            return MaterialType.M4;
 
         default:
-            return MaterialType.M6; // default fallback
+            return MaterialType.M5; // default fallback
     }
 }
 

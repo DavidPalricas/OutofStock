@@ -57,8 +57,8 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     {
 
         audioManager = FindFirstObjectByType<AudioManager>();
-      paymentAreas = Utils.GetChildren(paymentAreasTransform);
-      normalCustomerPrefabs = new GameObject[] { boyPrefab1, boyPrefab2, boyPrefab3, boyPrefab4, boyPrefab5, boyPrefab6,
+        paymentAreas = Utils.GetChildren(paymentAreasTransform);
+        normalCustomerPrefabs = new GameObject[] { boyPrefab1, boyPrefab2, boyPrefab3, boyPrefab4, boyPrefab5, boyPrefab6,
                               girlPrefab1, girlPrefab2, girlPreba3, girlPrefab4};
     }
 
@@ -101,13 +101,13 @@ public class CustomersSpawn : MonoBehaviour, IObserver
         MarketProduct.ProductType productType = productTypes[Utils.RandomInt(0, productTypes.Length)];
 
         if (marketStock.IsOutOfStock(productType))
-        {   
+        {
             return;
         }
 
-        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0? GetTypeOfCustomer() : normalCustomerPrefabs[Utils.RandomInt(0, normalCustomerPrefabs.Length)];
+        GameObject customerSterotype = SceneManager.GetActiveScene().buildIndex != 0 ? GetTypeOfCustomer() : normalCustomerPrefabs[Utils.RandomInt(0, normalCustomerPrefabs.Length)];
 
-        GameObject customer =  Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
+        GameObject customer = Instantiate(customerSterotype, GetCustomerPos(), Quaternion.identity);
 
 
         //AUDIO HERE
@@ -159,19 +159,22 @@ public class CustomersSpawn : MonoBehaviour, IObserver
            new KeyValuePair<GameObject, float>(normalCustomerPrefabs[Utils.RandomInt(0, normalCustomerPrefabs.Length)], normalCustomerSpawnProb),
         };
 
-        customersSpawnProbs.OrderBy(customersSpawnProb => customersSpawnProb.Value);
+        customersSpawnProbs = customersSpawnProbs
+            .OrderByDescending(customersSpawnProb => customersSpawnProb.Value)
+            .ToList();
 
         float randomValue = Utils.RandomFloat(0f, 1f);
 
         foreach (KeyValuePair<GameObject, float> customerSpawnProb in customersSpawnProbs)
-        {    
-            if (randomValue <= customerSpawnProb.Value) { 
+        {
+            if (randomValue <= customerSpawnProb.Value)
+            {
                 return customerSpawnProb.Key;
             }
         }
 
         return customersSpawnProbs[^1].Key;
-}
+    }
 
     /// <summary>
     /// The GetCustomerPos method is responsible for getting a random position in the spawn area (plane).
@@ -213,8 +216,9 @@ public class CustomersSpawn : MonoBehaviour, IObserver
     /// </summary>
     /// <param name="data">Any argument to be sent to the observer, in this case no argument is specified (null)</param>
     public void OnNotify(object data = null)
-    {   StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f),()=> CustomerExitMarket(data as GameObject)));
-        
+    {
+        StartCoroutine(Utils.WaitAndExecute(Utils.RandomFloat(1f, 5f), () => CustomerExitMarket(data as GameObject)));
+
     }
 }
 

@@ -160,15 +160,21 @@ public class AudioManager : MonoBehaviour
 
 
     public void PlayImpactSFX(Vector3 position, float materialParamValue)
-    {
-        Debug.Log("Playing impact sound with MaterialType param: " + materialParamValue);
+{
+    Debug.Log($"[AudioManager] Playing impact sound with MaterialType param: {materialParamValue}");
 
-        var instance = RuntimeManager.CreateInstance(customerAttackedEvent);
-        instance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
-        instance.setParameterByName("MaterialType", materialParamValue);
-        instance.start();
-        instance.release();
-    }
+    var instance = FMODUnity.RuntimeManager.CreateInstance(customerAttackedEvent);
+    instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(position));
+
+    FMOD.RESULT result = instance.setParameterByName("MaterialType", materialParamValue);
+    Debug.Log($"setParameterByName result: {result}");
+
+    instance.start();
+
+    // instance.release(); // You can comment this out for testing
+}
+
+
 
 
 
@@ -235,10 +241,13 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(loseEvent, position);
     }
 
-        public void PlayTaskComplete(Vector3 position)
+    public void PlayTaskComplete(Vector3 position)
     {
         RuntimeManager.PlayOneShot(taskdoneEvent, position);
     }
+    
+
+    
 
 
 }

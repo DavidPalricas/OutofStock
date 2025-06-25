@@ -60,24 +60,25 @@ public class Item : MonoBehaviour
         if (thrown)
         {
             Debug.Log("Item collided with: " + collision.gameObject.name);
-            
+
             gameObject.layer = LayerMask.NameToLayer("Item");
             thrown = false;
 
             if (collision.gameObject.CompareTag("Customer") || collision.gameObject.CompareTag("Manager"))
             {
-                // Play correct sound based on the product type
+                // Play correct sound based on the product's material type
                 MarketProduct product = GetComponent<MarketProduct>();
-                if (product != null)
-                {
-                    float productTypeParam = (float)product.type;
+if (product != null)
+{
+    float materialParam = (float)product.GetMaterialType();  // ✅ cast enum to float
+    Debug.Log($"[Impact] {product.type} maps to {product.GetMaterialType()} = {materialParam}");
 
-                    var audioManager = FindFirstObjectByType<AudioManager>();
-                    if (audioManager != null)
-                    {
-                        audioManager.PlayImpactSFX(transform.position, productTypeParam);
-                    }
-                }
+    var audioManager = FindFirstObjectByType<AudioManager>();
+    if (audioManager != null)
+    {
+        audioManager.PlayImpactSFX(transform.position, materialParam);  // ✅ use the cast float
+    }
+}
 
                 // Other existing logic (sanity, damage, etc.)
                 if (collision.gameObject.CompareTag("Customer"))
