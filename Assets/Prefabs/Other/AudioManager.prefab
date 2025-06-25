@@ -175,9 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cdc1d8d07f901449f8c8b2cb8a65a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskDoneSFX: {fileID: 0}
-  thiefAlertSFX: {fileID: 0}
-  karenDeafeatSFX: {fileID: 0}
   pauseSnapshot:
     Guid:
       Data1: 1559108679
@@ -185,13 +182,13 @@ MonoBehaviour:
       Data3: -1246549848
       Data4: 1694604841
     Path: snapshot:/PauseSnapshot
-  customerAttackedEvent:
+  doorchimeEvent:
     Guid:
-      Data1: -804749894
-      Data2: 1235008725
-      Data3: -678870096
-      Data4: 1049738695
-    Path: event:/NPCs/CustomerHit
+      Data1: -1782173064
+      Data2: 1184865572
+      Data3: -1722583130
+      Data4: -1704559157
+    Path: event:/NPCs/Door Chime
   paymentSFXEvent:
     Guid:
       Data1: 1509549544
@@ -199,13 +196,76 @@ MonoBehaviour:
       Data3: 1826597762
       Data4: -1099040100
     Path: event:/NPCs/NPC_Pay
+  customerAttackedEvent:
+    Guid:
+      Data1: -804749894
+      Data2: 1235008725
+      Data3: -678870096
+      Data4: 1049738695
+    Path: event:/NPCs/CustomerHit
   KarenComplaintEvent:
     Guid:
-      Data1: -1686053449
-      Data2: 1089469772
-      Data3: 63215508
-      Data4: 1017973816
-    Path: event:/Interactables/Button
+      Data1: 1453064827
+      Data2: 1163359482
+      Data3: 1833382561
+      Data4: 307955807
+    Path: event:/NPCs/Karen/KarenComplaint
+  karendefeatEvent:
+    Guid:
+      Data1: -26211724
+      Data2: 1229238433
+      Data3: 676912268
+      Data4: -1153962379
+    Path: event:/NPCs/Karen/KarenDefeat
+  alarmEvent:
+    Guid:
+      Data1: 850130579
+      Data2: 1132820315
+      Data3: -1178009937
+      Data4: -409185493
+    Path: event:/NPCs/Thief Alarm
+  throwEvent:
+    Guid:
+      Data1: 1017330915
+      Data2: 1251896121
+      Data3: 1115591554
+      Data4: 1975777808
+    Path: event:/Player/Mark_Throw
+  knockEvent:
+    Guid:
+      Data1: 1259103695
+      Data2: 1184443297
+      Data3: 1937192068
+      Data4: 125636367
+    Path: event:/Player/Mark_Knockout
+  taskdoneEvent:
+    Guid:
+      Data1: 1506624580
+      Data2: 1134763760
+      Data3: 421313720
+      Data4: -100708022
+    Path: event:/UI/Task_Complete
+  winEvent:
+    Guid:
+      Data1: 1923230290
+      Data2: 1269488166
+      Data3: 171863202
+      Data4: 1738410019
+    Path: event:/UI/Player_Win
+  loseEvent:
+    Guid:
+      Data1: -1997035601
+      Data2: 1326620438
+      Data3: 1351882938
+      Data4: 1960124800
+    Path: event:/UI/Player_Lose
+  supermarketAmbience:
+    Guid:
+      Data1: -2055789291
+      Data2: 1130870313
+      Data3: 2022218388
+      Data4: 564297764
+    Path: event:/Ambience/Supermarket_Ambience
   mainMusicEvent:
     Guid:
       Data1: 1149368326
@@ -213,6 +273,13 @@ MonoBehaviour:
       Data3: -1035697022
       Data4: 395364433
     Path: event:/Music/Level 2
+  mainMenuMusic:
+    Guid:
+      Data1: -928497198
+      Data2: 1291328188
+      Data3: -328156798
+      Data4: 158271820
+    Path: event:/Music/Menu Music
 --- !u!1 &4826687424878359694
 GameObject:
   m_ObjectHideFlags: 0

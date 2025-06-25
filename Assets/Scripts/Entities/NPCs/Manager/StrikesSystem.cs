@@ -81,7 +81,7 @@ public class StrikesSystem : MonoBehaviour
       
         if (strikes >= MAX_STRIKES)
         {   // Waits 3 seconds before exiting the game
-            StartCoroutine(Utils.WaitAndExecute(3f, () => SceneManager.LoadScene(0)));
+            StartCoroutine(Utils.WaitAndExecute(3f, () => GameObject.FindGameObjectWithTag("GameManager").GetComponent<ShiftLogic>().ShiftEnd()));
         }
     }
 }

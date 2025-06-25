@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using FMODUnity;
 using FMOD.Studio;
+using NUnit.Framework;
 
 
 /// <summary>
@@ -67,8 +68,14 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseResume()
     {
-        isPaused = !isPaused;
+        // Tries to pause the game but the game is already paused.
+        if (Time.timeScale == 0 && !isPaused)
+        {
+            return;
+        }
 
+
+        isPaused = !isPaused;
         pauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
         HandlingInput(isPaused);
@@ -88,14 +95,7 @@ public class PauseMenu : MonoBehaviour
         {
             audioManager.DeactivatePauseSnapshot();
         }
-
-
     }
-
-
-
-
-
 
     /// <summary>
     /// The HandlingInput method is responsible for handling the input.

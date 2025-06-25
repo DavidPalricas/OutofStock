@@ -61,13 +61,11 @@ public override void Enter()
     }
 
     audioManager = FindFirstObjectByType<AudioManager>();
+
+     ComplaintSFX();  // Play sound
 }
 
-    public void ComplaintSFX(Vector3 position)
-    {
-        audioManager?.PlayKarenComplaint(position);
-        Debug.DrawRay(position, Vector3.up * 2f, Color.red, 2f);
-}
+ 
 
 
     /// <summary>
@@ -102,15 +100,13 @@ public override void Enter()
             fSM.ChangeState("ComplainedToMuch");
             return;
         }
-    }
-
-    // Time to complain again?
-    if (Time.time >= timer)
-    {
-        ComplaintSFX(transform.position);  // Play sound
-        complainingCounter++;
-        timer = Time.time + complainingCooldown;  // reset cooldown
-    }
+    
+        // Time to complain again?
+        if (Time.time >= timer)
+        {
+ 
+            timer = Time.time + complainingCooldown;  // reset cooldown
+        }
 }
 
 
@@ -134,4 +130,5 @@ public override void Enter()
     {   
         FindFirstObjectByType<AudioManager>().PlayKarenComplaint(transform.position);
     }
+
 }

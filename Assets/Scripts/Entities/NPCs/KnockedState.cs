@@ -64,13 +64,9 @@ public class KnockedState : State
     // and it's already handled below more appropriately.
     // FindFirstObjectByType<AudioManager>().PlayImpactSFX(transform.position);
 
-    GetComponent<KnockEntity>().Knock(gameObject, GetComponent<Rigidbody>(), transform.position);
-
-
 
     // Optionally call it here if you know which item knocked the NPC:
     // PlayImpactSound(item);
-}
     /// <summary>
     /// The Enter method is called when the state is entered.
     /// It calls the base class Execute method.
