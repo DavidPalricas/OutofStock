@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4923785497975379940, guid: 4a100368e4fe1cf43b8585bec14a9d4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: -4208778667558909961, guid: 4a100368e4fe1cf43b8585bec14a9d4a, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -91,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4a100368e4fe1cf43b8585bec14a9d4a, type: 3}
       propertyPath: m_TagString
       value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901948371921989656, guid: 4a100368e4fe1cf43b8585bec14a9d4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 2058134282746552840, guid: 4a100368e4fe1cf43b8585bec14a9d4a, type: 3}
       propertyPath: m_Layer
@@ -162,7 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51b6fffec5d044a8653b2d46706512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickProductArea: {fileID: 0}
   type: 1
+  canBePicked: 0
 --- !u!65 &8711105799292367050
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -182,5 +192,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.1338794, y: 5.3029327, z: 1.9885111}
-  m_Center: {x: 4.2011724, y: 1.6281368, z: 0.000001738469}
+  m_Size: {x: 2.0067804, y: 5.3029327, z: 1.9885111}
+  m_Center: {x: 1.2397796, y: 1.6281368, z: 0.0000017384689}
