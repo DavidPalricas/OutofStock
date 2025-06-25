@@ -28,6 +28,10 @@ public class ReStockShelf : Task
     /// </summary>
     private GameObject[] shelfProducts;
 
+
+    [SerializeField]
+    private GameObject subTaskIcon;
+
     public Dictionary<GameObject, GameObject> RestockedProducts { get; set;} = new ();
 
     /// <summary>
@@ -54,6 +58,8 @@ public class ReStockShelf : Task
         {
             placeHolder.SetActive(true);
         }
+
+        subTaskIcon.SetActive(true);
     }
 
 
@@ -122,6 +128,7 @@ public class ReStockShelf : Task
             }
 
             TaskCompleted();
+            subTaskIcon.SetActive(false);
         }
     }
 }

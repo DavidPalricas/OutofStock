@@ -67,6 +67,9 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
     /// </summary>
     private int maxTasks, tasksCompleted = 0;
 
+
+    private int tasksToComplete = 0;
+
     /// <summary>
     /// The Awake method is called when the script instance is being loaded (Unity Callback).
     /// In this method, the timer is initialized the number of max tasks, the time to add a new task and the task timer.
@@ -96,7 +99,7 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
     /// </summary>
     private void Update()
     {
-        if (tasksCompleted < maxTasks && !allTypeOfTasksActivated && Time.time >= timer)
+        if (tasksToComplete < maxTasks && !allTypeOfTasksActivated && Time.time >= timer)
         {
 
             taskBoxContainerImage.enabled = true;
@@ -148,6 +151,8 @@ public class TaskManager : MonoBehaviour, IEventListener, IObserver
         ActivateTask(taskNumber);
     
         activeTaskToggles.Add(taskNumber, newToggle);
+
+        tasksToComplete++;
 
         allTypeOfTasksActivated = activeTaskToggles.Count == randomTasksTypes.Count;
     }
