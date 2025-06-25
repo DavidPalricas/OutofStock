@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24003c49d08cb584789d52a5780c7501, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.085
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24003c49d08cb584789d52a5780c7501, type: 3}
       propertyPath: m_LocalScale.z
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51b6fffec5d044a8653b2d46706512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickProductArea: {fileID: 0}
   type: 11
   canBePicked: 0
 --- !u!136 &-3382628501866725478
