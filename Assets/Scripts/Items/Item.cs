@@ -59,40 +59,55 @@ public class Item : MonoBehaviour
     {
         if (thrown)
         {
-            if (collision.gameObject.CompareTag("Customer"))
-            {   
-
-                GameObject customer = collision.gameObject;
-
-                CustomerMovement customerMovement;
-
-                CustomerSanity customerSanity = customer.GetComponent<CustomerSanity>() != null ? customer.GetComponent<CustomerSanity>() : customer.transform.parent.GetComponent<CustomerSanity>();
-                customerSanity.DecreasedSanity();
-
-                customerMovement = customer.GetComponent<CustomerMovement>() != null ?  customer.GetComponent<CustomerMovement>() : customer.transform.parent.GetComponent<CustomerMovement>();
-                customerMovement.WasAttacked = true;
-
-                EventManager.GetInstance().LastCustomerAttacked = customerMovement.gameObject;
-            }
-            else if (collision.gameObject.CompareTag("Manager"))
-            {   
-                GameObject manager = collision.gameObject;
-
-                if (manager.GetComponent<ManagerMovement>() != null)
-                {
-                    manager.GetComponent<ManagerMovement>().WasAttacked = true;
-                }
-                else
-                {   // The item collide with the manager collider to block entities colisions
-                    manager.transform.parent.GetComponent<ManagerMovement>().WasAttacked = true;
-                }
-               
-            }
-
+            Debug.Log("Item collided with: " + collision.gameObject.name);
+            
             gameObject.layer = LayerMask.NameToLayer("Item");
             thrown = false;
+
+            if (collision.gameObject.CompareTag("Customer") || collision.gameObject.CompareTag("Manager"))
+            {
+                // Play correct sound based on the product type
+                MarketProduct product = GetComponent<MarketProduct>();
+                if (product != null)
+                {
+                    float productTypeParam = (float)product.type;
+
+                    var audioManager = FindFirstObjectByType<AudioManager>();
+                    if (audioManager != null)
+                    {
+                        audioManager.PlayImpactSFX(transform.position, productTypeParam);
+                    }
+                }
+
+                // Other existing logic (sanity, damage, etc.)
+                if (collision.gameObject.CompareTag("Customer"))
+                {
+                    CustomerSanity sanity = collision.gameObject.GetComponent<CustomerSanity>() ??
+                                            collision.transform.parent.GetComponent<CustomerSanity>();
+                    sanity?.DecreasedSanity();
+
+                    CustomerMovement movement = collision.gameObject.GetComponent<CustomerMovement>() ??
+                                                collision.transform.parent.GetComponent<CustomerMovement>();
+                    if (movement != null)
+                    {
+                        movement.WasAttacked = true;
+                        EventManager.GetInstance().LastCustomerAttacked = movement.gameObject;
+                    }
+                }
+                else if (collision.gameObject.CompareTag("Manager"))
+                {
+                    ManagerMovement movement = collision.gameObject.GetComponent<ManagerMovement>() ??
+                                               collision.transform.parent.GetComponent<ManagerMovement>();
+                    if (movement != null)
+                    {
+                        movement.WasAttacked = true;
+                    }
+                }
+            }
         }
+
     }
+
 
     /// <summary>
     /// The WasGrabbed method is responsible for handling the logic when the item is grabbed by the player.

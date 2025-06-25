@@ -73,4 +73,44 @@ public class MarketProduct : Item
         GameObject.FindGameObjectWithTag("MarketStock").GetComponent<MarketStock>().RemoveProduct(gameObject);
         Shelf.GetComponent<Shelf>().ProductRemoved(gameObject);
     }
+
+
+
+    public enum MaterialType
+{
+    M1,
+    M2,
+    M3,
+    M4,
+    M5,
+    M6
+}
+
+public MaterialType GetMaterialType()
+{
+    switch (type)
+    {
+        case ProductType.TUNA_CAN:
+            return MaterialType.M1;
+
+        case ProductType.BEER_BOTTLE:
+        case ProductType.BEER_CAN:
+        //case ProductType.WINE: // if re-enabled
+                return MaterialType.M2;
+
+        case ProductType.MILK:
+            return MaterialType.M3;
+
+        case ProductType.TOILET_PAPER:
+            return MaterialType.M4;
+
+        case ProductType.HAND_SOAP:
+        case ProductType.CLEANING_SPRAY:
+            return MaterialType.M5;
+
+        default:
+            return MaterialType.M6; // default fallback
+    }
+}
+
 }

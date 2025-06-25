@@ -171,12 +171,17 @@ public class ShiftLogic : MonoBehaviour
     /// The NextDay method is responsible for advancing to the next day of the game.
     /// For now, it just reloads the current scene for testing the days progression.
     /// </summary>
-    private void ShiftEnd()
+    public void ShiftEnd()
     {
         Time.timeScale = 0;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        player.GetComponent<FirstPersonController>().enabled = false;
 
         // Check if the player won or lost and activate the appropriate screen  
         if (GetComponent<WinConditions>().PlayerWon())

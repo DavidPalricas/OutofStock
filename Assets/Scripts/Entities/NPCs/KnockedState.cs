@@ -27,6 +27,7 @@ public class KnockedState : State
         knockAnimationTime = clips.Find(x => x.name.ToLower().Contains("fallingdown")).length;
     }
 
+
     /// <summary>  
     /// The Enter method is called when the state is entered.  
     /// It calls the base class Enter method and calls the Knock method from the KnockEntity component to knock the customer down.  
@@ -59,7 +60,13 @@ public class KnockedState : State
         }
     }
 
+    // Commented out because this method requires a parameter we don't have here,
+    // and it's already handled below more appropriately.
+    // FindFirstObjectByType<AudioManager>().PlayImpactSFX(transform.position);
 
+
+    // Optionally call it here if you know which item knocked the NPC:
+    // PlayImpactSound(item);
     /// <summary>
     /// The Enter method is called when the state is entered.
     /// It calls the base class Execute method.

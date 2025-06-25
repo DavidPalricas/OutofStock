@@ -14,10 +14,15 @@ public class Steal : CustomerBaseState
     /// The Awake Method is called when the script instance is being loaded (Unity Callback).
     /// It calls the base class Awake method and sets the stateName to the name of the current class.
     /// </summary>
+    
+    private AudioManager audioManager;
+
     protected override void Awake()
     {
         base.Awake();
         StateName = GetType().Name;
+        
+        audioManager = FindFirstObjectByType<AudioManager>();
         timer = 0f;
         timeToSteal = animator.runtimeAnimatorController.animationClips.ToList().Find(x => x.name.ToLower() == "pickupobject").length;
     }
@@ -31,6 +36,7 @@ public class Steal : CustomerBaseState
         base.Enter();
         customerMovement.SetAgentDestination(customerMovement.AreasPos["Product"]);
 
+         audioManager?.PlayAlarmSound(transform.position);
         animator.SetFloat("Speed", 1f);
     }
 
@@ -52,6 +58,7 @@ public class Steal : CustomerBaseState
 
         if (customerMovement.WasAttacked)
         {
+            audioManager?.StopAlarmSound();
             fSM.ChangeState("Attacked");
         }
 
@@ -76,5 +83,7 @@ public class Steal : CustomerBaseState
     public override void Exit()
     {
         base.Exit();
-    } 
+
+        audioManager?.StopAlarmSound();
+    }
 }

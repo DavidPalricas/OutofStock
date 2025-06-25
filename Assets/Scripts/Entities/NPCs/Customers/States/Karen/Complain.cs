@@ -44,21 +44,29 @@ public class Complain : CustomerBaseState
     /// It calls the base class Enter method and sets the timer to the current time plus the complainingCooldown and sets
     /// the karenMovement reference to its associated attribute.
     /// </summary>
-    public override void Enter()
+    private AudioManager audioManager;
+
+public override void Enter()
+{
+    base.Enter();
+    timer = Time.time + complainingCooldown;
+
+    if (customerMovement is KarenMovement movement)
     {
-        base.Enter();
-        
-        timer = Time.time + complainingCooldown;
-
-
-        if (customerMovement is KarenMovement movement)
-        {
-            karenMovement = movement;
-        }
-
+        karenMovement = movement;
+     
         animator.SetBool("isComplain", true);
         animator.SetFloat("Speed", 0f);
+
     }
+
+    audioManager = FindFirstObjectByType<AudioManager>();
+
+     ComplaintSFX();  // Play sound
+}
+
+ 
+
 
     /// <summary>
     /// The Execute method is called when the state is executed, to perform the actions of the state.
@@ -74,7 +82,7 @@ public class Complain : CustomerBaseState
     /// If none of these conditions are met, the Karen will complain to the player, if the cooldown time has passed.
     /// </remarks>
     public override void Execute()
-    {   
+{
         if (!karenMovement.PlayerInRange())
         {
             fSM.ChangeState("PlayerNotInRange");
@@ -92,7 +100,15 @@ public class Complain : CustomerBaseState
             fSM.ChangeState("ComplainedToMuch");
             return;
         }
-    }
+    
+        // Time to complain again?
+        if (Time.time >= timer)
+        {
+ 
+            timer = Time.time + complainingCooldown;  // reset cooldown
+        }
+}
+
 
     /// <summary>
     /// The Exit method is called when the state is exited, to handle its final actions.
@@ -113,7 +129,6 @@ public class Complain : CustomerBaseState
     public void ComplaintSFX()
     {   
         FindFirstObjectByType<AudioManager>().PlayKarenComplaint(transform.position);
-
-
     }
+
 }
