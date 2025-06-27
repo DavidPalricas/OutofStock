@@ -127,8 +127,8 @@ public class ReStockShelf : Task
                 item.SetActive(false);
             }
 
-            TaskCompleted();
             subTaskIcon.SetActive(false);
+            TaskCompleted();
         }
     }
 }

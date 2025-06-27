@@ -40,6 +40,15 @@ public class Item : MonoBehaviour
         }
     }
 
+    private void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
     /// <summary>
     /// The OnCollisionEnter Method is called when this collider/rigidbody has begun touching another rigidbody/collider (Unity Callback).
     /// </summary>
@@ -59,52 +68,69 @@ public class Item : MonoBehaviour
     {
         if (thrown)
         {
-            Debug.Log("Item collided with: " + collision.gameObject.name);
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Item"));
 
-            gameObject.layer = LayerMask.NameToLayer("Item");
             thrown = false;
 
-            if (collision.gameObject.CompareTag("Customer") || collision.gameObject.CompareTag("Manager"))
+            // Other existing logic (sanity, damage, etc.)
+            if (collision.gameObject.CompareTag("Customer"))
             {
                 // Play correct sound based on the product's material type
                 MarketProduct product = GetComponent<MarketProduct>();
-if (product != null)
-{
-    float materialParam = (float)product.GetMaterialType();  // ✅ cast enum to float
-    Debug.Log($"[Impact] {product.type} maps to {product.GetMaterialType()} = {materialParam}");
-
-    var audioManager = FindFirstObjectByType<AudioManager>();
-    if (audioManager != null)
-    {
-        audioManager.PlayImpactSFX(transform.position, materialParam);  // ✅ use the cast float
-    }
-}
-
-                // Other existing logic (sanity, damage, etc.)
-                if (collision.gameObject.CompareTag("Customer"))
+                if (product != null)
                 {
-                    CustomerSanity sanity = collision.gameObject.GetComponent<CustomerSanity>() ??
-                                            collision.transform.parent.GetComponent<CustomerSanity>();
-                    sanity?.DecreasedSanity();
+                    float materialParam = (float)product.GetMaterialType();  // ✅ cast enum to float
+                    Debug.Log($"[Impact] {product.type} maps to {product.GetMaterialType()} = {materialParam}");
 
-                    CustomerMovement movement = collision.gameObject.GetComponent<CustomerMovement>() ??
-                                                collision.transform.parent.GetComponent<CustomerMovement>();
-                    if (movement != null)
+                    var audioManager = FindFirstObjectByType<AudioManager>();
+                    if (audioManager != null)
                     {
-                        movement.WasAttacked = true;
-                        EventManager.GetInstance().LastCustomerAttacked = movement.gameObject;
+                        audioManager.PlayImpactSFX(transform.position, materialParam);  // ✅ use the cast float
                     }
                 }
-                else if (collision.gameObject.CompareTag("Manager"))
+
+
+                CustomerSanity sanity = collision.gameObject.GetComponent<CustomerSanity>() ??
+                                        collision.transform.parent.GetComponent<CustomerSanity>();
+                sanity?.DecreasedSanity();
+
+                CustomerMovement movement = collision.gameObject.GetComponent<CustomerMovement>() ??
+                                            collision.transform.parent.GetComponent<CustomerMovement>();
+                if (movement != null)
                 {
-                    ManagerMovement movement = collision.gameObject.GetComponent<ManagerMovement>() ??
-                                               collision.transform.parent.GetComponent<ManagerMovement>();
-                    if (movement != null)
-                    {
-                        movement.WasAttacked = true;
-                    }
+                    movement.WasAttacked = true;
+                    EventManager.GetInstance().LastCustomerAttacked = movement.gameObject;
                 }
             }
+            else if (collision.gameObject.CompareTag("Manager"))
+            {
+                // Play correct sound based on the product's material type
+                MarketProduct product = GetComponent<MarketProduct>();
+                if (product != null)
+                {
+                    float materialParam = (float)product.GetMaterialType();  // ✅ cast enum to float
+                    Debug.Log($"[Impact] {product.type} maps to {product.GetMaterialType()} = {materialParam}");
+
+                    var audioManager = FindFirstObjectByType<AudioManager>();
+                    if (audioManager != null)
+                    {
+                        audioManager.PlayImpactSFX(transform.position, materialParam);  // ✅ use the cast float
+                    }
+                }
+
+                ManagerMovement movement = collision.gameObject.GetComponent<ManagerMovement>() ??
+                                           collision.transform.parent.GetComponent<ManagerMovement>();
+                if (movement != null)
+                {
+                    movement.WasAttacked = true;
+                }
+            }
+
+
+
+
+
+
         }
 
     }
@@ -131,7 +157,7 @@ if (product != null)
             rB.isKinematic = true;
         }
 
-        gameObject.layer = LayerMask.NameToLayer("GrabbedItem");
+        SetLayerRecursively(gameObject, LayerMask.NameToLayer("GrabbedItem"));
     }
 
     /// <summary>

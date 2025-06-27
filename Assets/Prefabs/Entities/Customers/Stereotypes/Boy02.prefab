@@ -980,7 +980,7 @@ MonoBehaviour:
     to: {fileID: 7890865759628680637}
   - name: Attacked
     from: {fileID: 0}
-    to: {fileID: 0}
+    to: {fileID: 7306098614391778239}
   - name: StandUp
     from: {fileID: 7306098614391778239}
     to: {fileID: 7890865759628680637}
